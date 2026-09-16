@@ -1,6 +1,6 @@
 # OpenSiro OSS Control Plane
 
-This document is the operational control plane for the **public OpenSiro OSS group** defined in `README.md`. It records authority boundaries, compatibility gates, and the current hand-off points between in-scope public repositories. It is **not** a control plane for private OpenSiro work, and it is **not** a second source of VSM semantics or assessment data.
+This document is the operational control plane for the bounded **OpenSiro VSM Harness OSS group** defined in `README.md`. It records authority boundaries, compatibility gates, and the current hand-off points between in-scope public repositories. It is **not** a control plane for every OpenSiro project, private work, or downstream consumer, and it is **not** a second source of VSM semantics or assessment data.
 
 The in-scope repository set is maintained explicitly in `README.md`. Repository membership in the `opensiro` organization does not automatically place a project under this control plane. Contributor-local runtimes, schedulers, credentials, budgets, and sandboxes also remain outside this repository's authority.
 
@@ -15,7 +15,7 @@ VSM Harness Methodology
         ↓ assessment / autonomy / synthesis procedure
 VSM Harness Index @ exact Git revision
         ↓ evidence corpus + generated views
-curated / presentation consumers
+Awesome VSM Harness
 
 VSM OSS Organization
         ↳ local OSM operationalization of the released contract
@@ -26,8 +26,9 @@ Source-of-truth rules:
 - `opensiro/vsm-harness-profile` owns S1, S2, S3, S3*, S4, S5, recursion, variety, escalation, ownership/enforcement, and closure semantics.
 - `opensiro/vsm-harness-skills` owns the Methodology used to apply the Profile, including `A/C/P/—/?`, evidence procedure, synthesis, and deterministic ranking projection rules.
 - `opensiro/vsm-harness-index` owns the evidence-backed corpus. The exact Index Git revision identifies one corpus/output state.
-- `opensiro/opensiro.com` and other downstream views consume canonical upstream artifacts; they do not redefine them.
-- this repository owns only the OpenSiro OSS contribution organization and its OSM construction sequence.
+- `opensiro/awesome-vsm-harness` owns its curated representative downstream view; it does not redefine Profile or Index facts.
+- this repository owns only the bounded VSM Harness OSS contribution organization and its OSM construction sequence.
+- `opensiro/terminal-bench-vsm`, `opensiro/arctic-0`, and `opensiro/opensiro.com` are outside this organizational scope even when they consume, demonstrate, experiment with, or present related artifacts.
 
 ## Released contract vs frozen work
 
@@ -46,7 +47,7 @@ Current released state:
 - Methodology `0.2.3` is tagged/released at commit `30474da360b76edd1458ef51457fb2bb2323dcd1`; the bundled Profile records exact normative source revision `e1aaff7d2cd50d5d5ed9ab76c3606a6ef39d1976` plus the Profile blob.
 - the Index active contract is `Profile 0.2.1 / Methodology 0.2.3` for new work.
 - R1 remains frozen on `Profile 0.2.0 / Methodology 0.2.1` and the scope snapshot declared by `vsm-harness-index#47`.
-- the website consumes the canonical Index and records the source revision during publication.
+- out-of-scope presentation consumers may consume canonical Index state, but their publication workflow is not governed here.
 
 ## Current change graph
 
@@ -64,9 +65,9 @@ Index #52 ── merged: active contract → Profile 0.2.1 / Methodology 0.2.3
      └── R1 remains frozen on 0.2.0 / 0.2.1
              ↓
 Index #53 ── OPEN: targeted R1 S2 same-ref re-review queue
-
-opensiro.com #2 ── merged: canonical Index → website synchronization
 ```
+
+Out-of-scope downstream repositories may have their own synchronization or presentation changes; those are context, not nodes governed by this control plane.
 
 Historical note: Index #48 introduced a separate compatibility metadata/schema axis. Index #49 intentionally superseded that design with the smaller contract:
 
@@ -111,8 +112,9 @@ Use the smallest authority that actually owns the change:
 | assessment/autonomy/synthesis procedure with unchanged VSM meaning | Methodology PR + release | update Index active contract after compatibility validation; do not rewrite old provenance |
 | one harness evidence/classification/freshness event | Index PR | regenerate only affected deterministic corpus views; no Profile/Methodology release |
 | cohort changes / signatures / rankings under unchanged Methodology | Index PR | exact Index Git revision identifies the new state |
-| website rendering/presentation | presentation repository | consume upstream canonical data; no independent semantic authority |
+| representative curation under unchanged canonical facts | Awesome VSM Harness PR | consume canonical upstream facts; no independent semantic authority |
 | OpenSiro contributor role/control implementation | this repository | local OSM change; escalate upstream only if it reveals a reusable semantic/procedure defect |
+| out-of-scope experiment/presentation work | its own repository | may consume in-scope artifacts but is not routed or governed here |
 
 ## Merge gates for this repository
 
@@ -134,7 +136,6 @@ A local PR is ready when all applicable gates hold:
 - continue R1 under its frozen `0.2.0 / 0.2.1` contract;
 - execute the targeted S2 re-review queue in `vsm-harness-index#53` as part of R1, using same-ref corrections where the frozen evidence contract was previously over-interpreted;
 - use `0.2.1 / 0.2.3` for new work outside R1;
-- keep website/index synchronization downstream-only;
 - operate this repository at M0 and add later VSM functions only when their declared disturbance appears.
 
 ### Requires an explicit maintainer decision
