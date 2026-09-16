@@ -1,6 +1,23 @@
 # OpenSiro OSS Control Plane
 
-This document is the operational control plane for the public VSM/OSM pipeline used by this repository. It records authority boundaries, compatibility gates, and the current hand-off points between repositories. It is **not** a second source of VSM semantics or assessment data.
+This document is the operational control plane for the **public OpenSiro OSS group** governed by this repository. It records authority boundaries, compatibility gates, and the current hand-off points between repositories. It is **not** a control plane for all OpenSiro activity, and it is **not** a second source of VSM semantics or assessment data.
+
+## Scope boundary
+
+The canonical repository scope is defined in [README.md](README.md). At present this control plane covers public OSS contribution work across:
+
+- `opensiro/vsm-harness-profile`
+- `opensiro/vsm-harness-skills`
+- `opensiro/vsm-harness-index`
+- `opensiro/awesome-vsm-harness`
+- `opensiro/terminal-bench-vsm`
+- `opensiro/arctic-0`
+- `opensiro/opensiro.com`
+- `opensiro/vsm-oss-organization`
+
+It does not govern private OpenSiro repositories, private R&D context, contributor-local runtimes/credentials/budgets, or unrelated projects merely because they share an owner or name. Third-party repositories may appear as environment or evidence but are not governed by this control plane.
+
+Scope membership does not collapse repository responsibilities. In particular, ARCTIC remains a separate research track, the website remains a presentation layer, the Profile remains the normative VSM source, and the Index remains the evidence corpus.
 
 ## Authority chain
 
