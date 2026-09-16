@@ -10,6 +10,8 @@ This repository applies, but does not redefine, the public [VSM Harness Profile]
 - Local `A/C/P/—/?` autonomy notation and assessment procedure: `opensiro/vsm-harness-skills` Methodology `0.2.2`.
 - This repository is a local operationalization for OpenSiro OSS contribution. It does not redefine S1-S5.
 
+See [CONTROL_PLANE.md](CONTROL_PLANE.md) for the released-contract boundary, frozen Index work, current cross-repository change graph, merge gates, and maintainer decision points. In particular, open semantic proposals are not treated as released Profile rules.
+
 ## Contribution model
 
 OpenSiro defines organizational roles and GitHub contribution boundaries. Contributors own their runtime:
@@ -46,7 +48,7 @@ S1  S2  S3  S3* S4  S5
 A   A   A   A   A   P
 ```
 
-The final vector is a design target, not a present assessment claim. Each milestone has explicit entry and exit conditions in [ROADMAP.md](ROADMAP.md).
+The final vector is a design target, not a present assessment claim. `A`, `C`, and `P` are ownership arrangements, not maturity scores; the milestone ordering is the construction sequence for this reference organization rather than a universal VSM installation order. Each milestone has explicit entry and exit conditions in [ROADMAP.md](ROADMAP.md).
 
 ## Current role
 
