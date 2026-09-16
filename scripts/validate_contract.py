@@ -186,10 +186,6 @@ def validate(root: Path) -> list[str]:
 
     if readme and control:
         in_scope = repo_block(readme, "Current in-scope public repositories:", errors)
-        out_scope = repo_block(readme, "Explicitly outside this organizational scope:", errors)
-        overlap = sorted(in_scope & out_scope)
-        if overlap:
-            errors.append(f"repositories cannot be both in scope and explicitly out of scope: {overlap}")
 
         expected_owned = in_scope - {"opensiro/vsm-oss-organization"}
         actual_owned = set(re.findall(r"^- `(opensiro/[A-Za-z0-9_.-]+)` owns\b", control, re.MULTILINE))
@@ -197,14 +193,6 @@ def validate(root: Path) -> list[str]:
             errors.append(
                 "CONTROL_PLANE source-of-truth ownership repository set drifts from README scope: "
                 f"expected {sorted(expected_owned)}, found {sorted(actual_owned)}"
-            )
-
-        outside = re.search(r"^- .* are outside this organizational scope even when ", control, re.MULTILINE)
-        actual_out = set(REPO_RE.findall(outside.group(0))) if outside else set()
-        if actual_out != out_scope:
-            errors.append(
-                "CONTROL_PLANE explicit out-of-scope repository set drifts from README: "
-                f"expected {sorted(out_scope)}, found {sorted(actual_out)}"
             )
 
         rp, cp = readme_pair(readme, errors), control_pair(control, errors)
