@@ -138,16 +138,16 @@ Examples that can justify S2:
 - oscillatory mutual reactions;
 - one S1 repeatedly invalidating another's assumptions.
 
-For this OSM design, use the following deliberately strict local construction gate before claiming positive S2:
+Profile `0.2.1` now makes the S2 witness mechanically explicit. Before claiming positive S2, establish:
 
-1. distinct S1 units exist at the declared recursion level;
-2. there is concrete potential or observed interference/oscillation between them;
-3. a coordination path attenuates that interference;
-4. closure changes subsequent S1 behaviour.
+1. distinct S1 units at the declared recursion level;
+2. a **specific actual or structurally evidenced** interference, conflict, or oscillation arising from their interaction;
+3. a coordination relation specifically capable of attenuating that disturbance;
+4. feedback or closure that changes subsequent S1 behaviour.
 
-This four-part formulation is currently a **local construction criterion and an open proposed Profile clarification**, not text already released in Profile `0.2.0`. The released Profile already requires a real coordination problem among S1 units and regulation of that interference. See `opensiro/vsm-harness-profile#7` for the proposed explicit formulation.
+Merely saying that several agents could potentially disagree is insufficient. Generic mailboxes, queues, routing, shared task state, dependency fields, speaker selection, or task sequencing count only when evidence ties them to the identified inter-S1 disturbance.
 
-For `S2=A`, the decisive coordination discretion must be agent-owned. A deterministic merge queue, lock, scheduler, or branch rule alone is enforcement/support.
+For `S2=A`, the decisive coordination discretion must be agent-owned. A deterministic merge queue, lock, scheduler, reservation, or branch rule may support/enforce the coordination result without owning that discretion.
 
 ## M5 — External adaptation
 

@@ -44,11 +44,11 @@ The prompt pack is operational guidance, not additional VSM semantics and not ev
 
 ## Source boundary
 
-- Normative VSM semantics: `opensiro/vsm-harness-profile` `0.2.0`.
-- Local `A/C/P/—/?` autonomy notation and assessment procedure: `opensiro/vsm-harness-skills` Methodology `0.2.2`.
+- Normative VSM semantics: `opensiro/vsm-harness-profile` `0.2.1`.
+- Local `A/C/P/—/?` autonomy notation and assessment procedure: `opensiro/vsm-harness-skills` Methodology `0.2.3`.
 - This repository is a local operationalization for OpenSiro OSS contribution. It does not redefine S1-S5.
 
-See [CONTROL_PLANE.md](CONTROL_PLANE.md) for the released-contract boundary, frozen Index work, current cross-repository change graph, merge gates, and maintainer decision points. In particular, open semantic proposals are not treated as released Profile rules.
+See [CONTROL_PLANE.md](CONTROL_PLANE.md) for the released-contract boundary, frozen Index work, current cross-repository change graph, merge gates, and maintainer decision points. Open semantic proposals are never treated as released Profile rules.
 
 ## Contribution model
 

@@ -35,36 +35,37 @@ There are deliberately two compatible Methodology states in flight:
 
 | Surface | Profile | Methodology | Meaning |
 | --- | --- | --- | --- |
-| active contract for new work | `0.2.0` | `0.2.2` | current released semantic/procedure pair |
+| active contract for new work | `0.2.1` | `0.2.3` | current released semantic/procedure pair |
 | Index Reassessment R1 | `0.2.0` | `0.2.1` | frozen round contract; must not silently upgrade mid-round |
 
-This is intentional, not drift. A frozen reassessment round is historical work under a declared contract. New assessments or operational design may use the active `0.2.2` Methodology.
+This is intentional, not drift. A frozen reassessment round is historical work under a declared contract. New assessments or operational design outside R1 use the active `0.2.1 / 0.2.3` pair.
 
 Current released state:
 
-- Profile `0.2.0` is tagged/released and immutable at its release identity.
-- Methodology `0.2.1` and `0.2.2` are tagged/released; `0.2.2` is active for new work.
-- the Index active contract is `Profile 0.2.0 / Methodology 0.2.2`.
+- Profile `0.2.1` is tagged/released at normative commit `e1aaff7d2cd50d5d5ed9ab76c3606a6ef39d1976`; that tag target is treated as the immutable release identity.
+- Methodology `0.2.3` is tagged/released at commit `30474da360b76edd1458ef51457fb2bb2323dcd1`; the bundled Profile records exact normative source revision `e1aaff7d2cd50d5d5ed9ab76c3606a6ef39d1976` plus the Profile blob.
+- the Index active contract is `Profile 0.2.1 / Methodology 0.2.3` for new work.
 - R1 remains frozen on `Profile 0.2.0 / Methodology 0.2.1` and the scope snapshot declared by `vsm-harness-index#47`.
 - the website consumes the canonical Index and records the source revision during publication.
 
 ## Current change graph
 
 ```text
-Profile #3  ── merged: v0.2.0 ownership / closure semantics
+Profile #3  ── merged/released: v0.2.0 ownership / closure semantics
+Profile #8  ── merged/released: v0.2.1 explicit S2 evidence witness
      ↓
-Skills #2/#3/#5 ── merged: Methodology 0.2.0 → 0.2.1 → 0.2.2
+Skills #8  ── merged: Methodology 0.2.3 S2 function-before-state rule
+Skills #9/#11 ── merged: exact Profile source provenance + validation hardening
      ↓
-Index #44/#45/#46/#49 ── merged: provenance, R1, reduced active contract
+Methodology v0.2.3 ── released at 30474da360b76edd1458ef51457fb2bb2323dcd1
      ↓
-Index #50 ── merged: first R1 batch
-     ↓
+Index #52 ── merged: active contract → Profile 0.2.1 / Methodology 0.2.3
+     ├── new work uses active contract
+     └── R1 remains frozen on 0.2.0 / 0.2.1
+             ↓
+Index #53 ── OPEN: targeted R1 S2 same-ref re-review queue
+
 opensiro.com #2 ── merged: canonical Index → website synchronization
-
-Profile #7 ── OPEN PROPOSAL: stricter explicit S2 evidence threshold
-
-vsm-oss-organization #1 ── establishes the local OSM bootstrap on released
-                           Profile 0.2.0 / Methodology 0.2.2
 ```
 
 Historical note: Index #48 introduced a separate compatibility metadata/schema axis. Index #49 intentionally superseded that design with the smaller contract:
@@ -75,18 +76,20 @@ Profile version + Methodology version + exact Index Git revision
 
 Do not reintroduce an independent Index/TLDR/RANKINGS semantic version unless a future architectural need is demonstrated.
 
-## Proposed semantics are not released semantics
+## Released S2 clarification vs frozen R1
 
-`opensiro/vsm-harness-profile#7` proposes making the S2 evidence threshold mechanically explicit:
+Profile `0.2.1` makes the S2 evidence witness mechanically explicit. A positive S2 mapping identifies, at the declared recursion level:
 
-1. distinct S1 units;
-2. concrete potential or observed interference/oscillation;
-3. an attenuation/coordination path;
-4. closure that changes subsequent S1 behaviour.
+1. distinct S1 operational units;
+2. a **specific actual or structurally evidenced** interference, conflict, or oscillation arising from their interaction;
+3. a coordination relation specifically capable of attenuating that disturbance;
+4. feedback or closure by which the result changes subsequent S1 behaviour.
 
-Profile `0.2.0` already requires a real coordination problem among S1 units and regulation of that interference. Issue #7 is therefore a compatible proposed clarification, but it is **not part of the released Profile until a Profile release incorporates it**.
+Generic mailboxes, routing, shared state, task sequencing, dependency fields, speaker selection, or delegation do not establish S2 merely because they could be used to build coordination.
 
-This repository may use the four-part test as a deliberately stricter **local OSM construction gate**. When it does, it must label the test as local/proposed rather than claiming that Profile `0.2.0` literally contains that exact four-item rule.
+Methodology `0.2.3` additionally makes the function-before-state boundary explicit for `S2=C`: the S2 function itself must already be established, and the first-party primitive must expose an S2-specific decision/feedback path. `C` does not mean generic framework expressiveness.
+
+This clarification does **not** migrate R1. Frozen Profile `0.2.0` already requires a coordination problem and regulation of interference, and frozen Methodology `0.2.1` already excludes delegation/routing/sequencing/handoff alone and requires interference/oscillation regulation. Therefore weak historical S2 positives discovered in R1 are handled as same-ref corrections under `0.2.0 / 0.2.1`, as tracked by `vsm-harness-index#53`.
 
 ## OSM state semantics
 
@@ -129,12 +132,13 @@ A local PR is ready when all applicable gates hold:
 ### Ready / no semantic decision required
 
 - continue R1 under its frozen `0.2.0 / 0.2.1` contract;
-- use `0.2.0 / 0.2.2` for new work outside R1;
+- execute the targeted S2 re-review queue in `vsm-harness-index#53` as part of R1, using same-ref corrections where the frozen evidence contract was previously over-interpreted;
+- use `0.2.1 / 0.2.3` for new work outside R1;
 - keep website/index synchronization downstream-only;
 - operate this repository at M0 and add later VSM functions only when their declared disturbance appears.
 
 ### Requires an explicit maintainer decision
 
-1. **Profile #7 release policy** — decide whether the stricter four-part S2 witness should become a normative Profile patch now or remain a local/proposed clarification until more reassessment evidence accumulates.
+None at the current release/provenance boundary.
 
-No other current release/provenance contradiction requires a maintainer intervention.
+A new maintainer decision is required only when a future semantic proposal changes the released Profile/Methodology contract, a frozen downstream round needs an explicit successor, or the OSM implementation reaches a roadmap gate whose organizational disturbance must be demonstrated rather than assumed.
