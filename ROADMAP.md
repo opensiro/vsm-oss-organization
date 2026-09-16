@@ -1,6 +1,6 @@
 # OSM Roadmap
 
-This roadmap grows contributor autonomy bottom-up across the public OpenSiro OSS scope defined in [README.md](README.md). It follows the VSM Harness Profile rule: map the organizational function first, then identify the decisive decision/feedback right, its owner, supporting enforcement, and closure.
+This roadmap grows contributor autonomy bottom-up across the bounded OpenSiro VSM Harness OSS scope defined in [README.md](README.md). It follows the VSM Harness Profile rule: map the organizational function first, then identify the decisive decision/feedback right, its owner, supporting enforcement, and closure.
 
 The vectors below are milestone targets, not automatic grades. A milestone is complete only when the stated function and closure exist in the reference contribution setup.
 
@@ -12,7 +12,7 @@ The roadmap milestone identifier is also the canonical GitHub Milestone identifi
 
 | GitHub milestone | Tracker issue | Target vector | Scope introduced |
 | --- | --- | --- | --- |
-| `M0` — Autonomous operation | #2 | `A — — — — —` | One bounded autonomous OSS contribution S1. |
+| `M0` — Autonomous operation | #2 | `A — — — — —` | One bounded autonomous in-scope contribution S1. |
 | `M1` — Independent audit + control surface | #3 | `A — C A — —` | Complementary S3* audit plus a composable S3 intervention path. |
 | `M2` — Parent-governed identity boundary | #4 | `A — C A — P` | Parent-governed S5 closure and explicit delegated policy envelope. |
 | `M3` — Autonomous current control | #5 | `A — A A — P` | Autonomous S3 current regulation inside the S5 envelope. |
@@ -90,16 +90,16 @@ Do not award `P` because a human approves ordinary work. The runtime must detect
 Reference recursion:
 
 ```text
-OpenSiro identity / major policy
+VSM Harness OSS identity / major policy
         ↓ ultimate authority
-OpenSiro owner / designated governance parent
+designated governance parent
         ↓ delegated envelope
 contributor human parent
         ↓ local autonomy envelope
 agent organization
 ```
 
-Minor operational choices should remain below S5. Questions outside the contributor's delegated identity/policy envelope escalate to the higher OpenSiro parent.
+Minor operational choices should remain below S5. Questions outside the contributor's delegated identity/policy envelope escalate to the designated VSM Harness OSS governance parent.
 
 Exit criteria:
 
