@@ -40,19 +40,9 @@ The repositories remain separate systems with separate sources of truth. Inclusi
 
 `opensiro/vsm-harness-skills` is intentionally only partially inside this viable-system boundary. The repository may host reusable skills for more general tasks and for other systems. This control plane governs only those skills/procedures whose work participates in producing or maintaining VSM Harness knowledge; repository location alone does not make every skill part of this organization.
 
-Explicitly outside this organizational scope:
+Repositories outside the declared current in-scope set may still consume, demonstrate, experiment with, or present artifacts produced by the in-scope repositories. That dependency alone does not place them under this control plane.
 
-- `opensiro/terminal-bench-vsm`;
-- `opensiro/arctic-0`;
-- `opensiro/opensiro.com`;
-- private OpenSiro repositories and private R&D context;
-- credentials, local contributor runtimes, schedulers, model providers, budgets, and sandboxes;
-- third-party upstream repositories except as environment/evidence for an in-scope contribution;
-- downstream forks or projects not explicitly admitted to this scope.
-
-Out-of-scope repositories may still consume, demonstrate, experiment with, or present artifacts produced by the in-scope repositories. That dependency does not place them under this control plane.
-
-A repository may be added to or removed from this scope only explicitly; org membership or naming alone is not enough.
+Scope changes are explicit; organization membership, repository naming, or dependency alone is not enough to place work under this control plane.
 
 ## FOR CONTRIBUTORS
 
