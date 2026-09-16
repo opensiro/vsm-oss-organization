@@ -13,32 +13,33 @@
       "sha256": "<digest of exact governing content>"
     },
     "pre_start_human_constraints_ref": "<immutable reference or digest>",
-    "allowed_post_start_human_input_channels": [
-      "<audited channel identifier>"
+    "post_start_human_input_channels": [
+      "<audited or declared channel identifier>"
     ]
   },
   "attester": {
-    "identity": "<executor/session attester identity>",
-    "verification_key_ref": "<public key, certificate, transparency entry, or equivalent>",
-    "signature_format": "<verifiable signature/attestation format>",
-    "trust_basis": "<why key/credential custody is bound to the execution boundary for this run>",
+    "identity": "<executor/session/run evidence identity>",
+    "verification_material_ref": "<public key, transcript, event log, transparency entry, or equivalent>",
+    "attestation_format": "<verifiable evidence format>",
+    "trust_basis": "<what actor/run attribution this evidence source supports>",
     "runtime_label_optional": "<informational only; not ownership evidence>"
   },
   "pre_run_anchor": {
     "published_at": "<timestamp>",
     "immutable_ref": "<primary evidence URI/identifier>",
-    "signed_payload_digest": "sha256:<digest>",
-    "signature": "<signature or attestation reference/value>"
+    "payload_digest": "sha256:<digest or equivalent>",
+    "attestation_ref": "<signature/transcript/log/other attestation reference>"
   },
   "events": [
     {
       "seq": 1,
       "event_id": "<run-scoped event id>",
-      "kind": "executor_decision|executor_action|human_input|escalation|support|closure",
+      "kind": "executor_decision|executor_action|human_input|human_intervention|escalation|support|closure",
       "actor": "executor|human|support",
       "observed_at": "<timestamp or immutable publication order>",
       "summary": "<observable organizational fact; no hidden chain-of-thought>",
-      "authority": "inside_s1|outside_s1_escalation|support_only",
+      "authority": "inside_s1|outside_s1_escalation|human_intervention|support_only",
+      "affected_decision_right": "<decision/right affected, if material>",
       "evidence_refs": [
         "<primary evidence reference>"
       ],
@@ -49,14 +50,17 @@
           "payload_sha256": "<digest when content binding matters>"
         }
       ],
-      "previous_event_digest": "<digest/root binding or equivalent tamper-evident predecessor>"
+      "previous_event_digest": "<digest/root binding or equivalent ordering evidence>"
     }
   ],
-  "human_input_accounting": {
+  "human_intervention_accounting": {
     "post_start_human_input_occurred": "<true|false>",
-    "all_allowed_channels_captured": "<true|false>",
-    "unobserved_channel_available": "<true|false>",
-    "notes": "<record escalations/support only; ordinary hidden step control makes ownership insufficient>"
+    "human_intervention_occurred": "<true|false>",
+    "intervention_count": "<integer>",
+    "material_interventions_attributed": "<true|false>",
+    "s1_resumed_autonomously_after_intervention": "<true|false|not_applicable>",
+    "unobserved_material_channel_known": "<true|false>",
+    "notes": "<record intervention reason, affected decision right, and effect on closure>"
   },
   "closure": {
     "closure_artifact_refs": [
@@ -65,21 +69,22 @@
     "final_result_revision": "<commit SHA or null>",
     "run_record_digest": "sha256:<digest/root of ordered event record>",
     "pre_run_anchor_ref": "<same anchor immutable reference>",
-    "escalation_occurred": "<true|false>"
+    "escalation_occurred": "<true|false>",
+    "human_intervention_occurred": "<true|false>"
   },
   "final_attestation": {
-    "attester_identity": "<same execution trust chain as pre-run anchor>",
-    "signed_payload_digest": "sha256:<digest binding run_id, anchor, run record, actions, and closure>",
-    "signature": "<signature or attestation reference/value>",
+    "attester_identity": "<same evidence chain as pre-run anchor>",
+    "payload_digest": "sha256:<digest binding run_id, anchor, run record, actions, interventions, and closure>",
+    "attestation_ref": "<signature/transcript/log/other reference>",
     "verification_instructions_ref": "<public verification procedure/reference>"
   },
   "review": {
-    "signature_verified": "<true|false>",
-    "accepted_trust_basis": "<true|false>",
+    "actor_attribution_verified": "<true|false>",
     "action_bindings_verified": "<true|false>",
-    "human_inputs_accounted_for": "<true|false>",
+    "human_interventions_accounted_for": "<true|false>",
     "event_order_integrity_verified": "<true|false>",
+    "decisive_agent_owned_loop_established": "<true|false|insufficient>",
     "provenance_verdict": "PASS|FAIL|INSUFFICIENT",
-    "note": "A provenance PASS is not by itself an S1=A verdict."
+    "note": "Human intervention is reportable evidence, not an automatic provenance failure. A provenance PASS is not by itself an S1=A verdict."
   }
 }
