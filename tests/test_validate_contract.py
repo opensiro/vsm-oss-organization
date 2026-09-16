@@ -5,13 +5,11 @@ import tempfile
 import unittest
 from pathlib import Path
 
-
 MODULE_PATH = Path(__file__).resolve().parents[1] / "scripts" / "validate_contract.py"
 SPEC = importlib.util.spec_from_file_location("validate_contract", MODULE_PATH)
 assert SPEC and SPEC.loader
 validator = importlib.util.module_from_spec(SPEC)
 SPEC.loader.exec_module(validator)
-
 
 IN_SCOPE = [
     "opensiro/vsm-harness-profile",
@@ -37,15 +35,16 @@ VECTORS = {
 
 def roadmap_text() -> str:
     first = "\n".join(
-        f"| `{milestone}` — test | #{index + 2} | `{vector}` | scope |"
-        for index, (milestone, vector) in enumerate(VECTORS.items())
+        f"| `{milestone}` — test | #{index + 2} | `{value}` | scope |"
+        for index, (milestone, value) in enumerate(VECTORS.items())
     )
     second = "\n".join(
-        f"| {milestone} — test | `{vector}` | why |" for milestone, vector in VECTORS.items()
+        f"| {milestone} — test | `{value}` | why |"
+        for milestone, value in VECTORS.items()
     )
     sections = "\n\n".join(
-        f"## {milestone} — test\n\nTarget: `{vector}`\n\nText."
-        for milestone, vector in VECTORS.items()
+        f"## {milestone} — test\n\nTarget: `{value}`\n\nText."
+        for milestone, value in VECTORS.items()
     )
     return f"""# OSM Roadmap
 
@@ -152,16 +151,27 @@ class ContractValidatorTests(unittest.TestCase):
     def test_valid_contract_allows_frozen_historical_versions(self) -> None:
         self.assertEqual([], self.errors())
 
+    def test_concurrent_readme_target_wording_is_allowed(self) -> None:
+        path = self.root / "README.md"
+        path.write_text(
+            path.read_text(encoding="utf-8").replace(
+                "Current milestone:\n", "Current milestone target:\n"
+            ),
+            encoding="utf-8",
+        )
+        self.assertEqual([], self.errors())
+
     def test_scope_overlap_is_rejected(self) -> None:
         path = self.root / "README.md"
-        text = path.read_text(encoding="utf-8")
-        text = text.replace(
+        text = path.read_text(encoding="utf-8").replace(
             "- `opensiro/vsm-oss-organization`\n",
             "- `opensiro/vsm-oss-organization`\n- `opensiro/arctic-0`\n",
             1,
         )
         path.write_text(text, encoding="utf-8")
-        self.assertTrue(any("both in scope and explicitly out of scope" in error for error in self.errors()))
+        self.assertTrue(
+            any("both in scope and explicitly out of scope" in error for error in self.errors())
+        )
 
     def test_active_release_pair_drift_is_rejected(self) -> None:
         path = self.root / "CONTROL_PLANE.md"
@@ -170,7 +180,9 @@ class ContractValidatorTests(unittest.TestCase):
             "| active contract for new work | `0.2.1` | `9.9.9` |",
         )
         path.write_text(text, encoding="utf-8")
-        self.assertTrue(any("active Profile/Methodology pair drifts" in error for error in self.errors()))
+        self.assertTrue(
+            any("active Profile/Methodology pair drifts" in error for error in self.errors())
+        )
 
     def test_milestone_vector_drift_is_rejected(self) -> None:
         path = self.root / "ROADMAP.md"
@@ -183,7 +195,10 @@ class ContractValidatorTests(unittest.TestCase):
 
     def test_broken_local_link_is_rejected(self) -> None:
         path = self.root / "README.md"
-        path.write_text(path.read_text(encoding="utf-8") + "\n[Missing](missing.md)\n", encoding="utf-8")
+        path.write_text(
+            path.read_text(encoding="utf-8") + "\n[Missing](missing.md)\n",
+            encoding="utf-8",
+        )
         self.assertTrue(any("broken local Markdown link" in error for error in self.errors()))
 
     def test_success_notice_does_not_claim_semantic_or_ownership_proof(self) -> None:
