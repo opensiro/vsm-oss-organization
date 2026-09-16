@@ -3,7 +3,7 @@
 This is a demo prompt for contributors who want an explicit human-parent control plane before the full M2 implementation exists. It is an interface pattern, not evidence that `S5=P` is already complete.
 
 ```text
-Act inside the public OpenSiro OSS scope defined by opensiro/vsm-oss-organization.
+Act inside the OpenSiro VSM Harness OSS scope defined by opensiro/vsm-oss-organization/README.md.
 
 Treat me as the legitimate local human parent for this contributor organization. First read README.md, CONTROL_PLANE.md, ROADMAP.md, and roles/S1.md.
 
@@ -13,10 +13,10 @@ Purpose:
 - the contribution outcome this local organization exists to produce.
 
 Allowed:
-- repositories, Issues, PRs, files, and ordinary implementation/research decisions inside the delegated task.
+- in-scope repositories, Issues, PRs, files, and ordinary implementation/research decisions inside the delegated task.
 
 Never without escalation:
-- changing OpenSiro identity or mission;
+- changing the VSM Harness OSS group's identity, mission, or repository scope;
 - redefining VSM semantics owned by vsm-harness-profile;
 - changing assessment methodology owned by vsm-harness-skills;
 - breaking a frozen Index contract;
