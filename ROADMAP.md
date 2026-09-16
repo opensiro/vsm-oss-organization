@@ -10,10 +10,10 @@ The sequence is specific to this reference organization. It is not a universal V
 | --- | --- | --- |
 | M0 — Autonomous operation | `A — — — — —` | Establish one bounded autonomous S1 contribution loop. |
 | M1 — Independent audit + control surface | `A — C A — —` | Add complementary audit and an explicit S3 intervention path without yet making S3 autonomous. |
-| M2 — Autonomous current control | `A — A A — —` | Give an agent whole-system current view and bounded intervention authority when S1 can no longer absorb all operational exceptions locally. |
-| M3 — Multi-S1 coordination | `A A A A — —` | Add S2 only after multiple independent S1 units create real interference that cannot be safely absorbed locally. |
-| M4 — External adaptation | `A A A A A —` | Add S4 only when the contributor organization must model external/future change and feed adaptation options back into current capability. |
-| M5 — Parent-governed identity | `A A A A A P` | Close genuine identity/ultimate-policy questions through a legitimate parent authority and return the decision into operation. |
+| M2 — Parent-governed identity boundary | `A — C A — P` | Establish genuine S5 escalation and return early, so later autonomy grows inside an explicit parent-governed policy envelope. |
+| M3 — Autonomous current control | `A — A A — P` | Give an agent whole-system current view and bounded intervention authority when S1 can no longer absorb all operational exceptions locally. |
+| M4 — Multi-S1 coordination | `A A A A — P` | Add S2 only after multiple independent S1 units create real interference that cannot be safely absorbed locally. |
+| M5 — External adaptation | `A A A A A P` | Add S4 last, only when the contributor organization must model external/future change and feed adaptation options back into current capability. |
 
 ## M0 — Autonomous operation
 
@@ -62,9 +62,39 @@ Exit criteria:
 - the intervention result can return to subsequent S1 operation;
 - S3 is not claimed `A` until an autonomous agent owns the decisive current-control discretion.
 
-## M2 — Autonomous current control
+## M2 — Parent-governed identity boundary
 
-Target: `A — A A — —`
+Target: `A — C A — P`
+
+Introduce parent-governed S5 before increasing operational autonomy further. The purpose is to make the legitimate identity/policy boundary explicit while S3 is still only composable and before multi-S1 coordination or external adaptation are added.
+
+Do not award `P` because a human approves ordinary work. The runtime must detect or formulate a genuine identity/ultimate-policy issue, transfer it to the legitimate parent authority, receive an authoritative decision, and continue under that returned decision.
+
+Reference recursion:
+
+```text
+OpenSiro identity / major policy
+        ↓ ultimate authority
+OpenSiro owner / designated governance parent
+        ↓ delegated envelope
+contributor human parent
+        ↓ local autonomy envelope
+agent organization
+```
+
+Minor operational choices should remain below S5. Questions outside the contributor's delegated identity/policy envelope escalate to the higher OpenSiro parent.
+
+Exit criteria:
+
+- the delegated local autonomy envelope is explicit enough to distinguish ordinary operational choices from identity/ultimate-policy questions;
+- a genuine identity/policy exception can reach the legitimate parent authority;
+- the parent decision returns into the running organization;
+- subsequent operation is governed by that returned decision;
+- ordinary PR approval, permission prompts, or task-level confirmations are not misclassified as S5.
+
+## M3 — Autonomous current control
+
+Target: `A — A A — P`
 
 Add autonomous S3 only when observed operational variety exceeds what S1 should absorb locally. Typical triggers include repeated stalled work, budget/retry trade-offs, current commitment conflicts, or the need for exception-based intervention across the active operational scope.
 
@@ -73,11 +103,12 @@ Exit criteria:
 - S3 has a whole-system view of current operations at the declared boundary;
 - an agent owns bounded decisions over relevant current priorities/resources/commitments/constraints;
 - deterministic schedulers, gates, budgets, or kill switches only enforce those decisions;
-- S3* findings can change S3 decisions and subsequent S1 behaviour.
+- S3* findings can change S3 decisions and subsequent S1 behaviour;
+- S3 remains inside the S5 policy envelope established at M2.
 
-## M3 — Multi-S1 coordination
+## M4 — Multi-S1 coordination
 
-Target: `A A A A — —`
+Target: `A A A A — P`
 
 Do not add S2 merely because more processes or workers exist. Introduce multiple independent S1 units intentionally, then identify the concrete interference they create.
 
@@ -101,35 +132,22 @@ This four-part formulation is currently a **local construction criterion and an 
 
 For `S2=A`, the decisive coordination discretion must be agent-owned. A deterministic merge queue, lock, scheduler, or branch rule alone is enforcement/support.
 
-## M4 — External adaptation
-
-Target: `A A A A A —`
-
-S4 is deliberately deferred. Generic self-improvement, backlog ordering, internal planning, memory consolidation, or reacting to a single upstream event is not enough.
-
-Introduce S4 when the contributor organization genuinely needs to model relevant external/future change, develop adaptation options, and place those options in a two-way conversation with S3 current capability.
-
-Examples may include sustained changes in upstream harness architecture, dependency ecosystems, contributor behaviour, standards, user needs, or research directions when those distinctions should alter how the organization operates.
-
-## M5 — Parent-governed identity
+## M5 — External adaptation
 
 Target: `A A A A A P`
 
-Do not award `P` because a human approves ordinary work. The runtime must detect or formulate a genuine identity/ultimate-policy issue, transfer it to the legitimate parent authority, receive an authoritative decision, and continue under that returned decision.
+S4 is deliberately last. Generic self-improvement, backlog ordering, internal planning, memory consolidation, or reacting to a single upstream event is not enough.
 
-Reference recursion:
+Introduce S4 only when the contributor organization genuinely needs to model relevant external/future change, develop adaptation options, and place those options in a two-way conversation with S3 current capability.
 
-```text
-OpenSiro identity / major policy
-        ↓ ultimate authority
-OpenSiro owner / designated governance parent
-        ↓ delegated envelope
-contributor human parent
-        ↓ local autonomy envelope
-agent organization
-```
+Examples may include sustained changes in upstream harness architecture, dependency ecosystems, contributor behaviour, standards, user needs, or research directions when those distinctions should alter how the organization operates.
 
-Minor operational choices should remain below S5. Questions outside the contributor's delegated identity/policy envelope escalate to the higher OpenSiro parent.
+Exit criteria:
+
+- the system distinguishes relevant external/future change from present operational state;
+- an agent develops adaptation options rather than merely summarizing signals;
+- those options enter a two-way conversation with autonomous S3 current capability;
+- accepted adaptations change subsequent operation while remaining inside the parent-governed S5 identity/policy envelope.
 
 ## Rule for adding anything
 
