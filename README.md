@@ -6,7 +6,7 @@ This repository applies, but does not redefine, the public [VSM Harness Profile]
 
 ## Scope
 
-This repository is the organizational/control plane for the **public OpenSiro OSS group**. It is not a control plane for every OpenSiro project, account, or private R&D activity.
+This repository is the organizational/control plane for a bounded **OpenSiro VSM Harness OSS group**. It is not a control plane for every OpenSiro project, account, research track, or private R&D activity.
 
 Current in-scope public repositories:
 
@@ -14,21 +14,21 @@ Current in-scope public repositories:
 - `opensiro/vsm-harness-skills`
 - `opensiro/vsm-harness-index`
 - `opensiro/awesome-vsm-harness`
-- `opensiro/terminal-bench-vsm`
-- `opensiro/arctic-0`
-- `opensiro/opensiro.com`
 - `opensiro/vsm-oss-organization`
 
 The repositories remain separate systems with separate sources of truth. Inclusion here means their **public OSS contribution work** may be organized through this contributor/control plane; it does not transfer semantic ownership between repositories.
 
-`arctic-0` remains a separate research track. Its inclusion in the OSS organizational scope does not make ARCTIC part of the VSM Harness Index architecture.
+Explicitly outside this organizational scope:
 
-Out of scope by default:
-
+- `opensiro/terminal-bench-vsm`;
+- `opensiro/arctic-0`;
+- `opensiro/opensiro.com`;
 - private OpenSiro repositories and private R&D context;
 - credentials, local contributor runtimes, schedulers, model providers, budgets, and sandboxes;
 - third-party upstream repositories except as environment/evidence for an in-scope contribution;
-- downstream forks or projects not explicitly admitted to this public OSS scope.
+- downstream forks or projects not explicitly admitted to this scope.
+
+Out-of-scope repositories may still consume, demonstrate, experiment with, or present artifacts produced by the in-scope repositories. That dependency does not place them under this control plane.
 
 A repository may be added to or removed from this scope only explicitly; org membership or naming alone is not enough.
 
@@ -36,7 +36,7 @@ A repository may be added to or removed from this scope only explicitly; org mem
 
 You do not need to implement a VSM runtime to start contributing. Use the prompts as portable entry points with your own agent/runtime:
 
-1. **New to OpenSiro OSS:** [prompts/learn-ecosystem.md](prompts/learn-ecosystem.md) — map the repositories, authority boundaries, current milestone, and open work before changing anything.
+1. **New to the VSM Harness OSS group:** [prompts/learn-ecosystem.md](prompts/learn-ecosystem.md) — map the in-scope repositories, authority boundaries, current milestone, and open work before changing anything.
 2. **Ready to work:** [prompts/contribute.md](prompts/contribute.md) — execute one bounded contribution under the current S1-first contract.
 3. **Want an explicit control plane now:** [prompts/parent-control-plane.md](prompts/parent-control-plane.md) — demo a human-parent autonomy envelope and escalation interface ahead of the full M2 implementation.
 
@@ -46,7 +46,7 @@ The prompt pack is operational guidance, not additional VSM semantics and not ev
 
 - Normative VSM semantics: `opensiro/vsm-harness-profile` `0.2.0`.
 - Local `A/C/P/—/?` autonomy notation and assessment procedure: `opensiro/vsm-harness-skills` Methodology `0.2.2`.
-- This repository is a local operationalization for OpenSiro OSS contribution. It does not redefine S1-S5.
+- This repository is a local operationalization for the in-scope OpenSiro VSM Harness OSS group. It does not redefine S1-S5.
 
 See [CONTROL_PLANE.md](CONTROL_PLANE.md) for the released-contract boundary, frozen Index work, current cross-repository change graph, merge gates, and maintainer decision points. In particular, open semantic proposals are not treated as released Profile rules.
 
