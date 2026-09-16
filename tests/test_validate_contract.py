@@ -18,11 +18,6 @@ IN_SCOPE = [
     "opensiro/awesome-vsm-harness",
     "opensiro/vsm-oss-organization",
 ]
-OUT_SCOPE = [
-    "opensiro/terminal-bench-vsm",
-    "opensiro/arctic-0",
-    "opensiro/opensiro.com",
-]
 VECTORS = {
     "M0": "A — — — — —",
     "M1": "A — C A — —",
@@ -66,7 +61,6 @@ def roadmap_text() -> str:
 
 def readme_text() -> str:
     in_scope = "\n".join(f"- `{repo}`" for repo in IN_SCOPE)
-    out_scope = "\n".join(f"- `{repo}`;" for repo in OUT_SCOPE)
     return f"""# VSM OSS Organization
 
 ## Scope
@@ -75,10 +69,7 @@ Current in-scope public repositories:
 
 {in_scope}
 
-Explicitly outside this organizational scope:
-
-{out_scope}
-- private repositories;
+Repositories outside the declared current in-scope set may still consume related artifacts. Dependency alone does not place them under this control plane.
 
 ## Source boundary
 
@@ -161,7 +152,7 @@ class ContractValidatorTests(unittest.TestCase):
         )
         self.assertEqual([], self.errors())
 
-    def test_scope_overlap_is_rejected(self) -> None:
+    def test_scope_membership_drift_is_rejected(self) -> None:
         path = self.root / "README.md"
         text = path.read_text(encoding="utf-8").replace(
             "- `opensiro/vsm-oss-organization`\n",
@@ -170,7 +161,7 @@ class ContractValidatorTests(unittest.TestCase):
         )
         path.write_text(text, encoding="utf-8")
         self.assertTrue(
-            any("both in scope and explicitly out of scope" in error for error in self.errors())
+            any("ownership repository set drifts from README scope" in error for error in self.errors())
         )
 
     def test_active_release_pair_drift_is_rejected(self) -> None:
