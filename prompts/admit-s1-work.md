@@ -28,15 +28,19 @@ Do not assume all OSS work belongs to S1. Do not begin the requested mutation if
 
 If admitted, execute autonomously inside that envelope. Recover from natural stale bases, validation failures, broken references, generated-file drift, evidence gaps, and comparable routine disturbances when the repair keeps the same outcome, boundary, authority, semantics, and governing contract. Do not manufacture failures.
 
-If recovery requires a normative Profile/Methodology decision, organization identity/scope/ultimate-policy decision, undelegated merge/integration decision, unsupported evidence claim, or another forbidden choice, stop and preserve an evidence-backed escalation. Do not ask a human to supply ordinary step-by-step decisions and then continue to describe the same run as autonomous.
+Human intervention is allowed. If a human intervenes, record the intervention, attribute the affected decision to the human, state which decision/right was affected, and record whether autonomous S1 operation resumed afterward. Do not hide the intervention or count a human-selected decision as agent-owned evidence.
+
+If an intervention or recovery changes the authority envelope, governing contract, work boundary, or required decision class, re-establish admission or preserve an evidence-backed escalation before continuing.
 
 Do not introduce S2/S3/S3*/S4/S5 merely to route an escalation. Identify the legitimate source-of-truth process or authority when known without inventing a future VSM role.
 
 End in exactly one operational state:
 - CLOSED_CHANGE — bounded change plus required evidence/checks;
 - CLOSED_NO_CHANGE — evidence establishes no justified mutation is required;
-- ESCALATED — an admitted run crossed its authority/evidence boundary;
+- ESCALATED — an admitted run crossed its current authority/evidence boundary;
 - NON_ADMITTED — the item never passed the admission gate.
+
+Human intervention is an attribute of the run, not a separate terminal failure state.
 
 For repository mutation, prefer a normal GitHub PR. A reviewable PR may close S1 work without implying authority to merge it.
 ```
