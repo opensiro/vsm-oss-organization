@@ -32,6 +32,16 @@ Out of scope by default:
 
 A repository may be added to or removed from this scope only explicitly; org membership or naming alone is not enough.
 
+## FOR CONTRIBUTORS
+
+You do not need to implement a VSM runtime to start contributing. Use the prompts as portable entry points with your own agent/runtime:
+
+1. **New to OpenSiro OSS:** [prompts/learn-ecosystem.md](prompts/learn-ecosystem.md) — map the repositories, authority boundaries, current milestone, and open work before changing anything.
+2. **Ready to work:** [prompts/contribute.md](prompts/contribute.md) — execute one bounded contribution under the current S1-first contract.
+3. **Want an explicit control plane now:** [prompts/parent-control-plane.md](prompts/parent-control-plane.md) — demo a human-parent autonomy envelope and escalation interface ahead of the full M2 implementation.
+
+The prompt pack is operational guidance, not additional VSM semantics and not evidence that a future roadmap milestone is already complete.
+
 ## Source boundary
 
 - Normative VSM semantics: `opensiro/vsm-harness-profile` `0.2.0`.
