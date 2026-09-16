@@ -59,7 +59,7 @@ opensiro.com #2 ── merged: canonical Index → website synchronization
 
 Profile #7 ── OPEN PROPOSAL: stricter explicit S2 evidence threshold
 
-vsm-oss-organization #1 ── OPEN: local OSM bootstrap using released
+vsm-oss-organization #1 ── establishes the local OSM bootstrap on released
                            Profile 0.2.0 / Methodology 0.2.2
 ```
 
@@ -127,11 +127,10 @@ A local PR is ready when all applicable gates hold:
 - continue R1 under its frozen `0.2.0 / 0.2.1` contract;
 - use `0.2.0 / 0.2.2` for new work outside R1;
 - keep website/index synchronization downstream-only;
-- bootstrap this repository at M0 without pre-creating later VSM actors.
+- operate this repository at M0 and add later VSM functions only when their declared disturbance appears.
 
 ### Requires an explicit maintainer decision
 
 1. **Profile #7 release policy** — decide whether the stricter four-part S2 witness should become a normative Profile patch now or remain a local/proposed clarification until more reassessment evidence accumulates.
-2. **PR #1 merge** — after this control-plane review, merge the OSM bootstrap when the maintainer is satisfied with the local construction sequence. It does not need to wait for #7 as long as the stricter S2 rule remains labelled local/proposed.
 
 No other current release/provenance contradiction requires a maintainer intervention.
