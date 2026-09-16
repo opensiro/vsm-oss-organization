@@ -48,7 +48,7 @@ Evidence/checks required to distinguish closure from a plausible-looking result:
 
 ## Escalation conditions
 
-Observable conditions that require stopping local decisions:
+Observable conditions that exceed local authority/evidence:
 
 ## Evidence sufficiency
 
@@ -61,6 +61,14 @@ Record only natural disturbances that actually occur.
 | Disturbance | Evidence | Local action | Result: recovered / escalated |
 | --- | --- | --- | --- |
 | | | | |
+
+## Human intervention log
+
+Human intervention is allowed but must be attributed. Do not count a human-selected decision as agent-owned evidence.
+
+| Intervention | Human action | Decision/right affected | S1 resumed autonomously? | Effect on closure |
+| --- | --- | --- | --- | --- |
+| | | | | |
 
 ## Escalation record
 
@@ -77,6 +85,11 @@ Owning source-of-truth process or safe next step, when known:
 - [ ] `ESCALATED`
 - [ ] `NON_ADMITTED`
 
+Human intervention occurred?
+
+- [ ] No
+- [ ] Yes — see intervention log above
+
 Closure evidence / artifact:
 
-Do not record hidden chain-of-thought. Preserve observable decisions, primary evidence, authority boundaries, and recovery/escalation facts only.
+Do not record hidden chain-of-thought. Preserve observable decisions, primary evidence, authority boundaries, recovery, intervention, and escalation facts only.
