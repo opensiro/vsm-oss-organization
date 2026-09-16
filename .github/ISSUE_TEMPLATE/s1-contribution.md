@@ -1,6 +1,6 @@
 ---
 name: S1 contribution
-a bout: Define one bounded autonomous contribution unit
+about: Define one bounded autonomous contribution unit
 title: "[S1] "
 labels: ""
 assignees: ""
