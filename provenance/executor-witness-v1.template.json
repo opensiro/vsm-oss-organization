@@ -1,0 +1,85 @@
+{
+  "provenance_version": "1",
+  "run": {
+    "run_id": "<unique run identifier>",
+    "system_in_focus": "<declared system-in-focus>",
+    "repository_boundary": [
+      "<owner/repository>"
+    ],
+    "work_item_ref": "<immutable issue/work-item reference>",
+    "start_revision": "<commit SHA>",
+    "governing_role_or_prompt": {
+      "ref": "<immutable role/prompt reference when available>",
+      "sha256": "<digest of exact governing content>"
+    },
+    "pre_start_human_constraints_ref": "<immutable reference or digest>",
+    "allowed_post_start_human_input_channels": [
+      "<audited channel identifier>"
+    ]
+  },
+  "attester": {
+    "identity": "<executor/session attester identity>",
+    "verification_key_ref": "<public key, certificate, transparency entry, or equivalent>",
+    "signature_format": "<verifiable signature/attestation format>",
+    "trust_basis": "<why key/credential custody is bound to the execution boundary for this run>",
+    "runtime_label_optional": "<informational only; not ownership evidence>"
+  },
+  "pre_run_anchor": {
+    "published_at": "<timestamp>",
+    "immutable_ref": "<primary evidence URI/identifier>",
+    "signed_payload_digest": "sha256:<digest>",
+    "signature": "<signature or attestation reference/value>"
+  },
+  "events": [
+    {
+      "seq": 1,
+      "event_id": "<run-scoped event id>",
+      "kind": "executor_decision|executor_action|human_input|escalation|support|closure",
+      "actor": "executor|human|support",
+      "observed_at": "<timestamp or immutable publication order>",
+      "summary": "<observable organizational fact; no hidden chain-of-thought>",
+      "authority": "inside_s1|outside_s1_escalation|support_only",
+      "evidence_refs": [
+        "<primary evidence reference>"
+      ],
+      "action_refs": [
+        {
+          "type": "<commit|issue_comment|pull_request|file_write|other>",
+          "immutable_ref": "<SHA/URL/ID>",
+          "payload_sha256": "<digest when content binding matters>"
+        }
+      ],
+      "previous_event_digest": "<digest/root binding or equivalent tamper-evident predecessor>"
+    }
+  ],
+  "human_input_accounting": {
+    "post_start_human_input_occurred": "<true|false>",
+    "all_allowed_channels_captured": "<true|false>",
+    "unobserved_channel_available": "<true|false>",
+    "notes": "<record escalations/support only; ordinary hidden step control makes ownership insufficient>"
+  },
+  "closure": {
+    "closure_artifact_refs": [
+      "<PR/issue artifact/other immutable result>"
+    ],
+    "final_result_revision": "<commit SHA or null>",
+    "run_record_digest": "sha256:<digest/root of ordered event record>",
+    "pre_run_anchor_ref": "<same anchor immutable reference>",
+    "escalation_occurred": "<true|false>"
+  },
+  "final_attestation": {
+    "attester_identity": "<same execution trust chain as pre-run anchor>",
+    "signed_payload_digest": "sha256:<digest binding run_id, anchor, run record, actions, and closure>",
+    "signature": "<signature or attestation reference/value>",
+    "verification_instructions_ref": "<public verification procedure/reference>"
+  },
+  "review": {
+    "signature_verified": "<true|false>",
+    "accepted_trust_basis": "<true|false>",
+    "action_bindings_verified": "<true|false>",
+    "human_inputs_accounted_for": "<true|false>",
+    "event_order_integrity_verified": "<true|false>",
+    "provenance_verdict": "PASS|FAIL|INSUFFICIENT",
+    "note": "A provenance PASS is not by itself an S1=A verdict."
+  }
+}
