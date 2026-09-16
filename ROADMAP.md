@@ -4,6 +4,8 @@ This roadmap grows contributor autonomy bottom-up. It follows the VSM Harness Pr
 
 The vectors below are milestone targets, not automatic grades. A milestone is complete only when the stated function and closure exist in the reference contribution setup.
 
+The sequence is specific to this reference organization. It is not a universal VSM installation order, and `A`, `C`, and `P` are not maturity levels. They describe different ownership arrangements. In particular, the local `S3=C → S3=A` transition means this design intends to close a specific constructor/control path with an autonomous owner; it does not define a general ordering `C < A`. Likewise, `S5=P` is the intended parent-governed identity topology, not an incomplete step toward `S5=A`.
+
 | Milestone | Target vector | Why it exists |
 | --- | --- | --- |
 | M0 — Autonomous operation | `A — — — — —` | Establish one bounded autonomous S1 contribution loop. |
@@ -88,11 +90,16 @@ Examples that can justify S2:
 - oscillatory mutual reactions;
 - one S1 repeatedly invalidating another's assumptions.
 
-A positive S2 mapping requires distinct S1 units, concrete interference/oscillation, an attenuation path, and closure that changes subsequent S1 behaviour. Mutex/reservations can be strong evidence for one class of S2 disturbance, but they are not the definition of S2.
+For this OSM design, use the following deliberately strict local construction gate before claiming positive S2:
+
+1. distinct S1 units exist at the declared recursion level;
+2. there is concrete potential or observed interference/oscillation between them;
+3. a coordination path attenuates that interference;
+4. closure changes subsequent S1 behaviour.
+
+This four-part formulation is currently a **local construction criterion and an open proposed Profile clarification**, not text already released in Profile `0.2.0`. The released Profile already requires a real coordination problem among S1 units and regulation of that interference. See `opensiro/vsm-harness-profile#7` for the proposed explicit formulation.
 
 For `S2=A`, the decisive coordination discretion must be agent-owned. A deterministic merge queue, lock, scheduler, or branch rule alone is enforcement/support.
-
-See the related Profile discussion: https://github.com/opensiro/vsm-harness-profile/issues/7
 
 ## M4 — External adaptation
 
