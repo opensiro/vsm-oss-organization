@@ -4,6 +4,34 @@ A minimal organizational profile for autonomous OpenSiro OSS contributors.
 
 This repository applies, but does not redefine, the public [VSM Harness Profile](https://github.com/opensiro/vsm-harness-profile). It is built bottom-up using an OSM-style elimination method: add an organizational function only when a concrete variety or disturbance cannot be absorbed by the functions already present.
 
+## Scope
+
+This repository is the organizational/control plane for the **public OpenSiro OSS group**. It is not a control plane for every OpenSiro project, account, or private R&D activity.
+
+Current in-scope public repositories:
+
+- `opensiro/vsm-harness-profile`
+- `opensiro/vsm-harness-skills`
+- `opensiro/vsm-harness-index`
+- `opensiro/awesome-vsm-harness`
+- `opensiro/terminal-bench-vsm`
+- `opensiro/arctic-0`
+- `opensiro/opensiro.com`
+- `opensiro/vsm-oss-organization`
+
+The repositories remain separate systems with separate sources of truth. Inclusion here means their **public OSS contribution work** may be organized through this contributor/control plane; it does not transfer semantic ownership between repositories.
+
+`arctic-0` remains a separate research track. Its inclusion in the OSS organizational scope does not make ARCTIC part of the VSM Harness Index architecture.
+
+Out of scope by default:
+
+- private OpenSiro repositories and private R&D context;
+- credentials, local contributor runtimes, schedulers, model providers, budgets, and sandboxes;
+- third-party upstream repositories except as environment/evidence for an in-scope contribution;
+- downstream forks or projects not explicitly admitted to this public OSS scope.
+
+A repository may be added to or removed from this scope only explicitly; org membership or naming alone is not enough.
+
 ## Source boundary
 
 - Normative VSM semantics: `opensiro/vsm-harness-profile` `0.2.0`.
