@@ -1,6 +1,6 @@
 # Contributing
 
-This repository defines a VSM-based contribution contract for OpenSiro OSS. Contributors may use any local runtime, scheduler, model provider, or agent harness. OpenSiro standardizes organizational responsibilities and GitHub boundaries, not execution technology.
+This repository defines a VSM-based contribution contract for the in-scope OpenSiro VSM Harness OSS group listed in `README.md`. Contributors may use any local runtime, scheduler, model provider, or agent harness. This control plane standardizes organizational responsibilities and GitHub boundaries, not execution technology.
 
 ## Current milestone: M0
 
