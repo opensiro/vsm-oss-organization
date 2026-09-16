@@ -1,10 +1,27 @@
 # OSM Roadmap
 
-This roadmap grows contributor autonomy bottom-up. It follows the VSM Harness Profile rule: map the organizational function first, then identify the decisive decision/feedback right, its owner, supporting enforcement, and closure.
+This roadmap grows contributor autonomy bottom-up across the public OpenSiro OSS scope defined in [README.md](README.md). It follows the VSM Harness Profile rule: map the organizational function first, then identify the decisive decision/feedback right, its owner, supporting enforcement, and closure.
 
 The vectors below are milestone targets, not automatic grades. A milestone is complete only when the stated function and closure exist in the reference contribution setup.
 
 The sequence is specific to this reference organization. It is not a universal VSM installation order, and `A`, `C`, and `P` are not maturity levels. They describe different ownership arrangements. In particular, the local `S3=C → S3=A` transition means this design intends to close a specific constructor/control path with an autonomous owner; it does not define a general ordering `C < A`. Likewise, `S5=P` is the intended parent-governed identity topology, not an incomplete step toward `S5=A`.
+
+## GitHub milestone correspondence
+
+The roadmap milestone identifier is also the canonical GitHub Milestone identifier for this repository. Each tracker issue belongs to the matching milestone; milestone titles may contain descriptive text, but the `M0`–`M5` identifier must not drift.
+
+| GitHub milestone | Tracker issue | Target vector | Scope introduced |
+| --- | --- | --- | --- |
+| `M0` — Autonomous operation | #2 | `A — — — — —` | One bounded autonomous OSS contribution S1. |
+| `M1` — Independent audit + control surface | #3 | `A — C A — —` | Complementary S3* audit plus a composable S3 intervention path. |
+| `M2` — Parent-governed identity boundary | #4 | `A — C A — P` | Parent-governed S5 closure and explicit delegated policy envelope. |
+| `M3` — Autonomous current control | #5 | `A — A A — P` | Autonomous S3 current regulation inside the S5 envelope. |
+| `M4` — Multi-S1 coordination | #6 | `A A A A — P` | Autonomous S2 only after real inter-S1 interference appears. |
+| `M5` — External adaptation | #7 | `A A A A A P` | Autonomous S4 outside-and-then adaptation; deliberately last. |
+
+The tracker issue defines the milestone's construction/exit contract. The GitHub Milestone groups the work required to satisfy that contract. Neither is a separate source of VSM semantics.
+
+## Milestone sequence
 
 | Milestone | Target vector | Why it exists |
 | --- | --- | --- |
