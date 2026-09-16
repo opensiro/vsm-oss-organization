@@ -1,23 +1,10 @@
 # OpenSiro OSS Control Plane
 
-This document is the operational control plane for the **public OpenSiro OSS group** governed by this repository. It records authority boundaries, compatibility gates, and the current hand-off points between repositories. It is **not** a control plane for all OpenSiro activity, and it is **not** a second source of VSM semantics or assessment data.
+This document is the operational control plane for the **public OpenSiro OSS group** defined in `README.md`. It records authority boundaries, compatibility gates, and the current hand-off points between in-scope public repositories. It is **not** a control plane for private OpenSiro work, and it is **not** a second source of VSM semantics or assessment data.
 
-## Scope boundary
+The in-scope repository set is maintained explicitly in `README.md`. Repository membership in the `opensiro` organization does not automatically place a project under this control plane. Contributor-local runtimes, schedulers, credentials, budgets, and sandboxes also remain outside this repository's authority.
 
-The canonical repository scope is defined in [README.md](README.md). At present this control plane covers public OSS contribution work across:
-
-- `opensiro/vsm-harness-profile`
-- `opensiro/vsm-harness-skills`
-- `opensiro/vsm-harness-index`
-- `opensiro/awesome-vsm-harness`
-- `opensiro/terminal-bench-vsm`
-- `opensiro/arctic-0`
-- `opensiro/opensiro.com`
-- `opensiro/vsm-oss-organization`
-
-It does not govern private OpenSiro repositories, private R&D context, contributor-local runtimes/credentials/budgets, or unrelated projects merely because they share an owner or name. Third-party repositories may appear as environment or evidence but are not governed by this control plane.
-
-Scope membership does not collapse repository responsibilities. In particular, ARCTIC remains a separate research track, the website remains a presentation layer, the Profile remains the normative VSM source, and the Index remains the evidence corpus.
+Contributors who want a minimal human-parent interface before the full M2 implementation may use [`prompts/parent-control-plane.md`](prompts/parent-control-plane.md). That prompt is a demo interface pattern, not evidence that `S5=P` has already been achieved.
 
 ## Authority chain
 
