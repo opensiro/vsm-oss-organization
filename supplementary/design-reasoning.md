@@ -27,7 +27,7 @@ S1 is an operational unit with an outcome, environment, and meaningful local var
 Good reasoning:
 
 ```text
-OpenSiro defines role/function boundaries
+VSM Harness OSS control plane defines role/function boundaries
 contributor defines model + scheduler + budget + credentials
 agent owns local organizational decisions
 ```
@@ -49,7 +49,7 @@ Before mapping S2, identify:
 
 Why it survives:
 
-Routing, delegation, message passing, and speaker selection are not sufficient evidence by themselves. See `opensiro/vsm-harness-profile#7` for the active clarification discussion.
+Routing, delegation, message passing, and speaker selection are not sufficient evidence by themselves. Profile `0.2.1` now makes this positive-S2 evidence witness explicit; the earlier clarification discussion was incorporated through the subsequent released Profile update.
 
 ### 4. Mutex is a useful witness, not a definition
 
