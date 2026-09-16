@@ -78,15 +78,33 @@ Why it survives:
 
 This is closer to the Profile's S3* function than ordinary production QA. The audit finding must still enter subsequent control.
 
-### 6. Defer S4 until external/future adaptation is actually needed
+### 6. Establish S5=P before increasing autonomy further
 
 Good reasoning:
 
-Do not add S4 merely because an agent researches, learns, plans, or improves itself. Introduce S4 when the organization must distinguish external/future change, develop adaptation options, and feed them into a two-way S3 conversation.
+```text
+bounded autonomous S1
+        ↓
+independent audit + explicit intervention surface
+        ↓
+parent-governed identity/policy closure
+        ↓
+only then expand autonomous control and concurrency
+```
 
 Why it survives:
 
-This follows the Profile's outside-and-then criterion and keeps the early system small.
+S5 is not required to be the last function introduced. In this design, establishing the parent-governed identity boundary early is useful because later S3/S2/S4 autonomy can then grow inside an explicit delegated envelope. `P` still requires a genuine identity/ultimate-policy escalation → parent decision → return-to-operation loop; ordinary human approval is insufficient.
+
+### 7. Defer S4 until external/future adaptation is actually needed
+
+Good reasoning:
+
+Do not add S4 merely because an agent researches, learns, plans, or improves itself. Introduce S4 only when the organization must distinguish external/future change, develop adaptation options, and feed them into a two-way S3 conversation.
+
+Why it survives:
+
+This follows the Profile's outside-and-then criterion. For the current construct, S4 can be the final added function because early milestones do not yet require the organization to adapt itself to external/future change.
 
 ## Reasoning that was rejected or narrowed
 
@@ -159,7 +177,15 @@ Why it fails:
 
 `P` requires a genuine identity/ultimate-policy issue, transfer to a legitimate parent authority, authoritative parent decision, return of that decision, and subsequent operation governed by it. Approval of an ordinary PR or task is not S5.
 
-### 8. "Choose the target autonomy vector first and design to fit it"
+### 8. "S5 must be introduced only after S4"
+
+Rejected.
+
+Why it fails:
+
+VSM function numbers do not prescribe an implementation sequence. If the immediate organizational problem is to bound growing agent autonomy with legitimate parent-owned identity/policy closure, S5 can be introduced before autonomous S3, S2, or S4—provided the actual S5 function and closure path exist.
+
+### 9. "Choose the target autonomy vector first and design to fit it"
 
 Rejected as an assessment method.
 
@@ -178,5 +204,18 @@ add the smallest missing organizational function
         ↓
 repeat
 ```
+
+The current reference sequence is:
+
+```text
+S1
+→ S3* + S3(C)
+→ S5(P)
+→ S3(A)
+→ S2(A)
+→ S4(A)
+```
+
+This order is local to this construct, not a universal VSM maturity ladder.
 
 The goal is not to simulate six departments. The goal is to reach the desired autonomous organization with the fewest organizational entities needed to regulate the variety that actually exists.
