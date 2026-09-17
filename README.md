@@ -4,6 +4,26 @@ A minimal organizational profile for autonomous OpenSiro OSS contributors.
 
 This repository applies, but does not redefine, the public [VSM Harness Profile](https://github.com/opensiro/vsm-harness-profile). It is built bottom-up using an OSM-style elimination method: add an organizational function only when a concrete variety or disturbance cannot be absorbed by the functions already present.
 
+## Viable-system identity
+
+The bounded organization maintained here exists to keep a public, current, evidence-backed representation of the organizational structure of AI-agent harnesses available to the open-source community through VSM.
+
+Its primary transformation is:
+
+```text
+public harness ecosystem evidence
+        ↓
+VSM semantics + assessment methodology
+        ↓
+evidence-backed assessments
+        ↓
+normalized comparative knowledge
+        ↓
+curated public views for the OSS community
+```
+
+See [ORGANIZATION.md](ORGANIZATION.md) for the system identity, operational work domain, repository participation boundary, and viability criterion. See [S1_AUTONOMY_COVERAGE.md](S1_AUTONOMY_COVERAGE.md) for the current operational work classes and the engineering gaps that still block broad S1 autonomy.
+
 ## Scope
 
 This repository is the organizational/control plane for a bounded **OpenSiro VSM Harness OSS group**. It is not a control plane for every OpenSiro project, account, research track, or private R&D activity.
@@ -16,21 +36,13 @@ Current in-scope public repositories:
 - `opensiro/awesome-vsm-harness`
 - `opensiro/vsm-oss-organization`
 
-The repositories remain separate systems with separate sources of truth. Inclusion here means their **public OSS contribution work** may be organized through this contributor/control plane; it does not transfer semantic ownership between repositories.
+The repositories remain separate systems with separate sources of truth. Inclusion here means their **public OSS contribution work that participates in the declared VSM Harness knowledge transformation** may be organized through this contributor/control plane; it does not transfer semantic ownership between repositories.
 
-Explicitly outside this organizational scope:
+`opensiro/vsm-harness-skills` is intentionally only partially inside this viable-system boundary. The repository may host reusable skills for more general tasks and for other systems. This control plane governs only those skills/procedures whose work participates in producing or maintaining VSM Harness knowledge; repository location alone does not make every skill part of this organization.
 
-- `opensiro/terminal-bench-vsm`;
-- `opensiro/arctic-0`;
-- `opensiro/opensiro.com`;
-- private OpenSiro repositories and private R&D context;
-- credentials, local contributor runtimes, schedulers, model providers, budgets, and sandboxes;
-- third-party upstream repositories except as environment/evidence for an in-scope contribution;
-- downstream forks or projects not explicitly admitted to this scope.
+Repositories outside the declared current in-scope set may still consume, demonstrate, experiment with, or present artifacts produced by the in-scope repositories. That dependency alone does not place them under this control plane.
 
-Out-of-scope repositories may still consume, demonstrate, experiment with, or present artifacts produced by the in-scope repositories. That dependency does not place them under this control plane.
-
-A repository may be added to or removed from this scope only explicitly; org membership or naming alone is not enough.
+Scope changes are explicit; organization membership, repository naming, or dependency alone is not enough to place work under this control plane.
 
 ## FOR CONTRIBUTORS
 
@@ -76,12 +88,14 @@ A contributor may use one agent or many internal workers. Internal workers are n
 
 The implementation starts from the smallest useful organization and introduces functions only when their disturbance appears.
 
-Current milestone:
+Current milestone target:
 
 ```text
 S1  S2  S3  S3* S4  S5
 A   —   —   —   —   —
 ```
+
+This is the M0 **target**, not a current evidence claim. The current strict M0 status is tracked in issue #2; M0 remains open until `S1=A` is established from sufficient primary evidence.
 
 Long-term reference target:
 
