@@ -99,7 +99,7 @@ Local variety should remain in the relevant operational domain when that domain 
 
 M0 operational construction is complete: Index, Skills, and Awesome now have explicit local envelopes and real operational evidence paths.
 
-M0 target:
+Current milestone target:
 
 ```text
 S1  S2  S3  S3* S4  S5
