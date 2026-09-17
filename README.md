@@ -27,7 +27,7 @@ The operational domains produce different durable outcomes:
 - **Skills** — reusable VSM Harness assessment procedure/skills/tooling that applies the selected Profile;
 - **Awesome** — curated representative downstream view linked to canonical Index facts.
 
-See [ORGANIZATION.md](ORGANIZATION.md) for the system boundary, local environments, durable outcomes, residual-variety rule, and viability criterion. See [S1_AUTONOMY_COVERAGE.md](S1_AUTONOMY_COVERAGE.md) for current action/domain coverage.
+See [ORGANIZATION.md](ORGANIZATION.md) for the system boundary and viability criterion, [S1_DOMAIN_CONTRACTS.md](S1_DOMAIN_CONTRACTS.md) for the canonical local S1 envelopes, and [S1_AUTONOMY_COVERAGE.md](S1_AUTONOMY_COVERAGE.md) for operational evidence and the remaining autonomy-proof boundary.
 
 ## Scope
 
@@ -47,7 +47,7 @@ Scope membership does not mean that all five repositories are operational S1 uni
 - `vsm-harness-profile` is the normative semantic authority consumed by the organization;
 - `vsm-oss-organization` is the organizational/metasystem construction surface.
 
-Repository location alone does not determine function. In particular, `vsm-harness-skills` may also host general-purpose skills outside this viable-system boundary, and a change inside an operational repository may still leave S1 if it actually changes normative, cross-S1, identity, or metasystem authority.
+Repository location alone does not determine function. In particular, `vsm-harness-skills` may host general-purpose skills outside this viable-system boundary, and a change inside an operational repository may still leave S1 if it actually changes normative, cross-S1, identity, or metasystem authority.
 
 Repositories outside the current in-scope set may consume or present artifacts produced here without becoming governed by this control plane.
 
@@ -56,7 +56,7 @@ Repositories outside the current in-scope set may consume or present artifacts p
 You do not need to implement a VSM runtime to start contributing. Use the prompts as portable entry points with your own agent/runtime:
 
 1. **New to the VSM Harness OSS group:** [prompts/learn-ecosystem.md](prompts/learn-ecosystem.md) — map repositories, authority boundaries, current milestone, and open work.
-2. **Ready to work in an operational domain:** [prompts/contribute.md](prompts/contribute.md) — execute one bounded Index, Skills, or Awesome contribution under the current S1 contract.
+2. **Ready to work in an operational domain:** [prompts/contribute.md](prompts/contribute.md) — select Index, Skills, or Awesome, load its contract from `S1_DOMAIN_CONTRACTS.md`, and execute one bounded S1 contribution.
 3. **Want an explicit control plane now:** [prompts/parent-control-plane.md](prompts/parent-control-plane.md) — demo a human-parent autonomy envelope ahead of the full M2 implementation.
 4. **Preparing complementary M1 audit work:** [prompts/audit-s1-work.md](prompts/audit-s1-work.md) — preparatory only; its existence is not evidence that M1 or `S3*=A` is established.
 5. **Applying a returned preparatory M1 current-control decision:** [prompts/apply-s3-control.md](prompts/apply-s3-control.md) — preparatory only; arbitrary comments/approvals are not treated as S3 input.
@@ -84,11 +84,11 @@ OpenSiro contribution contract
         ↓
 contributor-owned scheduler / harness / credentials / budget
         ↓
-S1 role in one declared operational domain
+select one S1 domain contract
         ↓
-autonomous bounded contribution
+S1 role executes bounded local work
         ↓
-Issue / Pull Request
+Issue / Pull Request / no-change / escalation
 ```
 
 A contributor may use one agent or many internal workers. Internal workers are not separate S1 units merely because they are separate processes or prompts.
@@ -97,7 +97,7 @@ Local variety should remain in the relevant operational domain when that domain 
 
 ## OSM roadmap
 
-The implementation starts from the smallest useful organization and introduces later functions only when their disturbance appears.
+M0 operational construction is complete: Index, Skills, and Awesome now have explicit local envelopes and real operational evidence paths.
 
 Current milestone target:
 
@@ -106,7 +106,7 @@ S1  S2  S3  S3* S4  S5
 A   —   —   —   —   —
 ```
 
-For M0, S1 is realized through the three declared operational domains: Index, Skills, and Awesome. The vector is a target, not a current evidence claim; strict autonomy status is tracked in issue #2.
+The vector is a **design/construction target, not an independently proven autonomy-state publication**. Repository attribution still does not independently prove the autonomous executor owned every decisive local S1 choice; that actor-attribution proof debt is explicitly deferred to Parent-assisted work in #35 / M2.
 
 Long-term reference target:
 
@@ -119,9 +119,9 @@ A   A   A   A   A   P
 
 ## Current and preparatory roles
 
-The only role active in the current M0 milestone is S1: [roles/S1.md](roles/S1.md). A run must declare Index, Skills, or Awesome as its operational domain.
+The M0 S1 construction uses [roles/S1.md](roles/S1.md) together with [S1_DOMAIN_CONTRACTS.md](S1_DOMAIN_CONTRACTS.md). A run must declare Index, Skills, or Awesome as its operational domain.
 
-Preparatory M1 artifacts may exist before that milestone is formally achieved. The current S3* audit role and S3 constructor surface remain preparatory and inactive for M0; their presence does not establish `S3*=A`, `S3=C`, or an autonomous S3 regulator.
+Preparatory M1 artifacts may exist before that milestone is formally achieved. The current S3* audit role and S3 constructor surface remain preparatory; their presence does not establish `S3*=A`, `S3=C`, or an autonomous S3 regulator.
 
 Further roles are added only when concrete residual variety establishes the organizational need. VSM functions are responsibilities and relationships, not a checklist of permanent agent processes.
 
@@ -129,6 +129,8 @@ Further roles are added only when concrete residual variety establishes the orga
 
 The files under `supplementary/`, especially [supplementary/evolution-log.md](supplementary/evolution-log.md), preserve empirical development history and design reasoning.
 
-They are **side artifacts of building and studying the organization, not primary operational products and not additional S1 domains**. A future separate pipeline may derive reusable skills or methodology material from them, but that pipeline is planned only and is not part of the current architecture.
+They are **side artifacts of building and studying the organization, not primary operational products and not additional S1 domains**.
+
+Their primary downstream purpose is an evidence-backed article/case study testing where applying VSM/OSM exposed organizational problems earlier, reduced rework/coordination cost, or otherwise improved development relative to plausible organically evolved alternatives — including negative cases where no such advantage is supported. A future pipeline may also derive reusable skills or methodology material, but that is a secondary planned use and not part of the current architecture.
 
 See [supplementary/design-reasoning.md](supplementary/design-reasoning.md) for worked reasoning and [supplementary/evolution-log.md](supplementary/evolution-log.md) for the chronological development record.

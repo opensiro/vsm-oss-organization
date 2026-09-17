@@ -4,13 +4,15 @@ This file records how `vsm-oss-organization` actually evolves over time: observe
 
 It is **descriptive, empirical, non-normative, and supplementary**. It is a side artifact of building and studying the organization, not a primary operational product of the current viable system and not an additional S1 domain. It does not redefine VSM semantics, the VSM Harness Profile, the assessment Methodology, or the roadmap.
 
-Its purpose is to preserve enough historical evidence that later practical methodology can be derived from what happened rather than reconstructed around the final architecture. A future separate pipeline may derive reusable skills or methodology artifacts from this history, but that pipeline is planned only and is not part of the current operational architecture.
+Its **primary downstream purpose** is to preserve an auditable evidence base for a future article/case study testing how applying VSM/OSM changed the development process: where organizational problems were exposed earlier, where rework/coordination cost was reduced, where a regulating mechanism appeared sooner than in comparable organically evolved OSS projects, and where no such advantage can be supported. The log must therefore preserve negative results, reversals, timing/rework evidence when available, and alternative explanations rather than reconstructing a success story around the final architecture.
+
+A future separate pipeline may also derive reusable skills, methodology artifacts, or teaching material from this history, but that is a **secondary** downstream use and is not part of the current operational architecture.
 
 Related artifacts:
 
 - `ROADMAP.md` — intended construction sequence and milestone exit criteria;
 - `supplementary/design-reasoning.md` — generalized reasoning patterns that survived, failed, or were narrowed;
-- this file — the chronological/evolutionary side record from which such reasoning may later be generalized;
+- this file — the chronological/evolutionary side record used as development evidence for the future article/case study;
 - `supplementary/case-studies/` — external OSS histories used as comparative empirical material.
 
 Parent empirical workstream: [#30](https://github.com/opensiro/vsm-oss-organization/issues/30).
@@ -24,9 +26,11 @@ When later evidence changes an interpretation:
 1. preserve the earlier entry;
 2. add the later evidence and new decision as a new entry;
 3. mark the earlier interpretation `superseded` or `narrowed` where appropriate;
-4. keep observed fact separate from VSM interpretation.
+4. keep observed fact separate from VSM interpretation;
+5. preserve timing, repeated incidents, rework, blocked iterations, duplicated work, or avoided work when the evidence actually supports those observations;
+6. keep plausible non-VSM explanations visible.
 
-The log is not a complete project diary. Record only events that materially affect how a reusable VSM/OSM construction method might be understood.
+The log is not a complete project diary. Record only events that materially affect how a reusable VSM/OSM construction method, or a future empirical claim about its development impact, might be understood.
 
 ## Entry schema
 
@@ -38,6 +42,7 @@ context
 → alternatives considered
 → decision / experiment
 → evidence
+→ development cost / timing / rework signal when available
 → result
 → VSM interpretation
 → reusable lesson
@@ -68,7 +73,7 @@ What was actually changed, tested, or deliberately left unchanged.
 
 ### Evidence
 
-Primary issues, PRs, commits, trials, traces, or repository state.
+Primary issues, PRs, commits, trials, traces, or repository state. Preserve timing/rework/duplicate-work evidence when it is actually reconstructable.
 
 ### Result
 
@@ -80,7 +85,7 @@ Map organizational function only after the observed facts establish it. Do not i
 
 ### Reusable lesson
 
-A bounded lesson that may later be tested against other organizations. Avoid universal claims until comparative evidence exists.
+A bounded lesson that may later be tested against other organizations. Avoid universal or causal claims until comparative evidence exists.
 ```
 
 ## 2026-09-16 — Start from one bounded S1 outcome rather than a complete VSM diagram
@@ -547,6 +552,86 @@ The change does not itself establish S2, S3, S3*, S4, or S5. It makes the eviden
 ### Reusable lesson
 
 Define operational outcomes before counting autonomous units. A durable artifact is not automatically an S1 product: ask whether it enacts the parent system's primary transformation or instead records, constrains, or redesigns how that transformation is organized.
+
+## 2026-09-17 — Close M0 construction from real domain paths rather than synthetic trials
+
+**Status:** `validated construction closure; ownership proof deferred`
+
+### Context
+
+After the S1 boundary was narrowed to Index, Skills, and Awesome, the remaining M0 question was whether each domain had an explicit local authority/completion envelope and a real exercised operating path.
+
+The repository already contained extensive real work in all three domains, while the historical strict M0 proof had separately shown that GitHub repository attribution could not identify the autonomous executor independently from the human account.
+
+### Observed problem
+
+Two failure modes were possible:
+
+1. create synthetic “M0 demo” tasks merely to prove capabilities that had already been exercised in real repository work;
+2. close M0 by quietly treating successful repository artifacts as proof of `S1=A`, contradicting the earlier negative executor-ownership finding.
+
+A third practical problem was that domain outcomes and escalation boundaries were distributed across several documents rather than exposed as one portable local contract.
+
+### Alternatives considered
+
+- run three new synthetic trials, one in each S1 repository;
+- keep M0 open until the M2 identity mechanism exists, conflating construction sequencing with ownership-proof sequencing;
+- use existing real operational evidence, add explicit domain envelopes, and close M0 as a construction/operational milestone while carrying the actor-attribution proof debt forward unchanged.
+
+### Decision / experiment
+
+Add `S1_DOMAIN_CONTRACTS.md` as the canonical local envelope for Index, Skills, and Awesome. Bind `roles/S1.md` and `prompts/contribute.md` to exactly one declared domain per run. Convert `S1_AUTONOMY_COVERAGE.md` from planning language to an operational-closure record.
+
+Use existing real work as evidence rather than manufacturing new tasks:
+
+- Index: `opensiro/vsm-harness-index#114`;
+- Skills: `opensiro/vsm-harness-skills#9`, `#11`, `#16`;
+- Awesome: `opensiro/awesome-vsm-harness#2`, `#3`, `#4`.
+
+Clarify the milestone semantics in README/ROADMAP: M0 completion establishes the local S1 construction and real operating paths, while the stronger executor-identity witness remains deferred to `#35` / M2.
+
+At the same time, clarify this log's research purpose: its primary downstream is the future evidence-backed article/case study comparing OpenSiro's VSM-guided development with organically evolved OSS organizations. Deriving reusable skills or methodology artifacts is secondary.
+
+### Evidence
+
+- [M0 finalization #50](https://github.com/opensiro/vsm-oss-organization/issues/50)
+- [existing operational evidence record #52](https://github.com/opensiro/vsm-oss-organization/issues/52)
+- [domain-contract task #53](https://github.com/opensiro/vsm-oss-organization/issues/53)
+- [closure-semantics task #54](https://github.com/opensiro/vsm-oss-organization/issues/54)
+- [contributor-prompt task #55](https://github.com/opensiro/vsm-oss-organization/issues/55)
+- [M0 finalization PR #56](https://github.com/opensiro/vsm-oss-organization/pull/56)
+- `S1_DOMAIN_CONTRACTS.md`
+- `S1_AUTONOMY_COVERAGE.md`
+- `roles/S1.md`
+- `prompts/contribute.md`
+
+### Result
+
+M0 now has one explicit operational contract for each of the three S1 domains and real evidence that the domains can produce, validate, correct/recover, and close local work.
+
+No S2/S3/S3*/S4/S5 function was added to obtain that closure. Profile/Organization work remains outside positive S1 evidence.
+
+The earlier negative ownership finding is preserved rather than overwritten: repository attribution still does not independently establish that the autonomous executor owned every decisive local choice. That proof debt remains scheduled for Parent-assisted M2.
+
+For the future article, this transition is itself useful evidence: the construction process rejected a tempting “successful PR = autonomy” shortcut, kept a failed proof visible, narrowed the system boundary, and reused real operational evidence instead of creating benchmark-like demonstrations solely to obtain a positive milestone result. Whether that discipline produced measurable development advantage still requires comparison against external cases.
+
+### VSM interpretation
+
+The closure separates three questions that should not be collapsed:
+
+```text
+is there an S1 function?
+        ↓
+is the local S1 operating contract constructed and exercised?
+        ↓
+can independent evidence prove who owns the decisive S1 discretion?
+```
+
+M0 closes the middle construction question for the three declared domains. The last question remains an autonomy-evidence problem and is not solved by the existence of files, PRs, CI, or a human-attributed GitHub history.
+
+### Reusable lesson
+
+Do not manufacture work to prove an organizational capability when equivalent real operating evidence already exists. At the same time, do not let successful production artifacts erase an unresolved ownership gap. Construction milestones and autonomy-evidence claims can progress on different timelines as long as the distinction is explicit and historically preserved.
 
 ## Backfill policy
 
