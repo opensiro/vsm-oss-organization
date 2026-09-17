@@ -52,6 +52,7 @@ You do not need to implement a VSM runtime to start contributing. Use the prompt
 2. **Ready to work:** [prompts/contribute.md](prompts/contribute.md) — execute one bounded contribution under the current S1-first contract.
 3. **Want an explicit control plane now:** [prompts/parent-control-plane.md](prompts/parent-control-plane.md) — demo a human-parent autonomy envelope and escalation interface ahead of the full M2 implementation.
 4. **Preparing complementary M1 audit work:** [prompts/audit-s1-work.md](prompts/audit-s1-work.md) — challenge one explicit S1 claim through a materially complementary evidence path. This is a preparatory M1 entry point, not a claim that M1 or `S3*=A` is already established.
+5. **Applying a returned preparatory M1 current-control decision:** [prompts/apply-s3-control.md](prompts/apply-s3-control.md) — apply one qualifying S3 constructor transaction back into an affected S1 work item. Arbitrary comments/approvals are not treated as S3 input.
 
 The prompt pack is operational guidance, not additional VSM semantics and not evidence that a future roadmap milestone is already complete.
 
@@ -111,7 +112,9 @@ The final vector is a design target, not a present assessment claim. `A`, `C`, a
 
 The only role active in the current M0 milestone is S1: [roles/S1.md](roles/S1.md).
 
-Preparatory M1 work may define future role artifacts before the milestone is formally achieved. The current preparatory S3* audit role is [roles/S3STAR.md](roles/S3STAR.md), governed by [S3STAR_AUDIT.md](S3STAR_AUDIT.md). Its presence does **not** establish `S3*=A`, activate M1, or imply an autonomous S3 regulator.
+Preparatory M1 work may define future artifacts before the milestone is formally achieved. The current preparatory S3* audit role is [roles/S3STAR.md](roles/S3STAR.md), governed by [S3STAR_AUDIT.md](S3STAR_AUDIT.md). Its presence does **not** establish `S3*=A`, activate M1, or imply an autonomous S3 regulator.
+
+The preparatory S3 constructor primitive is [S3_CONTROL_SURFACE.md](S3_CONTROL_SURFACE.md). It intentionally defines a first-party request/decision/return path **without defining an autonomous S3 role**. The actual decision owner must be supplied and evidenced per transaction; the surface, JSON record, CI, or enforcement machinery do not own the S3 choice.
 
 Further roles are added only when the roadmap establishes a concrete organizational need for them. This is deliberate: VSM functions are organizational responsibilities, not a checklist of permanent agent processes.
 
