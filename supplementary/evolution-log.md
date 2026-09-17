@@ -290,6 +290,170 @@ The empirical program treats VSM as an implementation-independent hypothesis abo
 
 A construction methodology becomes more credible when it is tested against organizations that evolved without it. The useful question is not whether another project “has VSM,” but whether VSM distinctions help explain, anticipate, or reduce independently observed organizational problems.
 
+## 2026-09-17 — Consume the Profile compatibility facade instead of duplicating active contract facts
+
+**Status:** `validated infrastructure decision`
+
+### Context
+
+The Organization originally repeated active Profile and Methodology versions in several local documents. Its repository-local validator could prove that those copies agreed with each other while the actual upstream Skills/Index state had already moved.
+
+Profile `v0.2.2` introduced a downstream consumer contract and release-impact history that separates immutable provenance from compatibility with later Profile releases.
+
+### Observed problem
+
+Local consistency was not enough to prove upstream consistency. A downstream repository could remain internally coherent while silently consuming stale semantic/procedural facts, and a simple version bump risked being treated as an automatic reassessment trigger even when the authoritative Profile declared no assessment impact.
+
+### Alternatives considered
+
+- continue manually updating current versions in multiple Organization documents;
+- query mutable upstream state ad hoc without one local selection record;
+- select upstream contract surfaces once in a machine-readable Organization manifest and validate that selection directly against the authoritative repositories.
+
+### Decision / experiment
+
+Adopt one local upstream-selection manifest and cross-repository completion oracle.
+
+`UPSTREAM_CONTRACT.json` selects released Profile `v0.2.2`, Methodology `0.3.1` from an exact Skills commit, and the current Index active-contract surface. The validator follows the Profile release-impact chain rather than treating version-string inequality as semantic migration.
+
+### Evidence
+
+- [consumer task #33](https://github.com/opensiro/vsm-oss-organization/issues/33)
+- [merged PR #34](https://github.com/opensiro/vsm-oss-organization/pull/34)
+- `UPSTREAM_CONTRACT.json`
+- Profile `v0.2.2` `CONSUMER_CONTRACT.md` and `RELEASE_IMPACT.json`
+
+### Result
+
+Organization now validates selected Profile/Methodology/Index state against upstream source-of-truth surfaces. The Index may retain Profile `0.2.1` assessment provenance while Organization consumes Profile `0.2.2` because the authoritative `0.2.1 → 0.2.2` transition is `compatible` with `assessment_impact: none`.
+
+Current-version prose is no longer the authority merely because several local files repeat it.
+
+### VSM interpretation
+
+This change strengthens provenance, transduction, and deterministic support/enforcement around the organizational contracts. It does not establish a new S-function or transfer semantic authority into Organization.
+
+### Reusable lesson
+
+Separate **which exact contract produced an artifact** from **whether that artifact remains compatible with a later contract**. Version freshness and semantic migration are different questions; downstream systems should consume an explicit compatibility signal rather than infer organizational impact from version numbers alone.
+
+## 2026-09-17 — Defer strong executor identity to the Parent-assisted boundary without erasing proof debt
+
+**Status:** `narrowed implementation sequence; proof remains open`
+
+### Context
+
+The executor-provenance and S1 admission/recovery contracts were implemented after the negative M0 trial, but ordinary GitHub actions still expose the contributor account rather than an independently distinguishable autonomous executor identity.
+
+A concrete GitHub App/bot path was identified as a possible stronger witness, while Parent-assisted M2 was already planned to make parent authority, delegated capability, intervention, revocation, and external enforcement boundaries explicit.
+
+### Observed problem
+
+Implementing a distinct technical identity immediately would solve only part of the evidence problem. It would still leave implicit who may authorize the App, expand its permissions, revoke it, distinguish human-delegated from agent-specific credentials, and admit external ChatGPT plugins/connectors into the organization.
+
+At the same time, simply postponing the mechanism could accidentally be read as if the negative M0 ownership finding had disappeared.
+
+### Alternatives considered
+
+- implement a GitHub App during M0 and treat the technical identity as sufficient;
+- block all later design work until the identity mechanism exists;
+- defer the concrete identity/enforcement implementation to Parent-assisted M2 while preserving the strict M0 ownership gap explicitly as proof debt.
+
+### Decision / experiment
+
+Move the concrete executor-identity task to M2 and make external-tool admission a companion Parent-assisted workstream.
+
+- #35 now covers binding agent execution to a distinct GitHub identity with explicit parent authorization/revocation and run/session binding;
+- #36 defines a general plugin/tool entry contract with GitHub as the first reference case;
+- M2 tracker #4 records both tasks together with the later replacement of the temporary owner-only `main` guardrail;
+- M0 tracker #2 continues to state `FAIL / INSUFFICIENT` for the strict `S1=A` proof from the executed evidence.
+
+### Evidence
+
+- [M0 tracker #2](https://github.com/opensiro/vsm-oss-organization/issues/2)
+- [M2 tracker #4](https://github.com/opensiro/vsm-oss-organization/issues/4)
+- [executor-identity task #35](https://github.com/opensiro/vsm-oss-organization/issues/35)
+- [plugin/tool entry task #36](https://github.com/opensiro/vsm-oss-organization/issues/36)
+- `EXECUTOR_PROVENANCE.md`
+
+### Result
+
+Preparatory work on later organizational layers can continue, but it cannot cite M0 as an established autonomous-ownership proof. The stronger external identity witness remains an explicit debt that must be revisited when Parent-assisted capability boundaries are implemented.
+
+The planned GitHub App/plugin machinery is treated as identity, transport, and enforcement support. No new chatbot/model is required by this decision.
+
+### VSM interpretation
+
+A GitHub App, plugin connection, credential broker, or bot identity is not S1 or S5 merely because it carries authority. M2 may use such mechanisms to enforce a parent-governed policy/identity boundary, but the S5 mapping still requires a genuine identity/ultimate-policy issue, legitimate parent decision, and returned closure into subsequent operation.
+
+### Reusable lesson
+
+Proof sequencing and implementation sequencing can differ, but the gap must remain visible. Deferring stronger evidence is safer than weakening the criterion only when the organization records the unresolved proof debt and prevents later artifacts from silently inheriting the unproved claim.
+
+## 2026-09-17 — Prepare complementary audit and current-control paths before claiming M1
+
+**Status:** `provisional implementation; functional proof open`
+
+### Context
+
+M0 work established that deterministic completion checks improve reliability but do not settle every evidence interpretation or omitted-fact risk. The next roadmap target requires complementary S3* audit plus a first-party S3 current-control constructor path.
+
+At the time this work began, the repository had only the S1 role; no pre-existing S3/S3* role was treated as authoritative merely because the roadmap named future functions.
+
+### Observed problem
+
+A routine verifier or repeated CI run would not provide materially complementary access to operational reality. Conversely, an audit finding alone would not close anything if it had no S3-specific path capable of returning a current-control decision into later S1 operation.
+
+There was also a category-error risk: adding a generic `manager`, mailbox, JSON object, or second model could look like M1 implementation without establishing either function.
+
+### Decision / experiment
+
+Implement the two preparatory paths separately before running a reference trial.
+
+PR #41 added `S3STAR_AUDIT.md`, a bounded S3* role, audit record, and portable prompt. Independence is claim-relative: complementary evidence access matters; using a different model/provider is neither necessary nor sufficient by itself.
+
+PR #43 added `S3_CONTROL_SURFACE.md`, a machine-readable S3-specific request/decision/return transaction, a reviewable record, application prompt, and an explicit S1 return hook. No autonomous S3 role was created; the actual decision owner must be supplied and evidenced per transaction.
+
+### Evidence
+
+- [M1 tracker #3](https://github.com/opensiro/vsm-oss-organization/issues/3)
+- [S3* path #37](https://github.com/opensiro/vsm-oss-organization/issues/37)
+- [S3* implementation #40](https://github.com/opensiro/vsm-oss-organization/issues/40)
+- [merged PR #41](https://github.com/opensiro/vsm-oss-organization/pull/41)
+- [S3 constructor path #38](https://github.com/opensiro/vsm-oss-organization/issues/38)
+- [constructor implementation #42](https://github.com/opensiro/vsm-oss-organization/issues/42)
+- [merged PR #43](https://github.com/opensiro/vsm-oss-organization/pull/43)
+- `S3STAR_AUDIT.md`
+- `S3_CONTROL_SURFACE.md`
+
+### Result
+
+Both preparatory paths now exist on `main` and pass the Organization cross-repository consistency workflow. #37 and #38 are closed as implementation workstreams; #39 remains open for actual end-to-end evidence.
+
+Their presence does not establish `S3*=A` or `S3=C`. A real use must still establish the audited claim/risk, complementary access and audit judgment, or the whole-system current-control function and returned closure respectively. Formal agent-ownership claims also retain the executor-identity limitation recorded in #2/#35.
+
+### VSM interpretation
+
+The work keeps the functions distinct:
+
+```text
+S3* complementary evidence access
+        ↓
+independent audit judgment
+        ↓ finding
+S3 current-control decision path
+        ↓
+returned constraint/intervention
+        ↓
+subsequent S1 operation
+```
+
+The audit role does not inherit S3 authority, and the constructor surface does not own its decision. Supporting transport and deterministic enforcement remain separate from the organizational right they carry.
+
+### Reusable lesson
+
+Before claiming a new VSM function, implement and test the **specific feedback/decision path** that would close it, while keeping ownership explicit. Separate functional construction from autonomy proof: files, role names, model diversity, and transport primitives are preparation, not evidence that the function is already enacted.
+
 ## Backfill policy
 
 Important decisions that predate this log may be added later only when primary evidence supports their date, context, and interpretation. Do not infer a historical sequence solely from the current contents of `design-reasoning.md`.
