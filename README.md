@@ -51,6 +51,7 @@ You do not need to implement a VSM runtime to start contributing. Use the prompt
 1. **New to the VSM Harness OSS group:** [prompts/learn-ecosystem.md](prompts/learn-ecosystem.md) — map the in-scope repositories, authority boundaries, current milestone, and open work before changing anything.
 2. **Ready to work:** [prompts/contribute.md](prompts/contribute.md) — execute one bounded contribution under the current S1-first contract.
 3. **Want an explicit control plane now:** [prompts/parent-control-plane.md](prompts/parent-control-plane.md) — demo a human-parent autonomy envelope and escalation interface ahead of the full M2 implementation.
+4. **Preparing complementary M1 audit work:** [prompts/audit-s1-work.md](prompts/audit-s1-work.md) — challenge one explicit S1 claim through a materially complementary evidence path. This is a preparatory M1 entry point, not a claim that M1 or `S3*=A` is already established.
 
 The prompt pack is operational guidance, not additional VSM semantics and not evidence that a future roadmap milestone is already complete.
 
@@ -106,11 +107,13 @@ A   A   A   A   A   P
 
 The final vector is a design target, not a present assessment claim. `A`, `C`, and `P` are ownership arrangements, not maturity scores; the milestone ordering is the construction sequence for this reference organization rather than a universal VSM installation order. Each milestone has explicit entry and exit conditions in [ROADMAP.md](ROADMAP.md).
 
-## Current role
+## Current and preparatory roles
 
-Only the S1 role is standardized in the first milestone. See [roles/S1.md](roles/S1.md).
+The only role active in the current M0 milestone is S1: [roles/S1.md](roles/S1.md).
 
-Future roles are added only when the roadmap establishes a concrete organizational need for them. This is deliberate: VSM functions are organizational responsibilities, not a checklist of permanent agent processes.
+Preparatory M1 work may define future role artifacts before the milestone is formally achieved. The current preparatory S3* audit role is [roles/S3STAR.md](roles/S3STAR.md), governed by [S3STAR_AUDIT.md](S3STAR_AUDIT.md). Its presence does **not** establish `S3*=A`, activate M1, or imply an autonomous S3 regulator.
+
+Further roles are added only when the roadmap establishes a concrete organizational need for them. This is deliberate: VSM functions are organizational responsibilities, not a checklist of permanent agent processes.
 
 ## Design rationale
 
