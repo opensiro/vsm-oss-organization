@@ -1,0 +1,72 @@
+{
+  "control_version": "1",
+  "transaction_id": "<unique transaction id>",
+  "system_in_focus": "<declared current-control boundary>",
+  "status": "REQUESTED",
+  "trigger": {
+    "kind": "s3star_finding|current_exception|other_current_control_need",
+    "summary": "<observable trigger; no hidden chain-of-thought>",
+    "evidence_refs": [
+      "<primary evidence reference>"
+    ]
+  },
+  "current_view": {
+    "active_s1_refs": [
+      "<affected or relevant S1 work item>"
+    ],
+    "commitments": [
+      "<relevant current commitment>"
+    ],
+    "constraints": [
+      "<relevant current constraint>"
+    ],
+    "resource_or_priority_context": [
+      "<only when material to this decision>"
+    ]
+  },
+  "requested_decision": {
+    "decision_right": "<whole-system current-control choice that must be made>",
+    "allowed_classes": [
+      "CONTINUE",
+      "STOP",
+      "REQUIRE_REPAIR",
+      "SET_CONSTRAINT",
+      "SET_RETRY_BUDGET",
+      "OTHER_CURRENT_CONTROL"
+    ],
+    "authority_boundary": "<what this transaction may decide and what must escalate>"
+  },
+  "decision": {
+    "owner_class": "human|agent|parent|distributed|unknown",
+    "owner_ref": "<primary actor/authority evidence reference>",
+    "class": "<one allowed class after decision>",
+    "instruction": "<bounded returned current-control instruction>",
+    "evidence_refs": [
+      "<decision evidence reference>"
+    ]
+  },
+  "support_and_enforcement": [
+    {
+      "mechanism": "<validator|branch rule|workflow|scheduler|manual transport|other>",
+      "role": "<what it transports/constrains/enforces without owning the decision>",
+      "evidence_ref": "<reference>"
+    }
+  ],
+  "return_to_s1": {
+    "target_work_refs": [
+      "<affected S1 work item>"
+    ],
+    "acknowledgement_ref": "<S1 acknowledgement reference>",
+    "application_summary": "<observable change/preservation in subsequent S1 operation>",
+    "effect_refs": [
+      "<commit, issue, PR, run, or other closure evidence>"
+    ]
+  },
+  "closure": {
+    "final_status": "CLOSED|ESCALATED|CANCELLED",
+    "summary": "<observable closure fact>",
+    "evidence_refs": [
+      "<closure evidence reference>"
+    ]
+  }
+}
