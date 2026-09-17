@@ -5,7 +5,7 @@ Use this prompt when a presented VSM Harness OSS work item must first be classif
 ```text
 Evaluate one presented work item for bounded S1 execution.
 
-First inspect the current target-repository state, relevant Issue/PR state, applicable released or explicitly frozen contract, and the primary evidence needed to classify the item.
+First inspect the current target-repository state, relevant Issue/PR state, the Organization-selected upstream contract (or an explicitly frozen historical contract when declared), and the primary evidence needed to classify the item.
 
 Before executing the requested work, record exactly one verdict:
 
@@ -16,7 +16,7 @@ NON-ADMIT / ESCALATE with evidence
 For admission, establish:
 - system-in-focus, target repository, and exact work boundary;
 - bounded terminal outcome, including whether an evidence-backed no-change result can close it;
-- governing released or explicitly frozen contract;
+- governing Organization-selected upstream or explicitly frozen historical contract;
 - primary evidence required before decisions are made;
 - ordinary implementation/research/evidence/repair decisions delegated locally;
 - forbidden decisions outside local authority;
