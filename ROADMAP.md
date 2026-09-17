@@ -2,9 +2,11 @@
 
 This roadmap grows contributor autonomy bottom-up across the public OpenSiro OSS scope defined in [README.md](README.md). It follows the VSM Harness Profile rule: map the organizational function first, then identify the decisive decision/feedback right, its owner, supporting enforcement, and closure.
 
-The vectors below are milestone targets, not automatic grades. A milestone is complete only when the stated function and closure exist in the reference contribution setup.
+The current system-in-focus starts with three declared operational S1 domains — Index, Skills, and Awesome — while Profile remains the normative semantic source and `vsm-oss-organization` is the metasystem/control construction surface.
 
-The sequence is specific to this reference organization. It is not a universal VSM installation order, and `A`, `C`, and `P` are not maturity levels. They describe different ownership arrangements. In particular, the local `S3=C → S3=A` transition means this design intends to close a specific constructor/control path with an autonomous owner; it does not define a general ordering `C < A`. Likewise, `S5=P` is the intended parent-governed identity topology, not an incomplete step toward `S5=A`.
+The vectors below are milestone targets, not automatic grades. A milestone is complete only when the stated function and closure exist in the reference organization.
+
+The sequence is specific to this reference organization. It is not a universal VSM installation order, and `A`, `C`, and `P` are not maturity levels. They describe different ownership arrangements.
 
 ## GitHub milestone correspondence
 
@@ -12,11 +14,11 @@ The roadmap milestone identifier is also the canonical GitHub Milestone identifi
 
 | GitHub milestone | Tracker issue | Target vector | Scope introduced |
 | --- | --- | --- | --- |
-| `M0` — Autonomous operation | #2 | `A — — — — —` | One bounded autonomous OSS contribution S1. |
+| `M0` — Autonomous operation | #2 | `A — — — — —` | Autonomous local operation across the three declared S1 domains. |
 | `M1` — Independent audit + control surface | #3 | `A — C A — —` | Complementary S3* audit plus a composable S3 intervention path. |
 | `M2` — Parent-governed identity boundary | #4 | `A — C A — P` | Parent-governed S5 closure and explicit delegated policy envelope. |
 | `M3` — Autonomous current control | #5 | `A — A A — P` | Autonomous S3 current regulation inside the S5 envelope. |
-| `M4` — Multi-S1 coordination | #6 | `A A A A — P` | Autonomous S2 only after real inter-S1 interference appears. |
+| `M4` — Cross-S1 coordination | #6 | `A A A A — P` | Autonomous S2 over concrete interference among existing S1 domains. |
 | `M5` — External adaptation | #7 | `A A A A A P` | Autonomous S4 outside-and-then adaptation; deliberately last. |
 
 The tracker issue defines the milestone's construction/exit contract. The GitHub Milestone groups the work required to satisfy that contract. Neither is a separate source of VSM semantics.
@@ -25,52 +27,72 @@ The tracker issue defines the milestone's construction/exit contract. The GitHub
 
 | Milestone | Target vector | Why it exists |
 | --- | --- | --- |
-| M0 — Autonomous operation | `A — — — — —` | Establish one bounded autonomous S1 contribution loop. |
+| M0 — Autonomous operation | `A — — — — —` | Establish repeatable autonomous local operation for Index, Skills, and Awesome while keeping residual variety explicit. |
 | M1 — Independent audit + control surface | `A — C A — —` | Add complementary audit and an explicit S3 intervention path without yet making S3 autonomous. |
-| M2 — Parent-governed identity boundary | `A — C A — P` | Establish genuine S5 escalation and return early, so later autonomy grows inside an explicit parent-governed policy envelope. |
-| M3 — Autonomous current control | `A — A A — P` | Give an agent whole-system current view and bounded intervention authority when S1 can no longer absorb all operational exceptions locally. |
-| M4 — Multi-S1 coordination | `A A A A — P` | Add S2 only after multiple independent S1 units create real interference that cannot be safely absorbed locally. |
-| M5 — External adaptation | `A A A A A P` | Add S4 last, only when the contributor organization must model external/future change and feed adaptation options back into current capability. |
+| M2 — Parent-governed identity boundary | `A — C A — P` | Establish genuine S5 escalation and return so later autonomy grows inside an explicit parent-governed policy envelope. |
+| M3 — Autonomous current control | `A — A A — P` | Give an agent whole-system current view and bounded intervention authority when S1 domains can no longer absorb all current exceptions locally. |
+| M4 — Cross-S1 coordination | `A A A A — P` | Add autonomous S2 only after the already-existing S1 domains exhibit concrete interference that requires coordination. |
+| M5 — External adaptation | `A A A A A P` | Add S4 only when the organization must model external/future change and feed adaptation options back into current capability. |
 
 ## M0 — Autonomous operation
 
 Target: `A — — — — —`
 
-System-in-focus: one contributor-owned autonomous contribution cell.
+### Operational plane
 
-Reference closure:
+M0 declares three S1 domains from the start:
+
+- **Index** — `opensiro/vsm-harness-index`;
+- **Skills** — `opensiro/vsm-harness-skills`;
+- **Awesome** — `opensiro/awesome-vsm-harness`.
+
+Profile and Organization are not operational S1 domains in this system-in-focus. Profile supplies normative semantics; Organization is the metasystem/control construction surface.
+
+A bounded reference run operates inside exactly one declared S1 domain:
 
 ```text
-bounded work item
+bounded local work item
         ↓
-agent interprets repository and issue state
+S1 inspects current local environment
         ↓
-agent chooses and executes local actions
+S1 admits or rejects the work
         ↓
-agent checks evidence/tests and repairs failures
+S1 chooses and executes local actions
         ↓
-reviewable Issue artifact or Pull Request
+S1 validates and repairs ordinary failures
+        ↓
+reviewable change / no-change / escalation outcome
 ```
 
 The contributor owns model choice, scheduler, runtime, credentials, budget, sandbox, and launch cadence. These are supporting mechanisms and constraints; they do not own the S1 organizational decisions.
 
-Exit criteria:
+### Requisite-variety rule
 
-- one work item has one explicit outcome and repository boundary;
-- the agent owns local implementation/research decisions inside that boundary;
+Local variety should remain with the S1 domain that has the requisite information and delegated authority. Only residual variety that cannot be safely closed locally should motivate later metasystem functions.
+
+The metasystem must therefore avoid duplicating ordinary Index, Skills, or Awesome decisions merely to centralize control.
+
+### Exit criteria
+
+- the three operational S1 domains and their local outcomes/environments are explicit;
+- each domain has a bounded admission/execution/validation/recovery/closure path;
+- ordinary local decisions remain inside the relevant S1 authority envelope;
 - routine failure recovery does not require human step-by-step control;
-- the loop produces a reviewable GitHub artifact;
-- internal helper agents are not counted as separate S1 units unless they have their own durable outcome/environment/autonomy.
+- work that actually changes normative/metasystem authority is non-admitted or escalated rather than silently treated as S1;
+- internal helper agents are not counted as additional S1 units merely because they are separate processes;
+- residual variety is preserved as evidence for later functions rather than hidden by central intervention.
+
+Formal `S1=A` remains an evidence claim under the selected Methodology. The deferred distinct-executor identity work is tracked separately for Parent-assisted M2.
 
 ## M1 — Independent audit + control surface
 
 Target: `A — C A — —`
 
-Introduce S3* because routine S1 reporting may be insufficient to trust completion. The S3* path must use materially complementary access to operational reality, for example raw diffs, tests, pinned primary evidence, replay, or other evidence not controlled solely by the producing S1.
+Introduce S3* when routine S1 reporting is insufficient to trust a material operational claim. The S3* path must use materially complementary access to operational reality, for example raw diffs, tests, pinned primary evidence, replay, or other evidence not controlled solely by the producing S1.
 
-S3 remains `C`: the repository exposes a first-party current-control/intervention path, but no default autonomous S3 regulator owns it yet. The path must be specific enough to carry a real S3 decision such as stop/continue, retry budget, current priority, constraint, or required repair back into operation.
+S3 remains `C`: the repository exposes a first-party current-control/intervention path, but no default autonomous S3 regulator owns it yet. The path must be specific enough to carry a real whole-system current-control decision back into affected operation.
 
-An algedonic signal is not itself S3* or S3. S3* may discover exceptional pain/opportunity and originate such a signal, but the algedonic channel is the exceptional communication path to an authority able to act.
+An algedonic signal is not itself S3* or S3.
 
 Exit criteria:
 
@@ -83,9 +105,9 @@ Exit criteria:
 
 Target: `A — C A — P`
 
-Introduce parent-governed S5 before increasing operational autonomy further. The purpose is to make the legitimate identity/policy boundary explicit while S3 is still only composable and before multi-S1 coordination or external adaptation are added.
+Introduce parent-governed S5 before increasing metasystem autonomy further. The purpose is to make the legitimate identity/policy boundary explicit.
 
-Do not award `P` because a human approves ordinary work. The runtime must detect or formulate a genuine identity/ultimate-policy issue, transfer it to the legitimate parent authority, receive an authoritative decision, and continue under that returned decision.
+Do not award `P` because a human approves ordinary work. A genuine identity/ultimate-policy issue must reach the legitimate parent authority, the parent must decide, and the decision must return to govern subsequent operation.
 
 Reference recursion:
 
@@ -99,11 +121,9 @@ contributor human parent
 agent organization
 ```
 
-Minor operational choices should remain below S5. Questions outside the contributor's delegated identity/policy envelope escalate to the higher OpenSiro parent.
-
 Exit criteria:
 
-- the delegated local autonomy envelope is explicit enough to distinguish ordinary operational choices from identity/ultimate-policy questions;
+- the delegated local autonomy envelope distinguishes ordinary operational choices from identity/ultimate-policy questions;
 - a genuine identity/policy exception can reach the legitimate parent authority;
 - the parent decision returns into the running organization;
 - subsequent operation is governed by that returned decision;
@@ -113,7 +133,9 @@ Exit criteria:
 
 Target: `A — A A — P`
 
-Add autonomous S3 only when observed operational variety exceeds what S1 should absorb locally. Typical triggers include repeated stalled work, budget/retry trade-offs, current commitment conflicts, or the need for exception-based intervention across the active operational scope.
+Add autonomous S3 only when observed current operational variety across the organization exceeds what the S1 domains should absorb locally.
+
+Typical triggers include repeated stalled work, budget/retry trade-offs, current commitment conflicts, or exception-based intervention across the active operational scope.
 
 Exit criteria:
 
@@ -123,31 +145,30 @@ Exit criteria:
 - S3* findings can change S3 decisions and subsequent S1 behaviour;
 - S3 remains inside the S5 policy envelope established at M2.
 
-## M4 — Multi-S1 coordination
+## M4 — Cross-S1 coordination
 
 Target: `A A A A — P`
 
-Do not add S2 merely because more processes or workers exist. Introduce multiple independent S1 units intentionally, then identify the concrete interference they create.
+The organization already has three operational S1 domains from M0. M4 therefore does **not** create multi-S1 operation. It introduces autonomous S2 only when concrete interference among those existing S1 domains requires an explicit coordination function.
 
 Examples that can justify S2:
 
-- shared-resource contention;
-- incompatible concurrent edits or interfaces;
-- duplicated work;
-- scheduling collisions;
-- oscillatory mutual reactions;
-- one S1 repeatedly invalidating another's assumptions.
+- Index and Skills concurrently changing assumptions about the selected assessment procedure;
+- Awesome depending on Index state that is being concurrently regenerated or corrected;
+- duplicated or conflicting cross-domain work;
+- shared-resource or scheduling contention;
+- oscillatory corrections where one S1 repeatedly invalidates another's local assumptions.
 
-Profile `0.2.1` now makes the S2 witness mechanically explicit. Before claiming positive S2, establish:
+Before claiming positive S2, establish:
 
-1. distinct S1 units at the declared recursion level;
+1. the distinct S1 domains involved;
 2. a **specific actual or structurally evidenced** interference, conflict, or oscillation arising from their interaction;
 3. a coordination relation specifically capable of attenuating that disturbance;
 4. feedback or closure that changes subsequent S1 behaviour.
 
-Merely saying that several agents could potentially disagree is insufficient. Generic mailboxes, queues, routing, shared task state, dependency fields, speaker selection, or task sequencing count only when evidence ties them to the identified inter-S1 disturbance.
+Generic mailboxes, queues, routing, shared task state, dependency fields, or task sequencing count only when evidence ties them to the identified inter-S1 disturbance.
 
-For `S2=A`, the decisive coordination discretion must be agent-owned. A deterministic merge queue, lock, scheduler, reservation, or branch rule may support/enforce the coordination result without owning that discretion.
+For `S2=A`, the decisive coordination discretion must be agent-owned. Deterministic locks, schedulers, reservations, merge queues, or branch rules may support/enforce the coordination result without owning that discretion.
 
 ## M5 — External adaptation
 
@@ -155,7 +176,7 @@ Target: `A A A A A P`
 
 S4 is deliberately last. Generic self-improvement, backlog ordering, internal planning, memory consolidation, or reacting to a single upstream event is not enough.
 
-Introduce S4 only when the contributor organization genuinely needs to model relevant external/future change, develop adaptation options, and place those options in a two-way conversation with S3 current capability.
+Introduce S4 only when the organization genuinely needs to model relevant external/future change, develop adaptation options, and place those options in a two-way conversation with S3 current capability.
 
 Examples may include sustained changes in upstream harness architecture, dependency ecosystems, contributor behaviour, standards, user needs, or research directions when those distinctions should alter how the organization operates.
 
@@ -165,6 +186,12 @@ Exit criteria:
 - an agent develops adaptation options rather than merely summarizing signals;
 - those options enter a two-way conversation with autonomous S3 current capability;
 - accepted adaptations change subsequent operation while remaining inside the parent-governed S5 identity/policy envelope.
+
+## Supplementary development artifacts
+
+The empirical evolution log, design-reasoning material, and external case studies are supplementary side artifacts of building and studying this organization. They are not primary operational products and do not create another S1 domain.
+
+A future separate pipeline may derive reusable skills or methodology artifacts from those histories, but that pipeline is planned only and is not part of the current roadmap architecture.
 
 ## Rule for adding anything
 

@@ -2,13 +2,15 @@
 
 This file records how `vsm-oss-organization` actually evolves over time: observed problems, experiments, decisions, reversals, evidence, and resulting lessons.
 
-It is **descriptive, empirical, and non-normative**. It does not redefine VSM semantics, the VSM Harness Profile, the assessment Methodology, or the roadmap. The purpose is to preserve enough historical evidence that later practical methodology can be derived from what happened rather than reconstructed around the final architecture.
+It is **descriptive, empirical, non-normative, and supplementary**. It is a side artifact of building and studying the organization, not a primary operational product of the current viable system and not an additional S1 domain. It does not redefine VSM semantics, the VSM Harness Profile, the assessment Methodology, or the roadmap.
+
+Its purpose is to preserve enough historical evidence that later practical methodology can be derived from what happened rather than reconstructed around the final architecture. A future separate pipeline may derive reusable skills or methodology artifacts from this history, but that pipeline is planned only and is not part of the current operational architecture.
 
 Related artifacts:
 
 - `ROADMAP.md` — intended construction sequence and milestone exit criteria;
 - `supplementary/design-reasoning.md` — generalized reasoning patterns that survived, failed, or were narrowed;
-- this file — the chronological/evolutionary record from which such reasoning may later be generalized;
+- this file — the chronological/evolutionary side record from which such reasoning may later be generalized;
 - `supplementary/case-studies/` — external OSS histories used as comparative empirical material.
 
 Parent empirical workstream: [#30](https://github.com/opensiro/vsm-oss-organization/issues/30).
@@ -453,6 +455,98 @@ The audit role does not inherit S3 authority, and the constructor surface does n
 ### Reusable lesson
 
 Before claiming a new VSM function, implement and test the **specific feedback/decision path** that would close it, while keeping ownership explicit. Separate functional construction from autonomy proof: files, role names, model diversity, and transport primitives are preparation, not evidence that the function is already enacted.
+
+## 2026-09-17 — Separate the three operational S1 domains from the normative/metasystem plane
+
+**Status:** `narrowed system boundary`
+
+### Context
+
+Earlier M0 artifacts treated a wide range of repository work as possible S1 activity, including Profile maintenance, Organization/control-plane maintenance, and a supplementary empirical artifact track. The roadmap also described multi-S1 operation as something introduced only at M4.
+
+At the same time, the actual ecosystem already exposed three durable operational product domains with their own environments and local variety: Index, Skills, and Awesome.
+
+### Observed problem
+
+The broad S1 boundary mixed production of operational outcomes with work that changes the rules or autonomy structure of the viable system itself.
+
+That created two problems:
+
+1. metasystem work could be counted as evidence of S1 autonomy merely because it produced a repository artifact;
+2. later S2 reasoning was distorted because the roadmap implied multiple S1 units did not exist until M4, even though three operational domains already existed structurally.
+
+The empirical evolution log also risked becoming a fourth operational product merely because it was useful and durable, despite being a record *about* construction rather than part of the primary VSM Harness knowledge production transformation.
+
+### Alternatives considered
+
+- keep all five repositories as candidate S1 work surfaces and classify task-by-task;
+- treat Profile as another operational S1 because it is a repository with maintainable artifacts;
+- separate operational products from normative/metasystem construction and define the current S1 plane explicitly as Index, Skills, and Awesome.
+
+### Decision / experiment
+
+Adopt three explicit operational S1 domains:
+
+```text
+operational S1 plane
+├── Index
+├── Skills
+└── Awesome
+```
+
+Treat:
+
+- `vsm-harness-profile` as the authoritative normative semantic source consumed by the organization, outside the current operational S1 plane;
+- `vsm-oss-organization` as the surface where metasystem/control functions are constructed and evidenced, also outside the operational S1 plane.
+
+Do **not** infer that Profile is automatically S5 or that Organization is automatically S2–S5. Concrete functions still require function-first evidence.
+
+Keep local variety at the S1 domain with the requisite information and delegated authority. Only residual variety that cannot be safely absorbed locally should motivate later metasystem functions.
+
+Update M4 accordingly: the three S1 domains already exist from M0; M4 is the point where autonomous S2 is added only if concrete interference among those domains requires coordination.
+
+Classify this evolution log itself as a **supplementary side artifact**. It preserves evidence about how the organization was built but is not a primary operational outcome and does not create another S1 domain.
+
+A possible future pipeline that derives reusable skills or methodology artifacts from development history remains planned only and is deliberately absent from the current architecture.
+
+### Evidence
+
+- [boundary work #48](https://github.com/opensiro/vsm-oss-organization/issues/48)
+- `ORGANIZATION.md`
+- `roles/S1.md`
+- `S1_AUTONOMY_COVERAGE.md`
+- `ROADMAP.md`
+- `README.md`
+- this log header/current entry
+
+### Result
+
+The system boundary now distinguishes operational production from normative/metasystem construction:
+
+```text
+Profile ─────── normative semantics
+                  │
+Organization ── metasystem/control construction
+                  │
+            ┌─────┼─────┐
+            ▼     ▼     ▼
+          Index Skills Awesome
+            S1    S1    S1
+```
+
+M0 can now focus on local autonomy inside those three domains without treating changes to the organization's own autonomy machinery as S1 evidence. Later functions are justified from residual variety rather than from repository membership or a desire to complete the VSM diagram.
+
+The earlier 2026-09-17 entry that described the empirical history work as a distinct S1 evidence-production track is therefore **narrowed by this later boundary decision**. Its historical rationale is preserved, but the current classification of the evolution log is supplementary, not operational S1.
+
+### VSM interpretation
+
+This applies the operations/metasystem distinction and the requisite-variety rule at the declared recursion level. Operational units should absorb the local variety for which they have information and authority; central/metasystem mechanisms should not duplicate those decisions merely to centralize command.
+
+The change does not itself establish S2, S3, S3*, S4, or S5. It makes the evidence boundary cleaner so later functions can be introduced only when a concrete residual disturbance requires them.
+
+### Reusable lesson
+
+Define operational outcomes before counting autonomous units. A durable artifact is not automatically an S1 product: ask whether it enacts the parent system's primary transformation or instead records, constrains, or redesigns how that transformation is organized.
 
 ## Backfill policy
 

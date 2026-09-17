@@ -2,27 +2,32 @@
 
 A minimal organizational profile for autonomous OpenSiro OSS contributors.
 
-This repository applies, but does not redefine, the public [VSM Harness Profile](https://github.com/opensiro/vsm-harness-profile). It is built bottom-up using an OSM-style elimination method: add an organizational function only when a concrete variety or disturbance cannot be absorbed by the functions already present.
+This repository applies, but does not redefine, the public [VSM Harness Profile](https://github.com/opensiro/vsm-harness-profile). It is built bottom-up using an OSM-style elimination method: add an organizational function only when concrete residual variety cannot be absorbed by the functions already present.
 
 ## Viable-system identity
 
-The bounded organization maintained here exists to keep a public, current, evidence-backed representation of the organizational structure of AI-agent harnesses available to the open-source community through VSM.
+The bounded organization maintained here exists to keep public, current, evidence-backed VSM Harness knowledge available to the open-source community.
 
-Its primary transformation is:
+The current system separates a normative/metasystem plane from three operational S1 domains:
 
 ```text
-public harness ecosystem evidence
-        ↓
-VSM semantics + assessment methodology
-        ↓
-evidence-backed assessments
-        ↓
-normalized comparative knowledge
-        ↓
-curated public views for the OSS community
+normative / metasystem plane
+├── vsm-harness-profile      authoritative semantics
+└── vsm-oss-organization     organizational/control construction
+
+operational S1 plane
+├── vsm-harness-index
+├── vsm-harness-skills
+└── awesome-vsm-harness
 ```
 
-See [ORGANIZATION.md](ORGANIZATION.md) for the system identity, operational work domain, repository participation boundary, and viability criterion. See [S1_AUTONOMY_COVERAGE.md](S1_AUTONOMY_COVERAGE.md) for the current operational work classes and the engineering gaps that still block broad S1 autonomy.
+The operational domains produce different durable outcomes:
+
+- **Index** — canonical evidence-backed corpus, provenance, reassessment history, signatures, and deterministic comparative views;
+- **Skills** — reusable VSM Harness assessment procedure/skills/tooling that applies the selected Profile;
+- **Awesome** — curated representative downstream view linked to canonical Index facts.
+
+See [ORGANIZATION.md](ORGANIZATION.md) for the system boundary, local environments, durable outcomes, residual-variety rule, and viability criterion. See [S1_AUTONOMY_COVERAGE.md](S1_AUTONOMY_COVERAGE.md) for current action/domain coverage.
 
 ## Scope
 
@@ -36,37 +41,39 @@ Current in-scope public repositories:
 - `opensiro/awesome-vsm-harness`
 - `opensiro/vsm-oss-organization`
 
-The repositories remain separate systems with separate sources of truth. Inclusion here means their **public OSS contribution work that participates in the declared VSM Harness knowledge transformation** may be organized through this contributor/control plane; it does not transfer semantic ownership between repositories.
+Scope membership does not mean that all five repositories are operational S1 units. For the current system-in-focus:
 
-`opensiro/vsm-harness-skills` is intentionally only partially inside this viable-system boundary. The repository may host reusable skills for more general tasks and for other systems. This control plane governs only those skills/procedures whose work participates in producing or maintaining VSM Harness knowledge; repository location alone does not make every skill part of this organization.
+- `vsm-harness-index`, `vsm-harness-skills`, and `awesome-vsm-harness` are the declared operational S1 domains;
+- `vsm-harness-profile` is the normative semantic authority consumed by the organization;
+- `vsm-oss-organization` is the organizational/metasystem construction surface.
 
-Repositories outside the declared current in-scope set may still consume, demonstrate, experiment with, or present artifacts produced by the in-scope repositories. That dependency alone does not place them under this control plane.
+Repository location alone does not determine function. In particular, `vsm-harness-skills` may also host general-purpose skills outside this viable-system boundary, and a change inside an operational repository may still leave S1 if it actually changes normative, cross-S1, identity, or metasystem authority.
 
-Scope changes are explicit; organization membership, repository naming, or dependency alone is not enough to place work under this control plane.
+Repositories outside the current in-scope set may consume or present artifacts produced here without becoming governed by this control plane.
 
 ## FOR CONTRIBUTORS
 
 You do not need to implement a VSM runtime to start contributing. Use the prompts as portable entry points with your own agent/runtime:
 
-1. **New to the VSM Harness OSS group:** [prompts/learn-ecosystem.md](prompts/learn-ecosystem.md) — map the in-scope repositories, authority boundaries, current milestone, and open work before changing anything.
-2. **Ready to work:** [prompts/contribute.md](prompts/contribute.md) — execute one bounded contribution under the current S1-first contract.
-3. **Want an explicit control plane now:** [prompts/parent-control-plane.md](prompts/parent-control-plane.md) — demo a human-parent autonomy envelope and escalation interface ahead of the full M2 implementation.
-4. **Preparing complementary M1 audit work:** [prompts/audit-s1-work.md](prompts/audit-s1-work.md) — challenge one explicit S1 claim through a materially complementary evidence path. This is a preparatory M1 entry point, not a claim that M1 or `S3*=A` is already established.
-5. **Applying a returned preparatory M1 current-control decision:** [prompts/apply-s3-control.md](prompts/apply-s3-control.md) — apply one qualifying S3 constructor transaction back into an affected S1 work item. Arbitrary comments/approvals are not treated as S3 input.
+1. **New to the VSM Harness OSS group:** [prompts/learn-ecosystem.md](prompts/learn-ecosystem.md) — map repositories, authority boundaries, current milestone, and open work.
+2. **Ready to work in an operational domain:** [prompts/contribute.md](prompts/contribute.md) — execute one bounded Index, Skills, or Awesome contribution under the current S1 contract.
+3. **Want an explicit control plane now:** [prompts/parent-control-plane.md](prompts/parent-control-plane.md) — demo a human-parent autonomy envelope ahead of the full M2 implementation.
+4. **Preparing complementary M1 audit work:** [prompts/audit-s1-work.md](prompts/audit-s1-work.md) — preparatory only; its existence is not evidence that M1 or `S3*=A` is established.
+5. **Applying a returned preparatory M1 current-control decision:** [prompts/apply-s3-control.md](prompts/apply-s3-control.md) — preparatory only; arbitrary comments/approvals are not treated as S3 input.
 
-The prompt pack is operational guidance, not additional VSM semantics and not evidence that a future roadmap milestone is already complete.
+The prompt pack is operational guidance, not additional VSM semantics and not evidence that a future milestone is complete.
 
 ## Source boundary
 
 [`UPSTREAM_CONTRACT.json`](UPSTREAM_CONTRACT.json) is the single machine-readable selection of the upstream Profile, Methodology, and Index contract surfaces consumed by this organization.
 
-- Normative VSM semantics remain owned by `opensiro/vsm-harness-profile`; this repository consumes the selected released Profile and its downstream compatibility facade rather than copying S1–S5 definitions.
-- Autonomy notation and assessment procedure remain owned by `opensiro/vsm-harness-skills`; the selected Methodology revision is pinned in the manifest with its actual source status.
-- The current assessment-contract pair remains owned by `opensiro/vsm-harness-index`; Organization validation reads that upstream contract and checks whether the selected Profile is compatible through the Profile release-impact chain.
-- Historical or frozen work keeps its original provenance. A later compatible Profile release does not rewrite the Profile version under which an older assessment or trial was produced.
-- This repository is a local operationalization for the in-scope OpenSiro VSM Harness OSS group. It does not redefine S1-S5.
+- Normative VSM semantics remain owned by `opensiro/vsm-harness-profile`.
+- Assessment procedure/autonomy publication conventions remain owned by `opensiro/vsm-harness-skills` under the selected source/provenance contract; local implementation work does not silently gain authority to redefine the Profile.
+- Canonical assessment facts remain owned by `opensiro/vsm-harness-index`.
+- Historical/frozen work keeps its original provenance; later compatible releases do not rewrite the contract under which an older artifact was produced.
+- This repository operationalizes organization/control for the bounded OSS group; it does not redefine S1–S5.
 
-See [CONTROL_PLANE.md](CONTROL_PLANE.md) for the compatibility gate, frozen-work boundary, cross-repository validation model, merge gates, and maintainer decision points. Open semantic proposals are never treated as accepted Profile rules.
+See [CONTROL_PLANE.md](CONTROL_PLANE.md) for compatibility gates, frozen-work boundaries, cross-repository validation, merge gates, and maintainer decision points.
 
 ## Contribution model
 
@@ -77,18 +84,20 @@ OpenSiro contribution contract
         ↓
 contributor-owned scheduler / harness / credentials / budget
         ↓
-VSM role prompt(s)
+S1 role in one declared operational domain
         ↓
-autonomous contribution
+autonomous bounded contribution
         ↓
 Issue / Pull Request
 ```
 
-A contributor may use one agent or many internal workers. Internal workers are not separate S1 units merely because they are separate processes or prompts. The current minimal system-in-focus is one bounded contribution loop with one operational outcome.
+A contributor may use one agent or many internal workers. Internal workers are not separate S1 units merely because they are separate processes or prompts.
+
+Local variety should remain in the relevant operational domain when that domain has the requisite information and delegated authority. Only residual variety should move into later metasystem functions.
 
 ## OSM roadmap
 
-The implementation starts from the smallest useful organization and introduces functions only when their disturbance appears.
+The implementation starts from the smallest useful organization and introduces later functions only when their disturbance appears.
 
 Current milestone target:
 
@@ -97,7 +106,7 @@ S1  S2  S3  S3* S4  S5
 A   —   —   —   —   —
 ```
 
-This is the M0 **target**, not a current evidence claim. The current strict M0 status is tracked in issue #2; M0 remains open until `S1=A` is established from sufficient primary evidence.
+For M0, S1 is realized through the three declared operational domains: Index, Skills, and Awesome. The vector is a target, not a current evidence claim; strict autonomy status is tracked in issue #2.
 
 Long-term reference target:
 
@@ -106,18 +115,20 @@ S1  S2  S3  S3* S4  S5
 A   A   A   A   A   P
 ```
 
-The final vector is a design target, not a present assessment claim. `A`, `C`, and `P` are ownership arrangements, not maturity scores; the milestone ordering is the construction sequence for this reference organization rather than a universal VSM installation order. Each milestone has explicit entry and exit conditions in [ROADMAP.md](ROADMAP.md).
+`A`, `C`, and `P` are ownership arrangements, not maturity scores. The milestone ordering is specific to this reference organization, not a universal VSM installation order. See [ROADMAP.md](ROADMAP.md).
 
 ## Current and preparatory roles
 
-The only role active in the current M0 milestone is S1: [roles/S1.md](roles/S1.md).
+The only role active in the current M0 milestone is S1: [roles/S1.md](roles/S1.md). A run must declare Index, Skills, or Awesome as its operational domain.
 
-Preparatory M1 work may define future artifacts before the milestone is formally achieved. The current preparatory S3* audit role is [roles/S3STAR.md](roles/S3STAR.md), governed by [S3STAR_AUDIT.md](S3STAR_AUDIT.md). Its presence does **not** establish `S3*=A`, activate M1, or imply an autonomous S3 regulator.
+Preparatory M1 artifacts may exist before that milestone is formally achieved. The current S3* audit role and S3 constructor surface remain preparatory and inactive for M0; their presence does not establish `S3*=A`, `S3=C`, or an autonomous S3 regulator.
 
-The preparatory S3 constructor primitive is [S3_CONTROL_SURFACE.md](S3_CONTROL_SURFACE.md). It intentionally defines a first-party request/decision/return path **without defining an autonomous S3 role**. The actual decision owner must be supplied and evidenced per transaction; the surface, JSON record, CI, or enforcement machinery do not own the S3 choice.
+Further roles are added only when concrete residual variety establishes the organizational need. VSM functions are responsibilities and relationships, not a checklist of permanent agent processes.
 
-Further roles are added only when the roadmap establishes a concrete organizational need for them. This is deliberate: VSM functions are organizational responsibilities, not a checklist of permanent agent processes.
+## Supplementary development evidence
 
-## Design rationale
+The files under `supplementary/`, especially [supplementary/evolution-log.md](supplementary/evolution-log.md), preserve empirical development history and design reasoning.
 
-See [supplementary/design-reasoning.md](supplementary/design-reasoning.md) for worked examples from the design discussion, including reasoning that survived re-check and reasoning that was rejected or narrowed after applying the current Profile.
+They are **side artifacts of building and studying the organization, not primary operational products and not additional S1 domains**. A future separate pipeline may derive reusable skills or methodology material from them, but that pipeline is planned only and is not part of the current architecture.
+
+See [supplementary/design-reasoning.md](supplementary/design-reasoning.md) for worked reasoning and [supplementary/evolution-log.md](supplementary/evolution-log.md) for the chronological development record.
