@@ -12,7 +12,7 @@ Repository / boundary:
 
 Revision(s) inspected:
 
-Governing released or frozen contract:
+Governing Organization-selected upstream or explicitly frozen historical contract:
 
 ## Admission verdict
 
