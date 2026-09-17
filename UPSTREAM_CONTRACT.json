@@ -1,0 +1,24 @@
+{
+  "profile": {
+    "repository": "opensiro/vsm-harness-profile",
+    "source_kind": "release",
+    "ref": "v0.2.2",
+    "version": "0.2.2",
+    "version_path": "VERSION",
+    "consumer_contract_path": "CONSUMER_CONTRACT.md",
+    "release_impact_path": "RELEASE_IMPACT.json"
+  },
+  "methodology": {
+    "repository": "opensiro/vsm-harness-skills",
+    "source_kind": "commit",
+    "ref": "01e13e595c101bd526fd1913863bfd8170f08116",
+    "version": "0.3.1",
+    "version_path": "skills/assess-vsm-harness/VERSION"
+  },
+  "index": {
+    "repository": "opensiro/vsm-harness-index",
+    "source_kind": "branch",
+    "ref": "main",
+    "active_contract_path": "data/active-contract.psv"
+  }
+}

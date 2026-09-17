@@ -1,6 +1,6 @@
 # OpenSiro OSS Control Plane
 
-This document is the operational control plane for the bounded **OpenSiro VSM Harness OSS group** defined in `README.md`. It records authority boundaries, compatibility gates, and the current hand-off points between in-scope public repositories. It is **not** a control plane for every OpenSiro project, private work, or downstream consumer, and it is **not** a second source of VSM semantics or assessment data.
+This document is the operational control plane for the bounded **OpenSiro VSM Harness OSS group** defined in `README.md`. It records authority boundaries, compatibility gates, and hand-off rules between in-scope public repositories. It is **not** a second source of VSM semantics, Methodology rules, or Index assessment data.
 
 The in-scope repository set is maintained explicitly in `README.md`. Repository membership in the `opensiro` organization does not automatically place a project under this control plane. Contributor-local runtimes, schedulers, credentials, budgets, and sandboxes also remain outside this repository's authority.
 
@@ -10,87 +10,102 @@ Contributors who want a minimal human-parent interface before the full M2 implem
 
 ```text
 VSM Harness Profile
-        ↓ normative semantics
+        ↓ normative semantics + release-impact facade
 VSM Harness Methodology
         ↓ assessment / autonomy / synthesis procedure
-VSM Harness Index @ exact Git revision
-        ↓ evidence corpus + generated views
+VSM Harness Index
+        ↓ evidence corpus + active assessment contract + generated views
 Awesome VSM Harness
 
 VSM OSS Organization
-        ↳ local OSM operationalization of the released contract
+        ↳ local OSM operationalization of a selected upstream contract
 ```
 
 Source-of-truth rules:
 
-- `opensiro/vsm-harness-profile` owns S1, S2, S3, S3*, S4, S5, recursion, variety, escalation, ownership/enforcement, and closure semantics.
+- `opensiro/vsm-harness-profile` owns S1, S2, S3, S3*, S4, S5, recursion, variety, escalation, ownership/enforcement, closure semantics, and Profile release-impact declarations.
 - `opensiro/vsm-harness-skills` owns the Methodology used to apply the Profile, including `A/C/P/—/?`, evidence procedure, synthesis, and deterministic ranking projection rules.
-- `opensiro/vsm-harness-index` owns the evidence-backed corpus. The exact Index Git revision identifies one corpus/output state.
+- `opensiro/vsm-harness-index` owns the evidence-backed corpus and its active assessment contract. The exact Index Git revision identifies one corpus/output state.
 - `opensiro/awesome-vsm-harness` owns its curated representative downstream view; it does not redefine Profile or Index facts.
-- this repository owns only the bounded VSM Harness OSS contribution organization and its OSM construction sequence.
+- this repository owns only the bounded VSM Harness OSS contribution organization, its OSM construction sequence, and which upstream contract it elects to consume.
 - `opensiro/terminal-bench-vsm`, `opensiro/arctic-0`, and `opensiro/opensiro.com` are outside this organizational scope even when they consume, demonstrate, experiment with, or present related artifacts.
 
-## Released contract vs frozen work
+## Upstream contract selection
 
-There are deliberately two compatible Methodology states in flight:
+[`UPSTREAM_CONTRACT.json`](UPSTREAM_CONTRACT.json) is the **only local machine-readable selection surface** for the upstream Profile, Methodology, and Index contract inputs used by this organization.
 
-| Surface | Profile | Methodology | Meaning |
-| --- | --- | --- | --- |
-| active contract for new work | `0.2.1` | `0.2.3` | current released semantic/procedure pair |
-| Index Reassessment R1 | `0.2.0` | `0.2.1` | frozen round contract; must not silently upgrade mid-round |
+It records, for each upstream source:
 
-This is intentional, not drift. A frozen reassessment round is historical work under a declared contract. New assessments or operational design outside R1 use the active `0.2.1 / 0.2.3` pair.
+- repository;
+- source kind (`release`, `commit`, or `branch`);
+- ref;
+- relevant version/contract path.
 
-Current released state:
+The manifest selects an upstream state; it does not copy upstream semantics. Documentation in this repository should refer to the manifest instead of maintaining independent current-version pairs.
 
-- Profile `0.2.1` is tagged/released at normative commit `e1aaff7d2cd50d5d5ed9ab76c3606a6ef39d1976`; that tag target is treated as the immutable release identity.
-- Methodology `0.2.3` is tagged/released at commit `30474da360b76edd1458ef51457fb2bb2323dcd1`; the bundled Profile records exact normative source revision `e1aaff7d2cd50d5d5ed9ab76c3606a6ef39d1976` plus the Profile blob.
-- the Index active contract is `Profile 0.2.1 / Methodology 0.2.3` for new work.
-- R1 remains frozen on `Profile 0.2.0 / Methodology 0.2.1` and the scope snapshot declared by `vsm-harness-index#47`.
-- out-of-scope presentation consumers may consume canonical Index state, but their publication workflow is not governed here.
+The selected Profile is consumed as a released semantic boundary. The selected Methodology may be pinned to an exact accepted commit when its current repository version is newer than the latest published GitHub Release; the manifest must represent that source status truthfully rather than pretending a release exists. The Index active contract is read from its canonical `data/active-contract.psv` surface.
 
-## Current change graph
+## Profile compatibility gate
 
-```text
-Profile #3  ── merged/released: v0.2.0 ownership / closure semantics
-Profile #8  ── merged/released: v0.2.1 explicit S2 evidence witness
-     ↓
-Skills #8  ── merged: Methodology 0.2.3 S2 function-before-state rule
-Skills #9/#11 ── merged: exact Profile source provenance + validation hardening
-     ↓
-Methodology v0.2.3 ── released at 30474da360b76edd1458ef51457fb2bb2323dcd1
-     ↓
-Index #52 ── merged: active contract → Profile 0.2.1 / Methodology 0.2.3
-     ├── new work uses active contract
-     └── R1 remains frozen on 0.2.0 / 0.2.1
-             ↓
-Index #53 ── OPEN: targeted R1 S2 same-ref re-review queue
-```
+An exact Profile version attached to an assessment, trial, or other artifact is immutable **provenance**. A later Profile version is a separate compatibility question.
 
-Out-of-scope downstream repositories may have their own synchronization or presentation changes; those are context, not nodes governed by this control plane.
-
-Historical note: Index #48 introduced a separate compatibility metadata/schema axis. Index #49 intentionally superseded that design with the smaller contract:
+Organization validation applies the Profile's own downstream facade:
 
 ```text
-Profile version + Methodology version + exact Index Git revision
+artifact / Index Profile basis
+        ↓
+Profile RELEASE_IMPACT.json transition chain
+        ↓
+Organization-selected Profile
 ```
 
-Do not reintroduce an independent Index/TLDR/RANKINGS semantic version unless a future architectural need is demonstrated.
+A silent Organization upgrade is allowed only when every intervening Profile transition is:
 
-## Released S2 clarification vs frozen R1
+```text
+compatibility: compatible
+assessment_impact: none
+```
 
-Profile `0.2.1` makes the S2 evidence witness mechanically explicit. A positive S2 mapping identifies, at the declared recursion level:
+This means an Index assessment produced under an older Profile can remain usable without rewriting its stored Profile provenance when the Profile itself declares the later transition no-impact.
 
-1. distinct S1 operational units;
-2. a **specific actual or structurally evidenced** interference, conflict, or oscillation arising from their interaction;
-3. a coordination relation specifically capable of attenuating that disturbance;
-4. feedback or closure by which the result changes subsequent S1 behaviour.
+If any intervening transition is `targeted`, `all`, or `breaking`, or if a complete transition path cannot be reconstructed, the validator must reject silent adoption. The required response is an explicit compatibility/reassessment decision at the authority that owns the affected artifact or procedure.
 
-Generic mailboxes, routing, shared state, task sequencing, dependency fields, speaker selection, or delegation do not establish S2 merely because they could be used to build coordination.
+The Organization never infers compatibility from SemVer strings alone and never treats a newer Profile version as an automatic corpus-wide reassessment trigger.
 
-Methodology `0.2.3` additionally makes the function-before-state boundary explicit for `S2=C`: the S2 function itself must already be established, and the first-party primitive must expose an S2-specific decision/feedback path. `C` does not mean generic framework expressiveness.
+## Cross-repository completion oracle
 
-This clarification does **not** migrate R1. Frozen Profile `0.2.0` already requires a coordination problem and regulation of interference, and frozen Methodology `0.2.1` already excludes delegation/routing/sequencing/handoff alone and requires interference/oscillation regulation. Therefore weak historical S2 positives discovered in R1 are handled as same-ref corrections under `0.2.0 / 0.2.1`, as tracked by `vsm-harness-index#53`.
+Repository-local checks remain useful, but they are not sufficient for upstream-contract correctness. CI therefore checks the selected upstream repositories directly.
+
+The deterministic contract oracle verifies:
+
+1. the local upstream-selection manifest is well formed;
+2. the selected Profile ref exposes the declared `VERSION`, consumer contract, and release-impact history;
+3. the selected Profile release is present in that release-impact history;
+4. the selected Methodology ref exposes the declared Methodology version;
+5. the Index active Methodology equals the Methodology selected by Organization;
+6. if the Index Profile basis differs from Organization's selected Profile, the Profile release-impact chain proves a compatible/no-impact path;
+7. repository-local scope, roadmap vectors, links, and source-of-truth ownership surfaces remain internally consistent.
+
+These checks establish contract consistency only. They do **not** establish semantic correctness, function mapping, decision ownership, or `S1=A`.
+
+## Frozen work and provenance
+
+A frozen assessment/reassessment round or historical trial keeps the contract declared when that work began. Advancing the Organization upstream selection does not mutate historical provenance and does not silently upgrade work already frozen under another pair.
+
+The distinction is:
+
+```text
+historical artifact
+→ exact producing Profile / Methodology provenance
+
+current Organization operation
+→ selected upstream contract in UPSTREAM_CONTRACT.json
+
+compatibility between them
+→ derived from authoritative upstream compatibility rules
+```
+
+When a frozen workstream explicitly adopts a successor contract, that migration must be recorded by the workstream that owns it.
 
 ## OSM state semantics
 
@@ -108,8 +123,10 @@ Use the smallest authority that actually owns the change:
 
 | Change | Route | Downstream consequence |
 | --- | --- | --- |
-| meaning/boundary of S1–S5, recursion, variety, escalation, ownership or closure | Profile PR + released Profile version | Methodology compatibility review; new Index work may adopt the new contract; existing frozen rounds remain frozen |
-| assessment/autonomy/synthesis procedure with unchanged VSM meaning | Methodology PR + release | update Index active contract after compatibility validation; do not rewrite old provenance |
+| meaning/boundary of S1–S5, recursion, variety, escalation, ownership or closure | Profile PR + accepted Profile release | consume Profile-declared impact; review Methodology/Index only to the declared scope |
+| Profile release with `assessment_impact: none` | Profile release | Organization may advance its semantic boundary after compatibility validation; do not rewrite historical assessment provenance |
+| Profile release with targeted/breaking impact | Profile + affected downstream owner | explicit scoped compatibility/reassessment decision; never infer corpus-wide work from version number alone |
+| assessment/autonomy/synthesis procedure with unchanged VSM meaning | Methodology change | update Organization/Index contract selection after compatibility validation; do not rewrite old provenance |
 | one harness evidence/classification/freshness event | Index PR | regenerate only affected deterministic corpus views; no Profile/Methodology release |
 | cohort changes / signatures / rankings under unchanged Methodology | Index PR | exact Index Git revision identifies the new state |
 | representative curation under unchanged canonical facts | Awesome VSM Harness PR | consume canonical upstream facts; no independent semantic authority |
@@ -121,25 +138,24 @@ Use the smallest authority that actually owns the change:
 A local PR is ready when all applicable gates hold:
 
 1. **Boundary:** system-in-focus and recursion level are explicit.
-2. **Released contract:** any normative claim is supported by a released Profile/Methodology version, not only an open issue.
-3. **Local proposal marking:** stricter experimental rules are labelled local/proposed until released upstream.
-4. **Function first:** component names are not used as VSM evidence.
-5. **Ownership:** decision right, owner, support/enforcement, and closure are separated.
-6. **No maturity inference:** `A/C/P/—/?` is not treated as an ordinal score.
-7. **Frozen work:** active downstream rounds such as R1 keep their declared version pair.
-8. **Generated consumers:** presentation layers are not manually promoted into sources of truth.
+2. **Upstream contract:** normative claims resolve through the selected upstream Profile/Methodology contract, not an open semantic proposal.
+3. **Compatibility:** a newer Profile is accepted only through the Profile release-impact facade; insufficient or non-zero impact is escalated rather than silently adopted.
+4. **Local proposal marking:** stricter experimental rules are labelled local/proposed until accepted upstream.
+5. **Function first:** component names are not used as VSM evidence.
+6. **Ownership:** decision right, owner, support/enforcement, and closure are separated.
+7. **No maturity inference:** `A/C/P/—/?` is not treated as an ordinal score.
+8. **Frozen work:** historical/frozen work keeps its declared version pair until its owning workstream explicitly migrates it.
+9. **Generated consumers:** presentation layers are not manually promoted into sources of truth.
+10. **Completion oracle:** repository-local and applicable upstream-contract checks pass without treating those checks as proof of semantic correctness or autonomy.
 
-## Current operator queue
+## Current operator boundary
 
-### Ready / no semantic decision required
+At M0, ordinary Organization work may use the selected upstream contract and its deterministic compatibility gate. This does not change the strict M0 autonomy requirement: executor provenance, task admission/recovery, completion evidence, and agent-owned decisive S1 closure remain separate workstreams.
 
-- continue R1 under its frozen `0.2.0 / 0.2.1` contract;
-- execute the targeted S2 re-review queue in `vsm-harness-index#53` as part of R1, using same-ref corrections where the frozen evidence contract was previously over-interpreted;
-- use `0.2.1 / 0.2.3` for new work outside R1;
-- operate this repository at M0 and add later VSM functions only when their declared disturbance appears.
+A maintainer decision is required when:
 
-### Requires an explicit maintainer decision
-
-None at the current release/provenance boundary.
-
-A new maintainer decision is required only when a future semantic proposal changes the released Profile/Methodology contract, a frozen downstream round needs an explicit successor, or the OSM implementation reaches a roadmap gate whose organizational disturbance must be demonstrated rather than assumed.
+- a Profile transition is not provably compatible/no-impact for the intended use;
+- Methodology changes alter the procedure this organization relies on;
+- a frozen workstream needs an explicit successor contract;
+- organizational scope, identity, or ultimate-policy authority changes;
+- an OSM milestone gate requires a new organizational function rather than ordinary S1 repair.
