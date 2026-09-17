@@ -2,7 +2,7 @@
 
 This document defines the runtime-neutral operational contract used to decide whether a presented work item may enter one bounded S1 contribution loop and how that loop handles routine disturbances after admission.
 
-It is a local organizational contract for this repository. It does **not** redefine VSM semantics, autonomy states, or assessment procedure. Those remain owned by the released VSM Harness Profile and VSM Harness Methodology identified in `CONTROL_PLANE.md`.
+It is a local organizational contract for this repository. It does **not** redefine VSM semantics, autonomy states, or assessment procedure. Those remain owned by the upstream VSM Harness Profile and VSM Harness Methodology selected through `UPSTREAM_CONTRACT.json`, or by an explicitly frozen historical contract when the work item declares one.
 
 The governing admission rule is:
 
@@ -32,7 +32,7 @@ An item may be admitted only when all applicable questions have a sufficiently c
 1. **System-in-focus** — which repository/system boundary is being operated on?
 2. **Work boundary** — what exact problem or contribution is inside this run, and what adjacent work is outside it?
 3. **Bounded outcome** — what reviewable terminal result closes the run?
-4. **Governing contract** — which released or explicitly frozen contract applies?
+4. **Governing contract** — which Organization-selected upstream contract, or which explicitly frozen historical contract, applies?
 5. **Primary evidence** — what evidence must be inspected before decisions are made?
 6. **Authority envelope** — which ordinary implementation, research, evidence-selection, repair, and validation decisions may the S1 make locally?
 7. **Forbidden decisions** — which semantic, policy, scope, licensing, integration, risk, or other decisions are not delegated?
@@ -49,7 +49,7 @@ Admission follows the actual decision rights required by the work, not the repos
 | Work class | Ordinary S1 admission |
 | --- | --- |
 | **Ordinary bounded contribution** | May be `ADMIT` when the checklist is satisfied and the needed local discretion is delegated. |
-| **Normative Profile or Methodology decision** | `NON-ADMIT` as ordinary S1 work. Implementation of an already-authorized frozen decision may be separately admitted when no undelegated semantic/procedure discretion remains. |
+| **Normative Profile or Methodology decision** | `NON-ADMIT` as ordinary S1 work. Implementation of an already-authorized selected/frozen decision may be separately admitted when no undelegated semantic/procedure discretion remains. |
 | **Organization identity, scope, or ultimate-policy decision** | `NON-ADMIT` as ordinary S1 work unless that authority has been explicitly delegated by the legitimate owner/process. |
 | **Insufficient-evidence work** | `NON-ADMIT`, or stop an already-admitted run when the gap is discovered. Do not invent missing evidence. |
 
@@ -147,6 +147,6 @@ These are operational record states, not VSM autonomy states.
 
 Using this contract does not by itself establish `S1=A`.
 
-For a positive autonomy claim, the released Methodology still requires function, decisive decision right, owner, supporting/enforcement machinery, and closure to be reconstructable from primary evidence.
+For a positive autonomy claim, the governing Methodology still requires function, decisive decision right, owner, supporting/enforcement machinery, and closure to be reconstructable from primary evidence.
 
 A human intervention does not automatically negate `A`; however, any human-owned decision must remain attributed to the human. If the decisive closure used as evidence for `S1=A` was actually supplied by the human, that run is not sufficient by itself to establish agent ownership of that decisive loop.
