@@ -19,13 +19,13 @@ Use `yes`, `partial`, `no`, or `unknown`. These are coverage observations for th
 | Work class | Admit | Authority | Execute | Validate | Recover | Escalate | Prove owner | Current blocker |
 | --- | --- | --- | --- | --- | --- | --- | --- | --- |
 | bounded repository documentation / contributor-surface change | yes | yes | yes | partial | partial | yes | no | executor provenance witness; stronger machine-checkable closure where possible |
-| Profile maintenance under an already-decided semantic change | partial | partial | yes | partial | unknown | partial | no | no repository CI/completion oracle for consistency of normative/version/release surfaces; owner witness |
+| Profile maintenance under an already-decided semantic change | partial | partial | yes | partial | unknown | partial | no | owner witness; semantic acceptance remains evidence/reviewer judgment beyond deterministic repository consistency |
 | Methodology / skill maintenance under released Profile semantics | partial | partial | yes | yes | partial | partial | no | owner witness; admission boundary between local procedure work and semantic escalation |
 | Index discovery / intake / deduplication | partial | partial | yes | partial | partial | partial | no | end-to-end admissibility/closure contract; owner witness |
 | Index assessment / correction / reassessment | partial | partial | yes | yes | partial | yes | no | owner witness; some judgment remains evidence-intensive and must preserve primary evidence |
 | Index generated-view / provenance maintenance | yes | partial | yes | yes | partial | partial | no | owner witness; explicit S1 authority for repair choices |
-| Awesome VSM Harness curation | partial | partial | yes | partial | unknown | partial | no | upstream consistency checks stronger than `awesome-lint`; explicit curation authority; owner witness |
-| Organization/control-plane maintenance inside released semantics | partial | partial | yes | partial | partial | yes | no | owner witness; completion checks for cross-file scope/contract consistency |
+| Awesome VSM Harness curation | partial | partial | yes | partial | unknown | partial | no | canonical-upstream consistency and curation authority coverage; owner witness |
+| Organization/control-plane maintenance inside released semantics | partial | partial | yes | partial | partial | yes | no | owner witness; semantic/authority changes still require non-deterministic review even though contract consistency is machine-checked |
 | released-contract semantic change | no | no | technically possible | not an S1 closure question | n/a | yes | n/a | requires the authority/process that owns semantic change; do not force into M0 S1 |
 | organizational scope / identity / ultimate-policy change | no | no | technically possible | not an S1 closure question | n/a | yes | n/a | outside ordinary S1 authority |
 
@@ -67,7 +67,7 @@ curation
 → canonical upstream existence + link/fact consistency + format checks
 ```
 
-Current repositories are uneven here: `vsm-harness-skills`, `vsm-harness-index`, and `awesome-vsm-harness` already expose CI checks, while `vsm-harness-profile` and `vsm-oss-organization` currently rely more heavily on reviewable textual evidence.
+All five in-scope repositories now expose deterministic validation surfaces for at least part of their ordinary work, and the Profile/Organization path additionally checks upstream contract compatibility across repositories. Coverage is still intentionally uneven: semantic correctness, evidence interpretation, curation judgment, authority changes, and other non-deterministic decisions must not be disguised as unit tests merely to increase the percentage of machine-checked work.
 
 ### 3. Task-admission contract
 
