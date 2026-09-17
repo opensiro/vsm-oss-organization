@@ -44,11 +44,15 @@ The prompt pack is operational guidance, not additional VSM semantics and not ev
 
 ## Source boundary
 
-- Normative VSM semantics: `opensiro/vsm-harness-profile` `0.2.1`.
-- Local `A/C/P/—/?` autonomy notation and assessment procedure: `opensiro/vsm-harness-skills` Methodology `0.2.3`.
+[`UPSTREAM_CONTRACT.json`](UPSTREAM_CONTRACT.json) is the single machine-readable selection of the upstream Profile, Methodology, and Index contract surfaces consumed by this organization.
+
+- Normative VSM semantics remain owned by `opensiro/vsm-harness-profile`; this repository consumes the selected released Profile and its downstream compatibility facade rather than copying S1–S5 definitions.
+- Autonomy notation and assessment procedure remain owned by `opensiro/vsm-harness-skills`; the selected Methodology revision is pinned in the manifest with its actual source status.
+- The current assessment-contract pair remains owned by `opensiro/vsm-harness-index`; Organization validation reads that upstream contract and checks whether the selected Profile is compatible through the Profile release-impact chain.
+- Historical or frozen work keeps its original provenance. A later compatible Profile release does not rewrite the Profile version under which an older assessment or trial was produced.
 - This repository is a local operationalization for the in-scope OpenSiro VSM Harness OSS group. It does not redefine S1-S5.
 
-See [CONTROL_PLANE.md](CONTROL_PLANE.md) for the released-contract boundary, frozen Index work, current cross-repository change graph, merge gates, and maintainer decision points. Open semantic proposals are never treated as released Profile rules.
+See [CONTROL_PLANE.md](CONTROL_PLANE.md) for the compatibility gate, frozen-work boundary, cross-repository validation model, merge gates, and maintainer decision points. Open semantic proposals are never treated as accepted Profile rules.
 
 ## Contribution model
 
