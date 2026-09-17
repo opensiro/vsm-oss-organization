@@ -13,16 +13,62 @@ jobs:
   validate:
     runs-on: ubuntu-latest
     steps:
-      - name: Check out repository
+      - name: Check out Organization
         uses: actions/checkout@v4
+        with:
+          path: organization
 
       - name: Set up Python
         uses: actions/setup-python@v5
         with:
           python-version: "3.12"
 
-      - name: Validate repository-local contract consistency
-        run: python scripts/validate_contract.py
+      - name: Read upstream selection
+        id: upstream
+        shell: bash
+        run: |
+          python - <<'PY'
+          import json
+          import os
+          from pathlib import Path
+
+          data = json.loads(Path("organization/UPSTREAM_CONTRACT.json").read_text())
+          with open(os.environ["GITHUB_OUTPUT"], "a", encoding="utf-8") as output:
+              for section in ("profile", "methodology", "index"):
+                  item = data[section]
+                  print(f"{section}_repository={item['repository']}", file=output)
+                  print(f"{section}_ref={item['ref']}", file=output)
+          PY
+
+      - name: Check out selected Profile
+        uses: actions/checkout@v4
+        with:
+          repository: ${{ steps.upstream.outputs.profile_repository }}
+          ref: ${{ steps.upstream.outputs.profile_ref }}
+          path: profile
+
+      - name: Check out selected Methodology source
+        uses: actions/checkout@v4
+        with:
+          repository: ${{ steps.upstream.outputs.methodology_repository }}
+          ref: ${{ steps.upstream.outputs.methodology_ref }}
+          path: methodology
+
+      - name: Check out current Index contract source
+        uses: actions/checkout@v4
+        with:
+          repository: ${{ steps.upstream.outputs.index_repository }}
+          ref: ${{ steps.upstream.outputs.index_ref }}
+          path: index
+
+      - name: Validate local and upstream contract consistency
+        run: >-
+          python organization/scripts/validate_contract.py
+          --root organization
+          --profile-root profile
+          --methodology-root methodology
+          --index-root index
 
       - name: Run validator negative tests
+        working-directory: organization
         run: python -m unittest discover -s tests -p "test_*.py"
