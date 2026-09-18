@@ -103,7 +103,9 @@ M0 construction is complete when:
 
 Formal publication of `S1=A` remains a separate evidence claim under the selected Methodology.
 
-The current GitHub record is attributable through the contributor account and therefore does not independently prove that an autonomous executor owned every decisive local decision. The stronger distinct-executor identity mechanism is intentionally deferred to Parent-assisted work in `#35` / M2, where authorization, capability delegation, identity, intervention, and revocation are treated together.
+The current GitHub record is attributable through the contributor account and therefore does not independently prove that an autonomous executor owned every decisive local decision. The stronger distinct-executor identity mechanism is tracked in `#35` as proof-enabling infrastructure required by M1. It may be implemented and exercised before M2 because actor/run attribution is not itself an S5 function.
+
+M2 later owns the parent-governance envelope around that capability — authorization, delegated scope, permission expansion, intervention, and revocation — through `#4/#36`.
 
 Closing M0 therefore means **construction/operational completion**, not retroactive conversion of the historical negative ownership finding into a PASS.
 
@@ -111,14 +113,33 @@ Closing M0 therefore means **construction/operational completion**, not retroact
 
 Target: `A — C A — —`
 
+M1 inherits the target `S1=A` component. Before formal M1 completion, the organization must therefore revisit the outstanding actor-ownership proof debt with the distinct executor identity/provenance mechanism in `#35`. That mechanism is supporting proof infrastructure, not a new VSM function.
+
 Introduce S3* when routine S1 reporting is insufficient to trust a material operational claim. The S3* path must use materially complementary access to operational reality, for example raw diffs, tests, pinned primary evidence, replay, or other evidence not controlled solely by the producing S1.
 
 S3 remains `C`: the repository exposes a first-party current-control/intervention path, but no default autonomous S3 regulator owns it yet. The path must be specific enough to carry a real whole-system current-control decision back into affected operation.
 
 An algedonic signal is not itself S3* or S3.
 
+Reference dependency:
+
+```text
+bounded S1 operation
+        ↓
+actor/run attribution (#35)
+        ↓
+ordinary report + operational reality
+        ↓ complementary access
+independent S3* judgment
+        ↓ finding
+S3 constructor/control path
+        ↓ returned decision
+subsequent S1 operation
+```
+
 Exit criteria:
 
+- independently reconstructable evidence supports the `S1=A` ownership component required by the target vector;
 - an independent agent owns the audit judgment and can emit a material finding;
 - the finding can enter a defined current-control/intervention path;
 - the intervention result can return to subsequent S1 operation;
@@ -129,6 +150,16 @@ Exit criteria:
 Target: `A — C A — P`
 
 Introduce parent-governed S5 before increasing metasystem autonomy further. The purpose is to make the legitimate identity/policy boundary explicit.
+
+The distinct executor identity/provenance mechanism from `#35` may already exist before M2. M2 does not own whether that mechanism exists; it owns how legitimate parent authority governs external capabilities once they are available.
+
+```text
+#35 proof infrastructure
+actor/run identity + provenance
+        ↓ consumed by
+M2 parent envelope
+authorization + delegated scope + expansion + intervention + revocation
+```
 
 Do not award `P` because a human approves ordinary work. A genuine identity/ultimate-policy issue must reach the legitimate parent authority, the parent must decide, and the decision must return to govern subsequent operation.
 
@@ -150,6 +181,7 @@ Exit criteria:
 - a genuine identity/policy exception can reach the legitimate parent authority;
 - the parent decision returns into the running organization;
 - subsequent operation is governed by that returned decision;
+- external execution capabilities have explicit parent authorization/scope/intervention/revocation boundaries where consequential;
 - ordinary PR approval, permission prompts, or task-level confirmations are not misclassified as S5.
 
 ## M3 — Autonomous current control
