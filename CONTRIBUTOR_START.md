@@ -19,6 +19,8 @@ Every public OpenSiro repository must expose this routing boundary directly from
 
 Equivalent wording is allowed when a repository needs to preserve a domain-specific boundary, but the route itself must remain directly discoverable from the repository root. A link to this entry point does not transfer domain ownership to Organization.
 
+See [ROUTING_CONFORMANCE.md](ROUTING_CONFORMANCE.md) for the live cross-repository oracle, evidence boundary, and blind-agent trial protocol.
+
 ## Public repository map
 
 | Repository | Repository-local responsibility | Relationship to this control plane |
