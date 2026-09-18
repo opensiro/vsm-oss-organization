@@ -10,6 +10,15 @@ Use `opensiro/vsm-oss-organization` when the question is organization-wide: cont
 
 Routing here does **not** make every public OpenSiro repository part of one VSM system. The formal VSM Harness system boundary remains defined by this repository's `README.md`, `ORGANIZATION.md`, and `S1_DOMAIN_CONTRACTS.md`.
 
+## Public routing conformance
+
+Every public OpenSiro repository must expose this routing boundary directly from its root README, using a visible contributor/organization section or `Working on OpenSiro?` block that makes both outcomes clear:
+
+- repository-local work remains in the repository that owns the source of truth;
+- organization-wide contributor roles, authority, escalation, cross-repository coordination, milestone sequencing, or organizational evolution route to `opensiro/vsm-oss-organization` / this contributor entry point.
+
+Equivalent wording is allowed when a repository needs to preserve a domain-specific boundary, but the route itself must remain directly discoverable from the repository root. A link to this entry point does not transfer domain ownership to Organization.
+
 ## Public repository map
 
 | Repository | Repository-local responsibility | Relationship to this control plane |
