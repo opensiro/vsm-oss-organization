@@ -1,0 +1,45 @@
+name: Public contributor routing
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: "17 7 * * 1"
+  push:
+    branches:
+      - main
+    paths:
+      - CONTRIBUTOR_START.md
+      - ROUTING_CONFORMANCE.md
+      - scripts/check_public_routing.py
+      - tests/test_public_routing.py
+      - .github/workflows/public-routing.yml
+  pull_request:
+    paths:
+      - CONTRIBUTOR_START.md
+      - ROUTING_CONFORMANCE.md
+      - scripts/check_public_routing.py
+      - tests/test_public_routing.py
+      - .github/workflows/public-routing.yml
+
+permissions:
+  contents: read
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out Organization
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Run routing-oracle unit tests
+        run: python -m unittest tests.test_public_routing -v
+
+      - name: Check live public OpenSiro repository routing
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: python scripts/check_public_routing.py --org opensiro
