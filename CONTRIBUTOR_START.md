@@ -53,4 +53,4 @@ Examples:
 - decide how contributors escalate a conflict spanning Index and Skills → `vsm-oss-organization`;
 - change authority boundaries or shared contributor workflow across the in-scope repositories → `vsm-oss-organization`.
 
-Public repositories such as `arctic-0`, `terminal-bench-vsm`, and `opensiro.com` are outside this bounded VSM Harness OSS system unless the canonical scope is explicitly changed. They may link here voluntarily for navigation, but they are not subjects of this routing invariant.
+Public repositories such as `arctic-0`, `terminal-bench-vsm`, and `opensiro.com` are outside this bounded VSM Harness OSS system unless the canonical scope is explicitly changed. They are not subjects of this routing invariant.
