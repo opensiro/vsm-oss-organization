@@ -1,9 +1,10 @@
 #!/usr/bin/env python3
-"""Check that every public OpenSiro repository exposes contributor routing.
+"""Check contributor routing for the declared VSM Harness OSS repository scope.
 
-This is deliberately a live, cross-repository discoverability check. It is kept
+The canonical target set comes from the ``Current in-scope public repositories:``
+block in Organization README.md. This live cross-repository check is deliberately
 separate from the repository-local deterministic completion oracle in
-``validate_contract.py`` because network state is temporal and external.
+``validate_contract.py`` because remote default-branch state is temporal.
 """
 
 from __future__ import annotations
@@ -11,8 +12,10 @@ from __future__ import annotations
 import argparse
 import base64
 import os
+import re
 import sys
 from dataclasses import dataclass
+from pathlib import Path
 from typing import Callable, Iterable
 from urllib.error import HTTPError, URLError
 from urllib.parse import quote
@@ -21,10 +24,12 @@ from urllib.request import Request, urlopen
 API_VERSION = "2022-11-28"
 DEFAULT_API_BASE = "https://api.github.com"
 DEFAULT_ORG = "opensiro"
+SCOPE_MARKER = "Current in-scope public repositories:"
+REPO_RE = re.compile(r"`(opensiro/[A-Za-z0-9_.-]+)`")
 
 
 class RoutingError(RuntimeError):
-    """A live GitHub routing check could not obtain required evidence."""
+    """The routing check could not obtain required scope or GitHub evidence."""
 
 
 @dataclass(frozen=True)
@@ -44,14 +49,14 @@ def api_json(url: str, token: str | None = None) -> object:
     headers = {
         "Accept": "application/vnd.github+json",
         "X-GitHub-Api-Version": API_VERSION,
-        "User-Agent": "opensiro-public-routing-oracle",
+        "User-Agent": "opensiro-vsm-routing-oracle",
     }
     if token:
         headers["Authorization"] = f"Bearer {token}"
 
     request = Request(url, headers=headers)
     try:
-        with urlopen(request, timeout=30) as response:  # noqa: S310 - fixed GitHub API base by default
+        with urlopen(request, timeout=30) as response:  # noqa: S310 - GitHub API by default
             import json
 
             return json.loads(response.read().decode("utf-8"))
@@ -61,42 +66,53 @@ def api_json(url: str, token: str | None = None) -> object:
         raise RoutingError(f"could not read GitHub API response for {url}: {exc}") from exc
 
 
-def list_public_repositories(
-    org: str,
+def scope_repositories_from_readme(text: str) -> list[str]:
+    pos = text.find(SCOPE_MARKER)
+    if pos < 0:
+        raise RoutingError(f"Organization README missing scope marker: {SCOPE_MARKER}")
+
+    repositories: list[str] = []
+    started = False
+    for raw in text[pos + len(SCOPE_MARKER) :].splitlines():
+        line = raw.strip()
+        if not line and not started:
+            continue
+        if line.startswith("- "):
+            started = True
+            match = REPO_RE.search(line)
+            if not match:
+                raise RoutingError(f"scope bullet does not contain an opensiro repository: {line}")
+            repositories.append(match.group(1))
+            continue
+        if started:
+            break
+
+    if not repositories:
+        raise RoutingError("Organization README scope block contains no repositories")
+    if len(repositories) != len(set(repositories)):
+        raise RoutingError("Organization README scope block contains duplicate repositories")
+    return repositories
+
+
+def fetch_repository_metadata(
+    full_name: str,
     *,
     token: str | None = None,
     api_base: str = DEFAULT_API_BASE,
     get_json: Callable[[str, str | None], object] = api_json,
-) -> list[Repository]:
-    repositories: list[Repository] = []
-    page = 1
-
-    while True:
-        url = (
-            f"{api_base.rstrip('/')}/orgs/{quote(org)}/repos"
-            f"?type=public&sort=full_name&per_page=100&page={page}"
-        )
-        payload = get_json(url, token)
-        if not isinstance(payload, list):
-            raise RoutingError("GitHub organization repository listing was not a JSON array")
-
-        for item in payload:
-            if not isinstance(item, dict) or item.get("private") is not False:
-                continue
-            full_name = item.get("full_name")
-            default_branch = item.get("default_branch")
-            if not isinstance(full_name, str) or not isinstance(default_branch, str):
-                raise RoutingError("public repository metadata is missing full_name/default_branch")
-            repositories.append(Repository(full_name, default_branch))
-
-        if len(payload) < 100:
-            break
-        page += 1
-
-    if not repositories:
-        raise RoutingError(f"no public repositories discovered for organization {org!r}")
-
-    return sorted(repositories, key=lambda repo: repo.full_name.casefold())
+) -> Repository:
+    owner, name = full_name.split("/", 1)
+    url = f"{api_base.rstrip('/')}/repos/{quote(owner)}/{quote(name)}"
+    payload = get_json(url, token)
+    if not isinstance(payload, dict):
+        raise RoutingError(f"repository metadata for {full_name} was not a JSON object")
+    if payload.get("private") is not False:
+        raise RoutingError(f"in-scope repository {full_name} is not public")
+    default_branch = payload.get("default_branch")
+    reported_name = payload.get("full_name")
+    if reported_name != full_name or not isinstance(default_branch, str):
+        raise RoutingError(f"repository metadata mismatch for {full_name}")
+    return Repository(full_name, default_branch)
 
 
 def decode_readme_payload(payload: object) -> str:
@@ -139,9 +155,7 @@ def route_marker_present(full_name: str, readme: str, org: str) -> bool:
     organization_repo = f"{org}/vsm-oss-organization".casefold()
 
     if full_name.casefold() == organization_repo:
-        # The control repository can use a relative link to its canonical entry point.
         return "contributor_start.md" in text
-
     return organization_repo in text
 
 
@@ -174,7 +188,12 @@ def evaluate_repositories(
 
 def parse_args(argv: list[str] | None = None) -> argparse.Namespace:
     parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument("--org", default=DEFAULT_ORG, help="GitHub organization to inspect")
+    parser.add_argument("--org", default=DEFAULT_ORG, help="expected GitHub organization")
+    parser.add_argument(
+        "--scope-readme",
+        default="README.md",
+        help="Organization README containing the canonical in-scope repository block",
+    )
     parser.add_argument("--api-base", default=DEFAULT_API_BASE, help="GitHub API base URL")
     return parser.parse_args(argv)
 
@@ -184,12 +203,20 @@ def main(argv: list[str] | None = None) -> int:
     token = os.environ.get("GITHUB_TOKEN") or None
 
     try:
-        repositories = list_public_repositories(
-            args.org,
-            token=token,
-            api_base=args.api_base,
-        )
-    except RoutingError as exc:
+        scope_text = Path(args.scope_readme).read_text(encoding="utf-8")
+        scoped_names = scope_repositories_from_readme(scope_text)
+        wrong_org = [name for name in scoped_names if not name.startswith(f"{args.org}/")]
+        if wrong_org:
+            raise RoutingError(f"scope contains repositories outside {args.org}: {wrong_org}")
+        repositories = [
+            fetch_repository_metadata(
+                name,
+                token=token,
+                api_base=args.api_base,
+            )
+            for name in scoped_names
+        ]
+    except (OSError, UnicodeDecodeError, RoutingError) as exc:
         print(f"routing conformance ERROR: {exc}", file=sys.stderr)
         return 2
 
@@ -210,7 +237,7 @@ def main(argv: list[str] | None = None) -> int:
             f" @ {result.repository.default_branch}: {result.detail}"
         )
 
-    print(f"routing conformance: {passed}/{len(results)} public repositories passed")
+    print(f"routing conformance: {passed}/{len(results)} in-scope repositories passed")
     return 0 if passed == len(results) else 1
 
 
