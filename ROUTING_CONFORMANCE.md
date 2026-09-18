@@ -8,7 +8,7 @@ Every repository in the canonical `Current in-scope public repositories:` block 
 
 Repository-local work stays with the repository that owns the relevant source of truth. Questions about contributor roles, authority boundaries, escalation, cross-repository coordination, milestone sequencing, or shared organizational evolution across the in-scope group route to `opensiro/vsm-oss-organization` and its [CONTRIBUTOR_START.md](CONTRIBUTOR_START.md) entry point.
 
-Public OpenSiro repositories outside that canonical scope are **not** subjects of this routing invariant. Public visibility, organization membership, or a voluntary link to Organization does not add a repository to the bounded VSM Harness system.
+Public OpenSiro repositories outside that canonical scope are **not** subjects of this routing invariant. Public visibility or organization membership does not add a repository to the bounded VSM Harness system.
 
 ## Mechanical live check
 
@@ -89,4 +89,4 @@ A batch result is empirical reliability evidence only. It must not be reported a
 
 The routing invariant applies to the five repositories declared in the Organization README: Profile, Skills, Index, Awesome, and Organization itself.
 
-`arctic-0`, `terminal-bench-vsm`, and `opensiro.com` are outside this bounded VSM Harness OSS system. The website may carry a voluntary navigation link to Organization, but that convenience link is not conformance evidence and does not make the site governed by this control plane.
+`arctic-0`, `terminal-bench-vsm`, and `opensiro.com` are outside this bounded VSM Harness OSS system and are not subjects of this routing invariant.
