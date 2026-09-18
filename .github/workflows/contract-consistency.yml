@@ -72,3 +72,7 @@ jobs:
       - name: Run validator negative tests
         working-directory: organization
         run: python -m unittest discover -s tests -p "test_*.py"
+
+      - name: Validate committed executor provenance witnesses
+        working-directory: organization
+        run: python scripts/validate_executor_witness.py --directory provenance/runs --allow-empty

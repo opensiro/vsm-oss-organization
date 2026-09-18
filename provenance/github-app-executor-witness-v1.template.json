@@ -1,0 +1,116 @@
+{
+  "provenance_version": "1",
+  "profile": "github_app_v1",
+  "run": {
+    "run_id": "<unique run identifier>",
+    "system_in_focus": "<declared system-in-focus>",
+    "s1_domain": "Index|Skills|Awesome",
+    "repository_boundary": [
+      "<owner/repository>"
+    ],
+    "work_item_ref": "<immutable issue/work-item reference>",
+    "start_revision": "<40-hex commit SHA>",
+    "governing_role_or_prompt": {
+      "ref": "<immutable role/prompt reference>",
+      "sha256": "<64-hex SHA-256 digest>"
+    },
+    "upstream_contract_ref": "<immutable Organization-selected contract ref or digest>",
+    "pre_start_human_constraints_ref": "<immutable reference or digest>",
+    "post_start_human_input_channels": [
+      "<declared channel identifier>"
+    ],
+    "declared_human_github_logins": [
+      "<human login>"
+    ]
+  },
+  "attester": {
+    "identity": "<app-slug>[bot]",
+    "identity_type": "github_app",
+    "verification_material_ref": "https://github.com/apps/<app-slug>",
+    "attestation_format": "github-app-actor+sha256-chain/v1",
+    "trust_basis": "Short-lived installation token delivered only to the declared executor session for this run; GitHub actor metadata and immutable refs are used as primary actor/action evidence.",
+    "github_app": {
+      "app_slug": "<app-slug>",
+      "app_id": 0,
+      "installation_id": 0,
+      "bot_login": "<app-slug>[bot]",
+      "token_scope_repositories": [
+        "<owner/repository>"
+      ],
+      "token_permissions": {
+        "contents": "write",
+        "issues": "write",
+        "pull_requests": "write"
+      },
+      "token_delivery": "runtime_only_short_lived_installation_token"
+    }
+  },
+  "pre_run_anchor": {
+    "published_at": "<RFC3339 timestamp>",
+    "immutable_ref": "<commit/blob/action ref created by App identity before material work>",
+    "payload_digest": "sha256:<64-hex digest>",
+    "attestation_ref": "<same or stronger App-authenticated immutable publication ref>",
+    "observed_actor_login": "<app-slug>[bot]"
+  },
+  "events": [
+    {
+      "seq": 1,
+      "event_id": "<run-scoped event id>",
+      "kind": "executor_decision|executor_action|human_input|human_intervention|escalation|support|closure",
+      "actor": "executor|human|support",
+      "actor_identity": "<observable actor identity>",
+      "observed_at": "<RFC3339 timestamp or immutable publication order>",
+      "summary": "<observable organizational fact; no hidden chain-of-thought>",
+      "authority": "inside_s1|outside_s1_escalation|human_intervention|support_only",
+      "affected_decision_right": "<decision/right affected, if material>",
+      "evidence_refs": [
+        "<primary evidence reference>"
+      ],
+      "action_refs": [
+        {
+          "type": "commit|issue_comment|pull_request|file_write|other",
+          "immutable_ref": "<SHA/URL/ID>",
+          "payload_sha256": "sha256:<64-hex digest>",
+          "observed_actor_login": "<GitHub actor for this action>"
+        }
+      ],
+      "previous_event_digest": "GENESIS",
+      "event_digest": "sha256:<digest of canonical event excluding event_digest>"
+    }
+  ],
+  "human_intervention_accounting": {
+    "post_start_human_input_occurred": false,
+    "human_intervention_occurred": false,
+    "intervention_count": 0,
+    "material_interventions_attributed": true,
+    "s1_resumed_autonomously_after_intervention": "not_applicable",
+    "unobserved_material_channel_known": false,
+    "notes": "<reason/affected right/effect, or none>"
+  },
+  "closure": {
+    "closure_artifact_refs": [
+      "<PR/issue artifact/other immutable result>"
+    ],
+    "final_result_revision": "<40-hex commit SHA or null>",
+    "run_record_digest": "sha256:<digest over ordered event digests>",
+    "pre_run_anchor_ref": "<same anchor immutable reference>",
+    "escalation_occurred": false,
+    "human_intervention_occurred": false
+  },
+  "final_attestation": {
+    "attester_identity": "<app-slug>[bot]",
+    "observed_actor_login": "<app-slug>[bot]",
+    "payload_digest": "sha256:<digest binding run_id, anchor, run record, actions, interventions, and closure>",
+    "attestation_ref": "<App-authenticated immutable publication ref>",
+    "verification_instructions_ref": "provenance/GITHUB_APP_EXECUTOR.md"
+  },
+  "review": {
+    "actor_attribution_verified": false,
+    "action_bindings_verified": false,
+    "human_interventions_accounted_for": false,
+    "event_order_integrity_verified": false,
+    "decisive_agent_owned_loop_established": "insufficient",
+    "provenance_verdict": "INSUFFICIENT",
+    "note": "A provenance PASS is not by itself an S1=A verdict."
+  }
+}
