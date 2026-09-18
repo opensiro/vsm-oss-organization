@@ -53,6 +53,8 @@ Repositories outside the current in-scope set may consume or present artifacts p
 
 ## FOR CONTRIBUTORS
 
+If you arrived from any public OpenSiro repository and need to decide where work belongs, start with [CONTRIBUTOR_START.md](CONTRIBUTOR_START.md). It is a routing surface only: using it does not expand the bounded VSM Harness system boundary.
+
 You do not need to implement a VSM runtime to start contributing. Use the prompts as portable entry points with your own agent/runtime:
 
 1. **New to the VSM Harness OSS group:** [prompts/learn-ecosystem.md](prompts/learn-ecosystem.md) — map repositories, authority boundaries, current milestone, and open work.
