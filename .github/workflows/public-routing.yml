@@ -37,7 +37,7 @@ jobs:
           python-version: "3.12"
 
       - name: Run routing-oracle unit tests
-        run: python -m unittest tests.test_public_routing -v
+        run: python -m unittest discover -s tests -p "test_public_routing.py" -v
 
       - name: Check live public OpenSiro repository routing
         env:
