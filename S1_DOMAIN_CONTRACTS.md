@@ -201,4 +201,4 @@ M0 construction is complete when all three domains have:
 
 This is a construction/operational milestone. It is **not** equivalent to independently proving the published autonomy state `S1=A`.
 
-The stronger external actor-attribution witness remains intentionally deferred to Parent-assisted work in `#35` / M2. Until that mechanism is implemented and exercised, repository attribution alone must not be cited as independent proof that the autonomous agent owned every decisive local S1 choice.
+The stronger external actor-attribution witness is now tracked as M1 proof infrastructure in `#35`. Until that mechanism is implemented and exercised, repository attribution alone must not be cited as independent proof that the autonomous agent owned every decisive local S1 choice. M2 later governs parent authorization, scope expansion, intervention, and revocation around that capability; it does not own whether the attribution witness exists.

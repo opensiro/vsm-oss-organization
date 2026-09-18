@@ -1,10 +1,10 @@
 # S3 current-control constructor surface
 
-This document defines a repository-local first-party primitive for carrying a bounded S3 current-control decision into subsequent S1 operation during preparatory M1 work.
+This document defines a repository-local first-party primitive for carrying a bounded S3 current-control decision into subsequent S1 operation during M1 work.
 
 It applies the selected VSM Harness Profile and Methodology through `UPSTREAM_CONTRACT.json`; it does **not** redefine S3, constructor state `C`, or autonomy semantics.
 
-The active roadmap milestone remains M0. The presence of this surface therefore does **not** establish `S3=C`, `S3=A`, or complete M1 by itself. A positive mapping still requires the S3 function to be established from actual use at the declared system boundary.
+The active formal roadmap milestone is M1. The presence of this surface therefore does **not** establish `S3=C`, `S3=A`, or complete M1 by itself. A positive mapping still requires the S3 function to be established from actual use at the declared system boundary.
 
 ## Purpose
 
@@ -130,7 +130,7 @@ A returned decision changes S1 operation only when all of the following are true
 
 Arbitrary comments, chat messages, labels, approval buttons, or human instructions do not become S3 input merely because S1 sees them.
 
-The S1 role contains the preparatory return-hook rules. In the absence of a declared qualifying transaction, ordinary S1 admission/recovery rules remain unchanged.
+The S1 role contains the M1 return-hook rules in `roles/S1.md`. In the absence of a declared qualifying transaction, ordinary S1 admission/recovery rules remain unchanged.
 
 ## S3* relationship
 
@@ -151,7 +151,7 @@ The auditor does not inherit S3 authority merely because its finding initiated t
 
 A human may own the decisive current-control choice in a concrete constructor transaction. Record that ownership honestly.
 
-Do not automatically publish such involvement as S3 parent mode `(P)`. The governing Methodology requires a separately established first-party parent-governed S3 topology and returned closure at the declared recursion. This preparatory surface does not make that classification by itself.
+Do not automatically publish such involvement as S3 parent mode `(P)`. The governing Methodology requires a separately established first-party parent-governed S3 topology and returned closure at the declared recursion. This surface does not make that classification by itself.
 
 ## Identity/policy boundary
 

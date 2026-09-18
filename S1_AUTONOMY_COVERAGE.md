@@ -150,7 +150,7 @@ Do not infer those functions merely because Profile or Organization repositories
 
 The repository evidence above is attributable through the contributor's GitHub account. It demonstrates operational paths, but it does not independently prove that an autonomous executor owned every decisive local choice rather than receiving hidden human operational direction.
 
-The stronger distinct-executor identity mechanism remains intentionally deferred to Parent-assisted work in `#35` / M2. Until it is implemented and exercised, formal public evidence for the published autonomy state `S1=A` remains insufficient on this dimension.
+The stronger distinct-executor identity mechanism is now an M1 proof dependency in `#35`. Until it is implemented and exercised, formal public evidence for the published autonomy state `S1=A` remains insufficient on this dimension. M2 consumes that capability later under an explicit parent-governance envelope; it does not gate creation of the proof witness itself.
 
 M0 completion therefore means:
 
