@@ -8,8 +8,9 @@ from scripts.check_public_routing import (
     RoutingError,
     decode_readme_payload,
     evaluate_repositories,
-    list_public_repositories,
+    fetch_repository_metadata,
     route_marker_present,
+    scope_repositories_from_readme,
 )
 
 
@@ -20,12 +21,14 @@ class PublicRoutingTests(unittest.TestCase):
             "For organization-wide work see "
             "https://github.com/opensiro/vsm-oss-organization/blob/main/CONTRIBUTOR_START.md."
         )
-        self.assertTrue(route_marker_present("opensiro/arctic-0", readme, "opensiro"))
+        self.assertTrue(
+            route_marker_present("opensiro/vsm-harness-index", readme, "opensiro")
+        )
 
     def test_regular_repository_without_route_is_rejected(self) -> None:
         self.assertFalse(
             route_marker_present(
-                "opensiro/arctic-0",
+                "opensiro/vsm-harness-index",
                 "Repository-local work stays here.",
                 "opensiro",
             )
@@ -40,6 +43,31 @@ class PublicRoutingTests(unittest.TestCase):
             )
         )
 
+    def test_scope_is_parsed_from_canonical_readme_block(self) -> None:
+        readme = """
+## Scope
+
+Current in-scope public repositories:
+
+- `opensiro/vsm-harness-profile`
+- `opensiro/vsm-harness-index`
+- `opensiro/vsm-oss-organization`
+
+Scope membership does not mean all are S1.
+"""
+        self.assertEqual(
+            [
+                "opensiro/vsm-harness-profile",
+                "opensiro/vsm-harness-index",
+                "opensiro/vsm-oss-organization",
+            ],
+            scope_repositories_from_readme(readme),
+        )
+
+    def test_scope_parser_rejects_missing_marker(self) -> None:
+        with self.assertRaises(RoutingError):
+            scope_repositories_from_readme("No scope here")
+
     def test_base64_readme_payload_decodes(self) -> None:
         text = "route to opensiro/vsm-oss-organization"
         payload = {
@@ -48,52 +76,46 @@ class PublicRoutingTests(unittest.TestCase):
         }
         self.assertEqual(text, decode_readme_payload(payload))
 
-    def test_inventory_uses_live_public_repository_metadata(self) -> None:
-        pages = {
-            1: [
-                {
-                    "private": False,
-                    "full_name": "opensiro/zeta",
-                    "default_branch": "main",
-                },
-                {
-                    "private": True,
-                    "full_name": "opensiro/private-repo",
-                    "default_branch": "main",
-                },
-                {
-                    "private": False,
-                    "full_name": "opensiro/alpha",
-                    "default_branch": "trunk",
-                },
-            ]
-        }
-
+    def test_repository_metadata_requires_public_scoped_repository(self) -> None:
         def get_json(url: str, token: str | None) -> object:
             self.assertIsNone(token)
-            self.assertIn("type=public", url)
-            return pages[1]
+            self.assertTrue(url.endswith("/repos/opensiro/vsm-harness-index"))
+            return {
+                "private": False,
+                "full_name": "opensiro/vsm-harness-index",
+                "default_branch": "main",
+            }
 
-        repositories = list_public_repositories(
-            "opensiro",
-            get_json=get_json,
-        )
         self.assertEqual(
-            [
-                Repository("opensiro/alpha", "trunk"),
-                Repository("opensiro/zeta", "main"),
-            ],
-            repositories,
+            Repository("opensiro/vsm-harness-index", "main"),
+            fetch_repository_metadata(
+                "opensiro/vsm-harness-index",
+                get_json=get_json,
+            ),
         )
+
+    def test_private_scoped_repository_is_rejected(self) -> None:
+        def get_json(url: str, token: str | None) -> object:
+            return {
+                "private": True,
+                "full_name": "opensiro/vsm-harness-index",
+                "default_branch": "main",
+            }
+
+        with self.assertRaises(RoutingError):
+            fetch_repository_metadata(
+                "opensiro/vsm-harness-index",
+                get_json=get_json,
+            )
 
     def test_evaluation_reports_missing_route(self) -> None:
         repositories = [
-            Repository("opensiro/good", "main"),
-            Repository("opensiro/bad", "main"),
+            Repository("opensiro/vsm-harness-index", "main"),
+            Repository("opensiro/vsm-harness-skills", "main"),
         ]
         readmes = {
-            "opensiro/good": "See opensiro/vsm-oss-organization for shared authority.",
-            "opensiro/bad": "Only local instructions.",
+            "opensiro/vsm-harness-index": "See opensiro/vsm-oss-organization for shared authority.",
+            "opensiro/vsm-harness-skills": "Only local instructions.",
         }
 
         results = evaluate_repositories(
@@ -105,7 +127,7 @@ class PublicRoutingTests(unittest.TestCase):
         self.assertIn("does not reference", results[1].detail)
 
     def test_evaluation_treats_unreadable_readme_as_failure(self) -> None:
-        repository = Repository("opensiro/missing-readme", "main")
+        repository = Repository("opensiro/vsm-harness-profile", "main")
 
         def load(_: Repository) -> str:
             raise RoutingError("GitHub API returned HTTP 404")

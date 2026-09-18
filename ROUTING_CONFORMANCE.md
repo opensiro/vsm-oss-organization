@@ -1,43 +1,47 @@
-# Public contributor routing conformance
+# VSM Harness OSS contributor routing conformance
 
-This document defines how OpenSiro verifies that a contributor or agent can begin from an arbitrary public repository and discover the correct organizational routing surface without turning `vsm-oss-organization` into a second source of truth for repository-local work.
+This document defines how OpenSiro verifies that a contributor or agent can begin from an arbitrary repository **inside the declared VSM Harness OSS system boundary** and discover the correct organizational routing surface without turning `vsm-oss-organization` into a second source of truth for repository-local work.
 
 ## Invariant
 
-Every public repository under `opensiro` must expose organization-wide contributor routing directly from its root README.
+Every repository in the canonical `Current in-scope public repositories:` block in [README.md](README.md) must expose organization-wide contributor routing directly from its root README.
 
-Repository-local work stays with the repository that owns the relevant source of truth. Questions about contributor roles, authority boundaries, escalation, cross-repository coordination, milestone sequencing, or shared organizational evolution route to `opensiro/vsm-oss-organization` and its [CONTRIBUTOR_START.md](CONTRIBUTOR_START.md) entry point.
+Repository-local work stays with the repository that owns the relevant source of truth. Questions about contributor roles, authority boundaries, escalation, cross-repository coordination, milestone sequencing, or shared organizational evolution across the in-scope group route to `opensiro/vsm-oss-organization` and its [CONTRIBUTOR_START.md](CONTRIBUTOR_START.md) entry point.
 
-This routing invariant is broader than the bounded VSM Harness system. Passing the routing check does not make ARCTIC, the website, `terminal-bench-vsm`, or any future public repository an S1 domain.
+Public OpenSiro repositories outside that canonical scope are **not** subjects of this routing invariant. Public visibility, organization membership, or a voluntary link to Organization does not add a repository to the bounded VSM Harness system.
 
 ## Mechanical live check
 
-[`scripts/check_public_routing.py`](scripts/check_public_routing.py) queries GitHub for the current public repositories in the `opensiro` organization. It does not rely on a manually maintained repository allowlist.
+[`scripts/check_public_routing.py`](scripts/check_public_routing.py) reads the canonical repository set from the Organization README scope block. This intentionally reuses the same scope surface consumed by `scripts/validate_contract.py` instead of introducing a second manually maintained allowlist.
 
-For each repository it:
+For each in-scope repository it:
 
-1. reads the repository's reported default branch;
-2. fetches the root README from that branch;
-3. verifies a direct reference to `opensiro/vsm-oss-organization`;
-4. for `vsm-oss-organization` itself, accepts the relative `CONTRIBUTOR_START.md` entry point;
-5. reports every missing/unreadable route explicitly and exits non-zero if any public repository fails.
+1. reads live GitHub metadata and confirms the repository is public;
+2. reads the repository's reported default branch;
+3. fetches the root README from that branch;
+4. verifies a direct reference to `opensiro/vsm-oss-organization`;
+5. for `vsm-oss-organization` itself, accepts the relative `CONTRIBUTOR_START.md` entry point;
+6. reports every missing/unreadable route explicitly and exits non-zero if any in-scope repository fails.
 
-The check is intentionally separate from `scripts/validate_contract.py`. The contract validator is repository-local and deterministic; public routing is a temporal cross-repository property that depends on live GitHub state.
+The check is intentionally separate from `scripts/validate_contract.py`. The contract validator is repository-local and deterministic; routing discoverability is a temporal cross-repository property that depends on live GitHub state.
 
-The `Public contributor routing` workflow runs the live check manually, weekly, and when the routing oracle itself changes.
+A newly created public OpenSiro repository does not become subject to this oracle merely by existing. It becomes subject to the oracle only when the canonical Organization scope is explicitly changed to admit it.
+
+The `VSM OSS contributor routing` workflow runs the scoped live check manually, weekly, and when the routing oracle itself changes.
 
 ## Evidence boundary
 
-A passing mechanical check proves **direct discoverability**, not that an arbitrary agent will interpret the boundary correctly.
+A passing mechanical check proves **direct discoverability inside the declared scope**, not that an arbitrary agent will interpret the boundary correctly.
 
 The mechanical oracle does not prove:
 
 - that an agent will follow the link;
 - that it will distinguish local work from organization-wide work;
 - that it will route back to the owning repository after consulting Organization;
+- that repositories outside scope participate in this organization;
 - any VSM autonomy state.
 
-Those are behavioral questions and require blind trials.
+Those are separate questions. Agent interpretation requires blind trials; scope membership remains an explicit Organization decision.
 
 ## Blind-agent trial protocol
 
@@ -46,15 +50,15 @@ A qualifying behavioral trial uses a fresh agent/run with:
 - no OpenSiro project prompt;
 - no prior OpenSiro conversation or memory supplied to the run;
 - no preloaded `vsm-oss-organization` URL;
-- exactly one public OpenSiro repository as the starting point;
+- exactly one **in-scope** repository as the starting point;
 - permission to read and navigate public GitHub links.
 
-Each public repository must appear as a starting point in the batch. The task set must include both organization-wide positive cases and repository-local negative controls.
+Each current in-scope repository must appear as a starting point in the batch. The task set must include both organization-wide positive cases and repository-local negative controls.
 
 Representative positive cases:
 
-- change contributor authority across repositories;
-- resolve an escalation spanning two repository owners;
+- change contributor authority across in-scope repositories;
+- resolve an escalation spanning two in-scope repository owners;
 - change shared milestone sequencing;
 - change the cross-repository contribution/control workflow.
 
@@ -63,10 +67,7 @@ Representative negative controls:
 - change Profile semantics;
 - change Skills assessment procedure;
 - reassess one Index harness;
-- change Awesome curation;
-- change ARCTIC archive/schema/tooling;
-- change website presentation;
-- change experimental harness-local behavior in `terminal-bench-vsm`.
+- change Awesome curation.
 
 A trial is a PASS only when the agent chooses the correct destination and states the source-of-truth boundary. Organization-wide tasks must independently discover Organization; local tasks must stay in, or explicitly return to, the owning repository.
 
@@ -84,6 +85,8 @@ PASS / FAIL
 
 A batch result is empirical reliability evidence only. It must not be reported as proof of unrelated S1-S5 autonomy states.
 
-## Current rollout
+## Current scope
 
-The routing entry point was rolled out across the public repository set before enabling this oracle. Future repositories become subject to the same invariant automatically when they become public because the live check enumerates GitHub rather than a frozen list.
+The routing invariant applies to the five repositories declared in the Organization README: Profile, Skills, Index, Awesome, and Organization itself.
+
+`arctic-0`, `terminal-bench-vsm`, and `opensiro.com` are outside this bounded VSM Harness OSS system. The website may carry a voluntary navigation link to Organization, but that convenience link is not conformance evidence and does not make the site governed by this control plane.
