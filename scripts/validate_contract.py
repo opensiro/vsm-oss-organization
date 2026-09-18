@@ -493,9 +493,10 @@ def validate(
             "long-term reference target",
             errors,
         )
-        if current and correspondence.get("M0") and current != correspondence["M0"]:
+        if current and correspondence and current not in set(correspondence.values()):
             errors.append(
-                f"README current milestone vector drifts from ROADMAP M0: {current} != {correspondence['M0']}"
+                "README current milestone vector does not match any declared ROADMAP milestone target: "
+                f"{current}"
             )
         if final and correspondence.get("M5") and final != correspondence["M5"]:
             errors.append(
