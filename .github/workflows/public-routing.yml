@@ -1,4 +1,4 @@
-name: Public contributor routing
+name: VSM OSS contributor routing
 
 on:
   workflow_dispatch:
@@ -8,6 +8,7 @@ on:
     branches:
       - main
     paths:
+      - README.md
       - CONTRIBUTOR_START.md
       - ROUTING_CONFORMANCE.md
       - scripts/check_public_routing.py
@@ -15,6 +16,7 @@ on:
       - .github/workflows/public-routing.yml
   pull_request:
     paths:
+      - README.md
       - CONTRIBUTOR_START.md
       - ROUTING_CONFORMANCE.md
       - scripts/check_public_routing.py
@@ -39,7 +41,7 @@ jobs:
       - name: Run routing-oracle unit tests
         run: python -m unittest discover -s tests -p "test_public_routing.py" -v
 
-      - name: Check live public OpenSiro repository routing
+      - name: Check live in-scope VSM Harness OSS routing
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        run: python scripts/check_public_routing.py --org opensiro
+        run: python scripts/check_public_routing.py --org opensiro --scope-readme README.md
