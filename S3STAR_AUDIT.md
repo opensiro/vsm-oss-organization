@@ -1,10 +1,10 @@
 # Complementary S3* audit contract
 
-This document defines the repository-local operational contract for a complementary S3* audit path used in preparatory M1 work.
+This document defines the repository-local operational contract for a complementary S3* audit path used in M1 work.
 
 It applies the selected VSM Harness Profile and Methodology through `UPSTREAM_CONTRACT.json`; it does **not** redefine S3*, autonomy states, or assessment semantics.
 
-The active roadmap milestone remains M0 until its proof debt is resolved. The existence of this document therefore does **not** establish `S3*=A` or complete M1.
+The active formal roadmap milestone is M1. The existence of this document therefore does **not** establish `S3*=A` or complete M1; positive state still requires the functional, ownership, evidence-access, and closure witness defined below.
 
 ## Purpose
 
@@ -130,11 +130,11 @@ If a human supplies the decisive audit conclusion, that conclusion is human-owne
 
 ## Ownership and proof debt
 
-The intended M1 reference setup eventually requires an agent-owned audit judgment for `S3*=A`.
+The M1 target requires an agent-owned audit judgment for `S3*=A`.
 
-However, role text, model labels, ChatGPT execution, issue comments, or successful audit artifacts do not by themselves prove the owner. The executor-identity proof debt tracked in #2/#35 remains applicable to formal autonomy claims.
+However, role text, model labels, ChatGPT execution, issue comments, or successful audit artifacts do not by themselves prove the owner. The executor-identity proof debt tracked in #2/#35 therefore remains applicable to formal autonomy claims.
 
-Until stronger provenance is available, preparatory M1 work may establish the functional path, evidence boundary, and closure topology without promoting the autonomy state.
+Until stronger provenance is available, M1 work may establish the functional path, evidence boundary, and closure topology without promoting the autonomy state.
 
 ## Non-goals
 
