@@ -150,6 +150,17 @@ def readme_vector(
     return vector(block.group(1), f"README {context}", errors)
 
 
+def readme_active_milestone(text: str, errors: list[str]) -> str | None:
+    matches = re.findall(r"^Active formal work is (M[0-5])\b", text, re.MULTILINE)
+    if len(matches) != 1:
+        errors.append(
+            "README must declare exactly one active milestone using "
+            "'Active formal work is M<N>'"
+        )
+        return None
+    return matches[0]
+
+
 def check_links(root: Path, errors: list[str]) -> None:
     for path in sorted(root.rglob("*.md")):
         if ".git" in path.parts:
@@ -481,6 +492,7 @@ def validate(
                     f"ROADMAP {milestone} target vector drifts across duplicated milestone surfaces: {values}"
                 )
 
+        active = readme_active_milestone(readme, errors)
         current = readme_vector(
             readme,
             ("Current milestone target:", "Current milestone:"),
@@ -493,10 +505,10 @@ def validate(
             "long-term reference target",
             errors,
         )
-        if current and correspondence and current not in set(correspondence.values()):
+        if active and current and correspondence.get(active) and current != correspondence[active]:
             errors.append(
-                "README current milestone vector does not match any declared ROADMAP milestone target: "
-                f"{current}"
+                f"README current milestone vector drifts from ROADMAP {active}: "
+                f"{current} != {correspondence[active]}"
             )
         if final and correspondence.get("M5") and final != correspondence["M5"]:
             errors.append(
