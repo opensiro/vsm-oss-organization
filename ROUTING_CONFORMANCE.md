@@ -27,7 +27,7 @@ The check is intentionally separate from `scripts/validate_contract.py`. The con
 
 A newly created public OpenSiro repository does not become subject to this oracle merely by existing. It becomes subject to the oracle only when the canonical Organization scope is explicitly changed to admit it.
 
-The `Public contributor routing` workflow runs the scoped live check manually, weekly, and when the routing oracle itself changes.
+The `VSM OSS contributor routing` workflow runs the scoped live check manually, weekly, and when the routing oracle itself changes.
 
 ## Evidence boundary
 
