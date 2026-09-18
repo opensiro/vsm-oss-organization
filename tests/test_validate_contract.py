@@ -79,6 +79,8 @@ Repositories outside the declared current in-scope set may still consume related
 [Roadmap](ROADMAP.md) [Contributing](CONTRIBUTING.md)
 [Role](roles/S1.md) [Prompt](prompts/contribute.md)
 
+Active formal work is M0 — test.
+
 Current milestone:
 
 ```text
@@ -229,6 +231,24 @@ class ContractValidatorTests(unittest.TestCase):
             encoding="utf-8",
         )
         self.assertEqual([], self.errors())
+
+    def test_readme_can_advance_active_milestone_to_m1(self) -> None:
+        path = self.root / "README.md"
+        text = path.read_text(encoding="utf-8")
+        text = text.replace("Active formal work is M0 — test.", "Active formal work is M1 — test.")
+        text = text.replace(VECTORS["M0"], VECTORS["M1"], 1)
+        path.write_text(text, encoding="utf-8")
+        self.assertEqual([], self.errors())
+
+    def test_readme_active_milestone_vector_drift_is_rejected(self) -> None:
+        path = self.root / "README.md"
+        text = path.read_text(encoding="utf-8").replace(
+            "Active formal work is M0 — test.", "Active formal work is M1 — test."
+        )
+        path.write_text(text, encoding="utf-8")
+        self.assertTrue(
+            any("README current milestone vector drifts from ROADMAP M1" in error for error in self.errors())
+        )
 
     def test_scope_membership_drift_is_rejected(self) -> None:
         path = self.root / "README.md"
