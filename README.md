@@ -63,9 +63,7 @@ You do not need to implement a VSM runtime to start contributing. Use the prompt
 4. **Preparing complementary M1 audit work:** [prompts/audit-s1-work.md](prompts/audit-s1-work.md) — preparatory until exercised; its existence is not evidence that `S3*=A` is established.
 5. **Applying a returned M1 current-control decision:** [prompts/apply-s3-control.md](prompts/apply-s3-control.md) — arbitrary comments/approvals are not treated as S3 input.
 
-Owners or maintainers who want to provision the distinct executor identity used by the M1 provenance proof should follow the step-by-step [GitHub App executor setup — human guide](provenance/GITHUB_APP_SETUP.md). It covers App creation, private-key generation and storage, installation, short-lived token minting, actor verification, cleanup, and key rotation.
-
-For direct GitHub entry points, use [GitHub App setup shortcuts](provenance/GITHUB_APP_SETUP_LINKS.md): one-click pre-filled App creation, App management, installation management, and the relevant official GitHub references.
+Owners or maintainers who want to provision the distinct executor identity used by the M1 provenance proof should follow the step-by-step [GitHub App executor setup — human guide](provenance/GITHUB_APP_SETUP.md). Every step contains its direct GitHub/repository action link, expected result, and the relevant security boundary, from App creation through actor verification and key rotation.
 
 Repository-local contributions still belong in the repository that owns the relevant source of truth. Use this repository for organization-wide questions: contributor roles, authority boundaries, cross-repository control/coordination, escalation, milestone sequencing, and evolution of the shared contribution control plane.
 
