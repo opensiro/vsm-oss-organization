@@ -120,7 +120,7 @@ This demonstrates a real curation/correction/validation path inside the Awesome 
 | **Skills** | yes | yes | yes | yes | yes |
 | **Awesome** | yes | yes | yes | yes | yes |
 
-These are operational-construction claims. Formal autonomy publication remains governed by the selected Profile/Methodology; this repository does not add a separate GitHub actor-identity proof procedure on top of that methodology.
+These are operational-construction claims. Formal autonomy publication remains governed by the selected Profile/Methodology.
 
 ## Local variety versus residual variety
 

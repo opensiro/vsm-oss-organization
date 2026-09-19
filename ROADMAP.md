@@ -130,8 +130,7 @@ Exit criteria:
 - an independent agent owns the complementary audit judgment and can emit `PASS`, `FINDING`, or `INSUFFICIENT` under the S3* contract;
 - a material finding can enter the defined current-control/intervention path;
 - the intervention result can return to subsequent S1 operation;
-- S3 is not claimed `A` until an autonomous agent owns the decisive current-control discretion;
-- no executor-identity or agent-vs-human GitHub attribution mechanism is required by M1.
+- S3 is not claimed `A` until an autonomous agent owns the decisive current-control discretion.
 
 ## M2 — Parent-governed identity boundary
 

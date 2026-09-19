@@ -199,4 +199,4 @@ M0 construction is complete when all three domains have:
 - explicit residual-variety escalation boundaries;
 - at least one real operational evidence path.
 
-This is a construction/operational milestone. Any formal autonomy-state publication remains governed by the selected Profile/Methodology; this organization does not add a separate executor-identity or GitHub actor-attribution requirement.
+This is a construction/operational milestone. Any formal autonomy-state publication remains governed by the selected Profile/Methodology.

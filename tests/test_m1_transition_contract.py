@@ -31,20 +31,19 @@ class M1TransitionContractTests(unittest.TestCase):
         self.assertIn("The S1 role contains the M1 return-hook rules", s3)
         self.assertIn("Apply one returned S3 current-control decision to S1", prompt)
 
-    def test_m1_does_not_require_executor_identity_proof(self) -> None:
+    def test_m1_contract_centers_independent_audit_and_control_return(self) -> None:
         readme = self.read("README.md")
         roadmap = self.read("ROADMAP.md")
-        domain_contracts = self.read("S1_DOMAIN_CONTRACTS.md")
-        coverage = self.read("S1_AUTONOMY_COVERAGE.md")
-        s1 = self.read("roles/S1.md")
-
-        for text in (readme, roadmap, domain_contracts, coverage, s1):
-            self.assertNotIn("#35", text)
-            self.assertNotIn("GITHUB_APP_EXECUTOR", text)
-            self.assertNotIn("EXECUTOR_PROVENANCE", text)
+        s3star = self.read("S3STAR_AUDIT.md")
+        s3 = self.read("S3_CONTROL_SURFACE.md")
+        audit_record = self.read("templates/s3star-audit-record.md")
 
         self.assertIn("independent S3* audit", readme)
         self.assertIn("independent second agent", roadmap)
+        for outcome in ("`PASS`", "`FINDING`", "`INSUFFICIENT`"):
+            self.assertIn(outcome, s3star)
+        self.assertIn("Auditor / agent:", audit_record)
+        self.assertIn("returned control decision", s3)
 
 
 if __name__ == "__main__":

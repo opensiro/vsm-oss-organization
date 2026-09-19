@@ -128,13 +128,13 @@ Human input to the audit is permitted but must be attributed when it affects the
 
 If a human supplies the decisive audit conclusion, that conclusion is human-owned for evidence purposes. Do not count it as agent-owned S3* judgment.
 
-## Ownership and proof debt
+## Ownership boundary
 
-The M1 target requires an agent-owned audit judgment for `S3*=A`.
+The M1 target requires an independent agent-owned audit judgment for `S3*=A`.
 
-However, role text, model labels, ChatGPT execution, issue comments, or successful audit artifacts do not by themselves prove the owner. The executor-identity proof debt tracked in #2/#35 therefore remains applicable to formal autonomy claims.
+Evidence for that claim must keep the audit judgment owner distinct from evidence collection, deterministic validation, transport, and downstream S3 control. If a human supplies or overrides the decisive audit conclusion, attribute that judgment to the human for the affected decision.
 
-Until stronger provenance is available, M1 work may establish the functional path, evidence boundary, and closure topology without promoting the autonomy state.
+Positive ownership claims remain evidence questions under the governing Profile/Methodology.
 
 ## Non-goals
 
