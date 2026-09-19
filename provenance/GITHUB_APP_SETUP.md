@@ -1,12 +1,46 @@
-# Provision the M1 executor GitHub App
+# GitHub App executor setup — human guide
 
-This is the operator-side bootstrap for the concrete #35 reference profile in [`GITHUB_APP_EXECUTOR.md`](GITHUB_APP_EXECUTOR.md).
+This guide takes an OpenSiro owner or maintainer from **no GitHub App** to a verified distinct executor identity that can be used by the M1 provenance mechanism in [`GITHUB_APP_EXECUTOR.md`](GITHUB_APP_EXECUTOR.md).
 
-It intentionally covers only the narrow M1 proof capability. It does **not** define the later M2 parent-governance policy for installation authority, scope expansion, revocation, emergency control, or credential lifecycle.
+You do not need to understand the full provenance format before following this guide. The important security boundary is simple:
 
-## 1. Register the App
+```text
+PUBLIC / safe to record
+App name / slug / App ID / installation ID / bot login
+installed repositories / effective permissions / immutable action refs
+
+SECRET / never commit or paste into public evidence
+GitHub App private key (.pem)
+App JWT
+installation access token
+credential-bearing shell history, logs, env dumps, or config files
+```
+
+This setup creates proof-enabling infrastructure only. It does **not** by itself prove `S1=A`, establish S5, or complete M1.
+
+## Before you start
+
+You need:
+
+- owner/admin ability to create a GitHub App for the `opensiro` organization;
+- a local machine or trusted runtime where the private key can be stored outside the repository;
+- Python 3.12+ for the repository helpers;
+- the repository checked out locally if you want to use the helper scripts.
+
+For the first proof run, keep the capability narrow. The normal initial repository set is:
+
+```text
+opensiro/vsm-oss-organization
+opensiro/vsm-harness-index
+```
+
+Do not add Skills/Awesome until their #66 runs are ready unless you deliberately want the broader installation scope.
+
+## Step 1 — create the GitHub App
 
 Create a **private** GitHub App owned by the OpenSiro organization.
+
+In GitHub, use the organization settings path for GitHub Apps. GitHub may move labels over time; the current official documentation is linked under [GitHub references](#github-references).
 
 Suggested fields:
 
@@ -15,55 +49,85 @@ Suggested fields:
 | GitHub App name | `OpenSiro Executor Provenance` |
 | Homepage URL | `https://github.com/opensiro/vsm-oss-organization` |
 | Description | `Dedicated executor identity for bounded OpenSiro VSM provenance trials.` |
-| Webhook | not required for the M1 reference path |
+| Webhook | disabled / not required |
 | User authorization / OAuth | not required |
 | Public | disabled / owner-only |
 
-The generated slug/bot login may differ from the display name. Record the actual values from GitHub after registration.
+The display name, slug, and resulting bot login are related but not identical. After GitHub creates the App, record the actual values it shows.
 
-Do **not** commit the App private key, installation tokens, webhook secret, or any copied secret value into this repository.
+## Step 2 — grant only the repository permissions needed
 
-## 2. Repository permissions
-
-The reference path needs only repository-scoped mutation permissions required by the bounded S1 contribution plus evidence publication.
-
-Start with:
+Start with this repository permission set:
 
 | Permission | Access | Why |
 |---|---:|---|
-| Metadata | Read | implicit GitHub App repository metadata access |
-| Contents | Read & write | create evidence branches/files and bounded code/doc commits |
-| Issues | Read & write | bounded issue status/comments when the selected S1 task requires them |
-| Pull requests | Read & write | open/update the bounded contribution PR when required |
+| Metadata | Read | repository metadata; GitHub grants this implicitly |
+| Contents | Read & write | evidence branches/files and bounded commits |
+| Issues | Read & write | bounded issue updates/comments when needed |
+| Pull requests | Read & write | bounded contribution PRs when needed |
 
-No organization, administration, members, secrets, actions, deployments, environments, packages, or security permissions are required by the reference profile.
+Do **not** grant organization administration, members, secrets, actions, deployments, environments, packages, or security permissions for this M1 path.
 
-If a specific run does not need Issues or Pull requests mutation, mint the run token with those permissions reduced or omitted. The installation-token helper supports run-specific narrowing.
+The installation may have the permissions above while an individual run token is narrowed further. A run that only needs `contents=write` should not receive extra permissions merely because the App could receive them.
 
-## 3. Events and webhooks
+## Step 3 — generate the private key
 
-The M1 reference path is pull/push driven by the executor and does not need inbound webhook events.
+After creating the App, open its settings page and find **Private keys** → **Generate a private key**.
 
-Do not subscribe to events merely because the App UI offers them. Adding webhook/event subscriptions increases the capability surface without improving the #35 actor-attribution proof.
+GitHub downloads a `.pem` file to your computer. GitHub retains only the public portion; the downloaded PEM is the secret that lets a holder authenticate as the App and mint installation tokens.
 
-## 4. Install on selected repositories only
+Treat it like a root credential for this App.
 
-For the first trial, install the App using **Only select repositories**.
+### Move it out of Downloads immediately
 
-The minimum set is normally:
+Recommended local location on a POSIX machine:
 
 ```text
-opensiro/vsm-oss-organization   # provenance evidence publication
-opensiro/vsm-harness-index      # first Index S1 trial
+~/.config/opensiro/executor-provenance/app.private-key.pem
 ```
 
-Add `vsm-harness-skills` and `awesome-vsm-harness` only when the corresponding #66 trial is ready, or install them together if operationally simpler and explicitly record the broader installation scope.
+Then restrict access:
 
-Installation scope is a capability boundary, not evidence that the App owns any VSM function.
+```bash
+mkdir -p ~/.config/opensiro/executor-provenance
+mv ~/Downloads/<downloaded-key>.pem ~/.config/opensiro/executor-provenance/app.private-key.pem
+chmod 600 ~/.config/opensiro/executor-provenance/app.private-key.pem
+```
 
-## 5. Record non-secret identity facts
+If your download path differs, adjust the first path. Do not move the key into the repository checkout even temporarily.
 
-Record these public/non-secret facts for the witness:
+The helper [`../scripts/mint_github_app_token.py`](../scripts/mint_github_app_token.py) refuses a group/world-readable private key by default.
+
+### Optional: verify that the local key matches GitHub
+
+GitHub shows a SHA-256 fingerprint for the public/private key pair. You can compare it with the fingerprint derived locally:
+
+```bash
+openssl rsa \
+  -in ~/.config/opensiro/executor-provenance/app.private-key.pem \
+  -pubout -outform DER \
+| openssl sha256 -binary \
+| openssl base64
+```
+
+Compare the result with the fingerprint displayed for that key in the App settings.
+
+Do not paste the key contents into an issue, PR, chat, provenance JSON, CI log, or troubleshooting screenshot.
+
+## Step 4 — install the App on selected repositories
+
+Install the App using **Only select repositories**.
+
+For the first trial select:
+
+```text
+opensiro/vsm-oss-organization
+opensiro/vsm-harness-index
+```
+
+Installation scope is only a capability boundary. It is not evidence that the App owns an organizational function.
+
+After installation, record these **non-secret** facts:
 
 ```text
 app_slug
@@ -74,27 +138,25 @@ installed repositories
 configured App permissions
 ```
 
-The private key and installation token are verification credentials/capabilities and must remain outside committed evidence.
+It is safe for these values to appear in public provenance evidence.
 
-## 6. Keep the private key outside the repository
+## Step 5 — mint a short-lived installation token
 
-Store the downloaded PEM file outside the repository checkout with owner-only filesystem permissions.
-
-Example local layout:
+Do not use the private key directly for ordinary repository writes. The normal flow is:
 
 ```text
-~/.config/opensiro/executor-provenance/app.private-key.pem
+private key
+    ↓ signs
+short-lived App JWT
+    ↓ requests
+short-lived installation token
+    ↓ narrowed to
+selected repositories + permissions
+    ↓ used by
+one declared executor session
 ```
 
-On a POSIX host the file should normally be mode `0600`.
-
-The helper [`../scripts/mint_github_app_token.py`](../scripts/mint_github_app_token.py) refuses a group/world-readable private key by default.
-
-## 7. Mint a run-scoped installation token
-
-GitHub installation access tokens are short-lived and can be narrowed to selected repositories and permissions. The helper creates the App JWT locally, resolves or accepts the installation id, requests a narrowed installation token, and writes the token to a mode-`0600` file without printing the secret to normal output.
-
-Example for the first Index trial:
+Use the repository helper for the first Index trial:
 
 ```bash
 python scripts/mint_github_app_token.py \
@@ -108,48 +170,77 @@ python scripts/mint_github_app_token.py \
   --token-output /tmp/opensiro-executor-token
 ```
 
-If the App has one installation covering the selected repositories, the helper can derive the installation id from the first repository. Use `--installation-id` when you want to bind the request to a known installation explicitly.
+If the App has one installation covering the selected repositories, the helper can derive the installation id from the first repository. Use `--installation-id` when you want the request bound to a known installation explicitly.
 
-The resulting metadata printed by the helper includes the observed App slug/id, installation id, expiry, effective permissions, and selected repositories, but not the token itself.
+The helper prints non-secret metadata such as App identity, installation id, expiry, effective permissions, and repository scope. It does **not** print the token itself.
 
-## 8. Deliver the token to the executor session
+The token file is written create-only with mode `0600`.
 
-For the reference publisher, expose the short-lived token only to the declared executor runtime/session:
+GitHub installation access tokens normally expire after one hour. Mint a new one for a later run instead of attempting to make this credential long-lived.
+
+## Step 6 — deliver only the installation token to the executor
+
+The executor session needs the short-lived installation token, not the App private key.
+
+For the reference publisher:
 
 ```text
-OPENSIRO_EXECUTOR_GITHUB_TOKEN=<contents of token file>
+OPENSIRO_EXECUTOR_GITHUB_TOKEN=<contents of /tmp/opensiro-executor-token>
 ```
 
-Do not paste the token into issues, PRs, provenance JSON, chat transcripts intended as public evidence, shell history, or committed environment files.
+Preferred boundary:
 
-The positive #35 trust claim is:
+```text
+owner-controlled private-key store
+        ↓ mint token
+short-lived narrowed token
+        ↓ one-way delivery
+bounded executor session
+        ↓ GitHub actions
+<app-slug>[bot]
+```
 
-> the short-lived installation token used for the run was delivered to the declared executor session and was not simultaneously used as an undeclared human execution credential.
+Do not give the executor the long-lived `.pem` unless the runtime itself is explicitly the trusted credential broker. For the M1 reference path, keeping the private key outside the executor session makes the trust boundary easier to review.
 
-If that claim is not supportable for a run, keep the ownership result `INSUFFICIENT` or add a stronger independent session binding.
+Never store the token in:
 
-## 9. Verify actor identity before the first S1 proof run
+- the repository;
+- `.env` committed to git;
+- an issue or PR body/comment;
+- provenance JSON;
+- a public chat transcript;
+- shell commands that will be retained in shared history;
+- CI/debug output that prints environment variables.
 
-Before using the App for a substantive #66 run, perform a small create-only publication through [`../scripts/publish_executor_evidence.py`](../scripts/publish_executor_evidence.py).
+## Step 7 — verify the bot actor before doing proof work
 
-The publisher fetches the resulting commit and fails unless GitHub reports the expected `<app-slug>[bot]` actor.
+Before starting a substantive #66 S1 run, perform a small provisioning verification using [`../scripts/publish_executor_evidence.py`](../scripts/publish_executor_evidence.py).
 
-The test publication should be explicitly marked as provisioning verification rather than counted as the natural S1 ownership trial.
+The verification must answer one simple question:
 
-After verification, preserve:
+> Does GitHub independently report the resulting action as performed by the expected `<app-slug>[bot]` actor rather than the human contributor account?
 
-- App public page reference;
-- App id / installation id / bot login;
+The publisher fetches the resulting commit and fails if the observed GitHub actor does not match the expected bot identity.
+
+Mark this test explicitly as **provisioning verification**. Do not count it as the natural Index S1 trial.
+
+Keep the following public evidence:
+
+- App slug/id;
+- installation id;
+- bot login;
 - selected repository scope;
-- effective permission scope;
-- the immutable test commit/action reference;
-- observed GitHub actor.
+- effective permissions;
+- immutable test commit/action reference;
+- actor GitHub reports for that action.
 
-Do not preserve the token or private key.
+Do not preserve the private key, JWT, or installation token.
 
-## 10. First real #66 run
+## Step 8 — start the first real #66 run
 
-Once actor verification succeeds, select a **natural bounded Index work item** and begin the actual run in the required order:
+Only after actor verification succeeds, choose a **natural bounded Index work item**.
+
+The order matters:
 
 ```text
 freeze work item + start SHA + S1 role/contract
@@ -167,13 +258,86 @@ publish closure + final witness
 independent second review
 ```
 
-The pre-run anchor must exist before material S1 execution begins. A retrospectively reconstructed anchor is not a positive witness under this profile.
+The pre-run anchor must be published **before** material S1 execution. A retrospectively reconstructed anchor is not positive provenance evidence under this profile.
+
+After Index, #66 repeats the ownership exercise for Skills and Awesome because their local decision rights differ.
+
+## Step 9 — end the session cleanly
+
+At the end of a run:
+
+1. publish the closure/final witness;
+2. remove the local installation-token file;
+3. unset/remove the token from the executor environment;
+4. retain only public identity facts and immutable action references;
+5. keep the private key in its protected owner-controlled location for future token minting.
+
+Example cleanup:
+
+```bash
+rm -f /tmp/opensiro-executor-token
+unset OPENSIRO_EXECUTOR_GITHUB_TOKEN
+```
+
+An expired token is no longer useful, but removing local copies reduces accidental disclosure and makes the operating procedure easier to audit.
+
+## Step 10 — rotate or revoke the private key when needed
+
+GitHub App private keys do not automatically expire. Rotation/revocation is therefore an owner responsibility.
+
+Rotate the key when:
+
+- it may have been copied to an untrusted machine or log;
+- a maintainer who had access should no longer retain it;
+- the credential-storage boundary changes;
+- you want scheduled hygiene even without a known incident.
+
+Safe rotation order:
+
+```text
+generate a new private key in GitHub
+        ↓
+store + verify new key locally
+        ↓
+confirm token minting works with new key
+        ↓
+delete/revoke the old key in GitHub
+        ↓
+securely remove obsolete local copies
+```
+
+If you suspect compromise, stop using the old key and revoke it as soon as you have a replacement path. Any still-valid installation token minted before revocation should also be treated as exposed and removed/revoked where practical.
+
+## What is safe to publish?
+
+| Item | Public? | Notes |
+|---|---:|---|
+| App display name | yes | identity metadata |
+| App slug | yes | identity metadata |
+| App ID | yes | identifier, not credential |
+| Installation ID | yes | identifier, not credential |
+| `<app-slug>[bot]` login | yes | required for actor verification |
+| Repository scope | yes | useful evidence of capability boundary |
+| Effective permissions | yes | useful evidence of capability boundary |
+| Commit / PR / issue refs | yes | primary evidence |
+| Private key PEM | **no** | long-lived App credential |
+| App JWT | **no** | bearer credential used to request installation tokens |
+| Installation token | **no** | bearer credential for repository actions |
+| Credential-bearing env/log dump | **no** | may contain any of the above |
+
+Knowing App ID, installation ID, bot login, repository scope, or permissions is not sufficient to authenticate as the App. The private key / derived bearer credentials are the capability secrets.
+
+## Repository-side safety net
+
+The repository `.gitignore` ignores the common local private-key/token filenames used by this guide. That is only a convenience guardrail: `.gitignore` is **not** a secret-management system and does not protect a secret that was already committed, pasted into GitHub, logged, or otherwise published.
+
+If a secret is ever committed, assume compromise and rotate/revoke it. Removing the file in a later commit is not sufficient because git history may retain it.
 
 ## What this setup does not prove
 
-Successful installation, token minting, or a visible bot-authored commit proves only that the distinct capability path exists and can be attributed at GitHub's actor boundary.
+A visible bot-authored action proves that the distinct capability path exists and that GitHub attributed that action to the App actor.
 
-It does not establish:
+It does not by itself establish:
 
 - `S1=A`;
 - that every material decision was agent-owned;
@@ -181,4 +345,12 @@ It does not establish:
 - legitimate parent policy over the capability;
 - absence of human intervention.
 
-Those conclusions still require the witness, second review, and the governing Profile/Methodology analysis.
+Those conclusions still require the witness, second review, and governing Profile/Methodology analysis.
+
+## GitHub references
+
+GitHub's current public documentation:
+
+- [Managing private keys for GitHub Apps](https://docs.github.com/en/apps/creating-github-apps/authenticating-with-a-github-app/managing-private-keys-for-github-apps)
+- [Generating an installation access token for a GitHub App](https://docs.github.com/en/apps/creating-github-apps/authenticating-with-a-github-app/generating-an-installation-access-token-for-a-github-app)
+- [Best practices for creating a GitHub App](https://docs.github.com/en/apps/creating-github-apps/about-creating-github-apps/best-practices-for-creating-a-github-app)
