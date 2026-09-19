@@ -114,13 +114,13 @@ This demonstrates a real curation/correction/validation path inside the Awesome 
 
 ## M0 construction status
 
-| S1 domain | Explicit envelope | Local execution path | Completion evidence | Routine correction/recovery path | Residual-variety escalation | Independent owner proof |
-| --- | --- | --- | --- | --- | --- | --- |
-| **Index** | yes | yes | yes | yes | yes | no — deferred |
-| **Skills** | yes | yes | yes | yes | yes | no — deferred |
-| **Awesome** | yes | yes | yes | yes | yes | no — deferred |
+| S1 domain | Explicit envelope | Local execution path | Completion evidence | Routine correction/recovery path | Residual-variety escalation |
+| --- | --- | --- | --- | --- | --- |
+| **Index** | yes | yes | yes | yes | yes |
+| **Skills** | yes | yes | yes | yes | yes |
+| **Awesome** | yes | yes | yes | yes | yes |
 
-The first five columns are M0 operational-construction claims. They do **not** imply the final column.
+These are operational-construction claims. Formal autonomy publication remains governed by the selected Profile/Methodology; this repository does not add a separate GitHub actor-identity proof procedure on top of that methodology.
 
 ## Local variety versus residual variety
 
@@ -145,20 +145,6 @@ Residual variety becomes evidence for a later VSM function only when the concret
 - identity/ultimate-policy closure may justify S5.
 
 Do not infer those functions merely because Profile or Organization repositories exist.
-
-## Strict executor-ownership proof debt
-
-The repository evidence above is attributable through the contributor's GitHub account. It demonstrates operational paths, but it does not independently prove that an autonomous executor owned every decisive local choice rather than receiving hidden human operational direction.
-
-The stronger distinct-executor identity mechanism is now an M1 proof dependency in `#35`. Until it is implemented and exercised, formal public evidence for the published autonomy state `S1=A` remains insufficient on this dimension. M2 consumes that capability later under an explicit parent-governance envelope; it does not gate creation of the proof witness itself.
-
-M0 completion therefore means:
-
-> the S1 organization is constructed and operationally exercised across Index, Skills, and Awesome, with explicit local authority, completion evidence, recovery, and escalation boundaries.
-
-It does **not** mean:
-
-> the deferred actor-attribution problem has been solved or that repository attribution alone proves `S1=A`.
 
 ## Supplementary development evidence
 
