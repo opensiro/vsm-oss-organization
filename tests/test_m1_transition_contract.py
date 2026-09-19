@@ -43,7 +43,7 @@ class M1TransitionContractTests(unittest.TestCase):
         for outcome in ("`PASS`", "`FINDING`", "`INSUFFICIENT`"):
             self.assertIn(outcome, s3star)
         self.assertIn("Auditor / agent:", audit_record)
-        self.assertIn("returned current-control decision", s3)
+        self.assertIn("returned control decision", s3)
 
 
 if __name__ == "__main__":
