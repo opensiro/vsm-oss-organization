@@ -36,11 +36,13 @@ class M1TransitionContractTests(unittest.TestCase):
         roadmap = self.read("ROADMAP.md")
         s3star = self.read("S3STAR_AUDIT.md")
         s3 = self.read("S3_CONTROL_SURFACE.md")
+        audit_record = self.read("templates/s3star-audit-record.md")
 
         self.assertIn("independent S3* audit", readme)
         self.assertIn("independent second agent", roadmap)
         for outcome in ("`PASS`", "`FINDING`", "`INSUFFICIENT`"):
             self.assertIn(outcome, s3star)
+        self.assertIn("Auditor / agent:", audit_record)
         self.assertIn("returned current-control decision", s3)
 
 
