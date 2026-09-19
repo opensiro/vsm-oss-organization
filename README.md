@@ -112,7 +112,7 @@ S1  S2  S3  S3* S4  S5
 A   —   C   A   —   —
 ```
 
-The vector is a **design/construction target, not an independently published assessment state**. M1 focuses on establishing the complementary S3* audit function and a real S3(C) control-return path without adding a separate executor-identity proof layer.
+The vector is a **design/construction target, not an independently published assessment state**. M1 focuses on establishing the complementary S3* audit function and a real S3(C) control-return path.
 
 Long-term reference target:
 
