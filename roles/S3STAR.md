@@ -52,7 +52,7 @@ Evidence collectors, repository APIs, test runners, deterministic scripts, valid
 
 If a human supplies or overrides the decisive audit conclusion, attribute that judgment to the human for the affected decision. A later agent-owned audit judgment may still exist, but do not erase the intervention.
 
-Formal `S3*=A` requires independently reconstructable ownership evidence under the governing Profile/Methodology. The executor-identity proof debt tracked in #2/#35 therefore still applies.
+Formal `S3*=A` requires evidence that the independent agent owns the decisive audit judgment under the governing Profile/Methodology.
 
 ## Closure boundary
 
