@@ -633,6 +633,86 @@ M0 closes the middle construction question for the three declared domains. The l
 
 Do not manufacture work to prove an organizational capability when equivalent real operating evidence already exists. At the same time, do not let successful production artifacts erase an unresolved ownership gap. Construction milestones and autonomy-evidence claims can progress on different timelines as long as the distinction is explicit and historically preserved.
 
+## 2026-09-18 — Correct contributor routing after an oracle validated the wrong system boundary
+
+**Status:** `validated reversal; behavioral evidence in progress`
+
+### Context
+
+After M0 construction closure, the organization added a common contributor-routing surface intended to let a contributor or fresh agent arrive through an in-scope repository, distinguish repository-local work from organization-wide work, and discover `vsm-oss-organization` when cross-repository authority, escalation, coordination, or milestone sequencing was involved.
+
+The canonical Organization boundary already listed exactly five in-scope public repositories: Profile, Skills, Index, Awesome, and Organization.
+
+### Observed problem
+
+The first routing implementation generalized the invariant from the declared five-repository system to **every public repository under the `opensiro` GitHub organization**. The resulting live oracle passed across that broader population, but the population itself was wrong: unrelated or separate tracks such as ARCTIC, `terminal-bench-vsm`, and `opensiro.com` had been pulled into the routing/conformance surface solely because they were public organization members.
+
+This produced a concrete negative result: a deterministic check can be internally correct and fully green while validating the wrong system-in-focus if its population-selection rule is not bound to the canonical organizational boundary.
+
+### Alternatives considered
+
+- keep the all-public routing convention as a broader convenience layer while stating that VSM scope remained narrower;
+- maintain a second routing allowlist independent of the Organization scope declaration;
+- make the routing oracle consume the existing canonical scope declaration directly and remove out-of-scope routing obligations.
+
+### Decision / experiment
+
+Treat the all-public generalization as a boundary error rather than as a harmless navigation layer.
+
+The corrective change:
+
+1. bound contributor routing to the canonical `Current in-scope public repositories:` set;
+2. changed the routing oracle to derive its target population from that existing README scope block rather than enumerating every public repository or maintaining a second allowlist;
+3. reverted the routing blocks previously added to ARCTIC, `terminal-bench-vsm`, and `opensiro.com`;
+4. tightened Organization wording so out-of-scope repositories are not subjects of the routing invariant unless scope is explicitly changed;
+5. retained mechanical conformance only as a discoverability check and opened a separate blind-agent behavioral trial for interpretation quality.
+
+The first behavioral batch is deliberately stronger than a single positive-path smoke test: five in-scope start repositories are crossed with both organization-wide and repository-local/ownership-control tasks, for ten frozen runs. Exact prompts are held out until after execution so an agent cannot discover its own answer key while following public links. After a run has made its routing decision, its session experience may be posted to issue #61 as post-run evidence.
+
+### Evidence
+
+- [routing parent #59](https://github.com/opensiro/vsm-oss-organization/issues/59)
+- [initial all-public routing/oracle PR #60](https://github.com/opensiro/vsm-oss-organization/pull/60)
+- [boundary correction PR #62](https://github.com/opensiro/vsm-oss-organization/pull/62)
+- [wording cleanup PR #63](https://github.com/opensiro/vsm-oss-organization/pull/63)
+- [blind routing trial #61](https://github.com/opensiro/vsm-oss-organization/issues/61)
+- [ARCTIC corrective PR #2](https://github.com/opensiro/arctic-0/pull/2)
+- [terminal-bench-vsm corrective PR #3](https://github.com/opensiro/terminal-bench-vsm/pull/3)
+- [opensiro.com corrective PR #5](https://github.com/opensiro/opensiro.com/pull/5)
+- `CONTRIBUTOR_START.md`
+- `ROUTING_CONFORMANCE.md`
+- `scripts/check_public_routing.py`
+
+### Result
+
+The corrected mechanical routing surface now checks only the five declared in-scope repositories and reports `5/5` conformance; its unit-test suite covers the scoped population logic. The earlier `8/8` all-public result remains historical evidence of the implementation error and is superseded as routing evidence rather than erased.
+
+The correction caused real rework across multiple repositories: three out-of-scope README changes had to be reverted and the Organization oracle/docs/issues had to be narrowed. That rework is part of the empirical record rather than hidden by the final architecture.
+
+Mechanical conformance is no longer treated as sufficient evidence that an unfamiliar agent will interpret the routing boundary correctly. Issue #61 now owns the behavioral evidence: Batch 001 freezes the five start revisions, exercises positive and negative/control cases, preserves failures, and publishes verbatim prompts only after execution.
+
+### VSM interpretation
+
+The incident is primarily a **system-boundary and evidence-design** failure, not evidence for a new VSM function. GitHub organization membership and public visibility are implementation/container facts; they do not define the viable system-in-focus.
+
+The corrected design reuses the already-declared organizational boundary as the population source for the mechanical oracle. This reduces the chance that support machinery silently expands the organization it is supposed to check.
+
+The move from a static discoverability oracle to blind behavioral trials also separates two claims:
+
+```text
+is the route visibly present at the declared boundary?
+        ↓
+can a fresh agent interpret and follow that route correctly?
+```
+
+A green result for the first claim cannot substitute for evidence about the second.
+
+### Reusable lesson
+
+Bind conformance populations to the authoritative system-boundary declaration instead of deriving organizational membership from deployment containers such as a GitHub organization. A validator should not be trusted merely because all of its checks pass; first verify that it is checking the right system.
+
+For empirical methodology work, preserve mistaken expansions and their rollback cost. They provide stronger evidence about where boundary discipline matters than a cleaned-up final architecture alone. When testing human/agent discoverability, keep mechanical presence checks separate from blind behavioral interpretation tests and prevent the test specification itself from becoming part of the agent-visible routing surface before execution.
+
 ## Backfill policy
 
 Important decisions that predate this log may be added later only when primary evidence supports their date, context, and interpretation. Do not infer a historical sequence solely from the current contents of `design-reasoning.md`.
