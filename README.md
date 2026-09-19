@@ -129,6 +129,8 @@ The M0 S1 construction uses [roles/S1.md](roles/S1.md) together with [S1_DOMAIN_
 
 M1 infrastructure may exist before the milestone is formally achieved. The current S3* audit role and S3 constructor surface remain unproven as positive autonomy states until exercised with the required ownership/closure evidence. The distinct executor identity mechanism in #35 is supporting proof infrastructure, not a new VSM function.
 
+The S3 current-control ownership contract is defined in [roles/S3.md](roles/S3.md). During M1 it does **not** activate a permanent S3 agent: it keeps the actual transaction owner explicit while GitHub Projects, queues, schedulers, fields, and automation remain supporting surfaces. Its autonomous-agent mode is gated by the M3 conditions in [ROADMAP.md](ROADMAP.md).
+
 Further roles are added only when concrete residual variety establishes the organizational need. VSM functions are responsibilities and relationships, not a checklist of permanent agent processes.
 
 ## Supplementary development evidence

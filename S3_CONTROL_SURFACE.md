@@ -84,6 +84,8 @@ The decision owner may be a human, parent, external actor, or later autonomous S
 
 A JSON record, GitHub issue/comment, branch rule, CI gate, scheduler, queue, or validator may enforce/transport the result without owning the organizational decision.
 
+The corresponding role/ownership contract is [`roles/S3.md`](roles/S3.md). During M1 it preserves explicit transaction-level ownership rather than declaring a permanent autonomous S3 owner; autonomous agent ownership remains gated by the M3 conditions in `ROADMAP.md`.
+
 ## Machine-readable transaction
 
 Use `control/s3-current-control-v1.template.json` as the canonical starting shape.
@@ -182,6 +184,7 @@ The following do not independently establish S3 or this constructor path:
 
 ## Reference artifacts
 
+- role/ownership contract: `roles/S3.md`;
 - machine-readable transaction: `control/s3-current-control-v1.template.json`;
 - reviewable record: `templates/s3-control-record.md`;
 - S1 return hook: `roles/S1.md`;
