@@ -27,7 +27,7 @@ The operational domains produce different durable outcomes:
 - **Skills** — reusable VSM Harness assessment procedure/skills/tooling that applies the selected Profile;
 - **Awesome** — curated representative downstream view linked to canonical Index facts.
 
-See [ORGANIZATION.md](ORGANIZATION.md) for the system boundary and viability criterion, [S1_DOMAIN_CONTRACTS.md](S1_DOMAIN_CONTRACTS.md) for the canonical local S1 envelopes, and [S1_AUTONOMY_COVERAGE.md](S1_AUTONOMY_COVERAGE.md) for operational evidence and the remaining autonomy-proof boundary.
+See [ORGANIZATION.md](ORGANIZATION.md) for the system boundary and viability criterion, [S1_DOMAIN_CONTRACTS.md](S1_DOMAIN_CONTRACTS.md) for the canonical local S1 envelopes, and [S1_AUTONOMY_COVERAGE.md](S1_AUTONOMY_COVERAGE.md) for operational evidence.
 
 ## Scope
 
@@ -62,8 +62,6 @@ You do not need to implement a VSM runtime to start contributing. Use the prompt
 3. **Want an explicit control plane now:** [prompts/parent-control-plane.md](prompts/parent-control-plane.md) — demo a human-parent autonomy envelope ahead of the full M2 implementation.
 4. **Preparing complementary M1 audit work:** [prompts/audit-s1-work.md](prompts/audit-s1-work.md) — preparatory until exercised; its existence is not evidence that `S3*=A` is established.
 5. **Applying a returned M1 current-control decision:** [prompts/apply-s3-control.md](prompts/apply-s3-control.md) — arbitrary comments/approvals are not treated as S3 input.
-
-Owners or maintainers who want to provision the distinct executor identity used by the M1 provenance proof should follow the step-by-step [GitHub App executor setup — human guide](provenance/GITHUB_APP_SETUP.md). Every step contains its direct GitHub/repository action link, expected result, and the relevant security boundary, from App creation through actor verification and key rotation.
 
 Repository-local contributions still belong in the repository that owns the relevant source of truth. Use this repository for organization-wide questions: contributor roles, authority boundaries, cross-repository control/coordination, escalation, milestone sequencing, and evolution of the shared contribution control plane.
 
@@ -105,7 +103,7 @@ Local variety should remain in the relevant operational domain when that domain 
 
 M0 operational construction is complete: Index, Skills, and Awesome now have explicit local envelopes and real operational evidence paths.
 
-Active formal work is M1 — independent S3* audit plus an S3 constructor/control path, while independently reconstructable S1 actor ownership is established through proof infrastructure in #35.
+Active formal work is M1 — independent S3* audit plus an S3 constructor/control path.
 
 Current milestone target:
 
@@ -114,7 +112,7 @@ S1  S2  S3  S3* S4  S5
 A   —   C   A   —   —
 ```
 
-The vector is a **design/construction target, not an independently proven autonomy-state publication**. Repository attribution alone still does not prove that the autonomous executor owned every decisive local S1 choice. Issue #35 now tracks the distinct executor identity/provenance witness as an M1 proof dependency; parent authorization, permission expansion, intervention, and revocation remain separate M2 concerns in #4/#36.
+The vector is a **design/construction target, not an independently published assessment state**. M1 focuses on establishing the complementary S3* audit function and a real S3(C) control-return path without adding a separate executor-identity proof layer.
 
 Long-term reference target:
 
@@ -129,7 +127,7 @@ A   A   A   A   A   P
 
 The M0 S1 construction uses [roles/S1.md](roles/S1.md) together with [S1_DOMAIN_CONTRACTS.md](S1_DOMAIN_CONTRACTS.md). A run must declare Index, Skills, or Awesome as its operational domain.
 
-M1 infrastructure may exist before the milestone is formally achieved. The current S3* audit role and S3 constructor surface remain unproven as positive autonomy states until exercised with the required ownership/closure evidence. The distinct executor identity mechanism in #35 is supporting proof infrastructure, not a new VSM function.
+M1 infrastructure may exist before the milestone is formally achieved. The current S3* audit role and S3 constructor surface remain unproven as positive autonomy states until exercised with the required functional ownership/closure evidence.
 
 The S3 current-control ownership contract is defined in [roles/S3.md](roles/S3.md). During M1 it does **not** activate a permanent S3 agent: it keeps the actual transaction owner explicit while GitHub Projects, queues, schedulers, fields, and automation remain supporting surfaces. Its autonomous-agent mode is gated by the M3 conditions in [ROADMAP.md](ROADMAP.md).
 
