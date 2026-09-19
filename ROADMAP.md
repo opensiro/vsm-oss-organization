@@ -4,7 +4,7 @@ This roadmap grows contributor autonomy bottom-up across the public OpenSiro OSS
 
 The current system-in-focus starts with three declared operational S1 domains — Index, Skills, and Awesome — while Profile remains the normative semantic source and `vsm-oss-organization` is the metasystem/control-construction surface.
 
-The vectors below are milestone construction targets, not automatic grades or published assessment states. Milestone completion means the stated organizational construction/closure exists in the reference organization; a separate evidence claim may still remain open where actor ownership cannot yet be independently reconstructed.
+The vectors below are milestone construction targets, not automatic grades or published assessment states.
 
 The sequence is specific to this reference organization. It is not a universal VSM installation order, and `A`, `C`, and `P` are not maturity levels. They describe different ownership arrangements.
 
@@ -38,7 +38,7 @@ Target: `A — — — — —`
 
 **Construction status: complete.**
 
-M0 completion means the local S1 organization has been constructed and exercised across the three operational domains. It does **not** erase the separate executor-ownership proof debt described below.
+M0 completion means the local S1 organization has been constructed and exercised across the three operational domains.
 
 ### Operational plane
 
@@ -84,7 +84,7 @@ Representative real paths already exist; no synthetic trial is required merely t
 - **Skills:** `opensiro/vsm-harness-skills#9`, `#11`, `#16` — provenance/validation defects repaired inside the current procedure contract and covered by deterministic tests;
 - **Awesome:** `opensiro/awesome-vsm-harness#2`, `#3`, `#4` — real curation, subsequent narrowing/correction, and deterministic Index-consistency validation.
 
-These establish operational paths and local correction/recovery capability. They do not independently prove which actor owned every decisive local choice.
+These establish operational paths and local correction/recovery capability. They are evidence for the S1 construction at the declared domain boundaries, while the governing Methodology remains authoritative for any formal autonomy publication.
 
 ### Exit criteria
 
@@ -99,34 +99,22 @@ M0 construction is complete when:
 - [x] helper agents/tools remain supporting machinery unless independently proven as organizational units/functions;
 - [x] residual variety is preserved as evidence for later functions rather than hidden by central intervention.
 
-### Deferred ownership proof
-
-Formal publication of `S1=A` remains a separate evidence claim under the selected Methodology.
-
-The current GitHub record is attributable through the contributor account and therefore does not independently prove that an autonomous executor owned every decisive local decision. The stronger distinct-executor identity mechanism is tracked in `#35` as proof-enabling infrastructure required by M1. It may be implemented and exercised before M2 because actor/run attribution is not itself an S5 function.
-
-M2 later owns the parent-governance envelope around that capability — authorization, delegated scope, permission expansion, intervention, and revocation — through `#4/#36`.
-
-Closing M0 therefore means **construction/operational completion**, not retroactive conversion of the historical negative ownership finding into a PASS.
-
 ## M1 — Independent audit + control surface
 
 Target: `A — C A — —`
 
-M1 inherits the target `S1=A` component. Before formal M1 completion, the organization must therefore revisit the outstanding actor-ownership proof debt with the distinct executor identity/provenance mechanism in `#35`. That mechanism is supporting proof infrastructure, not a new VSM function.
-
 Introduce S3* when routine S1 reporting is insufficient to trust a material operational claim. The S3* path must use materially complementary access to operational reality, for example raw diffs, tests, pinned primary evidence, replay, or other evidence not controlled solely by the producing S1.
+
+The positive S3* path requires an independent second agent to own the audit judgment. The second agent counts only when the organizational function is established at the declared boundary; a second model, reviewer, verifier label, CI job, or tool does not automatically count as S3*.
 
 S3 remains `C`: the repository exposes a first-party current-control/intervention path, but no default autonomous S3 regulator owns it yet. The path must be specific enough to carry a real whole-system current-control decision back into affected operation.
 
 An algedonic signal is not itself S3* or S3.
 
-Reference dependency:
+Reference flow:
 
 ```text
 bounded S1 operation
-        ↓
-actor/run attribution (#35)
         ↓
 ordinary report + operational reality
         ↓ complementary access
@@ -139,27 +127,17 @@ subsequent S1 operation
 
 Exit criteria:
 
-- independently reconstructable evidence supports the `S1=A` ownership component required by the target vector;
-- an independent agent owns the audit judgment and can emit a material finding;
-- the finding can enter a defined current-control/intervention path;
+- an independent agent owns the complementary audit judgment and can emit `PASS`, `FINDING`, or `INSUFFICIENT` under the S3* contract;
+- a material finding can enter the defined current-control/intervention path;
 - the intervention result can return to subsequent S1 operation;
-- S3 is not claimed `A` until an autonomous agent owns the decisive current-control discretion.
+- S3 is not claimed `A` until an autonomous agent owns the decisive current-control discretion;
+- no executor-identity or agent-vs-human GitHub attribution mechanism is required by M1.
 
 ## M2 — Parent-governed identity boundary
 
 Target: `A — C A — P`
 
 Introduce parent-governed S5 before increasing metasystem autonomy further. The purpose is to make the legitimate identity/policy boundary explicit.
-
-The distinct executor identity/provenance mechanism from `#35` may already exist before M2. M2 does not own whether that mechanism exists; it owns how legitimate parent authority governs external capabilities once they are available.
-
-```text
-#35 proof infrastructure
-actor/run identity + provenance
-        ↓ consumed by
-M2 parent envelope
-authorization + delegated scope + expansion + intervention + revocation
-```
 
 Do not award `P` because a human approves ordinary work. A genuine identity/ultimate-policy issue must reach the legitimate parent authority, the parent must decide, and the decision must return to govern subsequent operation.
 
@@ -181,7 +159,7 @@ Exit criteria:
 - a genuine identity/policy exception can reach the legitimate parent authority;
 - the parent decision returns into the running organization;
 - subsequent operation is governed by that returned decision;
-- external execution capabilities have explicit parent authorization/scope/intervention/revocation boundaries where consequential;
+- consequential external capabilities have explicit parent authorization/scope/intervention/revocation boundaries where needed;
 - ordinary PR approval, permission prompts, or task-level confirmations are not misclassified as S5.
 
 ## M3 — Autonomous current control

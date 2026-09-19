@@ -1,7 +1,3 @@
-# Local executor credentials and ephemeral bearer tokens.
-# These patterns are convenience guardrails only; leaked secrets must still be rotated/revoked.
-*.private-key.pem
-opensiro-executor-token*
 .env
 .env.*
 !.env.example

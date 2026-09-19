@@ -150,7 +150,7 @@ A local PR is ready when all applicable gates hold:
 
 ## Current operator boundary
 
-At M0, ordinary Organization work may use the selected upstream contract and its deterministic compatibility gate. This does not change the strict M0 autonomy requirement: executor provenance, task admission/recovery, completion evidence, and agent-owned decisive S1 closure remain separate workstreams.
+At M1, ordinary Organization work uses the selected upstream contract and its deterministic compatibility gate. Task admission/recovery, completion evidence, complementary S3* audit, and S3 control-return remain separate organizational concerns. This repository does not require a dedicated GitHub App, bot identity, or agent-vs-human actor-attribution mechanism for the active milestone.
 
 A maintainer decision is required when:
 
