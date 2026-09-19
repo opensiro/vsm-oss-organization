@@ -6,7 +6,7 @@ Use with `S3STAR_AUDIT.md`. Preserve observable evidence and judgment; do not re
 
 Audit/run id:
 
-Auditor / execution identity:
+Auditor / agent:
 
 System-in-focus:
 
@@ -42,7 +42,7 @@ Primary refs:
 
 ## Audit judgment ownership
 
-Actor exercising the audit judgment:
+Agent exercising the audit judgment:
 
 Supporting/enforcement machinery used:
 
@@ -94,7 +94,7 @@ Closure/result refs:
 
 - S3* function established from complementary audit need? yes / no / insufficient
 - decisive audit judgment identified? yes / no / insufficient
-- judgment owner independently evidenced? yes / no / insufficient
+- judgment owner identified? yes / no / insufficient
 - supporting machinery separated from owner? yes / no
 - finding entered subsequent control when required? yes / no / n/a / insufficient
 
