@@ -86,7 +86,7 @@ Escalate when closure requires:
 
 ### Representative real evidence path
 
-`opensiro/vsm-harness-index#114` performed real canonical admission work, regenerated dependent views, discovered a completion-oracle defect during execution, repaired it, added regression coverage, and completed repository validation. This is evidence of the operational path and local recovery capability; it is not by itself independent proof of agent ownership.
+`opensiro/vsm-harness-index#114` performed real canonical admission work, regenerated dependent views, discovered a completion-oracle defect during execution, repaired it, added regression coverage, and completed repository validation. This is evidence of the operational path and local recovery capability.
 
 ## Skills domain
 
@@ -138,7 +138,7 @@ Escalate when closure requires:
 
 ### Representative real evidence path
 
-`opensiro/vsm-harness-skills#9`, `#11`, and `#16` show the local repair loop: provenance/validation defects were identified, corrected within the existing contract, and covered by deterministic regression tests. This is evidence of operational repair/validation capability, not independent actor-attribution proof.
+`opensiro/vsm-harness-skills#9`, `#11`, and `#16` show the local repair loop: provenance/validation defects were identified, corrected within the existing contract, and covered by deterministic regression tests. This is evidence of operational repair/validation capability.
 
 ## Awesome domain
 
@@ -199,6 +199,4 @@ M0 construction is complete when all three domains have:
 - explicit residual-variety escalation boundaries;
 - at least one real operational evidence path.
 
-This is a construction/operational milestone. It is **not** equivalent to independently proving the published autonomy state `S1=A`.
-
-The stronger external actor-attribution witness is now tracked as M1 proof infrastructure in `#35`. Until that mechanism is implemented and exercised, repository attribution alone must not be cited as independent proof that the autonomous agent owned every decisive local S1 choice. M2 later governs parent authorization, scope expansion, intervention, and revocation around that capability; it does not own whether the attribution witness exists.
+This is a construction/operational milestone. Any formal autonomy-state publication remains governed by the selected Profile/Methodology; this organization does not add a separate executor-identity or GitHub actor-attribution requirement.
