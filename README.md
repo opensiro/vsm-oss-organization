@@ -140,3 +140,7 @@ They are **side artifacts of building and studying the organization, not primary
 Their primary downstream purpose is an evidence-backed article/case study testing where applying VSM/OSM exposed organizational problems earlier, reduced rework/coordination cost, or otherwise improved development relative to plausible organically evolved alternatives — including negative cases where no such advantage is supported. A future pipeline may also derive reusable skills or methodology material, but that is a secondary planned use and not part of the current architecture.
 
 See [supplementary/design-reasoning.md](supplementary/design-reasoning.md) for worked reasoning and [supplementary/evolution-log.md](supplementary/evolution-log.md) for the chronological development record.
+
+## License
+
+Repository code, prompts, configuration, and original documentation are licensed under the [Apache License 2.0](LICENSE). Third-party material, if added later, must retain its own stated license and attribution rather than being silently relicensed by this repository.
