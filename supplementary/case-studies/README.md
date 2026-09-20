@@ -1,12 +1,16 @@
 # Empirical OSS harness case studies
 
-This directory contains comparative empirical artifacts for the `vsm-oss-organization` S1 evidence-production track.
+This directory contains comparative empirical artifacts for the `vsm-oss-organization` supplementary empirical track.
 
 Parent workstream: [#30](https://github.com/opensiro/vsm-oss-organization/issues/30).
 
 First case-study task: [#31](https://github.com/opensiro/vsm-oss-organization/issues/31).
 
 These documents are **not VSM Harness Index assessments** and are not a second assessment database. Their purpose is to reconstruct how real OSS harness organizations changed over time so the practical significance of VSM/OSM construction ideas can be tested against independent history.
+
+## Cases
+
+- [`autogen.md`](autogen.md) — AutoGen multimodal coordination pressure, roadmap/epic consolidation, partial repairs, and the later `v0.4` architectural boundary. The case intentionally leaves decisive S2/S4 ownership and causal development-cost claims unproven where the public evidence does not establish them.
 
 ## Research question
 
