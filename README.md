@@ -119,7 +119,7 @@ The vector is a **design/construction target, not an independently published ass
 
 M1 does not require a permanent autonomous S3 regulator or autonomous S3* verifier. Autonomous ownership is a separate later evidence question.
 
-Current planned endpoint:
+Long-term reference target:
 
 ```text
 S1  S2  S3  S3* S4  S5
