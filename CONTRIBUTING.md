@@ -2,9 +2,20 @@
 
 This repository defines a VSM-based contribution contract for OpenSiro OSS. Contributors may use any local runtime, scheduler, model provider, or agent harness. OpenSiro standardizes organizational responsibilities and GitHub boundaries, not execution technology.
 
-## Current milestone: M0
+## Current milestone: M1
 
-The current reference contribution unit is one bounded autonomous S1 loop.
+The current formal milestone is M1, targeting `A — C C — —`.
+
+Current evidence state:
+
+- `S1=A` is established from M0;
+- `S3*=C` is established by the current complementary-audit constructor and real witness;
+- `S3=C` remains open until one naturally qualifying current-control transaction closes #39;
+- M2-specific `S5=P` evidence already exists, but formal M2 completion remains sequentially blocked on M1.
+
+Do not manufacture an S3 disturbance merely to complete the milestone. Ordinary repository-local work remains with the S1 domain that has the requisite information and delegated authority.
+
+The reference contribution unit remains one bounded autonomous S1 loop unless the work item genuinely crosses a higher-level organizational boundary:
 
 ```text
 Issue / explicit work item
@@ -34,14 +45,40 @@ A contributor may use several internal agents or tools. Do not create extra VSM 
 
 Several workers remain one S1 when they jointly close one durable contribution outcome and do not operate as independently regulated operational units with separate environments and autonomy.
 
+## Escalation and parent-governed S5
+
+Start with [`CONTRIBUTOR_START.md`](CONTRIBUTOR_START.md) for repository ownership and organization-wide routing.
+
+A contributor may operate the parent-governed S5 admission process described in [`prompts/parent-control-plane.md`](prompts/parent-control-plane.md): gather evidence, prepare options, record/apply a returned decision, and verify closure. Running that process does **not** transfer the unresolved S5 decisive right to the contributor.
+
+Use the shorthand only as an admission request:
+
+```text
+S5: рассмотреть <matter>
+S5: consider <matter>
+```
+
+Existing returned parent policy may be applied by a contributor without creating a new S5 event. A genuinely unresolved identity / ultimate-policy choice must reach the legitimate parent declared by [`S5_PARENT_AUTHORITY.md`](S5_PARENT_AUTHORITY.md). Ordinary S1 work, S3 current-control, S3* audit, PR review, CI repair, or routine tool use must not be promoted into S5 merely because the matter is important.
+
 ## GitHub boundary
 
 Prefer one claimed work item → one reviewable PR unless the work item explicitly defines another artifact.
 
 Do not mutate shared canonical state merely to prove autonomy. Use normal GitHub review/integration boundaries. Whether those boundaries later participate in S2 is a functional question at the relevant recursion level; PRs are not defined as either S2 or non-S2 by name.
 
-## Future milestones
+## Milestone discipline
 
-Do not add permanent S2/S3/S3*/S4/S5 agents pre-emptively. New role prompts and control surfaces are introduced only when [ROADMAP.md](ROADMAP.md) establishes the disturbance they regulate.
+Do not add permanent S2/S3/S3*/S4/S5 agents pre-emptively. New role prompts and control surfaces count only when the relevant organizational function, decisive right, owner, boundary reachability, and closure evidence are established under the active Profile/Methodology.
 
-The long-term reference target is `A A A A A P`, but present autonomy claims must follow actual function, ownership, and closure evidence.
+The current roadmap target is:
+
+```text
+M0  A — — — — —
+M1  A — C C — —
+M2  A — C C — P
+M3  A — A C — P
+M4  A A A C — P
+M5  A A A C A P
+```
+
+The long-term reference target is therefore `A A A C A P`. Present autonomy claims must follow actual function, ownership, and closure evidence; `A`, `C`, and `P` are ownership arrangements, not a maturity ladder.
