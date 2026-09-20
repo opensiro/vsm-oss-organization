@@ -18,6 +18,22 @@ Use `opensiro/vsm-oss-organization` when the question is organization-wide withi
 
 Repositories and research tracks outside the declared scope are not governed by this routing contract merely because they are public or live under the `opensiro` organization.
 
+## Autonomous contributor observability
+
+Autonomous contributors should keep the project owner able to recover the current state without following every intermediate action. The default run boundary and owner-facing snapshot contract are defined in [`CONTRIBUTING.md`](CONTRIBUTING.md), under **Autonomous progress and owner observability**.
+
+In short, complete the requested work, finish any already-started atomic delivery chain, take no more than one or two directly implied downstream steps by default, then report:
+
+```text
+DONE
+NOW
+BLOCKED
+NEXT
+NEED YOU
+```
+
+`NEED YOU` should be `none` when no real owner decision is required. This is a contributor observability convention, not evidence of any VSM function or autonomy state.
+
 ## Parent-governed S5 entry
 
 Any contributor working inside this bounded Organization may request admission to the existing parent-governed S5 process with:
