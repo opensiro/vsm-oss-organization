@@ -33,6 +33,16 @@ class M2ParentBoundaryTests(unittest.TestCase):
         self.assertIn("identity / ultimate-policy", contract)
         self.assertIn("subsequent operation governed by returned decision", contract)
 
+    def test_current_parent_authority_is_explicit(self) -> None:
+        authority = self.read("S5_PARENT_AUTHORITY.md")
+
+        self.assertIn("**OpenSiro organization owner**", authority)
+        self.assertIn("GitHub identity: `xLagerFeuer`", authority)
+        self.assertIn("authority recorded here comes from this explicit Organization governance declaration", authority)
+        self.assertIn("Continuity for the routing-scope decision", authority)
+        self.assertIn("issue #59 / PR #62", authority)
+        self.assertIn("Changing the legitimate parent role", authority)
+
     def test_parent_record_separates_owner_support_and_closure(self) -> None:
         record = self.read("templates/s5-parent-decision-record.md")
 
@@ -48,6 +58,15 @@ class M2ParentBoundaryTests(unittest.TestCase):
             self.assertIn(marker, record)
 
         self.assertIn("INSUFFICIENT_AUTHORITY", record)
+
+    def test_first_reconstructed_witness_preserves_boundary(self) -> None:
+        witness = self.read("records/s5/2026-09-18-routing-scope-correction.md")
+
+        self.assertIn("decision / work item id: `S5-P-001`", witness)
+        self.assertIn("concrete decision owner: `xLagerFeuer`", witness)
+        self.assertIn("does this record support a positive `S5=P` witness? `YES`", witness)
+        self.assertIn("retrospective reconstruction", witness)
+        self.assertIn("does **not** formally complete M2 while M1 remains open", witness)
 
     def test_parent_prompt_rejects_shortcuts(self) -> None:
         prompt = self.read("prompts/parent-control-plane.md")
