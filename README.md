@@ -60,7 +60,7 @@ You do not need to implement a VSM runtime to start contributing. Use the prompt
 1. **New to the VSM Harness OSS group:** [prompts/learn-ecosystem.md](prompts/learn-ecosystem.md) — map repositories, authority boundaries, current milestone, and open work.
 2. **Ready to work in an operational domain:** [prompts/contribute.md](prompts/contribute.md) — select Index, Skills, or Awesome, load its contract from `S1_DOMAIN_CONTRACTS.md`, and execute one bounded S1 contribution.
 3. **Want an explicit control plane now:** [prompts/parent-control-plane.md](prompts/parent-control-plane.md) — demo a human-parent autonomy envelope ahead of the full M2 implementation.
-4. **Preparing complementary M1 audit work:** [prompts/audit-s1-work.md](prompts/audit-s1-work.md) — preparatory until exercised; its existence is not evidence that `S3*=A` is established.
+4. **Using the M1 complementary-audit constructor:** [prompts/audit-s1-work.md](prompts/audit-s1-work.md) — exercise the first-party S3* path with a composed auditor; M1 does not require a permanent autonomous verifier.
 5. **Applying a returned M1 current-control decision:** [prompts/apply-s3-control.md](prompts/apply-s3-control.md) — arbitrary comments/approvals are not treated as S3 input.
 
 Repository-local contributions still belong in the repository that owns the relevant source of truth. Use this repository for organization-wide questions: contributor roles, authority boundaries, cross-repository control/coordination, escalation, milestone sequencing, and evolution of the shared contribution control plane.
@@ -103,31 +103,38 @@ Local variety should remain in the relevant operational domain when that domain 
 
 M0 operational construction is complete: Index, Skills, and Awesome now have explicit local envelopes and real operational evidence paths.
 
-Active formal work is M1 — independent S3* audit plus an S3 constructor/control path.
+Active formal work is M1 — a complementary S3* constructor plus an S3 current-control constructor path.
 
 Current milestone target:
 
 ```text
 S1  S2  S3  S3* S4  S5
-A   —   C   A   —   —
+A   —   C   C   —   —
 ```
 
-The vector is a **design/construction target, not an independently published assessment state**. M1 focuses on establishing the complementary S3* audit function and a real S3(C) control-return path.
+The vector is a **design/construction target, not an independently published assessment state**. M1 establishes two function-specific constructor paths:
+
+- `S3=C` — a real current-control request/decision/return path into subsequent S1 operation;
+- `S3*=C` — a real complementary-audit path that exposes claim/risk, ordinary reporting, materially complementary evidence, audit judgment/outcome, and a route for material findings into subsequent control.
+
+M1 does not require a permanent autonomous S3 regulator or autonomous S3* verifier. Autonomous ownership is a separate later evidence question.
 
 Long-term reference target:
 
 ```text
 S1  S2  S3  S3* S4  S5
-A   A   A   A   A   P
+A   A   A   C   A   P
 ```
 
-`A`, `C`, and `P` are ownership arrangements, not maturity scores. The milestone ordering is specific to this reference organization, not a universal VSM installation order. See [ROADMAP.md](ROADMAP.md).
+`A`, `C`, and `P` are ownership arrangements, not maturity scores. The milestone ordering is specific to this reference organization, not a universal VSM installation order. A future `S3*=A` step should be added only if real residual audit variety justifies an autonomous audit owner. See [ROADMAP.md](ROADMAP.md).
 
 ## Current and preparatory roles
 
 The M0 S1 construction uses [roles/S1.md](roles/S1.md) together with [S1_DOMAIN_CONTRACTS.md](S1_DOMAIN_CONTRACTS.md). A run must declare Index, Skills, or Awesome as its operational domain.
 
-M1 infrastructure may exist before the milestone is formally achieved. The current S3* audit role and S3 constructor surface remain unproven as positive autonomy states until exercised with the required functional ownership/closure evidence.
+M1 constructor surfaces may exist before the milestone is formally achieved. The current S3* audit surface and S3 current-control surface remain constructor paths until their functions are established by qualifying use at the declared boundary.
+
+The S3* constructor contract is defined in [S3STAR_AUDIT.md](S3STAR_AUDIT.md). During M1, [roles/S3STAR.md](roles/S3STAR.md) is composition guidance rather than evidence of a permanently running verifier. The actual audit judgment owner is recorded per run.
 
 The S3 current-control ownership contract is defined in [roles/S3.md](roles/S3.md). During M1 it does **not** activate a permanent S3 agent: it keeps the actual transaction owner explicit while GitHub Projects, queues, schedulers, fields, and automation remain supporting surfaces. Its autonomous-agent mode is gated by the M3 conditions in [ROADMAP.md](ROADMAP.md).
 

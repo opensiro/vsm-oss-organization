@@ -13,11 +13,11 @@ The sequence is specific to this reference organization. It is not a universal V
 | GitHub milestone | Tracker issue | Target vector | Scope introduced |
 | --- | --- | --- | --- |
 | `M0` — Autonomous operation | #2 | `A — — — — —` | Local S1 construction across Index, Skills, and Awesome. |
-| `M1` — Independent audit + control surface | #3 | `A — C A — —` | Complementary S3* audit plus a composable S3 intervention path. |
-| `M2` — Parent-governed identity boundary | #4 | `A — C A — P` | Parent-governed S5 closure and explicit delegated policy envelope. |
-| `M3` — Autonomous current control | #5 | `A — A A — P` | Autonomous S3 current regulation inside the S5 envelope. |
-| `M4` — Cross-S1 coordination | #6 | `A A A A — P` | Autonomous S2 over concrete interference among existing S1 domains. |
-| `M5` — External adaptation | #7 | `A A A A A P` | Autonomous S4 outside-and-then adaptation. |
+| `M1` — Audit + control constructors | #3 | `A — C C — —` | Function-specific S3 current-control and S3* complementary-audit construction paths. |
+| `M2` — Parent-governed identity boundary | #4 | `A — C C — P` | Parent-governed S5 closure and explicit delegated policy envelope. |
+| `M3` — Autonomous current control | #5 | `A — A C — P` | Autonomous S3 current regulation inside the S5 envelope. |
+| `M4` — Cross-S1 coordination | #6 | `A A A C — P` | Autonomous S2 over concrete interference among existing S1 domains. |
+| `M5` — External adaptation | #7 | `A A A C A P` | Autonomous S4 outside-and-then adaptation. |
 
 The tracker issue defines the milestone's construction/exit contract. Neither the tracker nor this roadmap is a second source of VSM semantics.
 
@@ -26,11 +26,13 @@ The tracker issue defines the milestone's construction/exit contract. Neither th
 | Milestone | Target vector | Why it exists |
 | --- | --- | --- |
 | M0 — Autonomous operation | `A — — — — —` | Establish repeatable local S1 operation for Index, Skills, and Awesome while keeping residual variety explicit. |
-| M1 — Independent audit + control surface | `A — C A — —` | Add complementary audit and an explicit S3 intervention path without yet making S3 autonomous. |
-| M2 — Parent-governed identity boundary | `A — C A — P` | Establish genuine S5 escalation and return so later autonomy grows inside an explicit parent-governed policy envelope. |
-| M3 — Autonomous current control | `A — A A — P` | Give an agent whole-system current view and bounded intervention authority when S1 domains can no longer absorb all current exceptions locally. |
-| M4 — Cross-S1 coordination | `A A A A — P` | Add autonomous S2 only after the already-existing S1 domains exhibit concrete interference that requires coordination. |
-| M5 — External adaptation | `A A A A A P` | Add S4 only when the organization must model external/future change and feed adaptation options back into current capability. |
+| M1 — Audit + control constructors | `A — C C — —` | Establish real S3 and S3* functions with first-party construction paths, without yet requiring autonomous owners for either metasystem function. |
+| M2 — Parent-governed identity boundary | `A — C C — P` | Establish genuine S5 escalation and return so later autonomy grows inside an explicit parent-governed policy envelope. |
+| M3 — Autonomous current control | `A — A C — P` | Give an agent whole-system current view and bounded intervention authority when S1 domains can no longer absorb all current exceptions locally. |
+| M4 — Cross-S1 coordination | `A A A C — P` | Add autonomous S2 only after the already-existing S1 domains exhibit concrete interference that requires coordination. |
+| M5 — External adaptation | `A A A C A P` | Add S4 only when the organization must model external/future change and feed adaptation options back into current capability. |
+
+The current roadmap intentionally leaves S3* at `C`. A future `S3*=A` milestone should be added only if observed audit variety justifies a permanent autonomous audit owner rather than merely because S3* exists in VSM.
 
 ## M0 — Autonomous operation
 
@@ -99,42 +101,70 @@ M0 construction is complete when:
 - [x] helper agents/tools remain supporting machinery unless independently proven as organizational units/functions;
 - [x] residual variety is preserved as evidence for later functions rather than hidden by central intervention.
 
-## M1 — Independent audit + control surface
+## M1 — Audit + control constructors
 
-Target: `A — C A — —`
+Target: `A — C C — —`
 
-Introduce S3* when routine S1 reporting is insufficient to trust a material operational claim. The S3* path must use materially complementary access to operational reality, for example raw diffs, tests, pinned primary evidence, replay, or other evidence not controlled solely by the producing S1.
+M1 establishes **two constructor paths**. It does not require a permanent autonomous S3 regulator or a permanent autonomous S3* verifier.
 
-The positive S3* path requires an independent second agent to own the audit judgment. The second agent counts only when the organizational function is established at the declared boundary; a second model, reviewer, verifier label, CI job, or tool does not automatically count as S3*.
+### S3*=C — complementary-audit constructor
 
-S3 remains `C`: the repository exposes a first-party current-control/intervention path, but no default autonomous S3 regulator owns it yet. The path must be specific enough to carry a real whole-system current-control decision back into affected operation.
+Introduce S3* only where routine S1/S3 reporting is insufficient to trust a material operational claim or risk.
 
-An algedonic signal is not itself S3* or S3.
+The constructor threshold is:
+
+1. a real complementary-audit function is established at the declared boundary;
+2. the ordinary S1/S3 reporting path is explicit;
+3. a first-party path exposes materially complementary access to operational reality;
+4. the S3*-specific surface can represent the audited claim/risk, evidence boundary, audit judgment, and local outcome (`PASS`, `FINDING`, or `INSUFFICIENT`);
+5. a material finding has an explicit route toward subsequent current control;
+6. the actual judgment owner is recorded separately from evidence collection, deterministic checking, transport, and downstream S3 control;
+7. the constructor path is boundary-reachable and is more specific than a generic reviewer/hook/callback.
+
+For `S3*=C`, the audit judgment owner may be human, agent, or another explicitly composed participant. The autonomous actor, authority, independence, or final closure loop may still require composition. This follows the selected Methodology definition of `C`.
+
+Issue #44 / PR #45 is the first real functional witness: it exercised a complementary evidence path on real work and closed with `PASS` without manufacturing a finding. That evidence supports the S3* function/constructor topology; it does not establish `S3*=A`.
+
+### S3=C — current-control constructor
+
+S3 remains `C`: the repository exposes a first-party current-control/intervention path, but no default autonomous S3 regulator owns it yet.
+
+The path must be capable of carrying a real whole-system current-control decision back into affected operation. The trigger may come from S3*, from another legitimate current exception, or from any other source that establishes the S3 function at the declared boundary.
 
 Reference flow:
 
 ```text
-bounded S1 operation
+S1 operation
         ↓
-ordinary report + operational reality
-        ↓ complementary access
-independent S3* judgment
-        ↓ finding
-S3 constructor/control path
-        ↓ returned decision
+material current exception and/or composed S3* finding
+        ↓
+S3 control request
+        ↓
+whole-system current context
+        ↓
+current-control decision
+        ↓
+S3 constructor return
+        ↓
 subsequent S1 operation
 ```
 
-Exit criteria:
+An algedonic signal is not itself S3* or S3.
 
-- an independent agent owns the complementary audit judgment and can emit `PASS`, `FINDING`, or `INSUFFICIENT` under the S3* contract;
-- a material finding can enter the defined current-control/intervention path;
-- the intervention result can return to subsequent S1 operation;
-- S3 is not claimed `A` until an autonomous agent owns the decisive current-control discretion.
+### Exit criteria
+
+M1 closes when:
+
+- the S3* function has a real first-party constructor witness with ordinary vs complementary evidence paths distinguishable and a reviewable audit outcome;
+- the S3* constructor exposes a route for material findings into current control without requiring an autonomous verifier;
+- a genuine S3 current-control need is carried through the first-party S3 constructor path;
+- the returned S3 decision changes, constrains, stops, repairs, resumes, or intentionally preserves subsequent S1 operation with reviewable closure;
+- actual decision/judgment owners remain explicit and support/enforcement remains separate;
+- neither S3 nor S3* is claimed `A` merely because constructor infrastructure exists.
 
 ## M2 — Parent-governed identity boundary
 
-Target: `A — C A — P`
+Target: `A — C C — P`
 
 Introduce parent-governed S5 before increasing metasystem autonomy further. The purpose is to make the legitimate identity/policy boundary explicit.
 
@@ -163,7 +193,7 @@ Exit criteria:
 
 ## M3 — Autonomous current control
 
-Target: `A — A A — P`
+Target: `A — A C — P`
 
 Add autonomous S3 only when observed current operational variety across the organization exceeds what the S1 domains should absorb locally.
 
@@ -174,12 +204,12 @@ Exit criteria:
 - S3 has a whole-system view of current operations at the declared boundary;
 - an agent owns bounded decisions over relevant current priorities/resources/commitments/constraints;
 - deterministic schedulers, gates, budgets, or kill switches only enforce those decisions;
-- S3* findings can change S3 decisions and subsequent S1 behaviour;
+- findings produced through the S3* constructor can change S3 decisions and subsequent S1 behaviour when a composed audit emits a material finding;
 - S3 remains inside the S5 policy envelope established at M2.
 
 ## M4 — Cross-S1 coordination
 
-Target: `A A A A — P`
+Target: `A A A C — P`
 
 The organization already has three operational S1 domains from M0. M4 therefore does **not** create multi-S1 operation. It introduces autonomous S2 only when concrete interference among those existing S1 domains requires an explicit coordination function.
 
@@ -204,7 +234,7 @@ For `S2=A`, the decisive coordination discretion must be agent-owned. Determinis
 
 ## M5 — External adaptation
 
-Target: `A A A A A P`
+Target: `A A A C A P`
 
 S4 is deliberately last. Generic self-improvement, backlog ordering, internal planning, memory consolidation, or reacting to a single upstream event is not enough.
 

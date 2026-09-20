@@ -1,6 +1,6 @@
 # Audit one S1 work item with complementary evidence
 
-Use this prompt with [`S3STAR_AUDIT.md`](../S3STAR_AUDIT.md) for preparatory M1 work.
+Use this prompt with [`S3STAR_AUDIT.md`](../S3STAR_AUDIT.md) to exercise the M1 `S3*=C` constructor path.
 
 ```text
 Audit one bounded S1 contribution/closure claim using a materially complementary evidence path.
@@ -14,14 +14,14 @@ Before making an audit judgment, establish:
 - complementary evidence/access path;
 - why that access is materially different for this claim;
 - primary evidence required;
-- actor that owns the audit judgment;
+- actor that owns the audit judgment in this concrete run;
 - supporting deterministic checks/tools separately;
 - downstream current-control destination for a material finding;
 - closure condition.
 
 If the proposed audit only repeats the ordinary S1 check or reads only the same S1 narrative, do not pretend it is S3*. Record that the complementary-access requirement is not satisfied.
 
-Inspect the declared complementary evidence independently where possible. Prefer pinned primary evidence, raw diffs, complete changed-file sets, replay/reconstruction, source-of-truth comparisons, or other evidence not controlled solely by the producing S1 for the audited claim.
+Inspect the declared complementary evidence independently where possible. Prefer pinned primary evidence, raw diffs, complete changed-file sets, replay/reconstruction, source-of-truth comparisons, or other evidence materially different from the producing S1's ordinary reporting path.
 
 Do not infer S3* merely from another model, a verifier label, CI, logs, tracing, or a routine QA stage.
 
@@ -34,9 +34,9 @@ End with exactly one local audit outcome:
 
 For FINDING, preserve the primary evidence and route the finding to the declared current-control destination. Record whether and how it enters subsequent control; publication alone is not closure.
 
-Attribute any human intervention affecting the audit judgment. Do not count a human-selected conclusion as agent-owned evidence.
+Record the actual judgment owner honestly. M1 does not require an autonomous verifier or a second agent; autonomous ownership is a separate future condition for S3*=A.
 
 Use templates/s3star-audit-record.md for the reviewable record. Do not record hidden chain-of-thought.
 
-This prompt does not establish S3*=A, activate M1, create an autonomous S3 regulator, or introduce S2/S4/S5.
+This prompt exercises the first-party S3* constructor surface. It does not by itself establish S3*=A, create an autonomous S3 regulator, or introduce S2/S4/S5.
 ```

@@ -6,7 +6,7 @@ Use with `S3STAR_AUDIT.md`. Preserve observable evidence and judgment; do not re
 
 Audit/run id:
 
-Auditor / agent:
+Auditor / composed actor:
 
 System-in-focus:
 
@@ -42,14 +42,11 @@ Primary refs:
 
 ## Audit judgment ownership
 
-Agent exercising the audit judgment:
+Actor exercising the audit judgment in this run:
 
 Supporting/enforcement machinery used:
 
-Human intervention affecting the judgment?
-
-- [ ] No
-- [ ] Yes — describe and attribute:
+Human intervention affecting the judgment, if applicable:
 
 ## Observable findings
 
@@ -90,12 +87,14 @@ Subsequent S1 effect, if any:
 
 Closure/result refs:
 
-## Function / ownership separation check
+## M1 constructor check
 
-- S3* function established from complementary audit need? yes / no / insufficient
-- decisive audit judgment identified? yes / no / insufficient
-- judgment owner identified? yes / no / insufficient
-- supporting machinery separated from owner? yes / no
-- finding entered subsequent control when required? yes / no / n/a / insufficient
+- S3* function established from a real complementary audit need? yes / no / insufficient
+- ordinary reporting path explicit? yes / no / insufficient
+- materially complementary evidence path explicit? yes / no / insufficient
+- first-party S3*-specific judgment surface used? yes / no / insufficient
+- actual judgment owner recorded separately from support machinery? yes / no / insufficient
+- finding has a downstream current-control path when required? yes / no / n/a / insufficient
+- boundary reachability established for the constructor path? yes / no / insufficient
 
-Do not translate this record directly into `A`, `C`, `P`, `—`, or `?` without applying the governing Methodology and its evidence boundary.
+For M1, this record may support `S3*=C` without an autonomous audit owner. Do not translate the record into `A`, `C`, `P`, `—`, or `?` without applying the governing Methodology and its evidence boundary.
