@@ -66,6 +66,52 @@ Prefer one claimed work item → one reviewable PR unless the work item explicit
 
 Do not mutate shared canonical state merely to prove autonomy. Use normal GitHub review/integration boundaries. Whether those boundaries later participate in S2 is a functional question at the relevant recursion level; PRs are not defined as either S2 or non-S2 by name.
 
+## Autonomous progress and owner observability
+
+Autonomous execution is useful only when the project owner can cheaply recover the state of work. A contributor or agent should therefore optimize for both **completion** and **owner observability**.
+
+### Run boundary
+
+For an ordinary autonomous run:
+
+1. complete the explicitly requested work item;
+2. complete at most **one or two obvious downstream steps** that are directly implied by that work and remain inside the same authority/evidence boundary;
+3. finish an already-started atomic delivery chain such as `branch → PR → CI → fix → merge` rather than stopping in the middle;
+4. stop before opening a new independent research/program of work merely because another useful idea is visible.
+
+This is a default stop rule, not a prohibition on larger explicitly assigned work. A work item may define a broader bounded sequence in advance.
+
+### Owner-facing snapshot
+
+At the end of a meaningful autonomous run, provide one compact control-plane snapshot that lets the owner recover context without reading every intermediate update:
+
+```text
+OpenSiro status
+
+DONE
+- up to three durable results
+
+NOW
+- current milestone / work-state change
+
+BLOCKED
+- none, or the concrete blocker and where it lives
+
+NEXT
+- one next step and why it is next
+
+NEED YOU
+- none, or the exact owner decision/input required
+```
+
+Use issue/PR/commit identifiers as supporting provenance, not as the primary narrative. Routine green CI, intermediate branch mechanics, and low-level tool activity should normally be omitted unless they failed or materially changed the result.
+
+If `NEED YOU = none`, do not manufacture an approval request merely to force interaction. The snapshot should still make the next autonomous continuation obvious.
+
+### Boundary
+
+This reporting convention is an **observability/interface rule for contributors**. It does not establish S2, S3, S3*, S4, S5, an autonomy state, or a new decision owner by itself. Function and ownership claims still require the normal Profile/Methodology evidence.
+
 ## Milestone discipline
 
 Do not add permanent S2/S3/S3*/S4/S5 agents pre-emptively. New role prompts and control surfaces count only when the relevant organizational function, decisive right, owner, boundary reachability, and closure evidence are established under the active Profile/Methodology.
