@@ -39,6 +39,37 @@ A contribution should state:
 
 The agent should own ordinary local decisions and failure recovery. The contributor owns the runtime envelope: scheduler, model choice, credentials, budget, sandbox, and launch cadence.
 
+## Autonomous work observability
+
+Substantial autonomous work must remain easy for the project owner to supervise without following every intermediate issue, PR, CI run, or tool call.
+
+Follow [`AUTONOMOUS_WORK_REPORTING.md`](AUTONOMOUS_WORK_REPORTING.md) for the common control-plane snapshot and continuation rule.
+
+The default post-run summary is:
+
+```text
+OpenSiro status
+
+DONE
+...
+
+NOW
+...
+
+BLOCKED
+...
+
+NEXT
+...
+
+NEED YOU
+none | <exact decision/input required>
+```
+
+When `NEED YOU = none`, routine work already inside delegated authority may continue autonomously. By default, finish the requested task, complete one or two obvious downstream closure/validation steps, finish any already-started atomic `branch → PR → CI → fix → merge` chain, then emit a snapshot before opening a substantially new line of work.
+
+This reporting contract is an observability/control surface only. It does not create a VSM function, change an autonomy state, transfer decision authority, or make a status summary a second source of truth.
+
 ## One S1 does not mean one process
 
 A contributor may use several internal agents or tools. Do not create extra VSM functions from process names alone.
