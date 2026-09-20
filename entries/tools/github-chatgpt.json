@@ -1,0 +1,115 @@
+{
+  "entry_id": "github-chatgpt-openai-connector",
+  "provider": "GitHub / OpenAI",
+  "integration": "ChatGPT GitHub connector",
+  "external_boundary": {
+    "service": "GitHub",
+    "resources": [
+      "opensiro/vsm-harness-profile",
+      "opensiro/vsm-harness-skills",
+      "opensiro/vsm-harness-index",
+      "opensiro/awesome-vsm-harness",
+      "opensiro/vsm-oss-organization"
+    ]
+  },
+  "connection_owner": {
+    "role": "OpenSiro organization owner",
+    "authority_ref": "S5_PARENT_AUTHORITY.md"
+  },
+  "runtime_users": [
+    "authorized ChatGPT/OpenAI runtime acting inside an admitted OpenSiro OSS work item"
+  ],
+  "technical_permissions": [
+    "read public repository files, metadata, issues, pull requests, commits and workflow state",
+    "create/update issues and pull requests when connector authorization allows",
+    "create/update repository content on branches when connector authorization allows",
+    "merge pull requests when connector authorization and repository policy allow",
+    "read workflow/check results",
+    "actual available operations remain bounded by the live connector authorization and GitHub policy"
+  ],
+  "action_policy": {
+    "delegated": [
+      {
+        "class": "READ_ONLY",
+        "actions": [
+          "inspect in-scope repositories/files/issues/PRs/commits/checks",
+          "search/read primary evidence for an admitted work item"
+        ],
+        "rationale": "Read access is ordinary support when it stays inside the admitted work/evidence boundary."
+      },
+      {
+        "class": "BOUNDED_MUTATION",
+        "actions": [
+          "create/update a bounded issue or work record",
+          "create a feature branch",
+          "create/update files on a non-default branch",
+          "open/update a pull request for already-admitted work"
+        ],
+        "rationale": "These mutations may transport an already-delegated S1/metasystem decision without widening organizational authority."
+      }
+    ],
+    "parent_gated": [
+      {
+        "class": "INTEGRATION_SENSITIVE",
+        "actions": [
+          "merge a pull request into the default/protected branch"
+        ],
+        "rationale": "Current owner-only integration policy gates shared/default-state changes. This gate is not automatically S5; classify the underlying organizational decision separately."
+      },
+      {
+        "class": "POLICY_SECURITY_SENSITIVE",
+        "actions": [
+          "expand integration permissions or reachable resources",
+          "install/replace the integration",
+          "change branch/ruleset/repository administration policy",
+          "change organization permissions or security-sensitive access"
+        ],
+        "rationale": "These actions change capability/security/governance surfaces and require explicit parent authorization or a later separately delegated governance path."
+      }
+    ],
+    "forbidden": [
+      {
+        "class": "FORBIDDEN",
+        "actions": [
+          "use technically available access against repositories/resources outside the admitted work boundary",
+          "silently broaden resource scope to continue after authorization failure",
+          "change secrets/credentials through ordinary agent work",
+          "bypass an explicit parent gate or repository protection"
+        ],
+        "rationale": "Technical capability does not widen the organizational delegation envelope."
+      }
+    ]
+  },
+  "revocation": {
+    "owner": "OpenSiro organization owner",
+    "path": "narrow/disconnect/revoke the integration through the provider/GitHub authorization surface; affected runtime work fails closed until re-entry"
+  },
+  "failure_behavior": [
+    "stop the affected mutation when authentication or permission state is inconsistent with this entry",
+    "preserve existing evidence/work where possible",
+    "report permission/resource drift explicitly",
+    "request re-entry or parent intervention instead of silently broadening scope",
+    "do not treat missing tool access as permission to substitute another unadmitted external capability"
+  ],
+  "reentry_triggers": [
+    "integration/provider identity changes",
+    "connection owner changes",
+    "reachable repository/resource scope changes",
+    "technical permissions materially expand or contract",
+    "delegated/parent-gated/forbidden action mapping changes",
+    "authentication model changes materially",
+    "parent/delegation policy changes",
+    "provider behavior changes the risk/meaning of an existing capability"
+  ],
+  "evidence_retention": [
+    "GitHub issue/PR/commit identifiers",
+    "pinned revision or merge commit where relevant",
+    "workflow/check result identifiers where relevant",
+    "Organization decision/control records for consequential actions",
+    "explicit failure/no-change evidence when an action cannot be completed"
+  ],
+  "notes": [
+    "This entry records the organizational use envelope, not a promise that every listed technical operation is always exposed by the live connector.",
+    "The GitHub connector remains transport/support and does not own S1-S5 functions."
+  ]
+}
