@@ -59,7 +59,7 @@ You do not need to implement a VSM runtime to start contributing. Use the prompt
 
 1. **New to the VSM Harness OSS group:** [prompts/learn-ecosystem.md](prompts/learn-ecosystem.md) — map repositories, authority boundaries, current milestone, and open work.
 2. **Ready to work in an operational domain:** [prompts/contribute.md](prompts/contribute.md) — select Index, Skills, or Awesome, load its contract from `S1_DOMAIN_CONTRACTS.md`, and execute one bounded S1 contribution.
-3. **Want an explicit control plane now:** [prompts/parent-control-plane.md](prompts/parent-control-plane.md) — demo a human-parent autonomy envelope ahead of the full M2 implementation.
+3. **Need the parent-governed identity/policy boundary:** [prompts/parent-control-plane.md](prompts/parent-control-plane.md) — apply the current S5 parent-authority, delegated-envelope, escalation, decision, and return contract. Ordinary approvals or tool permissions are not S5 by themselves.
 4. **Using the M1 complementary-audit constructor:** [prompts/audit-s1-work.md](prompts/audit-s1-work.md) — exercise the first-party S3* path with a composed auditor; M1 does not require a permanent autonomous verifier.
 5. **Applying a returned M1 current-control decision:** [prompts/apply-s3-control.md](prompts/apply-s3-control.md) — arbitrary comments/approvals are not treated as S3 input.
 
@@ -103,7 +103,9 @@ Local variety should remain in the relevant operational domain when that domain 
 
 M0 operational construction is complete: Index, Skills, and Awesome now have explicit local envelopes and real operational evidence paths.
 
-Active formal work is M1 — a complementary S3* constructor plus an S3 current-control constructor path.
+Active formal work is M1. The complementary-audit constructor is already established by real use (`S3*=C`); the remaining M1 gap is #39, which must carry one naturally qualifying whole-system current-control decision through the S3 constructor and back into subsequent S1 operation before `S3=C` can be claimed.
+
+M2-specific S5 evidence is already established ahead of formal milestone sequencing: the explicit parent-authority contract and `S5-P-001` routing-scope witness support `S5=P`. M2 remains formally open only because it inherits M1 and therefore cannot close until M1 does.
 
 Current milestone target:
 
@@ -132,7 +134,7 @@ A   A   A   C   A   P
 
 The M0 S1 construction uses [roles/S1.md](roles/S1.md) together with [S1_DOMAIN_CONTRACTS.md](S1_DOMAIN_CONTRACTS.md). A run must declare Index, Skills, or Awesome as its operational domain.
 
-M1 constructor surfaces may exist before the milestone is formally achieved. The current S3* audit surface and S3 current-control surface remain constructor paths until their functions are established by qualifying use at the declared boundary.
+M1 constructor surfaces may exist before the milestone is formally achieved. The current S3* audit surface is established at constructor level by qualifying use; the S3 current-control surface remains awaiting the real #39 functional witness.
 
 The S3* constructor contract is defined in [S3STAR_AUDIT.md](S3STAR_AUDIT.md). During M1, [roles/S3STAR.md](roles/S3STAR.md) is composition guidance rather than evidence of a permanently running verifier. The actual audit judgment owner is recorded per run.
 
