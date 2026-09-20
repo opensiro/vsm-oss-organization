@@ -1,8 +1,52 @@
 # Parent-governed S5 composition prompt
 
-Use this prompt to compose a bounded parent-governed identity / ultimate-policy decision under [`S5_PARENT_BOUNDARY.md`](../S5_PARENT_BOUNDARY.md).
+Use this prompt to compose a bounded parent-governed identity / ultimate-policy decision under [`S5_PARENT_BOUNDARY.md`](../S5_PARENT_BOUNDARY.md) and the current legitimate-parent declaration in [`S5_PARENT_AUTHORITY.md`](../S5_PARENT_AUTHORITY.md).
 
-This is preparatory M2 operating guidance. It does **not** establish `S5=P` merely because a human is present or because the prompt is used.
+The Organization already has a positive `S5=P` witness (`S5-P-001`). Using this prompt does **not** by itself establish another S5 witness, change the parent authority, or formally complete M2 while M1 remains open.
+
+## Invocation shorthand
+
+A maintainer may initiate S5 admission/review with either form:
+
+```text
+S5: рассмотреть <matter>
+S5: consider <matter>
+```
+
+Example:
+
+```text
+S5: рассмотреть включение opensiro/example-repo в bounded VSM Harness OSS organization
+```
+
+The prefix is an **admission request**, not proof that the matter is S5. The first step is always to classify the organizational function.
+
+On receiving the shorthand:
+
+1. read the current `S5_PARENT_BOUNDARY.md` and `S5_PARENT_AUTHORITY.md` plus the primary evidence relevant to the matter;
+2. classify the request as one of:
+   - `S5_ADMITTED` — genuine identity / ultimate-policy matter at this recursion;
+   - `NOT_S5` — safely owned by an already-delegated lower function;
+   - `INSUFFICIENT_AUTHORITY` — the matter may be S5 but legitimate parent ownership cannot be established;
+3. if `NOT_S5`, route it to the lowest function with requisite information and delegated authority and do not continue the S5 path;
+4. if `S5_ADMITTED`, produce a compact parent decision packet containing:
+   - exact matter;
+   - S5 rationale;
+   - lower-level authority considered and why it cannot close the matter;
+   - decisive S5 right;
+   - legitimate parent role and concrete holder;
+   - viable options where material;
+   - relevant primary evidence;
+   - consequence of no decision;
+   - return targets;
+   - closure condition;
+5. the legitimate parent then makes the authoritative decision;
+6. record the result using `templates/s5-parent-decision-record.md` when the decision is material enough to preserve as Organization evidence;
+7. return/apply the decision into the affected Organization path and verify observable closure.
+
+A clear parent instruction can contain both the admission request and the intended decision, but it still must pass S5 admission before being recorded as S5. Technical ability to execute the instruction does not determine its VSM function.
+
+## Full operating prompt
 
 ```text
 Act inside the bounded OpenSiro VSM Harness OSS scope defined by opensiro/vsm-oss-organization.
@@ -12,6 +56,7 @@ First read:
 - ORGANIZATION.md
 - ROADMAP.md
 - S5_PARENT_BOUNDARY.md
+- S5_PARENT_AUTHORITY.md
 - roles/S1.md
 - S3_CONTROL_SURFACE.md
 - S3STAR_AUDIT.md
@@ -50,5 +95,5 @@ Do not treat the following as S5 by themselves:
 - one assessment admission/rejection;
 - a static policy document with no real decision/return loop.
 
-Until a real qualifying case has legitimate-parent evidence and returned operational closure, describe this as preparatory M2 composition and do not claim S5=P completion.
+Do not infer a new S5 witness merely because this prompt was invoked. A new positive witness requires a real qualifying identity / ultimate-policy matter, legitimate-parent decision, return, and observable closure.
 ```
