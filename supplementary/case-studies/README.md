@@ -9,7 +9,8 @@ Case-study tasks:
 - first case: [#31](https://github.com/opensiro/vsm-oss-organization/issues/31);
 - second case: [#88](https://github.com/opensiro/vsm-oss-organization/issues/88);
 - third case: [#98](https://github.com/opensiro/vsm-oss-organization/issues/98);
-- cross-case schema: [#90](https://github.com/opensiro/vsm-oss-organization/issues/90), implemented in [`COMPARISON_SCHEMA.md`](COMPARISON_SCHEMA.md).
+- cross-case schema: [#90](https://github.com/opensiro/vsm-oss-organization/issues/90), implemented and later revised in [`COMPARISON_SCHEMA.md`](COMPARISON_SCHEMA.md);
+- first bounded three-case synthesis: [#100](https://github.com/opensiro/vsm-oss-organization/issues/100), implemented in [`CROSS_CASE_SYNTHESIS.md`](CROSS_CASE_SYNTHESIS.md).
 
 These documents are **not VSM Harness Index assessments** and are not a second assessment database. Their purpose is to reconstruct how real OSS harness organizations changed over time so the practical significance of VSM/OSM construction ideas can be tested against independent history.
 
@@ -18,6 +19,20 @@ These documents are **not VSM Harness Index assessments** and are not a second a
 - [`autogen.md`](autogen.md) — AutoGen multimodal coordination pressure, roadmap/epic consolidation, partial repairs, and the later `v0.4` architectural boundary. The case intentionally leaves decisive S2/S4 ownership and causal development-cost claims unproven where the public evidence does not establish them.
 - [`openhands-runtime.md`](openhands-runtime.md) — OpenDevin/OpenHands runtime migration from SSH-coupled execution toward EventStreamRuntime, including partial compatibility work, parallel replacement implementation, integration/evaluation gates, preserved validation gaps, and final retirement/default switch. The case does not infer S3/S3*/S4 ownership from runtime, testing, or maintainer vocabulary.
 - [`langgraph-interrupt-coordination.md`](langgraph-interrupt-coordination.md) — LangGraph parallel interrupt/resume evolution from ambiguous shared feedback toward explicit interrupt identity, ID-mapped resumes, and rejection of ambiguous scalar feedback, with a later nested-subgraph counterexample showing incomplete recursive coverage. The case treats this as coordination/requisite-variety evidence without inferring S2 autonomy or decision ownership.
+
+## Cross-case synthesis
+
+[`CROSS_CASE_SYNTHESIS.md`](CROSS_CASE_SYNTHESIS.md) compares the first three independent histories only after their standalone reconstructions are complete.
+
+The synthesis is deliberately bounded. It separates:
+
+- observations recurring across multiple cases;
+- case-specific mechanisms;
+- article-safe descriptive claims;
+- hypotheses that still require comparison against OpenSiro's own evolution log;
+- claims that remain unsupported, including any quantitative VSM development-cost advantage.
+
+The third case also triggered an explicit schema revision: `COMPARISON_SCHEMA.md` now records `recursion_boundary_evidence` when a mechanism/invariant depends on distinctions crossing a parent/child recursive boundary. Earlier cases are not retrofitted by analogy; `NOT_APPLICABLE` remains valid when recursion is not material to the reconstructed transition.
 
 ## Research question
 
@@ -60,7 +75,8 @@ For every material claim:
 - preserve uncertainty and plausible alternative explanations;
 - record missing or contradictory evidence;
 - do not infer decision ownership/autonomy from the existence of a tool, role, feature, queue, reviewer, manager, verifier, planner, or governance document;
-- map the organizational function first and classify ownership only when evidence establishes the decisive right and its owner.
+- map the organizational function first and classify ownership only when evidence establishes the decisive right and its owner;
+- when recursion is material, establish the relation at the declared boundary rather than assuming parent/child transfer.
 
 ## Recommended case structure
 
@@ -137,6 +153,7 @@ Useful dimensions include, when evidence exists:
 | External/future adaptation | explicit environment/future sensing, adaptation options, two-way relation with current capability |
 | Identity/policy authority | legitimate ultimate-policy decisions, escalation, delegated authority boundaries |
 | Decision provenance | evidence establishing who actually owned decisive organizational choices |
+| Recursion / boundary preservation | whether a relation established at one recursion still has enough information/variety at a parent or child boundary |
 
 These dimensions are prompts for evidence collection, not a checklist requiring every case to contain every VSM function.
 
@@ -151,7 +168,7 @@ Do not write:
 - “governance is S5” because a governance file exists;
 - “100+ contributors proves organizational complexity.”
 
-Instead reconstruct the concrete function, decisive feedback/decision right, evidence path, and observed closure.
+Instead reconstruct the concrete function, decisive feedback/decision right, evidence path, observed closure, and relevant recursion boundary.
 
 ## Relationship to `evolution-log.md`
 
@@ -165,4 +182,4 @@ observed disturbance
 → bounded reusable lesson
 ```
 
-Cross-case synthesis should begin only after enough independent artifacts exist to distinguish recurring evidence from a single-project anecdote.
+The first bounded synthesis is now available, but the downstream causal article still requires stronger OpenSiro-side timing/rework evidence and should not treat the current three-case sample as proof of superiority.

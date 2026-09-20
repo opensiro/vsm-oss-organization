@@ -1,12 +1,14 @@
 # Minimal cross-case comparison schema
 
 Parent empirical track: [#30](https://github.com/opensiro/vsm-oss-organization/issues/30)  
-Schema work item: [#90](https://github.com/opensiro/vsm-oss-organization/issues/90)
+Initial schema work item: [#90](https://github.com/opensiro/vsm-oss-organization/issues/90)  
+First explicit schema revision: [#100](https://github.com/opensiro/vsm-oss-organization/issues/100)
 
-This schema defines the smallest shared evidence shape currently justified by the first two independent case studies:
+This schema defines the smallest shared evidence shape currently justified by three independent case studies:
 
 - [`autogen.md`](autogen.md);
-- [`openhands-runtime.md`](openhands-runtime.md).
+- [`openhands-runtime.md`](openhands-runtime.md);
+- [`langgraph-interrupt-coordination.md`](langgraph-interrupt-coordination.md).
 
 It is **supplementary research infrastructure**. It is not a VSM Harness Profile, assessment procedure, autonomy classifier, ranking system, or second Index database.
 
@@ -30,7 +32,7 @@ A missing field remains missing. Do not fill evidence gaps by inference from nam
 
 ## Why two cases were required first
 
-The initial cases expose different transition shapes.
+The initial cases exposed different transition shapes.
 
 ```text
 AutoGen
@@ -50,6 +52,25 @@ external/runtime pressure
 ```
 
 A schema derived from only AutoGen would overemphasize coordination. A schema derived from only OpenHands would overemphasize staged replacement and cutover. The shared contract therefore records **what kind of evidence exists** without requiring one canonical transition topology.
+
+## Revision after the third case
+
+The LangGraph case adds another materially different transition shape:
+
+```text
+parallel feedback ambiguity
+→ local shared-resume correction
+→ explicit request identity
+→ request-id → feedback mapping
+→ ambiguous feedback rejected
+→ nested recursive boundary later exposes incomplete coverage
+```
+
+The first two cases did not require a dedicated field for whether a mechanism/invariant remains established when crossing an explicit parent/child recursion boundary. LangGraph does: distinct child interrupts can be aggregated into one parent task representation, hiding variety needed for the parent-level feedback decision.
+
+Therefore #100 adds one field, `recursion_boundary_evidence`, rather than silently forcing the observation into generic closure/negative-evidence prose.
+
+This revision does **not** retroactively invent recursion narratives for AutoGen or OpenHands. Their currently reconstructed transitions may use `NOT_APPLICABLE` unless future primary evidence makes recursion material.
 
 ## Case header
 
@@ -84,7 +105,8 @@ A case MAY contain one or more transition records. Each transition should use th
 | `owner_evidence` | Evidence identifying who/what owned the decisive right. Keep separate from GitHub identity, transport, automation, CI, tests, queues, or implementation authorship. |
 | `support_validation_enforcement` | Machinery that transported, checked, validated, scheduled, or enforced the response without automatically owning the organizational decision. |
 | `closure_evidence` | Observable later state showing change, attenuation, replacement, preservation, abandonment, or unresolved status. |
-| `negative_or_incomplete_evidence` | Failed PRs, untested paths, reversals, unresolved ownership, contradictory facts, or explicit limitations. |
+| `recursion_boundary_evidence` | When recursion is material, evidence showing the boundary at which the relation/invariant is established and whether relevant distinctions survive movement to a parent/child boundary. Use `NOT_APPLICABLE` when the reconstructed transition does not materially depend on recursion; do not infer transfer across boundaries. |
+| `negative_or_incomplete_evidence` | Failed PRs, untested paths, reversals, unresolved ownership, contradictory facts, later regressions, or explicit limitations. |
 | `timing_rework_effort` | Only reconstructable dates/counts/repeated incidents/rework/changed artifacts. No synthetic cost estimate. |
 | `alternative_explanations` | Plausible non-VSM explanations that fit the same facts. |
 | `vsm_interpretation` | Function-level interpretation after the facts are established; ownership/autonomy stays separate. |
@@ -100,6 +122,8 @@ Use explicit prose where possible. When a compact marker is useful, only these n
 - `NOT_APPLICABLE` — the field does not meaningfully apply to this bounded transition.
 
 These are not scores and do not form an ordering.
+
+For `recursion_boundary_evidence`, `NOT_APPLICABLE` is preferable to inventing a recursive interpretation merely because the implementation contains nesting or layered components.
 
 ## Disturbance classification
 
@@ -137,6 +161,31 @@ Examples from the existing cases:
 
 - AutoGen's roadmap issue provides evidence of a coordination relation but does not independently establish the decisive coordination owner.
 - OpenHands integration tests and evaluation suites provide evidence supporting a runtime replacement but do not become S3* owners merely because they validate the replacement.
+- LangGraph interrupt IDs, resume maps and runtime validation provide a feedback-disambiguation mechanism and enforcement, but do not establish the organizational owner of an S2 function.
+
+## Recursion / system-boundary rule
+
+Evidence at one declared boundary does not automatically transfer to another recursion.
+
+When recursion is material, record:
+
+```text
+boundary where disturbance is observed
+        ↓
+representation exposed to parent/child
+        ↓
+which distinctions are preserved or aggregated
+        ↓
+which decision / feedback relation depends on those distinctions
+        ↓
+evidence that the invariant still holds — or fails — across the boundary
+```
+
+A valid result may be:
+
+> The mechanism is established for the reviewed top-level task topology, but transfer to nested child interrupts is disproven by later primary evidence.
+
+Do not require every case to have recursive evidence. Recursion is a comparison dimension only when it is operationally material to the reconstructed transition.
 
 ## Closure forms
 
@@ -151,9 +200,10 @@ Cases do not need the same closure form. Record the strongest closure actually e
 - policy/identity decision returned and governed later work;
 - proposal abandoned;
 - issue closed without evidence that the underlying disturbance was resolved;
+- bounded closure later narrowed by a regression/counterexample;
 - unresolved / insufficient evidence.
 
-Issue closure, PR merge, test success, release, or adoption alone is not automatically organizational closure. State what later behavior changed.
+Issue closure, PR merge, test success, release, or adoption alone is not automatically organizational closure. State what later behavior changed and, when material, at which boundary it changed.
 
 ## Timing, effort, and cost
 
@@ -199,6 +249,10 @@ Another good form:
 
 > If environment variety repeatedly forces compatibility patches around one architectural assumption, test whether the system boundary itself requires adaptation before adding another local patch.
 
+A recursion-oriented good form, justified by the LangGraph case:
+
+> If a parent-level decision depends on distinguishing several child-level requests, test whether the parent representation preserves those distinctions before reusing the lower-level invariant at the parent recursion.
+
 Bad form:
 
 > The project eventually added X, therefore VSM predicted X.
@@ -209,27 +263,28 @@ For each case, record whether the prediction could have been stated **before** t
 
 For lightweight synthesis, each transition can be represented with this compact row shape:
 
-| Case / transition | Disturbance | Initial response | Broader response | Right / owner evidence | Support evidence | Closure | Negative evidence | Timing / effort | VSM distinction | Alternative explanation | Causal status |
-| --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
+| Case / transition | Disturbance | Initial response | Broader response | Right / owner evidence | Support evidence | Closure | Recursion boundary | Negative evidence | Timing / effort | VSM distinction | Alternative explanation | Causal status |
+| --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
 
 Cells should summarize and link back to the full case. This table is not a scorecard.
 
-## Calibration from the first two cases
+## Calibration from the first three cases
 
-The schema is justified because it preserves these observed differences without ranking them:
+The schema preserves materially different evidence shapes without ranking them:
 
-| Field | AutoGen multimodal | OpenHands runtime |
-| --- | --- | --- |
-| Disturbance shape | cross-work/interface interference | environment/runtime-boundary mismatch |
-| Initial response | quick/local multimodal fixes | image/plugin portability while retaining SSH |
-| Broader response | roadmap coordination + later architecture | explicit replacement runtime path |
-| Support/validation | linked issues/PRs/design discussion | integration tests + evaluation migration |
-| Closure evidence | weaker direct causal closure to v0.4 | direct removal/default-switch closure |
-| Owner evidence | not established | not established |
-| Negative evidence | unmerged repair; causal link weak | deliberate no-cutover stage; untested eval cases |
-| Quantified VSM advantage | not established | not established |
+| Field | AutoGen multimodal | OpenHands runtime | LangGraph interrupts |
+| --- | --- | --- | --- |
+| Disturbance shape | cross-work/interface interference | environment/runtime-boundary mismatch | ambiguous feedback among concurrent pending requests |
+| Initial response | quick/local multimodal fixes | image/plugin portability while retaining SSH | consume shared/global resume at subgraph boundary |
+| Broader response | roadmap coordination + later architecture | explicit replacement runtime path | explicit interrupt identity + ID-mapped resume + ambiguity rejection |
+| Support/validation | linked issues/PRs/design discussion | integration tests + evaluation migration | interrupt IDs, resume-map plumbing, pending-interrupt validation/tests |
+| Closure evidence | weaker direct causal closure to v0.4 | direct removal/default-switch closure | #4028 bounded closure + #6108 enforcement for covered topology |
+| Recursion boundary | `NOT_APPLICABLE` in reconstructed transition | `NOT_APPLICABLE` in reconstructed transition | later nested-subgraph counterexample disproves universal transfer |
+| Owner evidence | not established | not established | not established |
+| Negative evidence | unmerged repair; causal link weak | deliberate no-cutover stage; untested eval cases | #8579 shows incomplete nested coverage |
+| Quantified VSM advantage | not established | not established | not established |
 
-The difference in closure evidence is descriptive, not a project-quality ranking.
+The differences in closure, recursion evidence, and implementation effort are descriptive, not project-quality rankings.
 
 ## Future-case update rule
 
@@ -239,7 +294,7 @@ For each new case:
 
 1. reconstruct the case independently from primary evidence;
 2. fill only fields the evidence supports;
-3. preserve `UNKNOWN` / `NOT_EVIDENCED` values;
+3. preserve `UNKNOWN` / `NOT_EVIDENCED` / `NOT_APPLICABLE` values;
 4. compare after the standalone case is complete;
 5. if the new case exposes a genuinely missing comparison field, revise this schema explicitly and explain why the earlier cases did not reveal it;
 6. do not retroactively fill older cases from analogy;
@@ -254,6 +309,7 @@ Normative VSM semantics remain in `opensiro/vsm-harness-profile`.
 This schema does not redefine:
 
 - S1–S5;
+- recursion semantics;
 - autonomy states;
 - Constructor thresholds;
 - evidence-boundary rules;
@@ -268,6 +324,7 @@ After multiple cases, the schema may support bounded empirical statements such a
 - a particular functional distinction recurs before a later mechanism appears;
 - one class of disturbance repeatedly produces local rework before a broader relation is introduced;
 - the OpenSiro construction process formulated an equivalent distinction earlier in its own history;
+- a mechanism closes one boundary but remains unproven or fails at another recursion;
 - no measurable advantage is visible despite conceptual similarity.
 
 It cannot, by itself, establish:
@@ -275,6 +332,7 @@ It cannot, by itself, establish:
 - that VSM caused a project to improve;
 - that OpenSiro is faster/better;
 - that an external project has a particular autonomy vector;
-- that one organizational form is universally superior.
+- that one organizational form is universally superior;
+- that evidence from one recursion transfers to another without boundary-specific proof.
 
 Those remain empirical questions for later synthesis.
