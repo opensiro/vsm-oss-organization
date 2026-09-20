@@ -9,6 +9,7 @@ Case-study tasks:
 - first case: [#31](https://github.com/opensiro/vsm-oss-organization/issues/31);
 - second case: [#88](https://github.com/opensiro/vsm-oss-organization/issues/88);
 - third case: [#98](https://github.com/opensiro/vsm-oss-organization/issues/98);
+- fourth case: [#102](https://github.com/opensiro/vsm-oss-organization/issues/102);
 - cross-case schema: [#90](https://github.com/opensiro/vsm-oss-organization/issues/90), implemented and later revised in [`COMPARISON_SCHEMA.md`](COMPARISON_SCHEMA.md);
 - first bounded three-case synthesis: [#100](https://github.com/opensiro/vsm-oss-organization/issues/100), implemented in [`CROSS_CASE_SYNTHESIS.md`](CROSS_CASE_SYNTHESIS.md).
 
@@ -19,6 +20,7 @@ These documents are **not VSM Harness Index assessments** and are not a second a
 - [`autogen.md`](autogen.md) — AutoGen multimodal coordination pressure, roadmap/epic consolidation, partial repairs, and the later `v0.4` architectural boundary. The case intentionally leaves decisive S2/S4 ownership and causal development-cost claims unproven where the public evidence does not establish them.
 - [`openhands-runtime.md`](openhands-runtime.md) — OpenDevin/OpenHands runtime migration from SSH-coupled execution toward EventStreamRuntime, including partial compatibility work, parallel replacement implementation, integration/evaluation gates, preserved validation gaps, and final retirement/default switch. The case does not infer S3/S3*/S4 ownership from runtime, testing, or maintainer vocabulary.
 - [`langgraph-interrupt-coordination.md`](langgraph-interrupt-coordination.md) — LangGraph parallel interrupt/resume evolution from ambiguous shared feedback toward explicit interrupt identity, ID-mapped resumes, and rejection of ambiguous scalar feedback, with a later nested-subgraph counterexample showing incomplete recursive coverage. The case treats this as coordination/requisite-variety evidence without inferring S2 autonomy or decision ownership.
+- [`pydanticai-prioritization.md`](pydanticai-prioritization.md) — PydanticAI issue/PR overload and the shift from interruption-heavy review toward explicit maintainer-owned prioritization, admission and human review, with `AGENTS.md`, triage/review automation and contributor/champion input kept separate as support. The case provides stronger public decision-owner evidence than the first three without assigning an S3 autonomy state.
 
 ## Cross-case synthesis
 
@@ -32,7 +34,9 @@ The synthesis is deliberately bounded. It separates:
 - hypotheses that still require comparison against OpenSiro's own evolution log;
 - claims that remain unsupported, including any quantitative VSM development-cost advantage.
 
-The third case also triggered an explicit schema revision: `COMPARISON_SCHEMA.md` now records `recursion_boundary_evidence` when a mechanism/invariant depends on distinctions crossing a parent/child recursive boundary. Earlier cases are not retrofitted by analogy; `NOT_APPLICABLE` remains valid when recursion is not material to the reconstructed transition.
+The third case triggered an explicit schema revision: `COMPARISON_SCHEMA.md` now records `recursion_boundary_evidence` when a mechanism/invariant depends on distinctions crossing a parent/child recursive boundary. Earlier cases are not retrofitted by analogy; `NOT_APPLICABLE` remains valid when recursion is not material to the reconstructed transition.
+
+The fourth case deliberately remains outside that frozen three-case synthesis. It tests whether the existing schema can accommodate materially stronger positive `owner_evidence` without adding another field; it can. A later synthesis revision should compare it explicitly rather than retroactively treating it as part of the original three-case result.
 
 ## Research question
 
@@ -182,4 +186,4 @@ observed disturbance
 → bounded reusable lesson
 ```
 
-The first bounded synthesis is now available, but the downstream causal article still requires stronger OpenSiro-side timing/rework evidence and should not treat the current three-case sample as proof of superiority.
+The first bounded synthesis remains a three-case snapshot. The fourth case adds a new owner-evidence shape for later comparison, while the downstream causal article still requires comparison against OpenSiro's own evidence and should not treat the current external sample as proof of superiority.
