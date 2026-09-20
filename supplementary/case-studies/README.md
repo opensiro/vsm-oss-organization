@@ -7,7 +7,8 @@ Parent workstream: [#30](https://github.com/opensiro/vsm-oss-organization/issues
 Case-study tasks:
 
 - first case: [#31](https://github.com/opensiro/vsm-oss-organization/issues/31);
-- second case: [#88](https://github.com/opensiro/vsm-oss-organization/issues/88).
+- second case: [#88](https://github.com/opensiro/vsm-oss-organization/issues/88);
+- cross-case schema: [#90](https://github.com/opensiro/vsm-oss-organization/issues/90), implemented in [`COMPARISON_SCHEMA.md`](COMPARISON_SCHEMA.md).
 
 These documents are **not VSM Harness Index assessments** and are not a second assessment database. Their purpose is to reconstruct how real OSS harness organizations changed over time so the practical significance of VSM/OSM construction ideas can be tested against independent history.
 
