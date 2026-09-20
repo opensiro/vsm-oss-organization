@@ -21,6 +21,19 @@ The sequence is specific to this reference organization. It is not a universal V
 
 The tracker issue defines the milestone's construction/exit contract. Neither the tracker nor this roadmap is a second source of VSM semantics.
 
+## Current evidence state — 2026-09-20
+
+```text
+M0  complete
+M1  S3*=C established; S3=C pending one natural current-control witness (#39)
+M2  S5=P established; formal completion waits on M1
+M3  blocked on M2
+M4  blocked on M3
+M5  blocked on M4
+```
+
+This status records construction/evidence progress only. It does not convert milestone target vectors into independent published assessments, and it does not lower any function-specific evidence threshold.
+
 ## Milestone sequence
 
 | Milestone | Target vector | Why it exists |
@@ -105,6 +118,8 @@ M0 construction is complete when:
 
 Target: `A — C C — —`
 
+**Current evidence status:** `S3*=C` is established by #44 / PR #45. `S3=C` remains open on #39 because no naturally qualifying whole-system current-control transaction has yet exercised the constructor and returned into S1 with reviewable closure.
+
 M1 establishes **two constructor paths**. It does not require a permanent autonomous S3 regulator or a permanent autonomous S3* verifier.
 
 ### S3*=C — complementary-audit constructor
@@ -127,7 +142,7 @@ Issue #44 / PR #45 is the first real functional witness: it exercised a compleme
 
 ### S3=C — current-control constructor
 
-S3 remains `C`: the repository exposes a first-party current-control/intervention path, but no default autonomous S3 regulator owns it yet.
+S3 remains pending at constructor level: the repository exposes a first-party current-control/intervention path, but the function cannot be credited `C` until one real qualifying current-control transaction establishes the function in use.
 
 The path must be capable of carrying a real whole-system current-control decision back into affected operation. The trigger may come from S3*, from another legitimate current exception, or from any other source that establishes the S3 function at the declared boundary.
 
@@ -151,6 +166,8 @@ subsequent S1 operation
 
 An algedonic signal is not itself S3* or S3.
 
+Current implementation readiness is complete: the S3-specific control surface, machine-readable transaction, reviewable record, decision-owner contract, and canonical S3→S1 return hook already exist. Additional preparatory machinery is not an M1 substitute for the missing real #39 witness.
+
 ### Exit criteria
 
 M1 closes when:
@@ -162,13 +179,26 @@ M1 closes when:
 - actual decision/judgment owners remain explicit and support/enforcement remains separate;
 - neither S3 nor S3* is claimed `A` merely because constructor infrastructure exists.
 
+Do not manufacture a current-control disturbance solely to complete M1. Ordinary Index discovery/assessment concurrency, local Skills repair, and local Awesome curation remain S1 variety unless a concrete case exceeds the relevant local authority envelope.
+
 ## M2 — Parent-governed identity boundary
 
 Target: `A — C C — P`
 
+**Current evidence status:** the M2-specific `S5=P` function is established through #81 / PR #84 and `records/s5/2026-09-18-routing-scope-correction.md` (`S5-P-001`). Formal M2 completion remains sequenced after M1 because the target inherits `S3=C` and `S3*=C`.
+
 Introduce parent-governed S5 before increasing metasystem autonomy further. The purpose is to make the legitimate identity/policy boundary explicit.
 
 Do not award `P` because a human approves ordinary work. A genuine identity/ultimate-policy issue must reach the legitimate parent authority, the parent must decide, and the decision must return to govern subsequent operation.
+
+Current parent arrangement:
+
+- legitimate parent role: **OpenSiro organization owner**;
+- current holder: `xLagerFeuer`;
+- authority derives from the explicit Organization governance declaration, not from GitHub permissions themselves;
+- changing the parent-role/holder arrangement is itself a candidate identity/ultimate-policy matter.
+
+`S5-P-001` reconstructs the 2026-09-18 routing-scope correction as the first positive witness. The decision kept the bounded system at Profile, Skills, Index, Awesome, and Organization rather than every public `opensiro/*` repository, and PR #62 returned that decision into routing/conformance/workflow/trial population. The record preserves that explicit parent-legitimacy attribution was added later, on 2026-09-20, rather than pretending it existed at the earlier timestamp.
 
 Reference recursion:
 
@@ -184,12 +214,15 @@ agent organization
 
 Exit criteria:
 
-- the delegated local autonomy envelope distinguishes ordinary operational choices from identity/ultimate-policy questions;
-- a genuine identity/policy exception can reach the legitimate parent authority;
-- the parent decision returns into the running organization;
-- subsequent operation is governed by that returned decision;
-- consequential external capabilities have explicit parent authorization/scope/intervention/revocation boundaries where needed;
-- ordinary PR approval, permission prompts, or task-level confirmations are not misclassified as S5.
+- [ ] M1 is formally complete;
+- [x] the delegated local autonomy envelope distinguishes ordinary operational choices from identity/ultimate-policy questions;
+- [x] a genuine identity/policy exception can reach the legitimate parent authority;
+- [x] the parent decision returns into the running organization;
+- [x] subsequent operation is governed by that returned decision;
+- [x] consequential external capabilities have explicit parent authorization/scope/intervention/revocation boundaries where needed;
+- [x] ordinary PR approval, permission prompts, or task-level confirmations are not misclassified as S5.
+
+After M1 closes, perform a bounded current-main revalidation of inherited M1 evidence and `S5-P-001`. If they remain valid, M2 can close without manufacturing a second S5 event solely for sequencing.
 
 ## M3 — Autonomous current control
 
