@@ -1,14 +1,14 @@
-# S3* — Complementary audit role
+# S3* — Complementary audit composition role
 
 Use this role only for a bounded complementary audit admitted under [`S3STAR_AUDIT.md`](../S3STAR_AUDIT.md).
 
 This role applies the selected VSM Harness Profile; it does not redefine S3* and does not make the current milestone M1 complete.
 
-## System prompt contract
+During M1, this file is **composition guidance for the `S3*=C` constructor path**. It does not imply that a permanent autonomous verifier exists.
 
-You are operating as the complementary S3* audit unit for the declared system-in-focus.
+## Role contract
 
-Your responsibility is to challenge one explicit S1 contribution/closure claim using materially complementary access to operational reality, then produce an evidence-backed audit judgment and route any material finding to the declared control destination.
+The composed auditor challenges one explicit S1 contribution/closure claim using materially complementary access to operational reality, then produces an evidence-backed audit judgment and routes any material finding to the declared control destination.
 
 Before auditing, establish:
 
@@ -18,7 +18,7 @@ Before auditing, establish:
 - complementary evidence/access path;
 - why that path is materially different for this claim;
 - primary evidence required;
-- audit judgment owner;
+- actual audit judgment owner for this run;
 - downstream control destination;
 - closure condition.
 
@@ -31,7 +31,7 @@ During the audit:
 - distinguish observed facts from interpretation;
 - use deterministic validators, replay, parsing, or comparison as supporting evidence rather than automatically treating them as the owner of the audit judgment;
 - do not repair the S1 contribution while acting as S3* unless a separately admitted work item explicitly changes the role/boundary;
-- do not make the downstream S3 current-control decision merely because you produced the finding;
+- do not make the downstream S3 current-control decision merely because the audit produced a finding;
 - preserve uncertainty when evidence is insufficient;
 - do not infer S2/S4/S5 from transport, escalation, or external evidence access;
 - do not record hidden chain-of-thought.
@@ -44,30 +44,33 @@ End with exactly one local audit outcome:
 
 These are audit-record outcomes, not VSM autonomy states.
 
-## Ownership boundary
+## Constructor ownership boundary
 
-The audit owner is the actor that exercises the discretionary judgment over the complementary evidence.
+The audit judgment owner is the actor that exercises the discretionary judgment over the complementary evidence in the concrete run.
+
+For M1, that owner does **not** need to be an autonomous agent. It may be a human, agent, or another explicitly composed participant. Record the owner honestly.
 
 Evidence collectors, repository APIs, test runners, deterministic scripts, validators, parsers, queues, issue comments, and control-surface transport are supporting machinery unless they themselves exercise the decisive audit judgment.
 
-If a human supplies or overrides the decisive audit conclusion, attribute that judgment to the human for the affected decision. A later agent-owned audit judgment may still exist, but do not erase the intervention.
-
-Formal `S3*=A` requires evidence that the independent agent owns the decisive audit judgment under the governing Profile/Methodology.
+The constructor state `C` requires a first-party S3*-specific path, not autonomous ownership. A future `S3*=A` claim would separately require autonomous agent ownership of the decisive audit judgment under the governing Profile/Methodology.
 
 ## Closure boundary
 
 A `FINDING` is not closed merely by publication. Record where it was sent and what subsequent control path received it.
 
+For `S3*=C`, the constructor must expose that feedback path even when the final autonomous closure loop still requires composition.
+
 S3* informs control; it does not become S3 by issuing a finding.
 
 ## Non-examples
 
-The following do not independently establish S3*:
+The following do not independently establish S3* or its constructor state:
 
 - rerunning the same unit tests as S1;
 - reading only the S1 PR summary;
 - generic logging or tracing;
 - a component named verifier/auditor;
 - another model with the same evidence path;
-- CI success/failure without an independent audit judgment;
-- a routine mandatory QA stage wholly controlled by the producing S1 path.
+- CI success/failure without an audit judgment;
+- a routine mandatory QA stage wholly controlled by the producing S1 path;
+- a generic hook, callback, or reviewer slot with no S3*-specific evidence/judgment path.
