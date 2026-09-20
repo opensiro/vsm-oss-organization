@@ -11,7 +11,8 @@ Case-study tasks:
 - third case: [#98](https://github.com/opensiro/vsm-oss-organization/issues/98);
 - fourth case: [#102](https://github.com/opensiro/vsm-oss-organization/issues/102);
 - cross-case schema: [#90](https://github.com/opensiro/vsm-oss-organization/issues/90), implemented and later revised in [`COMPARISON_SCHEMA.md`](COMPARISON_SCHEMA.md);
-- first bounded three-case synthesis: [#100](https://github.com/opensiro/vsm-oss-organization/issues/100), implemented in [`CROSS_CASE_SYNTHESIS.md`](CROSS_CASE_SYNTHESIS.md).
+- first bounded three-case synthesis: [#100](https://github.com/opensiro/vsm-oss-organization/issues/100), implemented in [`CROSS_CASE_SYNTHESIS.md`](CROSS_CASE_SYNTHESIS.md);
+- second bounded four-case synthesis: [#104](https://github.com/opensiro/vsm-oss-organization/issues/104), implemented in [`CROSS_CASE_SYNTHESIS_V2.md`](CROSS_CASE_SYNTHESIS_V2.md).
 
 These documents are **not VSM Harness Index assessments** and are not a second assessment database. Their purpose is to reconstruct how real OSS harness organizations changed over time so the practical significance of VSM/OSM construction ideas can be tested against independent history.
 
@@ -24,9 +25,11 @@ These documents are **not VSM Harness Index assessments** and are not a second a
 
 ## Cross-case synthesis
 
-[`CROSS_CASE_SYNTHESIS.md`](CROSS_CASE_SYNTHESIS.md) compares the first three independent histories only after their standalone reconstructions are complete.
+[`CROSS_CASE_SYNTHESIS.md`](CROSS_CASE_SYNTHESIS.md) is the frozen first synthesis across AutoGen, OpenHands, and LangGraph.
 
-The synthesis is deliberately bounded. It separates:
+[`CROSS_CASE_SYNTHESIS_V2.md`](CROSS_CASE_SYNTHESIS_V2.md) is the explicit second synthesis that adds PydanticAI without rewriting the provenance of the original three-case snapshot. Its purpose is to retest provisional recurring observations against a deliberately different owner-evidence shape.
+
+The syntheses are deliberately bounded. They separate:
 
 - observations recurring across multiple cases;
 - case-specific mechanisms;
@@ -36,7 +39,7 @@ The synthesis is deliberately bounded. It separates:
 
 The third case triggered an explicit schema revision: `COMPARISON_SCHEMA.md` now records `recursion_boundary_evidence` when a mechanism/invariant depends on distinctions crossing a parent/child recursive boundary. Earlier cases are not retrofitted by analogy; `NOT_APPLICABLE` remains valid when recursion is not material to the reconstructed transition.
 
-The fourth case deliberately remains outside that frozen three-case synthesis. It tests whether the existing schema can accommodate materially stronger positive `owner_evidence` without adding another field; it can. A later synthesis revision should compare it explicitly rather than retroactively treating it as part of the original three-case result.
+The fourth case did **not** require another schema field. Instead, the second synthesis shows two useful calibration results: the local-repair-before-broader-response pattern remains specific to the first three reviewed technical-transition cases, and the earlier mechanism-stronger-than-owner pattern is not a general rule because PydanticAI supplies materially stronger positive owner evidence.
 
 ## Research question
 
@@ -186,4 +189,4 @@ observed disturbance
 → bounded reusable lesson
 ```
 
-The first bounded synthesis remains a three-case snapshot. The fourth case adds a new owner-evidence shape for later comparison, while the downstream causal article still requires comparison against OpenSiro's own evidence and should not treat the current external sample as proof of superiority.
+The first synthesis remains the historical three-case snapshot. The second synthesis adds the fourth owner-evidence case and explicitly narrows/falsifies earlier provisional patterns where required. The downstream causal article still requires comparison against OpenSiro's own evidence and must not treat the external sample as proof of superiority.
