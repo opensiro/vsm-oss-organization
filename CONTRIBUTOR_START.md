@@ -18,6 +18,22 @@ Use `opensiro/vsm-oss-organization` when the question is organization-wide withi
 
 Repositories and research tracks outside the declared scope are not governed by this routing contract merely because they are public or live under the `opensiro` organization.
 
+## Autonomous work reporting
+
+For substantial multi-step autonomous work, follow [`AUTONOMOUS_WORK_REPORTING.md`](AUTONOMOUS_WORK_REPORTING.md).
+
+The contributor should keep owner attention cheap: complete the requested work, finish any already-started atomic integration chain, take at most one or two obvious downstream closure/validation steps by default, then emit the compact owner-facing snapshot:
+
+```text
+DONE
+NOW
+BLOCKED
+NEXT
+NEED YOU
+```
+
+Use `NEED YOU = none` when no real owner decision is required. This is a reporting/observability contract only; it does not create a VSM function, autonomy state, or decision owner.
+
 ## Parent-governed S5 entry
 
 Any contributor working inside this bounded Organization may request admission to the existing parent-governed S5 process with:
