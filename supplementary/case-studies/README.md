@@ -8,6 +8,7 @@ Case-study tasks:
 
 - first case: [#31](https://github.com/opensiro/vsm-oss-organization/issues/31);
 - second case: [#88](https://github.com/opensiro/vsm-oss-organization/issues/88);
+- third case: [#98](https://github.com/opensiro/vsm-oss-organization/issues/98);
 - cross-case schema: [#90](https://github.com/opensiro/vsm-oss-organization/issues/90), implemented in [`COMPARISON_SCHEMA.md`](COMPARISON_SCHEMA.md).
 
 These documents are **not VSM Harness Index assessments** and are not a second assessment database. Their purpose is to reconstruct how real OSS harness organizations changed over time so the practical significance of VSM/OSM construction ideas can be tested against independent history.
@@ -16,6 +17,7 @@ These documents are **not VSM Harness Index assessments** and are not a second a
 
 - [`autogen.md`](autogen.md) — AutoGen multimodal coordination pressure, roadmap/epic consolidation, partial repairs, and the later `v0.4` architectural boundary. The case intentionally leaves decisive S2/S4 ownership and causal development-cost claims unproven where the public evidence does not establish them.
 - [`openhands-runtime.md`](openhands-runtime.md) — OpenDevin/OpenHands runtime migration from SSH-coupled execution toward EventStreamRuntime, including partial compatibility work, parallel replacement implementation, integration/evaluation gates, preserved validation gaps, and final retirement/default switch. The case does not infer S3/S3*/S4 ownership from runtime, testing, or maintainer vocabulary.
+- [`langgraph-interrupt-coordination.md`](langgraph-interrupt-coordination.md) — LangGraph parallel interrupt/resume evolution from ambiguous shared feedback toward explicit interrupt identity, ID-mapped resumes, and rejection of ambiguous scalar feedback, with a later nested-subgraph counterexample showing incomplete recursive coverage. The case treats this as coordination/requisite-variety evidence without inferring S2 autonomy or decision ownership.
 
 ## Research question
 
