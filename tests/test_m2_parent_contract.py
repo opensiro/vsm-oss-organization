@@ -79,7 +79,7 @@ class M2ParentBoundaryTests(unittest.TestCase):
         self.assertIn("The prefix is an **admission request**, not proof that the matter is S5", prompt)
         self.assertIn("Apply function first, ownership second", prompt)
         self.assertIn("If ordinary S1, S3, or S3* authority can safely close it", prompt)
-        self.assertIn("do not infer a new S5 witness merely because this prompt was invoked", prompt.lower())
+        self.assertIn("do not infer a new s5 witness merely because this prompt was invoked", prompt.lower())
 
 
 if __name__ == "__main__":
