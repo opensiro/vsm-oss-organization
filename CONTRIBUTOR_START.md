@@ -4,6 +4,12 @@ This file is the common entry point for contributors and agents that arrive thro
 
 The canonical membership of that group is the `Current in-scope public repositories:` block in [README.md](README.md). This file does not expand that set.
 
+## New to OpenSiro?
+
+For a plain-language and visual introduction to why this work exists, start with **[opensiro.com](https://opensiro.com)** and the **[VSMLite / VSM poster](https://opensiro.com/vsm.html)**. The poster introduces the harness-normalization problem and the organizational relationships that motivate the VSM coordinate system.
+
+This orientation is optional and non-normative. `opensiro.com` is a presentation layer outside the bounded VSM Harness OSS system. Return to the owning GitHub repositories for canonical semantics, assessment procedure, evidence-backed findings, contributor authority, and work acceptance.
+
 ## Routing rule
 
 **Repository-local work stays in the repository that owns the relevant source of truth.**
