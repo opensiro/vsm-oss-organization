@@ -85,6 +85,29 @@ class M2ParentBoundaryTests(unittest.TestCase):
         self.assertIn("must not exercise unresolved s5 discretion", prompt.lower())
         self.assertIn("do not infer a new s5 witness merely because this prompt was invoked", prompt.lower())
 
+    def test_contributor_entry_exposes_parent_governed_s5_without_transferring_authority(self) -> None:
+        entry = self.read("CONTRIBUTOR_START.md")
+
+        self.assertIn("## Parent-governed S5 entry", entry)
+        self.assertIn("prompts/parent-control-plane.md", entry)
+        self.assertIn("S5_ADMITTED", entry)
+        self.assertIn("POLICY_ALREADY_GOVERNS", entry)
+        self.assertIn("NOT_S5", entry)
+        self.assertIn("INSUFFICIENT_AUTHORITY", entry)
+        self.assertIn("do **not** transfer the unresolved S5 decisive right", entry)
+        self.assertIn("S3 current-control", entry)
+
+    def test_contributing_tracks_current_milestone_and_roadmap_target(self) -> None:
+        contributing = self.read("CONTRIBUTING.md")
+
+        self.assertIn("## Current milestone: M1", contributing)
+        self.assertIn("S3=C` remains open", contributing)
+        self.assertIn("M2-specific `S5=P` evidence already exists", contributing)
+        self.assertIn("M5  A A A C A P", contributing)
+        self.assertIn("long-term reference target is therefore `A A A C A P`", contributing)
+        self.assertNotIn("## Current milestone: M0", contributing)
+        self.assertNotIn("`A A A A A P`", contributing)
+
 
 if __name__ == "__main__":
     unittest.main()
