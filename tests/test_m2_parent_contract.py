@@ -68,13 +68,18 @@ class M2ParentBoundaryTests(unittest.TestCase):
         self.assertIn("retrospective reconstruction", witness)
         self.assertIn("does **not** formally complete M2 while M1 remains open", witness)
 
-    def test_parent_prompt_rejects_shortcuts(self) -> None:
+    def test_parent_prompt_rejects_shortcuts_and_supports_shorthand(self) -> None:
         prompt = self.read("prompts/parent-control-plane.md")
 
+        self.assertIn("S5: рассмотреть <matter>", prompt)
+        self.assertIn("S5: consider <matter>", prompt)
+        self.assertIn("S5_ADMITTED", prompt)
+        self.assertIn("NOT_S5", prompt)
+        self.assertIn("INSUFFICIENT_AUTHORITY", prompt)
+        self.assertIn("The prefix is an **admission request**, not proof that the matter is S5", prompt)
         self.assertIn("Apply function first, ownership second", prompt)
         self.assertIn("If ordinary S1, S3, or S3* authority can safely close it", prompt)
-        self.assertIn("record INSUFFICIENT_AUTHORITY", prompt)
-        self.assertIn("do not claim S5=P completion", prompt)
+        self.assertIn("do not infer a new s5 witness merely because this prompt was invoked", prompt.lower())
 
 
 if __name__ == "__main__":
