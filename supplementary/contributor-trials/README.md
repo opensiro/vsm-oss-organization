@@ -6,6 +6,8 @@ These trials are stricter than routing-only trials: a run must progress from the
 
 A record must never claim a blind result from a maintainer/assistant session that already has OpenSiro context.
 
+Prepared contributor trials are supplementary empirical work, not automatic milestone blockers. A prepared trial may be retired without execution when the research question is no longer active; retirement must remain explicit and must not be rewritten into PASS/FAIL evidence.
+
 ## Record states
 
 - `READY` — prompt and evidence schema prepared, no qualifying fresh run executed yet.
@@ -13,12 +15,15 @@ A record must never claim a blind result from a maintainer/assistant session tha
 - `BLOCKED` — the run reached a genuine infrastructure/permission blocker.
 - `PASS` — all required stages completed and normal repository review accepted the bounded work item.
 - `FAIL` — the run violated a required stage or produced a materially invalid contribution.
+- `RETIRED — NOT EXECUTED` — a prepared design was explicitly closed without a qualifying run; it remains provenance only and has no behavioral evidence value.
 
 Preserve terminal `BLOCKED` and `FAIL` records. Create a new run instead of rewriting an unsuccessful run into a success.
 
+For a retired prepared design, preserve the historical prompt/surface notes only when useful for provenance and make clear that no empirical run occurred. If the question becomes relevant again, create a new trial against current surfaces rather than reviving stale frozen assumptions.
+
 ## Minimum record
 
-Each run should include:
+Each executed run should include:
 
 - exact verbatim launch prompt;
 - fresh-run declaration;
