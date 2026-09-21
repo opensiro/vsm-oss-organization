@@ -12,7 +12,8 @@ This supplementary note records a corpus-level observation from the public OpenS
 - **Semantic contract:** VSM Harness Profile 0.2.3 / Methodology 0.3.5
 - **Cohort:** canonical `status: included` harnesses whose GitHub repository was created in calendar year 2026
 - **Cohort size:** 59 harnesses
-- **Primary report:** [`vsm-harness-index` PR #243](https://github.com/opensiro/vsm-harness-index/pull/243)
+- **Primary report:** [`reports/2026-autonomy-share.md` at merge commit `a2cce640`](https://github.com/opensiro/vsm-harness-index/blob/a2cce6403f270f9903dcd7549d13082a1e352d5a/reports/2026-autonomy-share.md)
+- **Report integration:** [`vsm-harness-index` PR #243](https://github.com/opensiro/vsm-harness-index/pull/243)
 - **Recurring temporal projection follow-up:** [`vsm-harness-index` issue #242](https://github.com/opensiro/vsm-harness-index/issues/242)
 
 Repository creation time is only a temporal cohort selector. VSM states come from the standalone canonical assessments at the pinned Index revision.
