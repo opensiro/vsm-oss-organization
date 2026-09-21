@@ -53,7 +53,9 @@ Repositories outside the current in-scope set may consume or present artifacts p
 
 ## FOR CONTRIBUTORS
 
-If you arrived from one of the current in-scope VSM Harness OSS repositories and need to decide where work belongs, start with [CONTRIBUTOR_START.md](CONTRIBUTOR_START.md). This routing surface follows the declared scope above and does not expand it.
+For **current tracked work across the bounded VSM Harness OSS group**, start with [TODO.md](TODO.md). It owns cross-repository work selection/status only; the linked issue and repository still own task scope, evidence, acceptance, and canonical artifacts.
+
+If you instead need to decide **where a new or unclassified piece of work belongs**, start with [CONTRIBUTOR_START.md](CONTRIBUTOR_START.md). This routing surface follows the declared scope above and does not expand it.
 
 You do not need to implement a VSM runtime to start contributing. Use the prompts as portable entry points with your own agent/runtime:
 
@@ -63,9 +65,9 @@ You do not need to implement a VSM runtime to start contributing. Use the prompt
 4. **Using the M1 complementary-audit constructor:** [prompts/audit-s1-work.md](prompts/audit-s1-work.md) — exercise the first-party S3* path with a composed auditor; M1 does not require a permanent autonomous verifier.
 5. **Applying a returned M1 current-control decision:** [prompts/apply-s3-control.md](prompts/apply-s3-control.md) — arbitrary comments/approvals are not treated as S3 input.
 
-Repository-local contributions still belong in the repository that owns the relevant source of truth. Use this repository for organization-wide questions: contributor roles, authority boundaries, cross-repository control/coordination, escalation, milestone sequencing, and evolution of the shared contribution control plane.
+Repository-local contributions still belong in the repository that owns the relevant source of truth. Use this repository for organization-wide questions: contributor roles, authority boundaries, cross-repository control/coordination, escalation, milestone sequencing, shared current-work selection, and evolution of the shared contribution control plane.
 
-The prompt pack is operational guidance, not additional VSM semantics and not evidence that a future milestone is complete.
+The prompt pack and TODO are operational guidance/control surfaces, not additional VSM semantics and not evidence that a future milestone is complete.
 
 ## Source boundary
 
@@ -84,7 +86,9 @@ See [CONTROL_PLANE.md](CONTROL_PLANE.md) for compatibility gates, frozen-work bo
 OpenSiro defines organizational roles and GitHub contribution boundaries. Contributors own their runtime:
 
 ```text
-OpenSiro contribution contract
+TODO.md current-work selection
+        ↓
+linked owning repository / issue
         ↓
 contributor-owned scheduler / harness / credentials / budget
         ↓
@@ -138,7 +142,7 @@ M1 constructor surfaces may exist before the milestone is formally achieved. The
 
 The S3* constructor contract is defined in [S3STAR_AUDIT.md](S3STAR_AUDIT.md). During M1, [roles/S3STAR.md](roles/S3STAR.md) is composition guidance rather than evidence of a permanently running verifier. The actual audit judgment owner is recorded per run.
 
-The S3 current-control ownership contract is defined in [roles/S3.md](roles/S3.md). During M1 it does **not** activate a permanent S3 agent: it keeps the actual transaction owner explicit while GitHub Projects, queues, schedulers, fields, and automation remain supporting surfaces. Its autonomous-agent mode is gated by the M3 conditions in [ROADMAP.md](ROADMAP.md).
+The S3 current-control ownership contract is defined in [roles/S3.md](roles/S3.md). During M1 it does **not** activate a permanent S3 agent: it keeps the actual transaction owner explicit while TODO views, GitHub Projects, queues, schedulers, fields, and automation remain supporting surfaces. Its autonomous-agent mode is gated by the M3 conditions in [ROADMAP.md](ROADMAP.md).
 
 Further roles are added only when concrete residual variety establishes the organizational need. VSM functions are responsibilities and relationships, not a checklist of permanent agent processes.
 
