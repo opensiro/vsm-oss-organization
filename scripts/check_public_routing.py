@@ -156,7 +156,11 @@ def route_marker_present(full_name: str, readme: str, org: str) -> bool:
 
     if full_name.casefold() == organization_repo:
         return "contributor_start.md" in text
-    return organization_repo in text
+
+    # A shared TODO link is a current-work route, not by itself the separate
+    # Organization routing surface required for new/unclassified work.
+    todo_fragment = f"{organization_repo}/blob/main/todo.md"
+    return organization_repo in text.replace(todo_fragment, "")
 
 
 def todo_marker_present(full_name: str, readme: str, org: str) -> bool:
