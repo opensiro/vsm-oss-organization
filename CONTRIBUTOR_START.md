@@ -1,8 +1,18 @@
 # VSM Harness OSS contributor routing
 
-This file is the common entry point for contributors and agents that arrive through one of the repositories in the bounded **OpenSiro VSM Harness OSS group** and need to determine where work belongs.
+This file is the common **routing** entry point for contributors and agents that arrive through one of the repositories in the bounded **OpenSiro VSM Harness OSS group** and need to determine where work belongs.
+
+For already tracked work, the single current-work entry point is [`TODO.md`](TODO.md). Use this file when the work is new, unclassified, cross-repository, or needs an authority/routing decision.
 
 The canonical membership of that group is the `Current in-scope public repositories:` block in [README.md](README.md). This file does not expand that set.
+
+## Current tracked work
+
+Start with [`TODO.md`](TODO.md) when the goal is to pick up existing work.
+
+`TODO.md` owns only cross-repository selection/status/order (`NOW`, `NEXT`, `BLOCKED`, `WATCH`, `LATER`). The linked repository and issue remain authoritative for scope, evidence, frozen refs, validation and acceptance.
+
+Do not scrape every open issue and treat it as equally current. An open issue may be a frozen batch, durable source tracker, watchlist, future trigger, milestone evidence record, or current executable task.
 
 ## New to OpenSiro?
 
@@ -14,7 +24,7 @@ This orientation is optional and non-normative. `opensiro.com` is a presentation
 
 **Repository-local work stays in the repository that owns the relevant source of truth.**
 
-Use `opensiro/vsm-oss-organization` when the question is organization-wide within the declared VSM Harness OSS group: contributor roles, authority boundaries, escalation, cross-repository coordination, milestone sequencing, or evolution of the shared contribution control plane.
+Use `opensiro/vsm-oss-organization` when the question is organization-wide within the declared VSM Harness OSS group: contributor roles, authority boundaries, escalation, cross-repository coordination, shared current-work selection, milestone sequencing, or evolution of the shared contribution control plane.
 
 Repositories and research tracks outside the declared scope are not governed by this routing contract merely because they are public or live under the `opensiro` organization.
 
@@ -31,6 +41,8 @@ BLOCKED
 NEXT
 NEED YOU
 ```
+
+When the run is executing tracked work, `NOW`, `BLOCKED`, and `NEXT` should reconcile with [`TODO.md`](TODO.md) rather than creating a parallel backlog in status prose.
 
 Use `NEED YOU = none` when no real owner decision is required. This is a reporting/observability contract only; it does not create a VSM function, autonomy state, or decision owner.
 
@@ -58,10 +70,13 @@ Do not route ordinary S1 work, S3 current-control, S3* audit, PR review, CI repa
 
 ## Routing conformance
 
-Every repository in the canonical in-scope set must expose this routing boundary directly from its root README, making both outcomes clear:
+Every repository in the canonical in-scope set must expose the Organization boundary directly from its root README and should expose the shared [`TODO.md`](TODO.md) route for already tracked work.
+
+The routing outcome remains:
 
 - repository-local work remains in the repository that owns the source of truth;
-- organization-wide contributor roles, authority, escalation, cross-repository coordination, milestone sequencing, or organizational evolution route to `opensiro/vsm-oss-organization` / this contributor entry point.
+- organization-wide contributor roles, authority, escalation, cross-repository coordination, shared work ordering, milestone sequencing, or organizational evolution route to `opensiro/vsm-oss-organization`;
+- tracked work selection starts at Organization `TODO.md`, then returns to the owning repository/issue for execution.
 
 Equivalent wording is allowed when a repository needs to preserve a domain-specific boundary, but the route itself must remain directly discoverable from the repository root.
 
@@ -75,7 +90,7 @@ See [ROUTING_CONFORMANCE.md](ROUTING_CONFORMANCE.md) for the scoped cross-reposi
 | `opensiro/vsm-harness-skills` | Assessment methodology, skills, validation tooling | In-scope operational domain; local procedure changes stay in Skills |
 | `opensiro/vsm-harness-index` | Evidence-backed assessments, catalog/provenance, generated views | In-scope operational domain; local assessment work stays in Index |
 | `opensiro/awesome-vsm-harness` | Curated downstream organizational examples | In-scope operational domain; local curation stays in Awesome |
-| `opensiro/vsm-oss-organization` | Contributor roles, authority, escalation, cross-repository control and organizational evolution | Organizational/metasystem construction surface and routing entry point |
+| `opensiro/vsm-oss-organization` | Contributor roles, authority, escalation, cross-repository control, work selection and organizational evolution | Organizational/metasystem construction surface and routing/current-work entry point |
 
 The table above is explanatory. Canonical membership remains the README scope block and is mechanically checked against the Organization contracts.
 
@@ -83,14 +98,16 @@ The table above is explanatory. Canonical membership remains the README scope bl
 
 When starting from an in-scope repository:
 
-1. Read that repository's README and identify its local source-of-truth responsibility.
-2. If the requested change is local to that responsibility, stay in that repository.
-3. If the requested change concerns contributor authority, escalation, multiple in-scope repositories, milestone sequencing, or the shared contribution control plane, continue here.
-4. From here, route domain-specific work back to the owning repository rather than duplicating its facts or semantics.
-5. If the unresolved question is specifically about identity, ultimate policy, system boundary, legitimate authority, or the delegated autonomy envelope, use the parent-governed S5 entry above; otherwise do not invoke S5.
+1. If you are looking for **existing tracked work**, open Organization [`TODO.md`](TODO.md), choose the applicable `NOW`/`NEXT` item, then return to its owning repository/issue.
+2. Otherwise read the starting repository's README and identify its local source-of-truth responsibility.
+3. If the requested change is local to that responsibility, stay in that repository.
+4. If the requested change concerns contributor authority, escalation, multiple in-scope repositories, current-work ordering, milestone sequencing, or the shared contribution control plane, continue here.
+5. From here, route domain-specific work back to the owning repository rather than duplicating its facts or semantics.
+6. If the unresolved question is specifically about identity, ultimate policy, system boundary, legitimate authority, or the delegated autonomy envelope, use the parent-governed S5 entry above; otherwise do not invoke S5.
 
 Examples:
 
+- pick up the current Index assessment → `TODO.md` → owning Index issue;
 - change the definition of S3* → `vsm-harness-profile`;
 - change the assessment procedure → `vsm-harness-skills`;
 - reassess one harness → `vsm-harness-index`;
