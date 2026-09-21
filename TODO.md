@@ -53,12 +53,6 @@ Do not use this ordering to imply `A/C/P/—/?` maturity or product quality.
 
 This is the current ordinary S1 assessment work visible from the cross-repository control surface. Execute it in `vsm-harness-index` under the current Profile/Methodology and the batch's frozen candidate ref.
 
-## Organization — establish this TODO entry point
-
-- [`vsm-oss-organization#114`](https://github.com/opensiro/vsm-oss-organization/issues/114) — expose one current-work entry point across all in-scope repositories and return the routing decision into repository entry surfaces.
-
-Remove this row when #114 closes.
-
 ---
 
 # NEXT
