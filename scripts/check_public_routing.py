@@ -159,6 +159,15 @@ def route_marker_present(full_name: str, readme: str, org: str) -> bool:
     return organization_repo in text
 
 
+def todo_marker_present(full_name: str, readme: str, org: str) -> bool:
+    text = readme.casefold()
+    organization_repo = f"{org}/vsm-oss-organization".casefold()
+
+    if full_name.casefold() == organization_repo:
+        return "todo.md" in text
+    return f"{organization_repo}/blob/main/todo.md" in text
+
+
 def evaluate_repositories(
     repositories: Iterable[Repository],
     *,
@@ -173,16 +182,30 @@ def evaluate_repositories(
             results.append(CheckResult(repository, False, str(exc)))
             continue
 
-        if route_marker_present(repository.full_name, readme, org):
-            results.append(CheckResult(repository, True, "Organization route is directly discoverable"))
-        else:
+        has_route = route_marker_present(repository.full_name, readme, org)
+        has_todo = todo_marker_present(repository.full_name, readme, org)
+        if has_route and has_todo:
             results.append(
                 CheckResult(
                     repository,
-                    False,
-                    f"root README does not reference {org}/vsm-oss-organization",
+                    True,
+                    "Organization route and shared TODO are directly discoverable",
                 )
             )
+            continue
+
+        missing: list[str] = []
+        if not has_route:
+            missing.append(f"{org}/vsm-oss-organization route")
+        if not has_todo:
+            missing.append("shared Organization TODO.md")
+        results.append(
+            CheckResult(
+                repository,
+                False,
+                "root README does not expose " + " and ".join(missing),
+            )
+        )
     return results
 
 
