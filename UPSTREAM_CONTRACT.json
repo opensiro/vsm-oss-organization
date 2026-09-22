@@ -10,9 +10,9 @@
   },
   "methodology": {
     "repository": "opensiro/vsm-harness-skills",
-    "source_kind": "commit",
-    "ref": "9f50d20a6747178cf4917a7adc2eb1265ebcf87c",
-    "version": "0.3.5",
+    "source_kind": "release",
+    "ref": "v0.3.6",
+    "version": "0.3.6",
     "version_path": "skills/assess-vsm-harness/VERSION"
   },
   "index": {
