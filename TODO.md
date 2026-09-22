@@ -11,8 +11,7 @@ GitHub milestones remain the planning/destination layer. Open issues that are no
 See [`CONTROL_PLANE.md`](CONTROL_PLANE.md) for the work-lifecycle ownership map.
 
 ## NOW
-- https://github.com/opensiro/vsm-oss-organization/issues/130
-- https://github.com/opensiro/vsm-harness-profile/issues/28
+- https://github.com/opensiro/vsm-harness-skills/issues/33
 
 ## NEXT
 - https://github.com/opensiro/vsm-oss-organization/issues/61
