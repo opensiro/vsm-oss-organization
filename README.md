@@ -53,11 +53,13 @@ Repositories outside the current in-scope set may consume or present artifacts p
 
 ## FOR CONTRIBUTORS
 
-For **current tracked work across the bounded VSM Harness OSS group**, start with the organization-level [`OpenSiro VSM OSS` GitHub Project](https://github.com/orgs/opensiro/projects/1). The Project owns cross-repository operational selection, ordering, and status; the linked issue and repository still own task scope, evidence, acceptance, and canonical artifacts.
+For **current tracked work across the bounded VSM Harness OSS group**, start with [`TODO.md`](TODO.md). It is the Git-native scheduler and owns only current selection/order through `NOW`, `NEXT`, and `BLOCKED`. The linked issue and repository remain authoritative for task scope, evidence, acceptance, and canonical artifacts.
 
-[`TODO.md`](TODO.md) is retained only as a compatibility pointer and must not maintain a parallel backlog.
+The linked organization-level GitHub Project may remain available as an optional human visual projection, but it is not the canonical current-work source and is not required for autonomous correctness.
 
 If you instead need to decide **where a new or unclassified piece of work belongs**, start with [CONTRIBUTOR_START.md](CONTRIBUTOR_START.md). This routing surface follows the declared scope above and does not expand it.
+
+The work-lifecycle ownership map is defined once in [CONTROL_PLANE.md](CONTROL_PLANE.md): GitHub milestones own planned destinations, issues own durable work contracts, `TODO.md` owns current scheduling, and existing S1/metasystem contracts own admission, execution, escalation and closure.
 
 You do not need to implement a VSM runtime to start contributing. Use the prompts as portable entry points with your own agent/runtime:
 
@@ -81,20 +83,20 @@ The prompt pack and current-work routing surface are operational guidance/contro
 - Historical/frozen work keeps its original provenance; later compatible releases do not rewrite the contract under which an older artifact was produced.
 - This repository operationalizes organization/control for the bounded OSS group; it does not redefine S1–S5.
 
-See [CONTROL_PLANE.md](CONTROL_PLANE.md) for compatibility gates, frozen-work boundaries, cross-repository validation, merge gates, and maintainer decision points.
+See [CONTROL_PLANE.md](CONTROL_PLANE.md) for compatibility gates, frozen-work boundaries, cross-repository validation, merge gates, work-lifecycle ownership, and maintainer decision points.
 
 ## Contribution model
 
 OpenSiro defines organizational roles and GitHub contribution boundaries. Contributors own their runtime:
 
 ```text
-OpenSiro VSM OSS GitHub Project
+Organization TODO.md
         ↓
 linked owning repository / issue
         ↓
 contributor-owned scheduler / harness / credentials / budget
         ↓
-select one S1 domain contract
+select one S1 domain contract when applicable
         ↓
 S1 role executes bounded local work
         ↓
@@ -104,6 +106,8 @@ Issue / Pull Request / no-change / escalation
 A contributor may use one agent or many internal workers. Internal workers are not separate S1 units merely because they are separate processes or prompts.
 
 Local variety should remain in the relevant operational domain when that domain has the requisite information and delegated authority. Only residual variety should move into later metasystem functions.
+
+A scheduler state such as `BLOCKED` is not itself an algedonic signal or metasystem decision. Exceptional escalation remains governed by the selected Profile and the owning execution contract.
 
 ## OSM roadmap
 
