@@ -14,7 +14,10 @@ from typing import Callable
 from urllib.error import HTTPError, URLError
 from urllib.request import Request, urlopen
 
-from check_public_routing import RoutingError, scope_repositories_from_readme
+try:
+    from scripts.check_public_routing import RoutingError, scope_repositories_from_readme
+except ModuleNotFoundError:
+    from check_public_routing import RoutingError, scope_repositories_from_readme
 
 API_VERSION = "2022-11-28"
 DEFAULT_API_BASE = "https://api.github.com"
