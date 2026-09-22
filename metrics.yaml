@@ -11,7 +11,9 @@ scope:
 
 principles:
   count_unit: durable_repository_owned_state
+  default_window_change_windows: [24h, 7d, 30d]
   default_flow_windows_days: [7, 30]
+  window_change_semantics: net_canonical_state_change_not_gross_event_count
   cross_repo_double_counting: forbidden
   generated_views_are_outputs: false
   fabricated_live_values: forbidden
@@ -280,11 +282,19 @@ publication:
   optional_aggregate_label: verified state transitions
   optional_aggregate_requires_explicit_composition: true
   secondary_telemetry_label: engineering activity
+  historical_gap_policy:
+    pre_instrumentation: use owning repository read-only renderer when available; do not reimplement repository counting logic
+    pre_inception_cumulative_stock: zero baseline
+    semantic_evidence: leave unclaimed
   collector_requirements:
     - pin exact revision for every repository
     - preserve collection timestamp and repository revisions
-    - collect only from declared sources
+    - collect current state only from declared repository-owned sources
+    - compute 24h, 7d, and 30d window change from the same repository-owned state at historical cutoffs
+    - treat window change as net canonical state change, not gross event count
+    - use an owning repository renderer for pre-instrumentation history rather than duplicating its counting logic
+    - distinguish flow metrics from stock window change
     - verify completion gates where mechanically possible
-    - derive flows from pinned snapshots rather than activity volume
     - leave semantic metrics unclaimed when required evidence is not established
+    - keep engineering activity outside outcome metrics
     - publish the raw machine-readable snapshot alongside human-facing rendering
