@@ -2,8 +2,8 @@
   "profile": {
     "repository": "opensiro/vsm-harness-profile",
     "source_kind": "release",
-    "ref": "v0.2.3",
-    "version": "0.2.3",
+    "ref": "v0.2.4",
+    "version": "0.2.4",
     "version_path": "VERSION",
     "consumer_contract_path": "CONSUMER_CONTRACT.md",
     "release_impact_path": "RELEASE_IMPACT.json"
