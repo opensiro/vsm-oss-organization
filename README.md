@@ -51,6 +51,12 @@ Repository location alone does not determine function. In particular, `vsm-harne
 
 Repositories outside the current in-scope set may consume or present artifacts produced here without becoming governed by this control plane.
 
+## Public outcome metrics
+
+[`METRICS.md`](METRICS.md) defines the shared observability contract for these five public in-scope repositories, with a machine-readable projection in [`metrics.yaml`](metrics.yaml).
+
+The rule is intentionally outcome-oriented: **count accepted repository-owned state transitions, not edits**. Commits, lines changed, PRs, issues, and workflow runs may be exposed as secondary engineering telemetry, but they are not productivity or verified-output KPIs.
+
 ## FOR CONTRIBUTORS
 
 For **current tracked work across the bounded VSM Harness OSS group**, start with [`TODO.md`](TODO.md). It is the Git-native scheduler and owns only current selection/order through `NOW`, `NEXT`, and `BLOCKED`. The linked issue and repository remain authoritative for task scope, evidence, acceptance, and canonical artifacts.
