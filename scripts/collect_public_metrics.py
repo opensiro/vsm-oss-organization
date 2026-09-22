@@ -1,20 +1,19 @@
 #!/usr/bin/env python3
-"""Collect public VSM OSS outcome state and time-window change.
+"""Collect public VSM OSS outcome state and 24h/7d/30d canonical growth.
 
-Repository-owned sources define the current metric values. This collector does
-not reimplement repository counting logic where a canonical metric artifact
-already exists. For 24h/7d/30d change it reads the same source at the most
-recent repository revision at or before each cutoff.
+Every measured value is read from the source exported by its owning repository.
+This collector compares those owner-owned sources across Git history; it does not
+reimplement repository counting or curation logic. Historical gaps that predate
+an exported metric artifact are resolved separately by invoking the owning
+repository's read-only renderer.
 
 Engineering activity is emitted separately as secondary, non-KPI telemetry.
 Semantic VSM evidence is never inferred.
 """
-
 from __future__ import annotations
 
 import argparse
 import json
-import re
 import subprocess
 from datetime import datetime, timedelta, timezone
 from pathlib import Path
@@ -41,11 +40,6 @@ WINDOWS = {
     "30d": timedelta(days=30),
 }
 
-AWESOME_ASSESSMENT_RE = re.compile(
-    r"https://github\.com/opensiro/vsm-harness-index/blob/main/assessments/"
-    r"([A-Za-z0-9._-]+)\.md"
-)
-
 
 def parse_instant(value: str | None) -> datetime:
     if value is None:
@@ -63,7 +57,7 @@ def instant_text(value: datetime) -> str:
 def read_text(root: Path, relative: str) -> str:
     path = root / relative
     if not path.is_file():
-        raise CollectorError(f"missing required source: {path}")
+        raise CollectorError(f"missing required owner source: {path}")
     return path.read_text(encoding="utf-8")
 
 
@@ -121,9 +115,7 @@ def git_text_at(root: Path, revision: str, relative: str) -> str | None:
         stdout=subprocess.PIPE,
         stderr=subprocess.DEVNULL,
     )
-    if completed.returncode != 0:
-        return None
-    return completed.stdout
+    return completed.stdout if completed.returncode == 0 else None
 
 
 def git_json_at(root: Path, revision: str, relative: str) -> Any | None:
@@ -133,13 +125,11 @@ def git_json_at(root: Path, revision: str, relative: str) -> Any | None:
     try:
         return json.loads(text)
     except json.JSONDecodeError as exc:
-        raise CollectorError(
-            f"invalid historical JSON at {revision}:{relative}"
-        ) from exc
+        raise CollectorError(f"invalid historical JSON at {revision}:{relative}") from exc
 
 
 def git_commit_count(root: Path, since: datetime, until: datetime) -> int:
-    output = git_output(
+    value = git_output(
         root,
         "rev-list",
         "--count",
@@ -147,7 +137,7 @@ def git_commit_count(root: Path, since: datetime, until: datetime) -> int:
         f"--until={instant_text(until)}",
         "HEAD",
     )
-    return int(output or "0")
+    return int(value or "0")
 
 
 def collect_activity(root: Path, collected_at: datetime) -> dict[str, Any]:
@@ -159,82 +149,25 @@ def collect_activity(root: Path, collected_at: datetime) -> dict[str, Any]:
     return result
 
 
-def parse_skill_ids_text(text: str) -> list[str]:
-    in_section = False
-    ids: list[str] = []
-    for line in text.splitlines():
-        if line.strip() == "## Skill catalog":
-            in_section = True
-            continue
-        if in_section and line.startswith("## "):
-            break
-        if not in_section:
-            continue
-        match = re.match(r"^\|\s*\[([^\]]+)\]\([^)]+\)\s*\|", line)
-        if match:
-            ids.append(match.group(1).strip())
-    if len(ids) != len(set(ids)):
-        raise CollectorError("duplicate skill identity in README skill catalog")
-    return ids
+def json_value(data: Any, *keys: str) -> Any:
+    value = data
+    for key in keys:
+        value = value[key]
+    return value
 
 
-def parse_awesome_ids_text(text: str) -> list[str]:
-    ids = AWESOME_ASSESSMENT_RE.findall(text)
-    unique = list(dict.fromkeys(ids))
-    if len(ids) != len(unique):
-        raise CollectorError("duplicate canonical Index assessment link in Awesome README")
-    return unique
-
-
-def metric(
-    kind: str,
-    value: Any,
-    source: str,
-    *,
-    claim_status: str = "mechanically_derived",
-    completion_gate_evaluated: bool = False,
-    window_change: Mapping[str, Any] | None = None,
-) -> dict[str, Any]:
-    result = {
-        "kind": kind,
-        "value": value,
-        "source": source,
-        "claim_status": claim_status,
-        "completion_gate_evaluated": completion_gate_evaluated,
-    }
-    if window_change is not None:
-        result["window_change"] = dict(window_change)
-    return result
+def historical_json_value(
+    root: Path, revision: str, relative: str, *keys: str
+) -> Any | None:
+    data = git_json_at(root, revision, relative)
+    if data is None:
+        return None
+    return json_value(data, *keys)
 
 
 def historical_text_value(root: Path, revision: str, relative: str) -> str | None:
     text = git_text_at(root, revision, relative)
     return text.strip() if text is not None else None
-
-
-def semantic_metrics_unclaimed(repo_contract: Mapping[str, Any]) -> dict[str, Any]:
-    result: dict[str, Any] = {}
-    for name, spec in repo_contract.get("metrics", {}).items():
-        source = spec.get("source", {})
-        if source.get("mode") != "semantic_evidence":
-            continue
-        paths: list[str] = []
-        if isinstance(source.get("path"), str):
-            paths.append(source["path"])
-        if isinstance(source.get("paths"), list):
-            paths.extend(str(item) for item in source["paths"])
-        result[name] = {
-            "kind": spec.get("kind"),
-            "value": None,
-            "claim_status": "unclaimed_semantic_evidence",
-            "completion_gate_evaluated": False,
-            "evidence_paths": paths,
-            "window_change": {
-                label: {"status": "unclaimed_semantic_evidence", "value": None}
-                for label in WINDOWS
-            },
-        }
-    return result
 
 
 def window_baselines(
@@ -278,15 +211,14 @@ def numeric_window_change(
     current: int,
     reader: Callable[[str], int | None],
 ) -> dict[str, Any]:
-    baselines = window_baselines(root, collected_at, reader)
-    for entry in baselines.values():
+    result = window_baselines(root, collected_at, reader)
+    for entry in result.values():
         if entry["status"] != "baseline_available":
             entry["value"] = None
             continue
-        baseline = int(entry["baseline"])
-        entry["value"] = current - baseline
+        entry["value"] = current - int(entry["baseline"])
         entry["status"] = "derived_net_change"
-    return baselines
+    return result
 
 
 def state_window_change(
@@ -295,14 +227,60 @@ def state_window_change(
     current: str,
     reader: Callable[[str], str | None],
 ) -> dict[str, Any]:
-    baselines = window_baselines(root, collected_at, reader)
-    for entry in baselines.values():
+    result = window_baselines(root, collected_at, reader)
+    for entry in result.values():
         if entry["status"] != "baseline_available":
             entry["changed"] = None
             continue
         entry["changed"] = str(entry["baseline"]) != current
         entry["status"] = "derived_state_change"
-    return baselines
+    return result
+
+
+def metric(
+    kind: str,
+    value: Any,
+    source: str,
+    *,
+    claim_status: str = "mechanically_derived",
+    completion_gate_evaluated: bool = False,
+    window_change: Mapping[str, Any] | None = None,
+) -> dict[str, Any]:
+    result = {
+        "kind": kind,
+        "value": value,
+        "source": source,
+        "claim_status": claim_status,
+        "completion_gate_evaluated": completion_gate_evaluated,
+    }
+    if window_change is not None:
+        result["window_change"] = dict(window_change)
+    return result
+
+
+def semantic_metrics_unclaimed(repo_contract: Mapping[str, Any]) -> dict[str, Any]:
+    result: dict[str, Any] = {}
+    for name, spec in repo_contract.get("metrics", {}).items():
+        source = spec.get("source", {})
+        if source.get("mode") != "semantic_evidence":
+            continue
+        paths: list[str] = []
+        if isinstance(source.get("path"), str):
+            paths.append(source["path"])
+        if isinstance(source.get("paths"), list):
+            paths.extend(str(item) for item in source["paths"])
+        result[name] = {
+            "kind": spec.get("kind"),
+            "value": None,
+            "claim_status": "unclaimed_semantic_evidence",
+            "completion_gate_evaluated": False,
+            "evidence_paths": paths,
+            "window_change": {
+                label: {"status": "unclaimed_semantic_evidence", "value": None}
+                for label in WINDOWS
+            },
+        }
+    return result
 
 
 def collect_snapshot(
@@ -312,56 +290,41 @@ def collect_snapshot(
     revisions: Mapping[str, str] | None = None,
     activity: Mapping[str, Mapping[str, Any]] | None = None,
 ) -> dict[str, Any]:
-    missing_root_keys = set(REPOSITORIES) - set(roots)
-    if missing_root_keys:
-        raise CollectorError(f"missing roots: {sorted(missing_root_keys)}")
+    missing = set(REPOSITORIES) - set(roots)
+    if missing:
+        raise CollectorError(f"missing roots: {sorted(missing)}")
 
-    organization_root = roots["organization"]
-    contract = load_contract(organization_root)
+    contract = load_contract(roots["organization"])
     scope = contract.get("scope", {}).get("repositories")
     if scope != list(REPOSITORIES.values()):
-        raise CollectorError(
-            "metrics.yaml scope/order differs from the collector adapter boundary"
-        )
-    contract_repositories = contract.get("repositories", {})
-    if set(contract_repositories) != set(REPOSITORIES.values()):
+        raise CollectorError("metrics.yaml scope/order differs from collector boundary")
+    repo_contracts = contract.get("repositories", {})
+    if set(repo_contracts) != set(REPOSITORIES.values()):
         raise CollectorError("metrics.yaml repository definitions differ from scope")
 
     revisions_by_repo = {
-        full_name: (
-            revisions[full_name]
-            if revisions is not None
-            else git_revision(roots[key])
-        )
+        full_name: revisions[full_name] if revisions is not None else git_revision(roots[key])
         for key, full_name in REPOSITORIES.items()
     }
     activity_by_repo = {
-        full_name: (
-            dict(activity[full_name])
-            if activity is not None
-            else collect_activity(roots[key], collected_at)
-        )
+        full_name: dict(activity[full_name]) if activity is not None else collect_activity(roots[key], collected_at)
         for key, full_name in REPOSITORIES.items()
     }
-
-    profile_repo = REPOSITORIES["profile"]
-    skills_repo = REPOSITORIES["skills"]
-    index_repo = REPOSITORIES["index"]
-    awesome_repo = REPOSITORIES["awesome"]
-    organization_repo = REPOSITORIES["organization"]
 
     repositories: dict[str, Any] = {}
 
     def base(repo: str) -> dict[str, Any]:
-        repo_contract = contract_repositories[repo]
+        spec = repo_contracts[repo]
         return {
             "revision": revisions_by_repo[repo],
-            "organizational_role": repo_contract["organizational_role"],
-            "primary_metric": repo_contract["primary_metric"],
+            "organizational_role": spec["organizational_role"],
+            "primary_metric": spec["primary_metric"],
             "metrics": {},
             "engineering_activity": activity_by_repo[repo],
         }
 
+    # Profile exposes its owner state directly through VERSION.
+    profile_repo = REPOSITORIES["profile"]
     profile = base(profile_repo)
     profile_version = read_text(roots["profile"], "VERSION").strip()
     profile["metrics"]["current_validated_profile_release"] = metric(
@@ -378,94 +341,70 @@ def collect_snapshot(
     )
     repositories[profile_repo] = profile
 
+    # Skills owns both the Methodology state and skill-catalog count projection.
+    skills_repo = REPOSITORIES["skills"]
+    skills_data = read_json(roots["skills"], "data/metrics.json")
     skills = base(skills_repo)
-    skills_version = read_text(
-        roots["skills"], "skills/assess-vsm-harness/VERSION"
-    ).strip()
+    methodology = str(skills_data["methodology_version"])
     skills["metrics"]["current_validated_methodology_release"] = metric(
         "state",
-        skills_version,
-        "skills/assess-vsm-harness/VERSION",
+        methodology,
+        "data/metrics.json#/methodology_version",
         claim_status="source_observed_completion_gate_not_rechecked",
         window_change=state_window_change(
             roots["skills"],
             collected_at,
-            skills_version,
-            lambda rev: historical_text_value(
-                roots["skills"], rev, "skills/assess-vsm-harness/VERSION"
+            methodology,
+            lambda rev: (
+                str(value)
+                if (value := historical_json_value(roots["skills"], rev, "data/metrics.json", "methodology_version")) is not None
+                else None
             ),
         ),
     )
-    skill_ids = parse_skill_ids_text(read_text(roots["skills"], "README.md"))
+    skill_count = int(skills_data["skill_catalog_entries"])
     skills["metrics"]["skill_catalog_entries"] = metric(
         "stock",
-        len(skill_ids),
-        "README.md#skill-catalog",
+        skill_count,
+        "data/metrics.json#/skill_catalog_entries",
         window_change=numeric_window_change(
             roots["skills"],
             collected_at,
-            len(skill_ids),
+            skill_count,
             lambda rev: (
-                len(parse_skill_ids_text(text))
-                if (text := git_text_at(roots["skills"], rev, "README.md")) is not None
+                int(value)
+                if (value := historical_json_value(roots["skills"], rev, "data/metrics.json", "skill_catalog_entries")) is not None
                 else None
             ),
         ),
     )
     repositories[skills_repo] = skills
 
+    # Index numerical state is consumed solely from the Index-owned artifact.
+    index_repo = REPOSITORIES["index"]
     index_data = read_json(roots["index"], "data/metrics.json")
     index = base(index_repo)
 
-    def historical_index_value(revision: str, *keys: str) -> int | None:
-        data = git_json_at(roots["index"], revision, "data/metrics.json")
-        if data is None:
-            return None
-        value: Any = data
-        for key in keys:
-            value = value[key]
-        return int(value)
+    def index_number(name: str) -> int:
+        return int(index_data["corpus"][name])
 
-    included = int(index_data["corpus"]["included_assessments"])
-    index["metrics"]["included_assessments"] = metric(
-        "stock",
-        included,
-        "data/metrics.json#/corpus/included_assessments",
-        window_change=numeric_window_change(
-            roots["index"],
-            collected_at,
-            included,
-            lambda rev: historical_index_value(
-                rev, "corpus", "included_assessments"
+    def historical_index_number(rev: str, name: str) -> int | None:
+        value = historical_json_value(roots["index"], rev, "data/metrics.json", "corpus", name)
+        return int(value) if value is not None else None
+
+    for name in ("included_assessments", "catalog_entries", "reassessment_events"):
+        current = index_number(name)
+        index["metrics"][name] = metric(
+            "stock",
+            current,
+            f"data/metrics.json#/corpus/{name}",
+            window_change=numeric_window_change(
+                roots["index"],
+                collected_at,
+                current,
+                lambda rev, metric_name=name: historical_index_number(rev, metric_name),
             ),
-        ),
-    )
-    catalog_entries = int(index_data["corpus"]["catalog_entries"])
-    index["metrics"]["catalog_entries"] = metric(
-        "stock",
-        catalog_entries,
-        "data/metrics.json#/corpus/catalog_entries",
-        window_change=numeric_window_change(
-            roots["index"],
-            collected_at,
-            catalog_entries,
-            lambda rev: historical_index_value(rev, "corpus", "catalog_entries"),
-        ),
-    )
-    reassessment_events = int(index_data["corpus"]["reassessment_events"])
-    index["metrics"]["reassessment_events"] = metric(
-        "stock",
-        reassessment_events,
-        "data/metrics.json#/corpus/reassessment_events",
-        window_change=numeric_window_change(
-            roots["index"],
-            collected_at,
-            reassessment_events,
-            lambda rev: historical_index_value(
-                rev, "corpus", "reassessment_events"
-            ),
-        ),
-    )
+        )
     index["metrics"]["active_contract"] = metric(
         "state",
         {
@@ -476,28 +415,32 @@ def collect_snapshot(
     )
     repositories[index_repo] = index
 
+    # Awesome owns its curated representative count projection.
+    awesome_repo = REPOSITORIES["awesome"]
+    awesome_data = read_json(roots["awesome"], "data/metrics.json")
     awesome = base(awesome_repo)
-    awesome_ids = parse_awesome_ids_text(read_text(roots["awesome"], "README.md"))
+    curated = int(awesome_data["curated_representative_entries"])
     awesome["metrics"]["curated_representative_entries"] = metric(
         "stock",
-        len(awesome_ids),
-        "README.md canonical Index assessment links",
+        curated,
+        "data/metrics.json#/curated_representative_entries",
         window_change=numeric_window_change(
             roots["awesome"],
             collected_at,
-            len(awesome_ids),
+            curated,
             lambda rev: (
-                len(parse_awesome_ids_text(text))
-                if (text := git_text_at(roots["awesome"], rev, "README.md")) is not None
+                int(value)
+                if (value := historical_json_value(roots["awesome"], rev, "data/metrics.json", "curated_representative_entries")) is not None
                 else None
             ),
         ),
     )
     repositories[awesome_repo] = awesome
 
+    organization_repo = REPOSITORIES["organization"]
     organization = base(organization_repo)
     organization["metrics"].update(
-        semantic_metrics_unclaimed(contract_repositories[organization_repo])
+        semantic_metrics_unclaimed(repo_contracts[organization_repo])
     )
     repositories[organization_repo] = organization
 
@@ -524,17 +467,9 @@ def collect_snapshot(
 def parse_args() -> argparse.Namespace:
     parser = argparse.ArgumentParser()
     for key in REPOSITORIES:
-        parser.add_argument(
-            f"--{key}-root",
-            type=Path,
-            required=True,
-            help=f"checkout root for {REPOSITORIES[key]}",
-        )
+        parser.add_argument(f"--{key}-root", type=Path, required=True)
     parser.add_argument("--output", type=Path, required=True)
-    parser.add_argument(
-        "--collected-at",
-        help="ISO-8601 timestamp; defaults to current UTC time",
-    )
+    parser.add_argument("--collected-at", help="ISO-8601 timestamp; defaults to current UTC time")
     return parser.parse_args()
 
 
@@ -542,18 +477,11 @@ def main() -> int:
     args = parse_args()
     roots = {key: getattr(args, f"{key}_root") for key in REPOSITORIES}
     try:
-        snapshot = collect_snapshot(
-            roots,
-            collected_at=parse_instant(args.collected_at),
-        )
+        snapshot = collect_snapshot(roots, collected_at=parse_instant(args.collected_at))
     except (CollectorError, KeyError, TypeError, ValueError) as exc:
         raise SystemExit(f"metrics collector error: {exc}") from exc
-
     args.output.parent.mkdir(parents=True, exist_ok=True)
-    args.output.write_text(
-        json.dumps(snapshot, indent=2, sort_keys=True) + "\n",
-        encoding="utf-8",
-    )
+    args.output.write_text(json.dumps(snapshot, indent=2, sort_keys=True) + "\n", encoding="utf-8")
     return 0
 
 

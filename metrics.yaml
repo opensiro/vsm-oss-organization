@@ -105,7 +105,9 @@ repositories:
       current_validated_methodology_release:
         kind: state
         source:
-          path: skills/assess-vsm-harness/VERSION
+          path: data/metrics.json
+          json_pointer: /methodology_version
+          owner_renderer: scripts/render_metrics.py --stdout-core-json
         completion_gate: current versioned Methodology state exists and repository validation passes
       published_methodology_releases:
         kind: stock
@@ -119,8 +121,9 @@ repositories:
       skill_catalog_entries:
         kind: stock
         source:
-          mode: declared_skill_catalog
-          path: README.md
+          path: data/metrics.json
+          json_pointer: /skill_catalog_entries
+          owner_renderer: scripts/render_metrics.py --stdout-core-json
       profile_snapshot_synchronized:
         kind: health
         source:
@@ -150,8 +153,9 @@ repositories:
       curated_representative_entries:
         kind: stock
         source:
-          mode: curated_project_entries
-          path: README.md
+          path: data/metrics.json
+          json_pointer: /curated_representative_entries
+          owner_renderer: scripts/render_metrics.py --stdout-core-json
         completion_gate: accepted representative project entry exists and local formatting/Index-consistency validation passes
       entries_admitted:
         kind: flow

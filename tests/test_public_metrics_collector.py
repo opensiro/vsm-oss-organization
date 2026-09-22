@@ -73,6 +73,11 @@ def commit_all(root: Path, when: str, message: str):
     run_git(root, "commit", "-m", message, env=env)
 
 
+def write_json(path: Path, data: dict):
+    path.parent.mkdir(parents=True, exist_ok=True)
+    path.write_text(json.dumps(data), encoding="utf-8")
+
+
 class CollectorTests(unittest.TestCase):
     def setUp(self):
         self.temp = tempfile.TemporaryDirectory()
@@ -84,9 +89,7 @@ class CollectorTests(unittest.TestCase):
             run_git(root, "config", "user.email", "test@example.com")
             run_git(root, "config", "user.name", "Test")
 
-        (self.roots["organization"] / "metrics.yaml").write_text(
-            CONTRACT, encoding="utf-8"
-        )
+        (self.roots["organization"] / "metrics.yaml").write_text(CONTRACT, encoding="utf-8")
         commit_all(self.roots["organization"], "2026-08-01T12:00:00Z", "contract")
 
         (self.roots["profile"] / "VERSION").write_text("0.2.3\n", encoding="utf-8")
@@ -94,62 +97,55 @@ class CollectorTests(unittest.TestCase):
         (self.roots["profile"] / "VERSION").write_text("0.2.4\n", encoding="utf-8")
         commit_all(self.roots["profile"], "2026-09-20T12:00:00Z", "profile 0.2.4")
 
-        version = self.roots["skills"] / "skills" / "assess-vsm-harness" / "VERSION"
-        version.parent.mkdir(parents=True)
-        version.write_text("0.3.5\n", encoding="utf-8")
-        (self.roots["skills"] / "README.md").write_text(
-            "# Skills\n\n## Skill catalog\n\n| Skill | Purpose |\n| --- | --- |\n"
-            "| [assess-vsm-harness](skills/assess-vsm-harness/SKILL.md) | Assess |\n",
-            encoding="utf-8",
-        )
-        commit_all(self.roots["skills"], "2026-08-01T12:00:00Z", "skills old")
-        version.write_text("0.3.6\n", encoding="utf-8")
-        (self.roots["skills"] / "README.md").write_text(
-            "# Skills\n\n## Skill catalog\n\n| Skill | Purpose |\n| --- | --- |\n"
-            "| [assess-vsm-harness](skills/assess-vsm-harness/SKILL.md) | Assess |\n"
-            "| [second](skills/second/SKILL.md) | Second |\n",
-            encoding="utf-8",
-        )
-        commit_all(self.roots["skills"], "2026-09-18T12:00:00Z", "skills new")
+        skills_metrics = self.roots["skills"] / "data" / "metrics.json"
+        write_json(skills_metrics, {
+            "schema_version": 1,
+            "methodology_version": "0.3.5",
+            "skill_catalog_entries": 1,
+            "skill_ids": ["assess-vsm-harness"],
+        })
+        commit_all(self.roots["skills"], "2026-08-01T12:00:00Z", "skills old owner metrics")
+        write_json(skills_metrics, {
+            "schema_version": 1,
+            "methodology_version": "0.3.6",
+            "skill_catalog_entries": 2,
+            "skill_ids": ["assess-vsm-harness", "second"],
+        })
+        commit_all(self.roots["skills"], "2026-09-18T12:00:00Z", "skills new owner metrics")
 
-        data = self.roots["index"] / "data"
-        data.mkdir()
+        index_metrics = self.roots["index"] / "data" / "metrics.json"
         for when, included, catalog, reassess in [
             ("2026-08-01T12:00:00Z", 1, 2, 1),
             ("2026-08-30T12:00:00Z", 2, 3, 2),
             ("2026-09-18T12:00:00Z", 3, 4, 4),
             ("2026-09-22T12:00:00Z", 4, 5, 7),
         ]:
-            (data / "metrics.json").write_text(
-                json.dumps(
-                    {
-                        "corpus": {
-                            "included_assessments": included,
-                            "catalog_entries": catalog,
-                            "reassessment_events": reassess,
-                        },
-                        "active_contract": {
-                            "profile_version": "0.2.4",
-                            "methodology_version": "0.3.6",
-                        },
-                    }
-                ),
-                encoding="utf-8",
-            )
+            write_json(index_metrics, {
+                "corpus": {
+                    "included_assessments": included,
+                    "catalog_entries": catalog,
+                    "reassessment_events": reassess,
+                },
+                "active_contract": {
+                    "profile_version": "0.2.4",
+                    "methodology_version": "0.3.6",
+                },
+            })
             commit_all(self.roots["index"], when, f"index {included}")
 
-        readme = self.roots["awesome"] / "README.md"
-        readme.write_text(
-            "[Assessment](https://github.com/opensiro/vsm-harness-index/blob/main/assessments/alpha.md)\n",
-            encoding="utf-8",
-        )
-        commit_all(self.roots["awesome"], "2026-08-01T12:00:00Z", "awesome 1")
-        readme.write_text(
-            "[Assessment](https://github.com/opensiro/vsm-harness-index/blob/main/assessments/alpha.md)\n"
-            "[Assessment](https://github.com/opensiro/vsm-harness-index/blob/main/assessments/beta.md)\n",
-            encoding="utf-8",
-        )
-        commit_all(self.roots["awesome"], "2026-09-18T12:00:00Z", "awesome 2")
+        awesome_metrics = self.roots["awesome"] / "data" / "metrics.json"
+        write_json(awesome_metrics, {
+            "schema_version": 1,
+            "curated_representative_entries": 1,
+            "curated_entry_ids": ["alpha"],
+        })
+        commit_all(self.roots["awesome"], "2026-08-01T12:00:00Z", "awesome old owner metrics")
+        write_json(awesome_metrics, {
+            "schema_version": 1,
+            "curated_representative_entries": 2,
+            "curated_entry_ids": ["alpha", "beta"],
+        })
+        commit_all(self.roots["awesome"], "2026-09-18T12:00:00Z", "awesome new owner metrics")
 
         self.activity = {
             repo: {
@@ -172,71 +168,69 @@ class CollectorTests(unittest.TestCase):
             activity=self.activity,
         )
 
-    def test_index_uses_repo_owned_metrics_without_reparsing_assessments(self):
+    def test_consumes_only_owner_artifacts_for_skills_index_and_awesome(self):
         snapshot = self.snapshot()
-        metric = snapshot["repositories"]["opensiro/vsm-harness-index"]["metrics"][
-            "included_assessments"
-        ]
-        self.assertEqual(metric["value"], 4)
-        self.assertEqual(
-            metric["source"], "data/metrics.json#/corpus/included_assessments"
-        )
-        self.assertEqual(metric["window_change"]["24h"]["value"], 1)
-        self.assertEqual(metric["window_change"]["7d"]["value"], 2)
-        self.assertEqual(metric["window_change"]["30d"]["value"], 3)
-        self.assertNotIn("raw", snapshot["repositories"]["opensiro/vsm-harness-index"])
+        skills = snapshot["repositories"]["opensiro/vsm-harness-skills"]["metrics"]
+        index = snapshot["repositories"]["opensiro/vsm-harness-index"]["metrics"]
+        awesome = snapshot["repositories"]["opensiro/awesome-vsm-harness"]["metrics"]
 
-    def test_window_change_is_net_state_change_not_gross_flow(self):
+        self.assertEqual(skills["current_validated_methodology_release"]["value"], "0.3.6")
+        self.assertEqual(skills["skill_catalog_entries"]["value"], 2)
+        self.assertEqual(skills["skill_catalog_entries"]["source"], "data/metrics.json#/skill_catalog_entries")
+        self.assertEqual(index["included_assessments"]["value"], 4)
+        self.assertEqual(index["included_assessments"]["source"], "data/metrics.json#/corpus/included_assessments")
+        self.assertEqual(awesome["curated_representative_entries"]["value"], 2)
+        self.assertEqual(awesome["curated_representative_entries"]["source"], "data/metrics.json#/curated_representative_entries")
+
+        # There are intentionally no Skills/Awesome README fixtures. If central
+        # parsing returns, this test suite fails before assertions are reached.
+        self.assertFalse((self.roots["skills"] / "README.md").exists())
+        self.assertFalse((self.roots["awesome"] / "README.md").exists())
+
+    def test_owner_artifact_growth_is_net_state_change(self):
         snapshot = self.snapshot()
         self.assertEqual(
             snapshot["publication"]["window_change_semantics"],
             "net canonical state change, not gross event count",
         )
-        reassess = snapshot["repositories"]["opensiro/vsm-harness-index"]["metrics"][
-            "reassessment_events"
-        ]["window_change"]
-        self.assertEqual(reassess["24h"]["value"], 3)
-        self.assertEqual(reassess["7d"]["value"], 5)
-        self.assertEqual(reassess["30d"]["value"], 6)
-
-    def test_profile_and_skills_compare_same_repo_owned_state_across_windows(self):
-        snapshot = self.snapshot()
-        profile = snapshot["repositories"]["opensiro/vsm-harness-profile"]["metrics"][
-            "current_validated_profile_release"
-        ]["window_change"]
-        self.assertFalse(profile["24h"]["changed"])
-        self.assertTrue(profile["7d"]["changed"])
-        self.assertTrue(profile["30d"]["changed"])
-
         skills = snapshot["repositories"]["opensiro/vsm-harness-skills"]["metrics"]
-        self.assertEqual(
-            skills["skill_catalog_entries"]["window_change"]["24h"]["value"], 0
-        )
-        self.assertEqual(
-            skills["skill_catalog_entries"]["window_change"]["7d"]["value"], 1
-        )
+        awesome = snapshot["repositories"]["opensiro/awesome-vsm-harness"]["metrics"]
+        index = snapshot["repositories"]["opensiro/vsm-harness-index"]["metrics"]
 
-    def test_semantic_metrics_remain_unclaimed_for_all_windows(self):
+        self.assertEqual(skills["skill_catalog_entries"]["window_change"]["24h"]["value"], 0)
+        self.assertEqual(skills["skill_catalog_entries"]["window_change"]["7d"]["value"], 1)
+        self.assertFalse(skills["current_validated_methodology_release"]["window_change"]["24h"]["changed"])
+        self.assertTrue(skills["current_validated_methodology_release"]["window_change"]["7d"]["changed"])
+        self.assertEqual(awesome["curated_representative_entries"]["window_change"]["7d"]["value"], 1)
+        self.assertEqual(index["included_assessments"]["window_change"]["24h"]["value"], 1)
+        self.assertEqual(index["included_assessments"]["window_change"]["7d"]["value"], 2)
+        self.assertEqual(index["included_assessments"]["window_change"]["30d"]["value"], 3)
+
+    def test_profile_direct_owner_state_and_semantic_org_boundary(self):
         snapshot = self.snapshot()
-        metric = snapshot["repositories"]["opensiro/vsm-oss-organization"]["metrics"][
-            "current_formal_construction_milestone"
-        ]
-        self.assertIsNone(metric["value"])
-        for label in ("24h", "7d", "30d"):
-            self.assertEqual(
-                metric["window_change"][label]["status"],
-                "unclaimed_semantic_evidence",
-            )
+        profile = snapshot["repositories"]["opensiro/vsm-harness-profile"]["metrics"]["current_validated_profile_release"]
+        self.assertEqual(profile["source"], "VERSION")
+        self.assertFalse(profile["window_change"]["24h"]["changed"])
+        self.assertTrue(profile["window_change"]["7d"]["changed"])
 
-    def test_activity_is_separate_and_has_30d(self):
+        org = snapshot["repositories"]["opensiro/vsm-oss-organization"]["metrics"]["current_formal_construction_milestone"]
+        self.assertIsNone(org["value"])
+        for label in ("24h", "7d", "30d"):
+            self.assertEqual(org["window_change"][label]["status"], "unclaimed_semantic_evidence")
+
+    def test_activity_is_separate_non_kpi_telemetry(self):
         snapshot = self.snapshot()
         repo = snapshot["repositories"]["opensiro/vsm-harness-index"]
         self.assertNotIn("commits_24h", repo["metrics"])
-        self.assertEqual(
-            repo["engineering_activity"]["classification"], "secondary_non_kpi"
-        )
+        self.assertEqual(repo["engineering_activity"]["classification"], "secondary_non_kpi")
         self.assertEqual(repo["engineering_activity"]["commits_30d"], 100)
+        self.assertFalse(snapshot["publication"]["engineering_activity_is_productivity_kpi"])
         self.assertEqual(snapshot["windows"], ["24h", "7d", "30d"])
+
+    def test_missing_owner_artifact_fails_closed(self):
+        (self.roots["awesome"] / "data" / "metrics.json").unlink()
+        with self.assertRaises(collector.CollectorError):
+            self.snapshot()
 
     def test_scope_drift_fails_closed(self):
         contract = CONTRACT.replace(
@@ -244,9 +238,7 @@ class CollectorTests(unittest.TestCase):
             "    - opensiro/vsm-oss-organization\n    - opensiro/not-in-scope\n",
             1,
         )
-        (self.roots["organization"] / "metrics.yaml").write_text(
-            contract, encoding="utf-8"
-        )
+        (self.roots["organization"] / "metrics.yaml").write_text(contract, encoding="utf-8")
         with self.assertRaises(collector.CollectorError):
             self.snapshot()
 
