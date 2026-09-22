@@ -4,6 +4,7 @@ import unittest
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
+PROJECT_URL = "https://github.com/orgs/opensiro/projects/1"
 
 
 class AutonomousWorkReportingTests(unittest.TestCase):
@@ -20,8 +21,8 @@ class AutonomousWorkReportingTests(unittest.TestCase):
         self.assertIn("branch → PR → CI → fix → merge", contract)
         self.assertIn("NEED YOU = none", contract)
         self.assertIn("Do not silently turn a finished task into an indefinitely expanding", contract)
-        self.assertIn("TODO.md", contract)
-        self.assertIn("TODO reconciliation", contract)
+        self.assertIn(PROJECT_URL, contract)
+        self.assertIn("Project reconciliation", contract)
 
     def test_common_entry_exposes_reporting_contract(self) -> None:
         entry = self.read("CONTRIBUTOR_START.md")
@@ -32,18 +33,16 @@ class AutonomousWorkReportingTests(unittest.TestCase):
             self.assertIn(marker, entry)
         self.assertIn("does not create a VSM function", entry)
 
-    def test_common_entry_exposes_current_work_bootstrap(self) -> None:
+    def test_common_entry_exposes_current_work_project(self) -> None:
         entry = self.read("CONTRIBUTOR_START.md")
         root_readme = self.read("README.md")
         todo = self.read("TODO.md")
 
-        self.assertIn("TODO.md", entry)
-        self.assertIn("TODO.md", root_readme)
-        self.assertIn("Temporary bootstrap surface", todo)
-        self.assertIn("GitHub Project", todo)
-        self.assertIn("#125", todo)
-        for state in ("# NOW", "# NEXT", "# BLOCKED", "# WATCH", "# LATER"):
-            self.assertIn(state, todo)
+        self.assertIn(PROJECT_URL, entry)
+        self.assertIn(PROJECT_URL, root_readme)
+        self.assertIn(PROJECT_URL, todo)
+        self.assertIn("compatibility pointer", todo)
+        self.assertIn("must not become a parallel backlog", todo)
         for repository in (
             "opensiro/vsm-harness-profile",
             "opensiro/vsm-harness-skills",
