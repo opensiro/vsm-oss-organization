@@ -4,7 +4,7 @@ This contract defines the minimum observability surface for contributors or agen
 
 It exists because execution autonomy without concise state visibility creates a control problem for the project owner: work may be correct and productive while still becoming difficult to supervise, interrupt, or resume.
 
-This is an operating/reporting contract. It does **not** redefine VSM functions, autonomy states, repository ownership, milestone evidence, or decision authority.
+This is an operating/reporting contract. It does **not** redefine VSM functions, autonomy states, repository ownership, milestone evidence, scheduling truth, or decision authority.
 
 ## Principle
 
@@ -14,7 +14,9 @@ The reporting objective is:
 
 > the owner should be able to understand the important state of an autonomous work run in roughly one short status read.
 
-For tracked work in the bounded VSM Harness OSS group, the [`OpenSiro VSM OSS` GitHub Project](https://github.com/orgs/opensiro/projects/1) is the shared current-work surface. Status reporting should reconcile with that Project rather than creating a second backlog in prose.
+For tracked work in the bounded VSM Harness OSS group, [`TODO.md`](TODO.md) is the shared Git-native current-work scheduler. Status reporting should reconcile with that scheduler rather than creating a second backlog in prose.
+
+The work-lifecycle ownership boundary is defined in [`CONTROL_PLANE.md`](CONTROL_PLANE.md); this document reports execution state and does not duplicate that lifecycle.
 
 ## Control-plane snapshot
 
@@ -41,16 +43,18 @@ NEED YOU
 
 Keep this outcome-oriented. PR numbers, workflow runs, commit SHAs, and implementation details are supporting evidence and should be included only when they help reconstruct or review the state.
 
-### Project reconciliation
+### Scheduler reconciliation
 
-When the run participates in work already tracked in the GitHub Project:
+When the run participates in work already tracked in `TODO.md`:
 
-- `NOW` should identify the matching Project item or explain why the current run temporarily differs;
-- a new durable blocker should be reflected in the Project rather than living only in the status message;
-- `NEXT` should normally come from the owning issue plus the Project ordering, not from an untracked expansion of scope;
-- terminal closure should update the Project item after the owning repository records the result.
+- `NOW` should identify the matching issue or explain why the current run temporarily differs;
+- a new durable blocker should be recorded in the owning issue and reflected in `TODO.md` only when the issue remains selected current work;
+- `NEXT` should normally come from the owning issue plus scheduler ordering, not from an untracked expansion of scope;
+- terminal closure should be recorded first in the owning repository/issue and then removed from `TODO.md`.
 
-This does not make the Project a second evidence database. The linked issue/repository remains authoritative for task content, evidence and acceptance. [`TODO.md`](TODO.md) is a compatibility pointer only.
+This does not make `TODO.md` a second evidence database. The linked issue/repository remains authoritative for task content, evidence and acceptance. The linked GitHub Project may be maintained as an optional human projection, but reporting must not depend on it.
+
+A `BLOCKED`, `FAILED`, alert, or other status value is not by itself an algedonic signal or proof of S3/S4/S5. Exceptional escalation is a separate path governed by the selected Profile semantics and the owning execution contract.
 
 ## Autonomous continuation rule
 
@@ -99,10 +103,12 @@ Reporting does not transfer authority.
 
 A contributor may autonomously execute decisions already delegated to the relevant S1/S3/S3*/other function, but must stop and surface `NEED YOU` when the next action requires an owner decision that is not already determined by existing policy or delegated authority.
 
+For S1 work, `roles/S1.md` and `S1_TASK_ADMISSION_RECOVERY.md` already distinguish ordinary local recovery from `ESCALATED`; this reporting contract does not create another escalation rule.
+
 For parent-governed S5 matters, follow `S5_PARENT_BOUNDARY.md`, `S5_PARENT_AUTHORITY.md`, and `prompts/parent-control-plane.md`. This reporting contract must not be used to bypass S5 admission or to promote ordinary S1/S3/S3* variety into S5.
 
 ## Evidence boundary
 
-The status snapshot and GitHub Project are navigation/control artifacts, not second databases.
+The status snapshot and `TODO.md` are navigation/control artifacts, not second databases.
 
 Canonical facts remain in their owning repositories, issues, PRs, records, tests, and generated artifacts. Do not manually duplicate detailed assessment state, VSM semantics, candidate evidence, or corpus facts merely to make status self-contained.
