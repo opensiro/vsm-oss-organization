@@ -24,6 +24,9 @@ jobs:
         with:
           python-version: "3.12"
 
+      - name: Install metrics-test dependency
+        run: python -m pip install -r organization/requirements-metrics.txt
+
       - name: Read upstream selection
         id: upstream
         shell: bash
