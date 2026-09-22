@@ -4,7 +4,6 @@ import unittest
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
-PROJECT_URL = "https://github.com/orgs/opensiro/projects/1"
 
 
 class AutonomousWorkReportingTests(unittest.TestCase):
@@ -21,8 +20,9 @@ class AutonomousWorkReportingTests(unittest.TestCase):
         self.assertIn("branch → PR → CI → fix → merge", contract)
         self.assertIn("NEED YOU = none", contract)
         self.assertIn("Do not silently turn a finished task into an indefinitely expanding", contract)
-        self.assertIn(PROJECT_URL, contract)
-        self.assertIn("Project reconciliation", contract)
+        self.assertIn("TODO.md", contract)
+        self.assertIn("Scheduler reconciliation", contract)
+        self.assertIn("not by itself an algedonic signal", contract)
 
     def test_common_entry_exposes_reporting_contract(self) -> None:
         entry = self.read("CONTRIBUTOR_START.md")
@@ -32,25 +32,30 @@ class AutonomousWorkReportingTests(unittest.TestCase):
         for marker in ("DONE", "NOW", "BLOCKED", "NEXT", "NEED YOU"):
             self.assertIn(marker, entry)
         self.assertIn("does not create a VSM function", entry)
+        self.assertIn("TODO.md", entry)
 
-    def test_common_entry_exposes_current_work_project(self) -> None:
-        entry = self.read("CONTRIBUTOR_START.md")
-        root_readme = self.read("README.md")
+    def test_control_plane_owns_lifecycle_boundary(self) -> None:
+        control = self.read("CONTROL_PLANE.md")
         todo = self.read("TODO.md")
+        root_readme = self.read("README.md")
 
-        self.assertIn(PROJECT_URL, entry)
-        self.assertIn(PROJECT_URL, root_readme)
-        self.assertIn(PROJECT_URL, todo)
-        self.assertIn("compatibility pointer", todo)
-        self.assertIn("must not become a parallel backlog", todo)
-        for repository in (
-            "opensiro/vsm-harness-profile",
-            "opensiro/vsm-harness-skills",
-            "opensiro/vsm-harness-index",
-            "opensiro/awesome-vsm-harness",
-            "opensiro/vsm-oss-organization",
+        for marker in (
+            "GitHub milestone",
+            "GitHub issue",
+            "TODO.md",
+            "S1 execution",
+            "Metasystem execution",
+            "Optional projection",
         ):
-            self.assertIn(repository, todo)
+            self.assertIn(marker, control)
+
+        self.assertIn("## NOW", todo)
+        self.assertIn("## NEXT", todo)
+        self.assertIn("## BLOCKED", todo)
+        self.assertNotIn("## WATCH", todo)
+        self.assertNotIn("## LATER", todo)
+        self.assertIn("Git-native scheduler", root_readme)
+        self.assertIn("CONTROL_PLANE.md", root_readme)
 
 
 if __name__ == "__main__":

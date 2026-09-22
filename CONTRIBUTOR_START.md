@@ -2,17 +2,21 @@
 
 This file is the common **routing** entry point for contributors and agents that arrive through one of the repositories in the bounded **OpenSiro VSM Harness OSS group** and need to determine where work belongs.
 
-For already tracked work, the single current-work entry point is the [`OpenSiro VSM OSS` GitHub Project](https://github.com/orgs/opensiro/projects/1). Use this file when the work is new, unclassified, cross-repository, or needs an authority/routing decision.
+For already tracked work, the single current-work entry point is [`TODO.md`](TODO.md). Use this file when the work is new, unclassified, cross-repository, or needs an authority/routing decision.
 
 The canonical membership of that group is the `Current in-scope public repositories:` block in [README.md](README.md). This file does not expand that set.
 
+The work-lifecycle ownership map is defined in [`CONTROL_PLANE.md`](CONTROL_PLANE.md). Do not duplicate it here: milestones plan destinations, issues own durable work contracts, `TODO.md` schedules current issues, and existing organizational contracts own admission/execution/escalation/closure.
+
 ## Current tracked work
 
-Start with the [`OpenSiro VSM OSS` GitHub Project](https://github.com/orgs/opensiro/projects/1) when the goal is to pick up existing work.
+Start with [`TODO.md`](TODO.md) when the goal is to pick up existing work.
 
-The Project owns only cross-repository operational selection, ordering, and status. The linked repository and issue remain authoritative for scope, evidence, frozen refs, validation and acceptance. [`TODO.md`](TODO.md) is compatibility-only and must not maintain a parallel backlog.
+`TODO.md` owns only cross-repository current selection and ordering through `NOW`, `NEXT`, and `BLOCKED`. The linked repository and issue remain authoritative for scope, evidence, frozen refs, validation and acceptance.
 
-Do not scrape every open issue and treat it as equally current. An open issue may be a frozen batch, durable source tracker, watchlist, future trigger, milestone evidence record, or current executable task.
+Do not scrape every open issue and treat it as equally current. An open issue may be a frozen batch, durable source tracker, watchlist, future trigger, milestone evidence record, or executable work that simply has not been selected into the current scheduler.
+
+The linked organization-level GitHub Project may be used as an optional human visual projection, but autonomous correctness must not depend on Project fields/items and the Project must not become a second current-work source of truth.
 
 ## New to OpenSiro?
 
@@ -42,9 +46,11 @@ NEXT
 NEED YOU
 ```
 
-When the run is executing tracked work, `NOW`, `BLOCKED`, and `NEXT` should reconcile with the GitHub Project rather than creating a parallel backlog in status prose.
+When the run is executing tracked work, `NOW`, `BLOCKED`, and `NEXT` should reconcile with `TODO.md` rather than creating a parallel backlog in status prose.
 
-Use `NEED YOU = none` when no real owner decision is required. This is a reporting/observability contract only; it does not create a VSM function, autonomy state, or decision owner.
+Use `NEED YOU = none` when no real owner decision is required. This is a reporting/observability contract only; it does not create a VSM function, autonomy state, scheduling decision, or decision owner.
+
+A `BLOCKED` scheduler/reporting state is not itself an algedonic signal. Exceptional escalation remains governed by the selected Profile semantics and the owning execution contract.
 
 ## Parent-governed S5 entry
 
@@ -70,13 +76,13 @@ Do not route ordinary S1 work, S3 current-control, S3* audit, PR review, CI repa
 
 ## Routing conformance
 
-Every repository in the canonical in-scope set must expose the Organization boundary directly from its root README and must expose the [`OpenSiro VSM OSS` GitHub Project](https://github.com/orgs/opensiro/projects/1) route for already tracked work.
+Every repository in the canonical in-scope set must expose the Organization boundary directly from its root README and must expose the shared [`TODO.md`](TODO.md) route for already tracked work.
 
 The routing outcome remains:
 
 - repository-local work remains in the repository that owns the source of truth;
 - organization-wide contributor roles, authority, escalation, cross-repository coordination, shared work ordering, milestone sequencing, or organizational evolution route to `opensiro/vsm-oss-organization`;
-- tracked work selection starts at the GitHub Project, then returns to the owning repository/issue for execution.
+- tracked work selection starts at `TODO.md`, then returns to the owning repository/issue for execution.
 
 Equivalent wording is allowed when a repository needs to preserve a domain-specific boundary, but the route itself must remain directly discoverable from the repository root.
 
@@ -98,7 +104,7 @@ The table above is explanatory. Canonical membership remains the README scope bl
 
 When starting from an in-scope repository:
 
-1. If you are looking for **existing tracked work**, open the [`OpenSiro VSM OSS` GitHub Project](https://github.com/orgs/opensiro/projects/1), choose the applicable current item, then return to its owning repository/issue.
+1. If you are looking for **existing tracked work**, open [`TODO.md`](TODO.md), choose the applicable current issue, then return to its owning repository/issue.
 2. Otherwise read the starting repository's README and identify its local source-of-truth responsibility.
 3. If the requested change is local to that responsibility, stay in that repository.
 4. If the requested change concerns contributor authority, escalation, multiple in-scope repositories, current-work ordering, milestone sequencing, or the shared contribution control plane, continue here.
@@ -107,7 +113,7 @@ When starting from an in-scope repository:
 
 Examples:
 
-- pick up the current Index assessment → GitHub Project → owning Index issue;
+- pick up the current Index assessment → `TODO.md` → owning Index issue;
 - change the definition of S3* → `vsm-harness-profile`;
 - change the assessment procedure → `vsm-harness-skills`;
 - reassess one harness → `vsm-harness-index`;

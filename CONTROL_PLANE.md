@@ -1,6 +1,6 @@
 # OpenSiro OSS Control Plane
 
-This document is the operational control plane for the bounded **OpenSiro VSM Harness OSS group** defined in `README.md`. It records authority boundaries, compatibility gates, and hand-off rules between in-scope public repositories. It is **not** a second source of VSM semantics, Methodology rules, or Index assessment data.
+This document is the operational control plane for the bounded **OpenSiro VSM Harness OSS group** defined in `README.md`. It records authority boundaries, compatibility gates, work-lifecycle ownership, and hand-off rules between in-scope public repositories. It is **not** a second source of VSM semantics, Methodology rules, or Index assessment data.
 
 The in-scope repository set is maintained explicitly in `README.md`. Repository membership in the `opensiro` organization does not automatically place a project under this control plane. Contributor-local runtimes, schedulers, credentials, budgets, and sandboxes also remain outside this repository's authority.
 
@@ -29,6 +29,54 @@ Source-of-truth rules:
 - `opensiro/awesome-vsm-harness` owns its curated representative downstream view; it does not redefine Profile or Index facts.
 - this repository owns only the bounded VSM Harness OSS contribution organization, its OSM construction sequence, and which upstream contract it elects to consume.
 - `opensiro/terminal-bench-vsm`, `opensiro/arctic-0`, and `opensiro/opensiro.com` are outside this organizational scope even when they consume, demonstrate, experiment with, or present related artifacts.
+
+## Work lifecycle and current-work ownership
+
+The bounded organization separates **planning**, **durable work contracts**, **current scheduling**, **execution authority**, **reporting**, and **exceptional escalation**. These layers must not be collapsed into one backlog or one VSM function.
+
+```text
+GitHub milestone
+= planned destination / milestone state
+        ↓
+GitHub issue
+= durable executable work contract
+        ↓
+TODO.md
+= current scheduling only: NOW / NEXT / BLOCKED
+        ↓
+owning organizational contract
+= admission / execution / recovery / escalation / closure
+        ↓
+issue / PR / record / validated no-change outcome
+```
+
+Ownership by layer:
+
+| Layer | Source of truth | Owns | Does not own |
+| --- | --- | --- | --- |
+| Planning | GitHub milestones and their accepted milestone trackers | planned destination, milestone sequencing, exit intent | task execution or current scheduling |
+| Work contract | owning GitHub issue/repository | scope, evidence boundary, dependencies, acceptance, frozen refs, completion history | cross-repository current ordering |
+| Current scheduling | [`TODO.md`](TODO.md) | `NOW`, `NEXT`, `BLOCKED` selection/order for already-existing issues | task semantics, VSM classification, evidence, acceptance, decision authority |
+| S1 execution | `roles/S1.md`, `S1_TASK_ADMISSION_RECOVERY.md`, `S1_DOMAIN_CONTRACTS.md` plus the owning repository contract | admission, local execution, recovery, evidence preservation, `CLOSED_*` / `ESCALATED` / `NON_ADMITTED` outcomes | organization-wide metasystem rights outside the admitted envelope |
+| Metasystem execution | the applicable S2/S3/S3*/S4/S5 Organization/Profile contract | only the qualifying organizational decision/feedback right established for that function | generic scheduling or backlog administration merely because it is cross-repository |
+| Reporting | [`AUTONOMOUS_WORK_REPORTING.md`](AUTONOMOUS_WORK_REPORTING.md) | concise observability of the current run | authority, scheduling truth, VSM function ownership |
+| Optional projection | linked GitHub Project #1 | human visual projection when maintained | canonical current-work state or autonomous correctness |
+
+A milestone item is not permission to execute. An open issue is not automatically current work. A `TODO.md` entry is not proof that the issue is admissible as S1 or that any metasystem function exists. The owning execution contract must still admit and classify the work.
+
+`TODO.md` deliberately contains only `NOW`, `NEXT`, and `BLOCKED`. `WATCH` and `LATER` are planning/discovery concerns rather than current execution state and must stay in milestones, source trackers, ordinary issues, or their owning repositories until selected.
+
+Every scheduler item must be a real open issue inside the canonical in-scope repository set. `scripts/check_current_work.py` checks this live. Free-form task definitions, duplicate issue records, closed issues, PRs masquerading as issues, and out-of-scope repositories are rejected.
+
+### Escalation and algedonic boundary
+
+A scheduler state is not an escalation function. In particular, `BLOCKED`, `FAILED`, an alert, a queue entry, or a status field can make a condition visible without establishing an algedonic channel or S3/S4/S5 ownership.
+
+Exceptional signalling follows the selected Profile semantics. An algedonic signal/channel transports exceptional pain or opportunity to a reachable authority; the receiving decision is classified by the organizational function actually exercised at the declared recursion. The signal path does not inherit the authority of its receiver.
+
+For S1 work, the existing S1 contract already owns the transition from ordinary local recovery to `ESCALATED` when the work exceeds the admitted authority/evidence boundary. The scheduler may reflect the resulting current state, but it must not redefine the escalation rule or decide which higher function owns the matter.
+
+If the reusable semantics need clarification, route that change to `vsm-harness-profile`; do not create an Organization-local competing definition. Organization consumes accepted Profile releases through the compatibility gate below.
 
 ## Upstream contract selection
 
@@ -150,7 +198,7 @@ A local PR is ready when all applicable gates hold:
 
 ## Current operator boundary
 
-At M1, ordinary Organization work uses the selected upstream contract and its deterministic compatibility gate. Task admission/recovery, completion evidence, complementary S3* audit, and S3 control-return remain separate organizational concerns.
+At M1, ordinary Organization work uses the selected upstream contract and its deterministic compatibility gate. Task admission/recovery, completion evidence, complementary S3* audit, S3 control-return, current-work scheduling, and exceptional signalling remain separate organizational concerns.
 
 A maintainer decision is required when:
 
