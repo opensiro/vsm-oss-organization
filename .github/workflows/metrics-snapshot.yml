@@ -9,7 +9,9 @@ on:
       - "metrics.yaml"
       - "METRICS.md"
       - "scripts/collect_public_metrics.py"
+      - "scripts/finalize_public_metrics_windows.py"
       - "tests/test_public_metrics_collector.py"
+      - "tests/test_finalize_public_metrics_windows.py"
       - "requirements-metrics.txt"
       - ".github/workflows/metrics-snapshot.yml"
 
@@ -66,9 +68,13 @@ jobs:
       - name: Install collector dependency
         run: python -m pip install -r organization/requirements-metrics.txt
 
-      - name: Run collector tests
+      - name: Run metrics tests
         working-directory: organization
-        run: python -m unittest tests.test_public_metrics_collector -v
+        run: >-
+          python -m unittest
+          tests.test_public_metrics_collector
+          tests.test_finalize_public_metrics_windows
+          -v
 
       - name: Collect pinned public snapshot
         run: >-
@@ -79,6 +85,12 @@ jobs:
           --awesome-root awesome
           --organization-root organization
           --output vsm-oss-metrics.json
+
+      - name: Finalize historical windows through repository-owned renderers
+        run: >-
+          python organization/scripts/finalize_public_metrics_windows.py
+          --snapshot vsm-oss-metrics.json
+          --index-root index
 
       - name: Publish snapshot summary
         shell: bash
@@ -117,6 +129,7 @@ jobs:
               print(f"| `{repo}` | {current} | {cells[0]} | {cells[1]} | {cells[2]} |")
           print()
           print("Window values are net canonical-state change from the same repository-owned source at historical cutoffs, not gross event counts.")
+          print("Historical gaps use the owning repository renderer; pre-inception cumulative stock uses a zero baseline.")
           print("Engineering activity remains separate and non-KPI.")
           PY
 
