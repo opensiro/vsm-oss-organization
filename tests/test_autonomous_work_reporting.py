@@ -54,7 +54,7 @@ class AutonomousWorkReportingTests(unittest.TestCase):
         self.assertIn("## BLOCKED", todo)
         self.assertNotIn("## WATCH", todo)
         self.assertNotIn("## LATER", todo)
-        self.assertIn("current-work scheduler", root_readme)
+        self.assertIn("Git-native scheduler", root_readme)
         self.assertIn("CONTROL_PLANE.md", root_readme)
 
 
