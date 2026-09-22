@@ -90,7 +90,9 @@ jobs:
         run: >-
           python organization/scripts/finalize_public_metrics_windows.py
           --snapshot vsm-oss-metrics.json
+          --skills-root skills
           --index-root index
+          --awesome-root awesome
 
       - name: Publish snapshot summary
         shell: bash
@@ -128,8 +130,8 @@ jobs:
                           cells.append("unclaimed")
               print(f"| `{repo}` | {current} | {cells[0]} | {cells[1]} | {cells[2]} |")
           print()
-          print("Window values are net canonical-state change from the same repository-owned source at historical cutoffs, not gross event counts.")
-          print("Historical gaps use the owning repository renderer; pre-inception cumulative stock uses a zero baseline.")
+          print("Window values are net canonical-state change from repository-owned sources at historical cutoffs, not gross event counts.")
+          print("Historical instrumentation gaps use the owning repository renderer; pre-inception cumulative stock uses a zero baseline.")
           print("Engineering activity remains separate and non-KPI.")
           PY
 

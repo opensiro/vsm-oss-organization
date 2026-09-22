@@ -32,32 +32,25 @@ def commit(root: Path, when: str, message: str):
     git(root, "commit", "-m", message, env=env)
 
 
-class FinalizeWindowsTests(unittest.TestCase):
-    def setUp(self):
-        self.temp = tempfile.TemporaryDirectory()
-        self.index = Path(self.temp.name) / "index"
-        self.index.mkdir()
-        git(self.index, "init", "-q")
-        git(self.index, "config", "user.email", "test@example.com")
-        git(self.index, "config", "user.name", "Test")
+def owner_repo(base: Path, name: str, historical: dict, current: dict) -> tuple[Path, str]:
+    root = base / name
+    root.mkdir()
+    git(root, "init", "-q")
+    git(root, "config", "user.email", "test@example.com")
+    git(root, "config", "user.name", "Test")
+    data = root / "data"
+    data.mkdir()
+    (data / "core_source.json").write_text(json.dumps(historical), encoding="utf-8")
+    commit(root, "2026-09-15T12:00:00Z", "historical owner source")
+    historical_revision = subprocess.check_output(
+        ["git", "-C", str(root), "rev-parse", "HEAD"], text=True
+    ).strip()
 
-        data = self.index / "data"
-        data.mkdir()
-        (data / "core_source.json").write_text(
-            json.dumps({"included_assessments": 3, "catalog_entries": 4}),
-            encoding="utf-8",
-        )
-        commit(self.index, "2026-09-15T12:00:00Z", "historical source")
-        self.baseline_revision = subprocess.check_output(
-            ["git", "-C", str(self.index), "rev-parse", "HEAD"], text=True
-        ).strip()
-
-        scripts = self.index / "scripts"
-        scripts.mkdir()
-        (scripts / "render_metrics.py").write_text(
-            """#!/usr/bin/env python3
+    scripts = root / "scripts"
+    scripts.mkdir()
+    (scripts / "render_metrics.py").write_text(
+        """#!/usr/bin/env python3
 import argparse
-import json
 from pathlib import Path
 p = argparse.ArgumentParser()
 p.add_argument('--source-root', type=Path, required=True)
@@ -65,27 +58,51 @@ p.add_argument('--stdout-core-json', action='store_true')
 a = p.parse_args()
 print((a.source_root / 'data' / 'core_source.json').read_text())
 """,
-            encoding="utf-8",
+        encoding="utf-8",
+    )
+    (data / "core_source.json").write_text(json.dumps(current), encoding="utf-8")
+    commit(root, "2026-09-22T12:00:00Z", "current owner renderer")
+    return root, historical_revision
+
+
+class FinalizeWindowsTests(unittest.TestCase):
+    def setUp(self):
+        self.temp = tempfile.TemporaryDirectory()
+        base = Path(self.temp.name)
+        self.skills, self.skills_rev = owner_repo(
+            base,
+            "skills",
+            {"methodology_version": "0.3.5", "skill_catalog_entries": 1},
+            {"methodology_version": "0.3.6", "skill_catalog_entries": 2},
         )
-        (data / "core_source.json").write_text(
-            json.dumps({"included_assessments": 4, "catalog_entries": 5}),
-            encoding="utf-8",
+        self.index, self.index_rev = owner_repo(
+            base,
+            "index",
+            {"included_assessments": 3, "catalog_entries": 4},
+            {"included_assessments": 4, "catalog_entries": 5},
         )
-        commit(self.index, "2026-09-22T12:00:00Z", "current renderer")
+        self.awesome, self.awesome_rev = owner_repo(
+            base,
+            "awesome",
+            {"curated_representative_entries": 1},
+            {"curated_representative_entries": 2},
+        )
+        self.roots = {
+            "skills": self.skills,
+            "index": self.index,
+            "awesome": self.awesome,
+        }
 
     def tearDown(self):
         self.temp.cleanup()
 
-    def snapshot(self):
-        gap = {
-            "24h": {
-                "status": "derived_net_change",
-                "baseline": 4,
-                "value": 0,
-            },
+    @staticmethod
+    def gap(revision: str) -> dict:
+        return {
+            "24h": {"status": "derived_net_change", "baseline": 1, "value": 0},
             "7d": {
                 "status": "source_unavailable_at_baseline",
-                "baseline_revision": self.baseline_revision,
+                "baseline_revision": revision,
                 "baseline": None,
                 "value": None,
             },
@@ -96,21 +113,50 @@ print((a.source_root / 'data' / 'core_source.json').read_text())
                 "value": None,
             },
         }
+
+    def snapshot(self):
+        skill_state = self.gap(self.skills_rev)
+        skill_state["24h"].pop("value")
+        skill_state["24h"]["changed"] = False
+        skill_state["7d"].pop("value")
+        skill_state["7d"]["changed"] = None
+        skill_state["30d"].pop("value")
+        skill_state["30d"]["changed"] = None
         return {
             "publication": {
                 "window_change_semantics": "net canonical state change, not gross event count"
             },
             "repositories": {
+                "opensiro/vsm-harness-skills": {
+                    "metrics": {
+                        "current_validated_methodology_release": {
+                            "value": "0.3.6",
+                            "window_change": skill_state,
+                        },
+                        "skill_catalog_entries": {
+                            "value": 2,
+                            "window_change": self.gap(self.skills_rev),
+                        },
+                    }
+                },
                 "opensiro/vsm-harness-index": {
                     "metrics": {
                         "included_assessments": {
                             "value": 4,
-                            "window_change": json.loads(json.dumps(gap)),
+                            "window_change": self.gap(self.index_rev),
                         },
                         "catalog_entries": {
                             "value": 5,
-                            "window_change": json.loads(json.dumps(gap)),
+                            "window_change": self.gap(self.index_rev),
                         },
+                    }
+                },
+                "opensiro/awesome-vsm-harness": {
+                    "metrics": {
+                        "curated_representative_entries": {
+                            "value": 2,
+                            "window_change": self.gap(self.awesome_rev),
+                        }
                     }
                 },
                 "opensiro/vsm-harness-profile": {
@@ -143,39 +189,52 @@ print((a.source_root / 'data' / 'core_source.json').read_text())
             },
         }
 
-    def test_fills_index_gap_with_index_owned_renderer_and_pre_inception_zero(self):
-        result = finalizer.finalize(self.snapshot(), self.index)
+    def test_all_preinstrumentation_gaps_use_owning_renderers(self):
+        result = finalizer.finalize(self.snapshot(), self.roots)
+
+        skills = result["repositories"]["opensiro/vsm-harness-skills"]["metrics"]
+        state_7d = skills["current_validated_methodology_release"]["window_change"]["7d"]
+        self.assertEqual(state_7d["baseline"], "0.3.5")
+        self.assertTrue(state_7d["changed"])
+        self.assertEqual(state_7d["status"], "derived_state_change_via_repository_renderer")
+        skill_count = skills["skill_catalog_entries"]["window_change"]["7d"]
+        self.assertEqual(skill_count["baseline"], 1)
+        self.assertEqual(skill_count["value"], 1)
+
         index = result["repositories"]["opensiro/vsm-harness-index"]["metrics"]
+        self.assertEqual(index["included_assessments"]["window_change"]["7d"]["baseline"], 3)
+        self.assertEqual(index["included_assessments"]["window_change"]["7d"]["value"], 1)
+        self.assertEqual(index["catalog_entries"]["window_change"]["7d"]["baseline"], 4)
 
-        included_7d = index["included_assessments"]["window_change"]["7d"]
-        self.assertEqual(included_7d["baseline"], 3)
-        self.assertEqual(included_7d["value"], 1)
+        awesome = result["repositories"]["opensiro/awesome-vsm-harness"]["metrics"]
+        curated = awesome["curated_representative_entries"]["window_change"]["7d"]
+        self.assertEqual(curated["baseline"], 1)
+        self.assertEqual(curated["value"], 1)
+        self.assertIn("awesome-vsm-harness", curated["baseline_source"])
+
+    def test_pre_inception_stock_and_state_do_not_infer_semantics(self):
+        result = finalizer.finalize(self.snapshot(), self.roots)
+        skills = result["repositories"]["opensiro/vsm-harness-skills"]["metrics"]
         self.assertEqual(
-            included_7d["status"], "derived_net_change_via_repository_renderer"
+            skills["skill_catalog_entries"]["window_change"]["30d"]["status"],
+            "derived_pre_inception_net_change",
         )
+        self.assertEqual(skills["skill_catalog_entries"]["window_change"]["30d"]["baseline"], 0)
 
-        included_30d = index["included_assessments"]["window_change"]["30d"]
-        self.assertEqual(included_30d["baseline"], 0)
-        self.assertEqual(included_30d["value"], 4)
-        self.assertEqual(
-            included_30d["status"], "derived_pre_inception_net_change"
-        )
-
-        catalog_7d = index["catalog_entries"]["window_change"]["7d"]
-        self.assertEqual(catalog_7d["baseline"], 4)
-        self.assertEqual(catalog_7d["value"], 1)
-
-    def test_pre_inception_state_is_created_not_semantically_inferred(self):
-        result = finalizer.finalize(self.snapshot(), self.index)
         profile = result["repositories"]["opensiro/vsm-harness-profile"]["metrics"]
         state = profile["current_validated_profile_release"]["window_change"]["30d"]
         self.assertTrue(state["changed"])
         self.assertEqual(state["status"], "derived_pre_inception_state")
 
-        organization = result["repositories"]["opensiro/vsm-oss-organization"]["metrics"]
-        semantic = organization["current_formal_construction_milestone"]["window_change"]["30d"]
+        semantic = result["repositories"]["opensiro/vsm-oss-organization"]["metrics"]["current_formal_construction_milestone"]["window_change"]["30d"]
         self.assertEqual(semantic["status"], "unclaimed_semantic_evidence")
         self.assertIsNone(semantic["value"])
+
+    def test_missing_owner_root_fails_closed(self):
+        roots = dict(self.roots)
+        roots.pop("awesome")
+        with self.assertRaises(finalizer.FinalizeError):
+            finalizer.finalize(self.snapshot(), roots)
 
 
 if __name__ == "__main__":
