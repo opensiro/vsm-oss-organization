@@ -62,6 +62,25 @@ A qualifying behavioral trial uses a fresh agent/run with:
 
 Each current in-scope repository must appear as a starting point in the batch. The task set must include both organization-wide positive cases and repository-local negative controls.
 
+### Trial freeze boundary
+
+A routing batch freezes the **agent-visible routing contract**, not the ordinary contents of the current-work queue.
+
+For each run, preserve the starting repository and the exact start SHA used for its root routing surface. Refreeze an unexecuted batch when a material change alters what the run is intended to test, including:
+
+- canonical in-scope repository membership;
+- the root-README route to Organization or `TODO.md`;
+- the location or ownership semantics of the current-work entry point;
+- `CONTRIBUTOR_START.md` routing/authority decision procedure;
+- `TODO.md` scheduler schema or its planning/work-contract/scheduling ownership boundary;
+- the held-out prompt design or PASS criteria.
+
+By contrast, an ordinary scheduler transition that **only adds, removes, reorders, or moves valid issue links among `NOW`, `NEXT`, and `BLOCKED`** does not invalidate the batch. `TODO.md` is intentionally temporal: tracked-work runs resolve the live scheduler at run start and must record the exact `TODO.md` ref/SHA (or equivalent immutable snapshot) and selected issue used for that run.
+
+This separation is required so normal autonomous progress through the queue cannot perpetually invalidate the routing experiment that is meant to validate discovery of that queue.
+
+Unrelated repository movement also does not invalidate a batch unless it changes an agent-visible routing surface or another frozen property above.
+
 Representative positive cases:
 
 - find and pick up already tracked cross-repository work without scanning every issue tracker;
@@ -84,6 +103,8 @@ Record at least:
 ```text
 start repository @ SHA
 prompt / task class
+TODO.md @ ref/SHA for tracked-work runs
+selected issue for tracked-work runs
 files read
 links followed
 chosen destination
