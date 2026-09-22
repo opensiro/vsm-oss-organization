@@ -8,7 +8,7 @@ The machine-readable projection of this contract is [`metrics.yaml`](metrics.yam
 
 ## Scope
 
-Only the current public repositories inside the organization boundary are measured:
+Only these current public repositories are in scope:
 
 - `opensiro/vsm-harness-profile`
 - `opensiro/vsm-harness-skills`
@@ -16,53 +16,75 @@ Only the current public repositories inside the organization boundary are measur
 - `opensiro/awesome-vsm-harness`
 - `opensiro/vsm-oss-organization`
 
-Repositories outside this set are not included merely because they belong to OpenSiro, consume these artifacts, or are operationally related.
+Repositories outside this set are excluded even if they belong to OpenSiro or consume these artifacts.
 
 ## Principle: count accepted outputs, not edits
 
-The default public scoreboard measures **durable repository-owned state** and **completed state transitions**.
-
-A metric may increase only when the owning repository reaches the completion gate declared for that metric. Activity that merely moves work toward a gate is not itself an outcome.
-
-Examples:
+The public scoreboard measures **durable repository-owned state** and qualified transitions. Activity that merely moves work toward a completion gate is not itself an outcome.
 
 | Activity / state | Public outcome KPI? |
 | --- | --- |
 | commit created | no |
 | lines changed | no |
 | PR opened | no |
-| issue closed | no, unless the metric explicitly requires a semantically qualified terminal artifact |
+| issue closed | no, unless a metric explicitly owns that terminal artifact |
 | assessment admitted to the canonical corpus | yes |
 | reassessment event accepted into canonical history | yes |
 | released Profile/Methodology state validated under its repository contract | yes |
 | Awesome entry admitted and canonical-Index consistency validated | yes |
-| organization control/audit transaction completed with its required evidence path | yes |
+| organization control/audit transaction completed with the required semantic evidence | yes |
 
 Commits, merged PRs, workflow runs, and similar quantities may be exposed as **secondary engineering telemetry**. They must never be presented as productivity, quality, or verified-output metrics.
 
-## Stock, flow, health, and state
+## Stock, flow, health, state, and window change
 
-The dashboard should distinguish four kinds of values:
+The dashboard distinguishes:
 
 - **stock** — current durable corpus/state, such as included assessments;
-- **flow** — completed qualifying transitions during a window, normally 7 or 30 days;
+- **flow** — completed qualifying transitions during a window;
 - **health** — validation/consistency result for the current state;
-- **state** — non-numeric current identity such as the active Profile release or formal organization milestone.
+- **state** — non-numeric current identity such as the active Profile release;
+- **window change** — the difference between the current canonical stock/state and the same repository-owned state at a historical cutoff.
 
-A stock is not automatically a target to maximize. A flow is descriptive throughput, not an incentive to split one meaningful change into many smaller artifacts.
+The default public comparison windows are **24h, 7d, and 30d**.
+
+For a numeric stock:
+
+```text
+window change = current canonical stock - canonical stock at cutoff
+```
+
+This is **net canonical state change, not gross event count**. For example, `included assessments +15 / 24h` means that the canonical included-assessment stock is 15 higher than at the 24-hour cutoff. It is not independently claiming that exactly 15 admission events occurred.
+
+A true flow such as `assessments_admitted` or `entries_retired` is a different semantic claim and requires the owning repository's event/identity semantics. The organization collector must not manufacture gross flow from a stock delta.
+
+For state-valued metrics, a window reports whether the repository-owned state changed during the window rather than assigning a numerical productivity value.
+
+## Historical-source rule
+
+Current and historical values must be calculated by the **same owning repository logic** whenever possible.
+
+1. Read the current metric from its declared repository-owned source.
+2. At each 24h/7d/30d cutoff, read the same source from the latest repository revision at or before the cutoff.
+3. If the generated metric artifact did not yet exist but the owning repository exposes a read-only renderer for the historical source tree, use that renderer.
+4. Do **not** reimplement another repository's counting logic inside `vsm-oss-organization`.
+5. If a repository did not yet exist at the cutoff, cumulative numeric stock uses a zero pre-inception baseline.
+6. Semantic-evidence metrics remain unclaimed when the required evidence cannot be mechanically established.
+
+For Index specifically, current corpus counts come from `data/metrics.json`. Historical pre-instrumentation core counts are evaluated through the Index-owned `scripts/render_metrics.py --source-root ... --stdout-core-json` interface. Organization does not count Index assessments from `signatures.psv`, `catalog.psv`, or assessment files itself.
 
 ## Cross-repository anti-gaming rules
 
 1. **Repository ownership wins.** A fact is counted from its canonical owner, not duplicated across consumers.
 2. **One transition, one count.** Generated/materialized downstream files do not create extra outputs for the same underlying transition.
 3. **No edit-volume substitution.** Commits, changed files, LOC, comments, issues, PRs, and workflow runs are not verified outputs.
-4. **Completion gates are mandatory.** A flow counts only after the repository-specific validation/acceptance boundary is satisfied.
-5. **Corrections are not new admissions.** A same-object correction changes state but does not create a second object unless the owning repository explicitly records a new event type, such as a reassessment event.
-6. **Generated views are projections.** Regenerating TLDR, rankings, metrics, snapshots, or synchronized files does not create an additional semantic output.
-7. **No cross-repo double counting.** A Profile release consumed by Skills and Index is one Profile outcome, not three outcomes.
-8. **Semantic metrics require semantic evidence.** Mechanical closure alone must not be used to claim a control transaction, audit, milestone, autonomy state, or other semantically qualified event.
-9. **Public scope only.** Private repositories and out-of-bound OpenSiro work are excluded from this contract.
-10. **No fabricated live values.** A dashboard may display only values derived from declared sources at a pinned collection time.
+4. **Completion gates are mandatory.** A semantic flow counts only after its repository-specific validation/acceptance boundary is satisfied.
+5. **Corrections are not new admissions.** A same-object correction changes state but does not create a second object unless the owner explicitly records a new event type.
+6. **Generated views are projections.** Regenerating TLDR, rankings, metrics, snapshots, or synchronized files does not create another semantic output.
+7. **No cross-repo double counting.** A Profile release consumed by Skills and Index is one Profile outcome, not three.
+8. **Semantic metrics require semantic evidence.** Mechanical closure alone must not claim a control transaction, audit, milestone, autonomy state, or other semantically qualified event.
+9. **Public scope only.** Private repositories and out-of-bound OpenSiro work are excluded.
+10. **No fabricated live values.** A dashboard may display only values derived from declared sources at pinned revisions/times.
 
 ## Repository metric contracts
 
@@ -70,161 +92,124 @@ A stock is not automatically a target to maximize. A flow is descriptive through
 
 **Role:** operational S1; canonical evidence-backed corpus and its provenance/history/materialized comparative views.
 
-Primary public metric:
+Primary:
 
-- **Included assessments** (`stock`) — current `corpus.included_assessments` from `data/metrics.json`.
+- **Included assessments** (`stock`) — `corpus.included_assessments` from Index-owned `data/metrics.json`.
 
-Supporting metrics:
+Supporting:
 
-- **Catalog entries** (`stock`) — current `corpus.catalog_entries` from `data/metrics.json`.
-- **Reassessment events** (`stock`) — current accepted `corpus.reassessment_events` from `data/metrics.json`.
-- **Assessments admitted** (`flow`) — positive delta of included-assessment identities across pinned snapshots, excluding corrections to an already included identity.
-- **Reassessments completed** (`flow`) — positive delta of accepted reassessment events across pinned snapshots.
-- **Corpus consistency** (`health`) — Index validators and generated-view checks pass for the collected revision.
+- **Catalog entries** (`stock`) — `corpus.catalog_entries` from `data/metrics.json`.
+- **Reassessment events** (`stock`) — `corpus.reassessment_events` from `data/metrics.json`.
+- **Assessments admitted** (`flow`) — only when derived from an explicit Index-owned admission/event identity boundary; not inferred from stock delta.
+- **Reassessments completed** (`flow`) — only when derived from accepted reassessment history/event semantics.
+- **Corpus consistency** (`health`) — Index validators and generated-view checks pass.
 - **Active contract** (`state`) — Profile and Methodology versions recorded by the Index metrics artifact.
 
-Completion gates:
+Completion: an assessment/reassessment counts only after the Index owns the accepted canonical state and its required validation passes. Regeneration of signatures, TLDR, rankings, or metrics does not create additional outputs.
 
-- an admission counts only after the assessment is accepted into the canonical corpus and repository validation passes;
-- a reassessment counts only when the Index records the accepted reassessment event/history under its local contract;
-- regeneration of signatures, TLDR, rankings, or metrics as consequences of the same admission does not create additional outputs.
-
-Not KPIs: commits, assessment Markdown line count, generated-file count, candidate discoveries, queued candidates, PR count, issue count.
+Not KPIs: commits, Markdown lines, generated-file count, candidate discoveries, queued candidates, PR count, issue count.
 
 ### `opensiro/vsm-harness-skills`
 
 **Role:** operational S1; reusable assessment procedure, Methodology, references, synchronization/provenance tooling, and deterministic validation surfaces.
 
-Primary public metric:
+Primary:
 
-- **Current validated Methodology release** (`state`) — the Methodology version identified by `skills/assess-vsm-harness/VERSION`, with repository validation passing at the collected revision.
+- **Current validated Methodology release** (`state`) — `skills/assess-vsm-harness/VERSION` under the repository release/validation contract.
 
-Supporting metrics:
+Supporting:
 
-- **Published Methodology releases** (`stock`) — immutable Methodology releases/tags that satisfy the repository release contract.
-- **Methodology releases published** (`flow`) — qualifying new immutable Methodology releases during the window.
-- **Skill catalog entries** (`stock`) — reusable skills declared by the repository's skill catalog.
-- **Profile snapshot synchronized** (`health`) — the bundled Profile snapshot/provenance checks pass against the selected Profile release.
-- **Procedure validation** (`health`) — repository validation/tests for the current Methodology pass.
+- **Published Methodology releases** (`stock`).
+- **Methodology releases published** (`flow`).
+- **Skill catalog entries** (`stock`).
+- **Profile snapshot synchronized** (`health`).
+- **Procedure validation** (`health`).
 
-Completion gates:
+Experimental material is not a released Methodology outcome until promoted through the repository release boundary.
 
-- a Methodology release counts only after the versioned procedure and its required references/provenance are committed under the release contract and validation passes;
-- edits to generated Profile snapshots, reference files, or tests do not independently count as new methodology outputs;
-- experimental material under `experiments/` does not count as a released Methodology outcome until explicitly promoted through the repository's release boundary.
-
-Not KPIs: commits, number of prompts/Markdown files, test count by itself, generated snapshot changes, PR count, issue count.
+Not KPIs: commits, Markdown/prompt count, test count by itself, generated snapshot changes, PR count, issue count.
 
 ### `opensiro/awesome-vsm-harness`
 
 **Role:** operational S1; curated representative downstream view backed by canonical Index evidence.
 
-Primary public metric:
+Primary:
 
-- **Curated representative entries** (`stock`) — current admitted project entries in the curated view, excluding headings, candidate directions, related lists, and other non-entry links.
+- **Curated representative entries** (`stock`) — current admitted project entries, excluding headings, future directions, related-list references, and other non-entry links.
 
-Supporting metrics:
+Supporting:
 
-- **Entries admitted** (`flow`) — newly admitted representative project identities during the window.
-- **Entries retired/replaced** (`flow`) — project identities deliberately removed or replaced by a completed curation decision; report separately from admissions rather than netting them away.
-- **Canonical Index consistency** (`health`) — all curated project evidence links/anchors required by the local contract resolve consistently to canonical Index state and Awesome validation passes.
+- **Entries admitted** (`flow`) — explicit completed curation admissions.
+- **Entries retired/replaced** (`flow`) — explicit completed removals/replacements; report separately from admissions.
+- **Canonical Index consistency** (`health`).
 
-Completion gates:
+A change in the stock over 24h/7d/30d is net curation-state change; a negative value is valid and can reflect deliberate narrowing.
 
-- an admission counts only after the project is present as an accepted representative entry and local formatting/Index-consistency validation passes;
-- adding a candidate to the Index, mentioning a project in an issue, or creating a future domain direction does not count as an Awesome admission;
-- canonical Index assessment changes do not become new Awesome outputs unless they cause a completed curation-state transition here.
-
-Not KPIs: number of links, number of sections, candidate count, README LOC, commits, PR count, issue count.
+Not KPIs: link count, section count, candidate count, README LOC, commits, PR count, issue count.
 
 ### `opensiro/vsm-harness-profile`
 
-**Role:** normative semantic authority consumed by the bounded organization.
+**Role:** normative semantic authority.
 
-Primary public metric:
+Primary:
 
-- **Current validated Profile release** (`state`) — the version in `VERSION`, with repository validation and release-impact metadata consistent at the collected revision.
+- **Current validated Profile release** (`state`) — `VERSION`, with release-impact metadata/repository validation governing the release state.
 
-Supporting metrics:
+Supporting:
 
-- **Published Profile releases** (`stock`) — immutable Profile releases/tags that satisfy the repository versioning/release contract.
-- **Profile releases published** (`flow`) — qualifying new immutable Profile releases during the window.
-- **Release-impact chain valid** (`health`) — `RELEASE_IMPACT.json` and consumer/release metadata pass repository validation for the current release line.
-- **Repository validation** (`health`) — the deterministic Profile completion-oracle checks pass at the collected revision.
+- **Published Profile releases** (`stock`).
+- **Profile releases published** (`flow`).
+- **Release-impact chain valid** (`health`).
+- **Repository validation** (`health`).
 
-Completion gates:
+Requirement count growth is intentionally not a productivity metric: more normative requirements are not inherently better.
 
-- a Profile release counts only after normative/release metadata is committed under the Profile versioning contract, the immutable release/tag exists, and deterministic repository validation passes;
-- examples, literature changes, wording corrections, or generated metadata changes do not become separate verified outputs merely because they required separate commits;
-- the number of normative requirements is intentionally not a productivity metric: more requirements are not inherently better.
-
-Not KPIs: requirement count growth, normative LOC, citations added, commits, PR count, issue count.
+Not KPIs: normative LOC, citations added, commits, PR count, issue count.
 
 ### `opensiro/vsm-oss-organization`
 
 **Role:** organizational/metasystem construction and shared control surface for the bounded group.
 
-Primary public metric:
+Primary:
 
-- **Current formal construction milestone** (`state`) — the milestone state supported by the repository's committed roadmap/evidence; design targets and preparatory artifacts must not be reported as achieved state.
+- **Current formal construction milestone** (`state`, semantic evidence required).
 
-Supporting metrics:
+Supporting:
 
-- **Operational S1 domains with evidence paths** (`stock`) — declared S1 domains for which the repository records an explicit local contract and real operational evidence path.
-- **Completed current-control transactions** (`flow`, semantic evidence required) — naturally qualifying whole-system S3 current-control transactions that complete the repository-defined request/decision/return path into subsequent S1 operation.
-- **Completed complementary audits** (`flow`, semantic evidence required) — qualifying S3* audit transactions that complete the repository-defined complementary-evidence/judgment/outcome path.
-- **Parent-authority witnesses established** (`stock`, semantic evidence required) — committed witnesses that satisfy the repository's explicit parent-authority evidence contract.
-- **Organization contract consistency** (`health`) — repository-local validation/consistency checks for the current control surfaces pass.
+- **Operational S1 domains with evidence paths** (`stock`, semantic evidence required).
+- **Completed current-control transactions** (`flow`, semantic evidence required).
+- **Completed complementary audits** (`flow`, semantic evidence required).
+- **Parent-authority witnesses established** (`stock`, semantic evidence required).
+- **Organization contract consistency** (`health`).
 
-Completion gates:
-
-- issues, comments, approvals, scheduler changes, labels, or ordinary reports do not count as S3/S3*/S5 transactions by themselves;
-- a control/audit/witness metric counts only when the complete evidence path required by the owning organizational contract exists;
-- milestone target vectors are not achievements until their stated evidence conditions are satisfied.
+Issues, comments, approvals, scheduler changes, labels, or ordinary reports do not count as S3/S3*/S5 evidence by themselves. If the semantic evidence cannot be established mechanically, the public collector reports the metric as **unclaimed**, not zero and not guessed.
 
 Not KPIs: governance-document count, prompts added, issues closed, TODO churn, commits, PR count, comments, approvals.
 
 ## Organization-level presentation
 
-The public organization view should present repository-owned state without collapsing unlike outputs into a single synthetic productivity score.
-
-Recommended shape:
+The primary public view should emphasize current repository-owned state plus iterative growth:
 
 ```text
 VSM OSS — PUBLIC STATE
 
-INDEX
-  included assessments        <stock>
-  reassessments / 30d         <flow>
-  corpus consistency          <health>
-
-SKILLS
-  methodology                 <state>
-  releases / 30d              <flow>
-  validation                  <health>
-
-AWESOME
-  curated entries             <stock>
-  admissions / 30d            <flow>
-  Index consistency           <health>
-
-PROFILE
-  profile                     <state>
-  releases / 30d              <flow>
-  release-impact chain        <health>
-
-ORGANIZATION
-  formal milestone            <state>
-  S1 evidence paths           <stock>
-  control/audit tx / 30d      <flow>
+                         CURRENT    24H     7D      30D
+Index assessments          193      +15    +112     +193
+Awesome curated entries      5        0      -6       +5
+Profile                    0.2.4   changed   ...      ...
+Methodology                0.3.6   changed   ...      ...
+Organization milestone    unclaimed  —       —        —
 ```
 
-Do not sum heterogeneous repository outputs into a single "productivity" number. If an aggregate is useful for navigation, label it **verified state transitions** and show its composition explicitly rather than presenting it as a quality score.
+The values above are illustrative of the rendering shape; live values must always come from the machine-readable snapshot.
+
+Do not sum heterogeneous repository outputs into a synthetic productivity number. If an aggregate is useful for navigation, its composition must be explicit.
 
 ## Secondary engineering telemetry
 
 Optional telemetry may include commits, merged PRs, repositories touched, workflow runs, or CI duration. If displayed:
 
+- use the same 24h/7d/30d windows where useful;
 - place it below outcome/state metrics;
 - label it **engineering activity** or **telemetry**, not productivity;
 - never use it to rank repositories or contributors;
@@ -235,14 +220,17 @@ A large commit count may demonstrate the amount of auditable Git activity behind
 
 ## Collection and publication
 
-A future collector/dashboard should:
+The public collector must:
 
 1. pin an exact revision for each repository;
-2. collect only from sources declared in `metrics.yaml`;
-3. run or verify the declared completion/health checks where mechanically possible;
-4. preserve the collection timestamp and repository revisions;
-5. compute flows from pinned historical snapshots rather than GitHub activity volume;
-6. leave semantically qualified metrics unclaimed when the required evidence cannot be mechanically established;
-7. publish the raw machine-readable snapshot alongside any human-facing rendering.
+2. collect current state only from sources declared in `metrics.yaml`;
+3. compute 24h/7d/30d net window change from the same repository-owned state at historical cutoffs;
+4. use owning-repository renderers for pre-instrumentation history rather than duplicating their counting logic;
+5. preserve the collection timestamp, cutoff revisions, and repository revisions;
+6. keep stock window change distinct from semantically stronger flow/event claims;
+7. verify completion/health checks where mechanically possible;
+8. leave semantic metrics unclaimed when required evidence cannot be mechanically established;
+9. keep engineering activity structurally separate from outcome metrics;
+10. publish the raw machine-readable snapshot alongside any human-facing rendering.
 
-This keeps `opensiro.com` or another presentation surface as a consumer of the bounded VSM OSS state rather than a second metrics authority.
+This keeps `opensiro.com` or another presentation surface as a consumer of bounded VSM OSS state rather than a second metrics authority.
