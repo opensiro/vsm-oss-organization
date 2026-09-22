@@ -32,14 +32,16 @@ class AutonomousWorkReportingTests(unittest.TestCase):
             self.assertIn(marker, entry)
         self.assertIn("does not create a VSM function", entry)
 
-    def test_common_entry_exposes_current_work_todo(self) -> None:
+    def test_common_entry_exposes_current_work_bootstrap(self) -> None:
         entry = self.read("CONTRIBUTOR_START.md")
         root_readme = self.read("README.md")
         todo = self.read("TODO.md")
 
         self.assertIn("TODO.md", entry)
         self.assertIn("TODO.md", root_readme)
-        self.assertIn("single current-work entry point", todo)
+        self.assertIn("Temporary bootstrap surface", todo)
+        self.assertIn("GitHub Project", todo)
+        self.assertIn("#125", todo)
         for state in ("# NOW", "# NEXT", "# BLOCKED", "# WATCH", "# LATER"):
             self.assertIn(state, todo)
         for repository in (
