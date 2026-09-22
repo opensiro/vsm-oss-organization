@@ -53,9 +53,9 @@ Repositories outside the current in-scope set may consume or present artifacts p
 
 ## FOR CONTRIBUTORS
 
-For **current tracked work across the bounded VSM Harness OSS group**, use [TODO.md](TODO.md) as the **temporary bootstrap index** while [`#125`](https://github.com/opensiro/vsm-oss-organization/issues/125) provisions the intended organization-level **OpenSiro VSM OSS GitHub Project**. After that cutover, the Project becomes the canonical operational entry point and `TODO.md` must not remain a parallel current-work database.
+For **current tracked work across the bounded VSM Harness OSS group**, start with the organization-level [`OpenSiro VSM OSS` GitHub Project](https://github.com/orgs/opensiro/projects/1). The Project owns cross-repository operational selection, ordering, and status; the linked issue and repository still own task scope, evidence, acceptance, and canonical artifacts.
 
-The bootstrap index and later Project own cross-repository work selection/status only; the linked issue and repository still own task scope, evidence, acceptance, and canonical artifacts.
+[`TODO.md`](TODO.md) is retained only as a compatibility pointer and must not maintain a parallel backlog.
 
 If you instead need to decide **where a new or unclassified piece of work belongs**, start with [CONTRIBUTOR_START.md](CONTRIBUTOR_START.md). This routing surface follows the declared scope above and does not expand it.
 
@@ -88,9 +88,7 @@ See [CONTROL_PLANE.md](CONTROL_PLANE.md) for compatibility gates, frozen-work bo
 OpenSiro defines organizational roles and GitHub contribution boundaries. Contributors own their runtime:
 
 ```text
-TODO.md bootstrap selection
-        ↓
-(after #125: OpenSiro VSM OSS GitHub Project)
+OpenSiro VSM OSS GitHub Project
         ↓
 linked owning repository / issue
         ↓
@@ -146,7 +144,7 @@ M1 constructor surfaces may exist before the milestone is formally achieved. The
 
 The S3* constructor contract is defined in [S3STAR_AUDIT.md](S3STAR_AUDIT.md). During M1, [roles/S3STAR.md](roles/S3STAR.md) is composition guidance rather than evidence of a permanently running verifier. The actual audit judgment owner is recorded per run.
 
-The S3 current-control ownership contract is defined in [roles/S3.md](roles/S3.md). During M1 it does **not** activate a permanent S3 agent: it keeps the actual transaction owner explicit while TODO views, GitHub Projects, queues, schedulers, fields, and automation remain supporting surfaces. Its autonomous-agent mode is gated by the M3 conditions in [ROADMAP.md](ROADMAP.md).
+The S3 current-control ownership contract is defined in [roles/S3.md](roles/S3.md). During M1 it does **not** activate a permanent S3 agent: it keeps the actual transaction owner explicit while GitHub Projects, queues, schedulers, fields, and automation remain supporting surfaces. Its autonomous-agent mode is gated by the M3 conditions in [ROADMAP.md](ROADMAP.md).
 
 Further roles are added only when concrete residual variety establishes the organizational need. VSM functions are responsibilities and relationships, not a checklist of permanent agent processes.
 
