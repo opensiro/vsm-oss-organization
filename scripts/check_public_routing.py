@@ -24,6 +24,7 @@ from urllib.request import Request, urlopen
 API_VERSION = "2022-11-28"
 DEFAULT_API_BASE = "https://api.github.com"
 DEFAULT_ORG = "opensiro"
+PROJECT_URL = "https://github.com/orgs/opensiro/projects/1"
 SCOPE_MARKER = "Current in-scope public repositories:"
 REPO_RE = re.compile(r"`(opensiro/[A-Za-z0-9_.-]+)`")
 
@@ -156,20 +157,11 @@ def route_marker_present(full_name: str, readme: str, org: str) -> bool:
 
     if full_name.casefold() == organization_repo:
         return "contributor_start.md" in text
-
-    # A shared TODO link is a current-work route, not by itself the separate
-    # Organization routing surface required for new/unclassified work.
-    todo_fragment = f"{organization_repo}/blob/main/todo.md"
-    return organization_repo in text.replace(todo_fragment, "")
+    return organization_repo in text
 
 
-def todo_marker_present(full_name: str, readme: str, org: str) -> bool:
-    text = readme.casefold()
-    organization_repo = f"{org}/vsm-oss-organization".casefold()
-
-    if full_name.casefold() == organization_repo:
-        return "todo.md" in text
-    return f"{organization_repo}/blob/main/todo.md" in text
+def project_marker_present(readme: str) -> bool:
+    return PROJECT_URL.casefold() in readme.casefold()
 
 
 def evaluate_repositories(
@@ -187,13 +179,13 @@ def evaluate_repositories(
             continue
 
         has_route = route_marker_present(repository.full_name, readme, org)
-        has_todo = todo_marker_present(repository.full_name, readme, org)
-        if has_route and has_todo:
+        has_project = project_marker_present(readme)
+        if has_route and has_project:
             results.append(
                 CheckResult(
                     repository,
                     True,
-                    "Organization route and shared TODO are directly discoverable",
+                    "Organization route and OpenSiro VSM OSS Project are directly discoverable",
                 )
             )
             continue
@@ -201,8 +193,8 @@ def evaluate_repositories(
         missing: list[str] = []
         if not has_route:
             missing.append(f"{org}/vsm-oss-organization route")
-        if not has_todo:
-            missing.append("shared Organization TODO.md")
+        if not has_project:
+            missing.append("OpenSiro VSM OSS Project")
         results.append(
             CheckResult(
                 repository,
@@ -247,7 +239,11 @@ def main(argv: list[str] | None = None) -> int:
         print(f"routing conformance ERROR: {exc}", file=sys.stderr)
         return 2
 
+    organization_repo = f"{args.org}/vsm-oss-organization"
+
     def load(repository: Repository) -> str:
+        if repository.full_name == organization_repo:
+            return scope_text
         return fetch_root_readme(
             repository,
             token=token,

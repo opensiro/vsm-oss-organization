@@ -14,7 +14,7 @@ The reporting objective is:
 
 > the owner should be able to understand the important state of an autonomous work run in roughly one short status read.
 
-For tracked work in the bounded VSM Harness OSS group, [`TODO.md`](TODO.md) is the shared current-work index. Status reporting should reconcile with that index rather than creating a second backlog in prose.
+For tracked work in the bounded VSM Harness OSS group, the [`OpenSiro VSM OSS` GitHub Project](https://github.com/orgs/opensiro/projects/1) is the shared current-work surface. Status reporting should reconcile with that Project rather than creating a second backlog in prose.
 
 ## Control-plane snapshot
 
@@ -41,16 +41,16 @@ NEED YOU
 
 Keep this outcome-oriented. PR numbers, workflow runs, commit SHAs, and implementation details are supporting evidence and should be included only when they help reconstruct or review the state.
 
-### TODO reconciliation
+### Project reconciliation
 
-When the run participates in work already tracked in [`TODO.md`](TODO.md):
+When the run participates in work already tracked in the GitHub Project:
 
-- `NOW` should identify the matching TODO item or explain why the current run temporarily differs;
-- a new durable blocker should be reflected in `TODO.md` rather than living only in the status message;
-- `NEXT` should normally come from the owning issue plus the TODO ordering, not from an untracked expansion of scope;
-- terminal closure should remove/reclassify the TODO entry after the owning repository records the result.
+- `NOW` should identify the matching Project item or explain why the current run temporarily differs;
+- a new durable blocker should be reflected in the Project rather than living only in the status message;
+- `NEXT` should normally come from the owning issue plus the Project ordering, not from an untracked expansion of scope;
+- terminal closure should update the Project item after the owning repository records the result.
 
-This does not make `TODO.md` a second evidence database. The linked issue/repository remains authoritative for task content, evidence and acceptance.
+This does not make the Project a second evidence database. The linked issue/repository remains authoritative for task content, evidence and acceptance. [`TODO.md`](TODO.md) is a compatibility pointer only.
 
 ## Autonomous continuation rule
 
@@ -103,6 +103,6 @@ For parent-governed S5 matters, follow `S5_PARENT_BOUNDARY.md`, `S5_PARENT_AUTHO
 
 ## Evidence boundary
 
-The snapshot and `TODO.md` are navigation/control artifacts, not second databases.
+The status snapshot and GitHub Project are navigation/control artifacts, not second databases.
 
 Canonical facts remain in their owning repositories, issues, PRs, records, tests, and generated artifacts. Do not manually duplicate detailed assessment state, VSM semantics, candidate evidence, or corpus facts merely to make status self-contained.
