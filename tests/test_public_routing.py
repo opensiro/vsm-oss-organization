@@ -4,14 +4,15 @@ import base64
 import unittest
 
 from scripts.check_public_routing import (
+    PROJECT_URL,
     Repository,
     RoutingError,
     decode_readme_payload,
     evaluate_repositories,
     fetch_repository_metadata,
+    project_marker_present,
     route_marker_present,
     scope_repositories_from_readme,
-    todo_marker_present,
 )
 
 
@@ -35,33 +36,19 @@ class PublicRoutingTests(unittest.TestCase):
             )
         )
 
-    def test_regular_repository_requires_shared_todo(self) -> None:
-        readme = (
-            "For current work start with "
-            "https://github.com/opensiro/vsm-oss-organization/blob/main/TODO.md."
-        )
-        self.assertTrue(
-            todo_marker_present("opensiro/vsm-harness-index", readme, "opensiro")
-        )
-        self.assertFalse(
-            todo_marker_present(
-                "opensiro/vsm-harness-index",
-                "Use a local TODO.md for this repository.",
-                "opensiro",
-            )
-        )
+    def test_project_marker_requires_canonical_project_url(self) -> None:
+        self.assertTrue(project_marker_present(f"Current work: {PROJECT_URL}"))
+        self.assertFalse(project_marker_present("Use a local TODO.md for this repository."))
 
-    def test_organization_repository_accepts_relative_entry_points(self) -> None:
+    def test_organization_repository_accepts_relative_route_and_project(self) -> None:
         readme = (
             "Start with [CONTRIBUTOR_START.md](CONTRIBUTOR_START.md) and "
-            "[TODO.md](TODO.md)."
+            f"the OpenSiro VSM OSS Project at {PROJECT_URL}."
         )
         self.assertTrue(
             route_marker_present("opensiro/vsm-oss-organization", readme, "opensiro")
         )
-        self.assertTrue(
-            todo_marker_present("opensiro/vsm-oss-organization", readme, "opensiro")
-        )
+        self.assertTrue(project_marker_present(readme))
 
     def test_scope_is_parsed_from_canonical_readme_block(self) -> None:
         readme = """
@@ -128,7 +115,7 @@ Scope membership does not mean all are S1.
                 get_json=get_json,
             )
 
-    def test_evaluation_requires_route_and_todo(self) -> None:
+    def test_evaluation_requires_route_and_project(self) -> None:
         repositories = [
             Repository("opensiro/vsm-harness-index", "main"),
             Repository("opensiro/vsm-harness-skills", "main"),
@@ -137,14 +124,12 @@ Scope membership does not mean all are S1.
         readmes = {
             "opensiro/vsm-harness-index": (
                 "See opensiro/vsm-oss-organization for shared authority.\n"
-                "Current work: https://github.com/opensiro/vsm-oss-organization/blob/main/TODO.md"
+                f"Current work: {PROJECT_URL}"
             ),
             "opensiro/vsm-harness-skills": (
                 "See opensiro/vsm-oss-organization for shared authority."
             ),
-            "opensiro/vsm-harness-profile": (
-                "Current work: https://github.com/opensiro/vsm-oss-organization/blob/main/TODO.md"
-            ),
+            "opensiro/vsm-harness-profile": f"Current work: {PROJECT_URL}",
         }
 
         results = evaluate_repositories(
@@ -153,7 +138,7 @@ Scope membership does not mean all are S1.
             readme_loader=lambda repo: readmes[repo.full_name],
         )
         self.assertEqual([True, False, False], [result.ok for result in results])
-        self.assertIn("TODO.md", results[1].detail)
+        self.assertIn("OpenSiro VSM OSS Project", results[1].detail)
         self.assertIn("vsm-oss-organization route", results[2].detail)
 
     def test_evaluation_treats_unreadable_readme_as_failure(self) -> None:
