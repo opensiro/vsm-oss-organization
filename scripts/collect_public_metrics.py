@@ -1,0 +1,450 @@
+#!/usr/bin/env python3
+"""Collect a provenance-rich snapshot for the bounded public VSM OSS group.
+
+This collector intentionally separates repository-owned outcome state from
+engineering activity telemetry. It never infers semantic VSM evidence.
+"""
+
+from __future__ import annotations
+
+import argparse
+import csv
+import io
+import json
+import re
+import subprocess
+from datetime import datetime, timedelta, timezone
+from pathlib import Path
+from typing import Any, Mapping
+
+import yaml
+
+
+class CollectorError(RuntimeError):
+    pass
+
+
+REPOSITORIES = {
+    "profile": "opensiro/vsm-harness-profile",
+    "skills": "opensiro/vsm-harness-skills",
+    "index": "opensiro/vsm-harness-index",
+    "awesome": "opensiro/awesome-vsm-harness",
+    "organization": "opensiro/vsm-oss-organization",
+}
+
+AWESOME_ASSESSMENT_RE = re.compile(
+    r"https://github\.com/opensiro/vsm-harness-index/blob/main/assessments/"
+    r"([A-Za-z0-9._-]+)\.md"
+)
+
+
+def parse_instant(value: str | None) -> datetime:
+    if value is None:
+        return datetime.now(timezone.utc).replace(microsecond=0)
+    parsed = datetime.fromisoformat(value.replace("Z", "+00:00"))
+    if parsed.tzinfo is None:
+        raise CollectorError("collection time must include a timezone")
+    return parsed.astimezone(timezone.utc).replace(microsecond=0)
+
+
+def instant_text(value: datetime) -> str:
+    return value.astimezone(timezone.utc).isoformat().replace("+00:00", "Z")
+
+
+def read_text(root: Path, relative: str) -> str:
+    path = root / relative
+    if not path.is_file():
+        raise CollectorError(f"missing required source: {path}")
+    return path.read_text(encoding="utf-8")
+
+
+def read_json(root: Path, relative: str) -> Any:
+    try:
+        return json.loads(read_text(root, relative))
+    except json.JSONDecodeError as exc:
+        raise CollectorError(f"invalid JSON in {root / relative}: {exc}") from exc
+
+
+def load_contract(organization_root: Path) -> dict[str, Any]:
+    try:
+        data = yaml.safe_load(read_text(organization_root, "metrics.yaml"))
+    except yaml.YAMLError as exc:
+        raise CollectorError(f"invalid metrics.yaml: {exc}") from exc
+    if not isinstance(data, dict):
+        raise CollectorError("metrics.yaml must contain a mapping")
+    return data
+
+
+def git_revision(root: Path) -> str:
+    try:
+        return subprocess.check_output(
+            ["git", "-C", str(root), "rev-parse", "HEAD"],
+            text=True,
+            stderr=subprocess.DEVNULL,
+        ).strip()
+    except subprocess.CalledProcessError as exc:
+        raise CollectorError(f"cannot resolve git revision for {root}") from exc
+
+
+def git_commit_count(root: Path, since: datetime, until: datetime) -> int:
+    try:
+        output = subprocess.check_output(
+            [
+                "git",
+                "-C",
+                str(root),
+                "rev-list",
+                "--count",
+                f"--since={instant_text(since)}",
+                f"--until={instant_text(until)}",
+                "HEAD",
+            ],
+            text=True,
+            stderr=subprocess.DEVNULL,
+        ).strip()
+    except subprocess.CalledProcessError as exc:
+        raise CollectorError(f"cannot count commits for {root}") from exc
+    return int(output or "0")
+
+
+def collect_activity(root: Path, collected_at: datetime) -> dict[str, Any]:
+    return {
+        "classification": "secondary_non_kpi",
+        "commits_24h": git_commit_count(
+            root, collected_at - timedelta(hours=24), collected_at
+        ),
+        "commits_7d": git_commit_count(
+            root, collected_at - timedelta(days=7), collected_at
+        ),
+    }
+
+
+def parse_index_ids(index_root: Path) -> list[str]:
+    text = read_text(index_root, "data/signatures.psv")
+    rows = csv.DictReader(io.StringIO(text), delimiter="|")
+    if rows.fieldnames is None or "harness_id" not in rows.fieldnames:
+        raise CollectorError("data/signatures.psv must contain harness_id")
+    ids = [row["harness_id"].strip() for row in rows if row.get("harness_id", "").strip()]
+    if len(ids) != len(set(ids)):
+        raise CollectorError("duplicate harness_id in data/signatures.psv")
+    return ids
+
+
+def parse_skill_ids(skills_root: Path) -> list[str]:
+    text = read_text(skills_root, "README.md")
+    in_section = False
+    ids: list[str] = []
+    for line in text.splitlines():
+        if line.strip() == "## Skill catalog":
+            in_section = True
+            continue
+        if in_section and line.startswith("## "):
+            break
+        if not in_section:
+            continue
+        match = re.match(r"^\|\s*\[([^\]]+)\]\([^)]+\)\s*\|", line)
+        if match:
+            ids.append(match.group(1).strip())
+    if len(ids) != len(set(ids)):
+        raise CollectorError("duplicate skill identity in README skill catalog")
+    return ids
+
+
+def parse_awesome_ids(awesome_root: Path) -> list[str]:
+    text = read_text(awesome_root, "README.md")
+    ids = AWESOME_ASSESSMENT_RE.findall(text)
+    unique = list(dict.fromkeys(ids))
+    if len(ids) != len(unique):
+        raise CollectorError("duplicate canonical Index assessment link in Awesome README")
+    return unique
+
+
+def metric(
+    kind: str,
+    value: Any,
+    source: str,
+    *,
+    claim_status: str = "mechanically_derived",
+    completion_gate_evaluated: bool = False,
+) -> dict[str, Any]:
+    return {
+        "kind": kind,
+        "value": value,
+        "source": source,
+        "claim_status": claim_status,
+        "completion_gate_evaluated": completion_gate_evaluated,
+    }
+
+
+def semantic_metrics_unclaimed(repo_contract: Mapping[str, Any]) -> dict[str, Any]:
+    result: dict[str, Any] = {}
+    for name, spec in repo_contract.get("metrics", {}).items():
+        source = spec.get("source", {})
+        if source.get("mode") != "semantic_evidence":
+            continue
+        paths: list[str] = []
+        if isinstance(source.get("path"), str):
+            paths.append(source["path"])
+        if isinstance(source.get("paths"), list):
+            paths.extend(str(item) for item in source["paths"])
+        result[name] = {
+            "kind": spec.get("kind"),
+            "value": None,
+            "claim_status": "unclaimed_semantic_evidence",
+            "completion_gate_evaluated": False,
+            "evidence_paths": paths,
+        }
+    return result
+
+
+def flow_from_previous(
+    snapshot: dict[str, Any], previous: Mapping[str, Any] | None
+) -> dict[str, Any]:
+    if previous is None:
+        return {"status": "requires_previous_snapshot"}
+
+    try:
+        current_repos = snapshot["repositories"]
+        previous_repos = previous["repositories"]
+    except KeyError as exc:
+        raise CollectorError("previous snapshot is missing repositories") from exc
+
+    flows: dict[str, Any] = {"status": "derived"}
+
+    current_index_ids = set(current_repos[REPOSITORIES["index"]]["raw"]["included_assessment_ids"])
+    previous_index_ids = set(previous_repos[REPOSITORIES["index"]]["raw"]["included_assessment_ids"])
+    removed_index = sorted(previous_index_ids - current_index_ids)
+    if removed_index:
+        raise CollectorError(
+            "included Index identity set regressed; refusing to describe it as admission flow"
+        )
+    flows[REPOSITORIES["index"]] = {
+        "assessments_admitted": {
+            "value": len(current_index_ids - previous_index_ids),
+            "identities": sorted(current_index_ids - previous_index_ids),
+        }
+    }
+
+    current_reassess = current_repos[REPOSITORIES["index"]]["metrics"]["reassessment_events"]["value"]
+    previous_reassess = previous_repos[REPOSITORIES["index"]]["metrics"]["reassessment_events"]["value"]
+    if current_reassess < previous_reassess:
+        raise CollectorError("reassessment event count regressed")
+    flows[REPOSITORIES["index"]]["reassessments_completed"] = {
+        "value": current_reassess - previous_reassess
+    }
+
+    current_awesome = set(current_repos[REPOSITORIES["awesome"]]["raw"]["curated_entry_ids"])
+    previous_awesome = set(previous_repos[REPOSITORIES["awesome"]]["raw"]["curated_entry_ids"])
+    flows[REPOSITORIES["awesome"]] = {
+        "entries_admitted": {
+            "value": len(current_awesome - previous_awesome),
+            "identities": sorted(current_awesome - previous_awesome),
+        },
+        "entries_retired_or_replaced": {
+            "value": len(previous_awesome - current_awesome),
+            "identities": sorted(previous_awesome - current_awesome),
+        },
+    }
+
+    return flows
+
+
+def collect_snapshot(
+    roots: Mapping[str, Path],
+    *,
+    collected_at: datetime,
+    revisions: Mapping[str, str] | None = None,
+    activity: Mapping[str, Mapping[str, Any]] | None = None,
+    previous: Mapping[str, Any] | None = None,
+) -> dict[str, Any]:
+    missing_root_keys = set(REPOSITORIES) - set(roots)
+    if missing_root_keys:
+        raise CollectorError(f"missing roots: {sorted(missing_root_keys)}")
+
+    organization_root = roots["organization"]
+    contract = load_contract(organization_root)
+    scope = contract.get("scope", {}).get("repositories")
+    if scope != list(REPOSITORIES.values()):
+        raise CollectorError(
+            "metrics.yaml scope/order differs from the collector adapter boundary"
+        )
+    contract_repositories = contract.get("repositories", {})
+    if set(contract_repositories) != set(REPOSITORIES.values()):
+        raise CollectorError("metrics.yaml repository definitions differ from scope")
+
+    revisions_by_repo = {
+        full_name: (
+            revisions[full_name]
+            if revisions is not None
+            else git_revision(roots[key])
+        )
+        for key, full_name in REPOSITORIES.items()
+    }
+    activity_by_repo = {
+        full_name: (
+            dict(activity[full_name])
+            if activity is not None
+            else collect_activity(roots[key], collected_at)
+        )
+        for key, full_name in REPOSITORIES.items()
+    }
+
+    profile_repo = REPOSITORIES["profile"]
+    skills_repo = REPOSITORIES["skills"]
+    index_repo = REPOSITORIES["index"]
+    awesome_repo = REPOSITORIES["awesome"]
+    organization_repo = REPOSITORIES["organization"]
+
+    index_data = read_json(roots["index"], "data/metrics.json")
+    index_ids = parse_index_ids(roots["index"])
+    included = int(index_data["corpus"]["included_assessments"])
+    if len(index_ids) != included:
+        raise CollectorError(
+            "Index included_assessments does not match identities in data/signatures.psv"
+        )
+
+    skill_ids = parse_skill_ids(roots["skills"])
+    awesome_ids = parse_awesome_ids(roots["awesome"])
+
+    repositories: dict[str, Any] = {}
+
+    def base(repo: str) -> dict[str, Any]:
+        repo_contract = contract_repositories[repo]
+        return {
+            "revision": revisions_by_repo[repo],
+            "organizational_role": repo_contract["organizational_role"],
+            "primary_metric": repo_contract["primary_metric"],
+            "metrics": {},
+            "raw": {},
+            "engineering_activity": activity_by_repo[repo],
+        }
+
+    profile = base(profile_repo)
+    profile["metrics"]["current_validated_profile_release"] = metric(
+        "state",
+        read_text(roots["profile"], "VERSION").strip(),
+        "VERSION",
+        claim_status="source_observed_completion_gate_not_rechecked",
+    )
+    repositories[profile_repo] = profile
+
+    skills = base(skills_repo)
+    skills["metrics"]["current_validated_methodology_release"] = metric(
+        "state",
+        read_text(roots["skills"], "skills/assess-vsm-harness/VERSION").strip(),
+        "skills/assess-vsm-harness/VERSION",
+        claim_status="source_observed_completion_gate_not_rechecked",
+    )
+    skills["metrics"]["skill_catalog_entries"] = metric(
+        "stock", len(skill_ids), "README.md#skill-catalog"
+    )
+    skills["raw"]["skill_ids"] = skill_ids
+    repositories[skills_repo] = skills
+
+    index = base(index_repo)
+    index["metrics"]["included_assessments"] = metric(
+        "stock", included, "data/metrics.json#/corpus/included_assessments"
+    )
+    index["metrics"]["catalog_entries"] = metric(
+        "stock",
+        int(index_data["corpus"]["catalog_entries"]),
+        "data/metrics.json#/corpus/catalog_entries",
+    )
+    index["metrics"]["reassessment_events"] = metric(
+        "stock",
+        int(index_data["corpus"]["reassessment_events"]),
+        "data/metrics.json#/corpus/reassessment_events",
+    )
+    index["metrics"]["active_contract"] = metric(
+        "state",
+        {
+            "profile_version": index_data["active_contract"]["profile_version"],
+            "methodology_version": index_data["active_contract"]["methodology_version"],
+        },
+        "data/metrics.json#/active_contract",
+    )
+    index["raw"]["included_assessment_ids"] = index_ids
+    repositories[index_repo] = index
+
+    awesome = base(awesome_repo)
+    awesome["metrics"]["curated_representative_entries"] = metric(
+        "stock", len(awesome_ids), "README.md canonical Index assessment links"
+    )
+    awesome["raw"]["curated_entry_ids"] = awesome_ids
+    repositories[awesome_repo] = awesome
+
+    organization = base(organization_repo)
+    organization["metrics"].update(
+        semantic_metrics_unclaimed(contract_repositories[organization_repo])
+    )
+    repositories[organization_repo] = organization
+
+    snapshot = {
+        "schema_version": 1,
+        "collected_at": instant_text(collected_at),
+        "contract": {
+            "repository": organization_repo,
+            "revision": revisions_by_repo[organization_repo],
+            "path": "metrics.yaml",
+        },
+        "scope": scope,
+        "repositories": repositories,
+        "publication": {
+            "aggregate_productivity_score": "forbidden",
+            "heterogeneous_outputs_may_be_summed": False,
+            "engineering_activity_is_productivity_kpi": False,
+        },
+    }
+    snapshot["flows"] = flow_from_previous(snapshot, previous)
+    return snapshot
+
+
+def load_previous(path: str | None) -> Mapping[str, Any] | None:
+    if path is None:
+        return None
+    try:
+        return json.loads(Path(path).read_text(encoding="utf-8"))
+    except (OSError, json.JSONDecodeError) as exc:
+        raise CollectorError(f"cannot load previous snapshot {path}: {exc}") from exc
+
+
+def parse_args() -> argparse.Namespace:
+    parser = argparse.ArgumentParser()
+    for key in REPOSITORIES:
+        parser.add_argument(
+            f"--{key}-root",
+            type=Path,
+            required=True,
+            help=f"checkout root for {REPOSITORIES[key]}",
+        )
+    parser.add_argument("--output", type=Path, required=True)
+    parser.add_argument("--previous", help="optional previous JSON snapshot")
+    parser.add_argument(
+        "--collected-at",
+        help="ISO-8601 timestamp; defaults to current UTC time",
+    )
+    return parser.parse_args()
+
+
+def main() -> int:
+    args = parse_args()
+    roots = {key: getattr(args, f"{key}_root") for key in REPOSITORIES}
+    try:
+        snapshot = collect_snapshot(
+            roots,
+            collected_at=parse_instant(args.collected_at),
+            previous=load_previous(args.previous),
+        )
+    except (CollectorError, KeyError, TypeError, ValueError) as exc:
+        raise SystemExit(f"metrics collector error: {exc}") from exc
+
+    args.output.parent.mkdir(parents=True, exist_ok=True)
+    args.output.write_text(
+        json.dumps(snapshot, indent=2, sort_keys=True) + "\n",
+        encoding="utf-8",
+    )
+    return 0
+
+
+if __name__ == "__main__":
+    raise SystemExit(main())
