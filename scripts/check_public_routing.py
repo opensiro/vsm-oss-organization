@@ -239,7 +239,11 @@ def main(argv: list[str] | None = None) -> int:
         print(f"routing conformance ERROR: {exc}", file=sys.stderr)
         return 2
 
+    organization_repo = f"{args.org}/vsm-oss-organization"
+
     def load(repository: Repository) -> str:
+        if repository.full_name == organization_repo:
+            return scope_text
         return fetch_root_readme(
             repository,
             token=token,
