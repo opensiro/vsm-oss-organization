@@ -1,18 +1,18 @@
-# OpenSiro VSM Harness OSS TODO
+# OpenSiro VSM Harness OSS TODO — bootstrap index
 
-This is the **single current-work entry point** for the bounded OpenSiro VSM Harness OSS group.
+> **Temporary bootstrap surface.** The intended canonical operational entry point is the organization-level GitHub Project specified in [`#125`](https://github.com/opensiro/vsm-oss-organization/issues/125). Until that Project is provisioned and populated, this file preserves the current cross-repository work classification needed for migration.
 
-It answers one question:
+It answers one temporary migration question:
 
-> What work is current, next, blocked, watched, or intentionally deferred across the in-scope repositories?
+> What work is current, next, blocked, watched, or intentionally deferred across the in-scope repositories before the GitHub Project cutover?
 
 The detailed task remains owned by its linked repository/issue. This file does **not** copy assessment evidence, Profile semantics, Methodology rules, candidate rows, or acceptance checklists into Organization.
 
 ## Ownership boundary
 
-`TODO.md` owns only cross-repository **work selection, current status, and ordering**.
+During bootstrap, `TODO.md` mirrors only cross-repository **work selection, current status, and ordering**. After #125 completes, those operational fields move to the org-level GitHub Project and this file becomes a compatibility pointer or is removed.
 
-The linked repository/issue owns:
+The linked repository/issue always owns:
 
 - task scope and evidence;
 - immutable candidate/review refs;
@@ -21,7 +21,7 @@ The linked repository/issue owns:
 - canonical facts and generated artifacts;
 - terminal completion history.
 
-Closing or materially changing an owning issue requires this index to be reconciled. An open issue is not automatically current work.
+Closing or materially changing an owning issue requires the active operational index to be reconciled. An open issue is not automatically current work.
 
 Current in-scope repositories remain exactly:
 
@@ -110,9 +110,13 @@ Experimental `S` work is separate from released `A/C/P/—/?` assessment state.
 
 # BLOCKED
 
+## Organization — GitHub Project cutover
+
+- [`vsm-oss-organization#125`](https://github.com/opensiro/vsm-oss-organization/issues/125) — create and populate the org-level **OpenSiro VSM OSS** GitHub Project. Blocked on a GitHub surface with Projects write access. Once available, migrate operational status there, redirect all five root READMEs, update the routing oracle, refreeze the blind-routing surface, and retire this file as an operational source.
+
 ## Organization — natural S3(C) witness
 
-- [`vsm-oss-organization#39`](https://github.com/opensiro/vsm-oss-organization/issues/39) — remaining M1 evidence gap. Do **not** manufacture a disturbance. The TODO migration may become a natural candidate transaction because the trigger is a real whole-system visibility/control problem, but documentation alone is insufficient. Keep #39 open until a returned current-control decision is used by subsequent S1 operation with reviewable closure.
+- [`vsm-oss-organization#39`](https://github.com/opensiro/vsm-oss-organization/issues/39) — remaining M1 evidence gap. Do **not** manufacture a disturbance. The real whole-system current-work visibility/control problem and its GitHub Project migration may become a naturally qualifying transaction, but documentation or board existence alone is insufficient. Keep #39 open until a returned current-control decision is used by subsequent S1 operation with reviewable closure.
 - [`vsm-oss-organization#3`](https://github.com/opensiro/vsm-oss-organization/issues/3) — M1 closes only after #39 supplies the remaining `S3=C` functional witness.
 - [`vsm-oss-organization#4`](https://github.com/opensiro/vsm-oss-organization/issues/4) — M2-specific `S5=P` evidence exists; formal closure waits for M1 and bounded revalidation.
 - [`vsm-oss-organization#5`](https://github.com/opensiro/vsm-oss-organization/issues/5) — M3 waits for M2 and real residual S3 variety.
@@ -165,28 +169,30 @@ No open repository-local issue is currently tracked here. `vsm-harness-skills` r
 
 ---
 
-# How to use this file
+# How to use this file during bootstrap
 
-For a contributor/agent starting work:
+For a contributor/agent starting work before #125 completes:
 
 1. open this file first;
 2. prefer **NOW**; use **NEXT** when NOW is already owned/in progress or the requested domain is explicit;
 3. follow the linked issue into the owning repository;
 4. re-read current repository state and the task's own freeze/admission rules before acting;
 5. keep repository-local facts and evidence in the owning repository;
-6. after terminal closure, remove or reclassify the TODO entry instead of leaving stale current-work state.
+6. after terminal closure, reconcile this bootstrap index until the GitHub Project becomes canonical.
 
-For substantial autonomous work, the owner-facing `DONE / NOW / BLOCKED / NEXT / NEED YOU` snapshot in `AUTONOMOUS_WORK_REPORTING.md` should cite this file when the run participates in tracked work.
+After #125 completes, contributors should start from the GitHub Project instead; this file must no longer maintain a parallel current-work state.
 
-## Adding work
+For substantial autonomous work, the owner-facing `DONE / NOW / BLOCKED / NEXT / NEED YOU` snapshot in `AUTONOMOUS_WORK_REPORTING.md` should cite the active current-work surface when the run participates in tracked work.
+
+## Adding work during bootstrap
 
 A new issue in an in-scope repository does not automatically become shared current work.
 
-Add it to this file when one of these is true:
+Until #125 completes, add it here only when one of these is true:
 
 - it is selected for current/next execution;
 - it is a durable blocker that affects planned work;
 - it is an intentional watch surface;
 - it is a future task whose trigger matters to planning.
 
-The task body remains in the owning issue. Keep this index short enough that the whole current program can be scanned without opening every repository tracker.
+The task body remains in the owning issue. Do not expand this file after the Project cutover; maintain operational state in the GitHub Project instead.
