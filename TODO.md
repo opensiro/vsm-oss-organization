@@ -59,7 +59,7 @@ This is the current ordinary S1 assessment work visible from the cross-repositor
 
 ## Organization / routing
 
-- [`vsm-oss-organization#61`](https://github.com/opensiro/vsm-oss-organization/issues/61) — run the fresh blind contributor-routing batch after the README/TODO routing surface is refrozen. The previous frozen surface must not be reused after this cross-repository entry-point change.
+- [`vsm-oss-organization#61`](https://github.com/opensiro/vsm-oss-organization/issues/61) — run the current frozen **Batch 005**: 15 fresh blind runs covering tracked-work discovery, organization-wide routing, and repository-local/ownership controls across all five in-scope repositories.
 - [`vsm-oss-organization#59`](https://github.com/opensiro/vsm-oss-organization/issues/59) — close/reassess the maintained routing invariant after #61 supplies behavioral evidence.
 
 ## Index — active assessment and re-review queues
