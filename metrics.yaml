@@ -1,0 +1,290 @@
+schema_version: 1
+contract: METRICS.md
+scope:
+  boundary: bounded-public-vsm-oss
+  repositories:
+    - opensiro/vsm-harness-profile
+    - opensiro/vsm-harness-skills
+    - opensiro/vsm-harness-index
+    - opensiro/awesome-vsm-harness
+    - opensiro/vsm-oss-organization
+
+principles:
+  count_unit: durable_repository_owned_state
+  default_flow_windows_days: [7, 30]
+  cross_repo_double_counting: forbidden
+  generated_views_are_outputs: false
+  fabricated_live_values: forbidden
+  activity_is_productivity_kpi: false
+  secondary_activity_telemetry:
+    - commits
+    - merged_pull_requests
+    - repositories_touched
+    - workflow_runs
+    - ci_duration
+  excluded_productivity_kpis:
+    - commits
+    - lines_changed
+    - files_changed
+    - pull_requests_opened
+    - issues_closed
+    - comments
+
+metric_kinds:
+  - stock
+  - flow
+  - health
+  - state
+
+repositories:
+  opensiro/vsm-harness-index:
+    organizational_role: operational_s1
+    durable_outcome: canonical evidence-backed corpus, provenance/history, signatures, and deterministic comparative views
+    primary_metric: included_assessments
+    metrics:
+      included_assessments:
+        kind: stock
+        source:
+          path: data/metrics.json
+          json_pointer: /corpus/included_assessments
+        completion_gate: accepted into the canonical corpus and repository validation passes
+      catalog_entries:
+        kind: stock
+        source:
+          path: data/metrics.json
+          json_pointer: /corpus/catalog_entries
+      reassessment_events:
+        kind: stock
+        source:
+          path: data/metrics.json
+          json_pointer: /corpus/reassessment_events
+        completion_gate: accepted reassessment event/history recorded under the Index-local contract
+      assessments_admitted:
+        kind: flow
+        derivation: positive identity delta of included assessments across pinned snapshots
+        completion_gate: new assessment identity is accepted into the canonical corpus and repository validation passes
+      reassessments_completed:
+        kind: flow
+        derivation: positive delta of accepted reassessment events across pinned snapshots
+        completion_gate: accepted reassessment event/history is recorded under the Index-local contract
+      corpus_consistency:
+        kind: health
+        source:
+          mode: validation
+          commands:
+            - python scripts/validate_tldr.py
+            - python scripts/render_tldr.py
+            - python scripts/render_full_a.py --check
+            - python scripts/render_metrics.py --check
+            - python scripts/sync_metrics_readme.py --check
+            - python scripts/check_index.py
+            - python -m unittest discover -s tests -v
+      active_contract:
+        kind: state
+        source:
+          path: data/metrics.json
+          json_pointers:
+            profile_version: /active_contract/profile_version
+            methodology_version: /active_contract/methodology_version
+    non_kpis:
+      - commits
+      - assessment_markdown_lines
+      - generated_file_count
+      - candidate_discoveries
+      - queued_candidates
+      - pull_request_count
+      - issue_count
+
+  opensiro/vsm-harness-skills:
+    organizational_role: operational_s1
+    durable_outcome: reusable assessment procedure, Methodology, references, synchronization/provenance tooling, and deterministic validation surfaces
+    primary_metric: current_validated_methodology_release
+    metrics:
+      current_validated_methodology_release:
+        kind: state
+        source:
+          path: skills/assess-vsm-harness/VERSION
+        completion_gate: current versioned Methodology state exists and repository validation passes
+      published_methodology_releases:
+        kind: stock
+        source:
+          mode: immutable_release_tags
+        completion_gate: release/tag satisfies the repository release contract
+      methodology_releases_published:
+        kind: flow
+        derivation: qualifying immutable Methodology releases created during the collection window
+        completion_gate: versioned procedure and required references/provenance satisfy the release contract and validation passes
+      skill_catalog_entries:
+        kind: stock
+        source:
+          mode: declared_skill_catalog
+          path: README.md
+      profile_snapshot_synchronized:
+        kind: health
+        source:
+          mode: validation
+          commands:
+            - python scripts/sync_profile.py --check
+      procedure_validation:
+        kind: health
+        source:
+          mode: validation
+          commands:
+            - python scripts/validate_skills.py
+    non_kpis:
+      - commits
+      - markdown_file_count
+      - prompt_count
+      - test_count
+      - generated_snapshot_changes
+      - pull_request_count
+      - issue_count
+
+  opensiro/awesome-vsm-harness:
+    organizational_role: operational_s1
+    durable_outcome: curated representative downstream view backed by canonical Index evidence
+    primary_metric: curated_representative_entries
+    metrics:
+      curated_representative_entries:
+        kind: stock
+        source:
+          mode: curated_project_entries
+          path: README.md
+        completion_gate: accepted representative project entry exists and local formatting/Index-consistency validation passes
+      entries_admitted:
+        kind: flow
+        derivation: newly admitted representative project identities across pinned snapshots
+        completion_gate: accepted representative entry exists and local validation passes
+      entries_retired_or_replaced:
+        kind: flow
+        derivation: project identities deliberately removed or replaced by a completed curation decision across pinned snapshots
+        completion_gate: completed repository-local curation transition is committed and validated
+      canonical_index_consistency:
+        kind: health
+        source:
+          mode: repository_validation
+        completion_gate: required canonical Index links/anchors and Awesome validation pass
+    non_kpis:
+      - link_count
+      - section_count
+      - candidate_count
+      - readme_lines
+      - commits
+      - pull_request_count
+      - issue_count
+
+  opensiro/vsm-harness-profile:
+    organizational_role: normative_semantic_authority
+    durable_outcome: implementation-agnostic VSM Harness organizational semantics and release-impact contract
+    primary_metric: current_validated_profile_release
+    metrics:
+      current_validated_profile_release:
+        kind: state
+        source:
+          path: VERSION
+        completion_gate: current Profile version and release-impact metadata are consistent and repository validation passes
+      published_profile_releases:
+        kind: stock
+        source:
+          mode: immutable_release_tags
+        completion_gate: release/tag satisfies the Profile versioning/release contract
+      profile_releases_published:
+        kind: flow
+        derivation: qualifying immutable Profile releases created during the collection window
+        completion_gate: normative/release metadata satisfies the Profile versioning contract, immutable release/tag exists, and validation passes
+      release_impact_chain_valid:
+        kind: health
+        source:
+          mode: validation
+          paths:
+            - RELEASE_IMPACT.json
+            - CONSUMER_CONTRACT.md
+            - VERSIONING.md
+      repository_validation:
+        kind: health
+        source:
+          mode: validation
+          commands:
+            - python scripts/validate_repository.py
+            - python -m unittest discover -s tests -v
+    non_kpis:
+      - normative_requirement_count_growth
+      - normative_lines
+      - citations_added
+      - commits
+      - pull_request_count
+      - issue_count
+
+  opensiro/vsm-oss-organization:
+    organizational_role: metasystem_control_construction
+    durable_outcome: organization-wide control, coordination, escalation, authority boundaries, and formal construction evidence for the bounded VSM OSS group
+    primary_metric: current_formal_construction_milestone
+    metrics:
+      current_formal_construction_milestone:
+        kind: state
+        source:
+          mode: semantic_evidence
+          paths:
+            - ROADMAP.md
+            - README.md
+        completion_gate: milestone evidence conditions are satisfied; design targets and preparatory artifacts are excluded
+      operational_s1_domains_with_evidence_paths:
+        kind: stock
+        source:
+          mode: semantic_evidence
+          paths:
+            - S1_DOMAIN_CONTRACTS.md
+            - S1_AUTONOMY_COVERAGE.md
+        completion_gate: declared S1 domain has an explicit local contract and real operational evidence path
+      completed_current_control_transactions:
+        kind: flow
+        source:
+          mode: semantic_evidence
+          paths:
+            - roles/S3.md
+            - CONTROL_PLANE.md
+        completion_gate: complete qualifying request/decision/return path reaches subsequent S1 operation
+      completed_complementary_audits:
+        kind: flow
+        source:
+          mode: semantic_evidence
+          paths:
+            - S3STAR_AUDIT.md
+            - roles/S3STAR.md
+        completion_gate: complete qualifying complementary-evidence/judgment/outcome path is established
+      parent_authority_witnesses_established:
+        kind: stock
+        source:
+          mode: semantic_evidence
+          paths:
+            - S5_PARENT_BOUNDARY.md
+            - S5_PARENT_AUTHORITY.md
+        completion_gate: committed witness satisfies the explicit parent-authority evidence contract
+      organization_contract_consistency:
+        kind: health
+        source:
+          mode: repository_validation
+    non_kpis:
+      - governance_document_count
+      - prompts_added
+      - issues_closed
+      - todo_churn
+      - commits
+      - pull_request_count
+      - comments
+      - approvals
+
+publication:
+  aggregate_productivity_score: forbidden
+  heterogeneous_outputs_may_be_summed: false
+  optional_aggregate_label: verified state transitions
+  optional_aggregate_requires_explicit_composition: true
+  secondary_telemetry_label: engineering activity
+  collector_requirements:
+    - pin exact revision for every repository
+    - preserve collection timestamp and repository revisions
+    - collect only from declared sources
+    - verify completion gates where mechanically possible
+    - derive flows from pinned snapshots rather than activity volume
+    - leave semantic metrics unclaimed when required evidence is not established
+    - publish the raw machine-readable snapshot alongside human-facing rendering
