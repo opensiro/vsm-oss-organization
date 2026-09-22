@@ -53,7 +53,9 @@ Repositories outside the current in-scope set may consume or present artifacts p
 
 ## FOR CONTRIBUTORS
 
-For **current tracked work across the bounded VSM Harness OSS group**, start with [TODO.md](TODO.md). It owns cross-repository work selection/status only; the linked issue and repository still own task scope, evidence, acceptance, and canonical artifacts.
+For **current tracked work across the bounded VSM Harness OSS group**, use [TODO.md](TODO.md) as the **temporary bootstrap index** while [`#125`](https://github.com/opensiro/vsm-oss-organization/issues/125) provisions the intended organization-level **OpenSiro VSM OSS GitHub Project**. After that cutover, the Project becomes the canonical operational entry point and `TODO.md` must not remain a parallel current-work database.
+
+The bootstrap index and later Project own cross-repository work selection/status only; the linked issue and repository still own task scope, evidence, acceptance, and canonical artifacts.
 
 If you instead need to decide **where a new or unclassified piece of work belongs**, start with [CONTRIBUTOR_START.md](CONTRIBUTOR_START.md). This routing surface follows the declared scope above and does not expand it.
 
@@ -67,7 +69,7 @@ You do not need to implement a VSM runtime to start contributing. Use the prompt
 
 Repository-local contributions still belong in the repository that owns the relevant source of truth. Use this repository for organization-wide questions: contributor roles, authority boundaries, cross-repository control/coordination, escalation, milestone sequencing, shared current-work selection, and evolution of the shared contribution control plane.
 
-The prompt pack and TODO are operational guidance/control surfaces, not additional VSM semantics and not evidence that a future milestone is complete.
+The prompt pack and current-work routing surface are operational guidance/control surfaces, not additional VSM semantics and not evidence that a future milestone is complete.
 
 ## Source boundary
 
@@ -86,7 +88,9 @@ See [CONTROL_PLANE.md](CONTROL_PLANE.md) for compatibility gates, frozen-work bo
 OpenSiro defines organizational roles and GitHub contribution boundaries. Contributors own their runtime:
 
 ```text
-TODO.md current-work selection
+TODO.md bootstrap selection
+        ↓
+(after #125: OpenSiro VSM OSS GitHub Project)
         ↓
 linked owning repository / issue
         ↓
