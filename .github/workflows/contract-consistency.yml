@@ -8,6 +8,7 @@ on:
 
 permissions:
   contents: read
+  issues: read
 
 jobs:
   validate:
@@ -68,6 +69,11 @@ jobs:
           --profile-root profile
           --methodology-root methodology
           --index-root index
+
+      - name: Validate live current-work scheduler
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: python organization/scripts/check_current_work.py --root organization
 
       - name: Run validator negative tests
         working-directory: organization
