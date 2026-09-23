@@ -86,6 +86,12 @@ A JSON record, GitHub issue/comment, branch rule, CI gate, scheduler, queue, or 
 
 The corresponding role/ownership contract is [`roles/S3.md`](roles/S3.md). During M1 it preserves explicit transaction-level ownership rather than declaring a permanent autonomous S3 owner; autonomous agent ownership remains gated by the M3 conditions in `ROADMAP.md`.
 
+## Supporting current-state surfaces
+
+[`TODO.md`](TODO.md) is the canonical Organization current scheduling surface. A linked GitHub Project is only an optional human projection. Either may help an S3 transaction reconstruct present commitments, constraints, priorities, or returned state, but neither establishes the S3 function or owns a current-control choice.
+
+Scheduler entries, Project fields, queue state, dashboards, labels, status transitions, and similar surfaces remain representation/transport/enforcement support. They also do not constitute an algedonic channel merely because they expose `BLOCKED`, `FAILED`, alerts, or other exceptional state. Exceptional signalling and the authority reached by it remain governed by the selected Profile; this constructor surface may record or transport the resulting signal/decision without inheriting that authority.
+
 ## Machine-readable transaction
 
 Use `control/s3-current-control-v1.template.json` as the canonical starting shape.
@@ -178,7 +184,7 @@ The following do not independently establish S3 or this constructor path:
 - a static branch rule;
 - a task assignment/delegation;
 - a retry inside local S1 recovery;
-- a queue/mailbox/API with no S3-specific decision semantics;
+- a `TODO.md` entry, Project field, queue/mailbox/API, or status value with no S3-specific decision semantics;
 - a component named manager/controller/orchestrator;
 - CI blocking a change under a preselected rule.
 
