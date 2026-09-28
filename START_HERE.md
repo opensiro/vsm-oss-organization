@@ -2,123 +2,91 @@
 
 This is the **common bootstrap entry point** for work on the public OpenSiro VSM Harness ecosystem.
 
-It is intended for humans, ChatGPT Projects (including `opensiro-index-oss`), coding agents, research agents, and other contributor runtimes. A runtime may keep its own memory or project instructions, but those are **working context, not a source of truth**.
+It is intended for humans, persistent ChatGPT Projects such as `opensiro-index-oss`, coding agents, research agents, and other contributor runtimes. Runtime memory and project instructions are working context, not canonical repository state.
 
-When beginning a fresh task, recovering context, or resolving disagreement between remembered context and the repositories, start here.
+## Bootstrap
 
-## Bootstrap rule
-
-Use this order:
+For substantial OpenSiro work, use this order:
 
 ```text
 START_HERE.md
         ↓
 ECOSYSTEM.md
         ↓
-owning repository + its current main
+owning repository @ current default branch
         ↓
-authoritative issue / PR / pinned artifact for the task
-        ↓
-TODO.md only when selecting already-tracked current work
+exact issue / PR / release / pinned artifact governing the task
 ```
 
-Do not reconstruct current project state from chat history when current public repository state is available.
+If the goal is to select **already tracked current work**, consult [`TODO.md`](TODO.md) and then return to the linked owning repository/issue. If the work is new, unclassified, or needs an authority/routing decision, use [`CONTRIBUTOR_START.md`](CONTRIBUTOR_START.md).
 
-## Runtime / ChatGPT Project contract
+## Source-of-truth rule
 
-For the ChatGPT Project `opensiro-index-oss` and equivalent persistent workspaces:
+[`ECOSYSTEM.md`](ECOSYSTEM.md) owns the cross-repository responsibility map. Do not maintain a second copy of that map here.
 
-1. Treat this file as the common public bootstrap contract.
-2. Treat saved project instructions, memories, summaries, and prior chats as **continuity aids only**.
-3. Before making a current-state claim or repository change, inspect the relevant public repository on its current default branch.
-4. If remembered context conflicts with current GitHub state, **GitHub wins**. Explain the evolution when it matters.
-5. Do not copy fast-changing repository facts into the Project context merely to keep them "in sync". Link or re-read the owning source instead.
-6. Do not silently use private OpenSiro repositories, private R&D context, or unpublished artifacts.
-7. Keep repository responsibilities separate; route changes to the owner of the fact or procedure.
-8. For substantial work, preserve the task's explicit issue/PR/frozen-ref boundaries even if broader Project context suggests adjacent work.
+Repository-local facts, semantics, procedures, evidence, and implementation remain authoritative in the repository that owns them.
 
-This makes synchronization intentionally asymmetric:
+For current state:
+
+1. inspect the relevant public repository and its current default branch;
+2. inspect the exact task artifact when one exists;
+3. prefer the owning GitHub source over remembered context;
+4. explain material evolution when prior context and current state differ;
+5. do not copy fast-changing counts, versions, queues, milestone states, or repository conclusions into durable runtime instructions when they can be re-read from their owner.
+
+## Runtime / persistent-project contract
+
+Persistent workspaces may retain summaries, prior chats, memories, or local instructions for continuity. They must not become a parallel control plane.
 
 ```text
 GitHub canonical state
         ↓ refreshes
-runtime / ChatGPT Project working context
+runtime / project working context
 
 runtime memory
-        ✕ does not overwrite
+        ✕ does not implicitly overwrite
 GitHub canonical state
 ```
 
-A Project may summarize the ecosystem for convenience, but the summary must not become a parallel control plane.
+Do not silently use private OpenSiro repositories, private R&D context, unpublished internal artifacts, or unrelated personal context. Use another source only when the user explicitly introduces it for the task.
 
-## Source-of-truth map
+## Task boundaries
 
-Read [`ECOSYSTEM.md`](ECOSYSTEM.md) for the full cross-repository architecture. The minimum routing map is:
+Explicit task contracts override continuity assumptions. Preserve any declared:
 
-| Need | Authoritative public source |
-| --- | --- |
-| VSM semantics: S1–S5, recursion, autonomy, variety, escalation, evidence boundaries | `opensiro/vsm-harness-profile` |
-| Assessment procedure and autonomy classification | `opensiro/vsm-harness-skills` |
-| Canonical repository-relative assessments, provenance, catalog and deterministic views | `opensiro/vsm-harness-index` |
-| General per-function capability evidence | `opensiro/vsm-harness-capability` (**experimental**) |
-| Representative curated downstream view | `opensiro/awesome-vsm-harness` |
-| Cross-repository architecture, routing, authority, coordination and current-work control | `opensiro/vsm-oss-organization` |
+- fresh or independent context;
+- read-only boundary;
+- pinned or frozen revision;
+- allowed evidence sources;
+- first-attempt semantics;
+- stop conditions;
+- fail-closed behavior;
+- prohibited adjacent work;
+- exact issue or PR instructions.
 
-The experimental Capability repository is adjacent to the currently bounded VSM OSS organization; its presence in this routing map does not admit it as an S1 domain or change the organizational boundary.
+Do not import conclusions, repair ideas, expected outcomes, or hidden assumptions from earlier work when the task requires an independent context.
 
-## Stable architecture invariants
+## Execution rule
 
-Keep these distinctions unless their owning source changes them:
+For a fresh task:
 
-```text
-Beer / cybernetics
-        ↓
-VSM Harness Profile
-        ↓
-VSM assessment procedure / skills
-        ↓
-VSM Harness Index
-        ↓
-curated downstream views
-```
+1. identify the system-in-focus;
+2. use [`ECOSYSTEM.md`](ECOSYSTEM.md) to identify the owning repository;
+3. refresh that repository from its current default branch;
+4. read its repository-local README/contracts and the exact governing artifact;
+5. keep local work with its owner and route only genuinely cross-repository responsibility/authority questions back here;
+6. validate relevant tests, generated artifacts, provenance, and source-of-truth consistency before closure.
 
-The Profile owns organizational semantics. Skills applies them. The Index owns assessment instances and derived corpus views. Awesome curates representative examples.
-
-For assessment work, map the **organizational function first** and classify autonomy second. Do not infer VSM functions from component names.
-
-Autonomy states are ownership arrangements, not a maturity ladder. Do not interpret `A`, `C`, and `P` as ordinal grades.
-
-Capability evidence is separate from canonical ownership/classification. Benchmark performance does not create a canonical VSM function or autonomy state.
-
-## Task start procedure
-
-For every fresh task:
-
-1. **Identify the system-in-focus.** Which repository or bounded organization is actually being changed or studied?
-2. **Identify the owner.** Use the source-of-truth map above and the repository's own README/contracts.
-3. **Refresh current state.** Read current `main` and the exact issue, PR, release, pinned revision, or artifact governing the task.
-4. **Preserve explicit boundaries.** If the task declares a fresh/independent context, frozen revision, read-only role, first-attempt rule, stop condition, or fail-closed behavior, that contract overrides convenience from prior runtime context.
-5. **Execute locally.** Keep repository-local work in its owning repository. Route cross-repository authority/control questions here.
-6. **Validate before closure.** Check relevant tests, generated artifacts, provenance, and source-of-truth consistency.
-7. **Report compactly.** For substantial autonomous work, follow [`AUTONOMOUS_WORK_REPORTING.md`](AUTONOMOUS_WORK_REPORTING.md).
-
-If selecting **already tracked current work**, use [`TODO.md`](TODO.md). If the work is new, unclassified, or needs routing, use [`CONTRIBUTOR_START.md`](CONTRIBUTOR_START.md).
+For substantial autonomous work, follow [`AUTONOMOUS_WORK_REPORTING.md`](AUTONOMOUS_WORK_REPORTING.md).
 
 ## Context drift
 
-A persistent runtime will inevitably accumulate stale statements as repositories evolve. That is expected. The control mechanism is not perfect memory; it is **cheap re-grounding in authoritative state**.
+Persistent context will become stale as repositories evolve. The control mechanism is **re-grounding**, not perfect memory.
 
-When drift is found:
-
-- do not edit history to make it look as if the old context was always correct;
-- update the owning repository when the canonical contract itself changed;
-- otherwise refresh the runtime summary from the owning repository;
-- preserve exact historical provenance for frozen assessments, experiments, releases, and completed research runs.
-
-A useful runtime summary should therefore contain mostly stable routing rules and links, not copied live counts, current issue queues, current versions, or assessment conclusions.
+When drift is found, refresh from the owner rather than preserving a stale runtime assumption. Historical assessments, experiments, releases, and frozen research runs keep their exact original provenance.
 
 ## Boundary
 
-This file is a bootstrap and routing contract. It does not redefine VSM semantics, assessment methodology, Index facts, Capability methodology, repository admission, or organizational autonomy.
+This file owns only the bootstrap protocol. It does not redefine VSM semantics, assessment methodology, Index facts, Capability methodology, repository admission, or organizational autonomy.
 
-If this file disagrees with an owning repository on a repository-owned fact, the owning repository is authoritative. If the disagreement is about cross-repository responsibility or organizational routing, fix this repository rather than creating another parallel context document.
+If this file disagrees with an owning repository on a repository-owned fact, the owning repository wins. If the disagreement is about cross-repository responsibility or routing, update `vsm-oss-organization` rather than creating another parallel context document.
