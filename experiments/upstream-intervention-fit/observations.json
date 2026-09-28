@@ -1,5 +1,5 @@
 {
-  "as_of": "2026-09-28",
+  "as_of": "2026-09-29",
   "experiment": "upstream-intervention-fit",
   "interventions": [
     {
@@ -21,9 +21,9 @@
     },
     {
       "evidence": [
-        "A fresh upstream review found no first-party S5/VSM/organization-identity governance goal or discussion supporting the proposed new organization-wide policy responsibility.",
-        "The intervention used normal OMA agent/skill surfaces and could be described without OpenSiro, but its motivating need was not established from upstream evidence.",
-        "The PR was closed without merge after the fit concern was identified."
+        "A repository-wide current-main negative-evidence review at ce19702d682688e3706a2cdbe39f51cb176c684a found no first-party active-policy, governance-steward, or organization-wide durable-policy surface matching the proposed new agent-owned responsibility.",
+        "The first-party governance surface found is a static refactoring-organization parameter contract, not a durable agent-owned identity/policy loop: https://github.com/first-fluke/oh-my-agent/blob/ce19702d682688e3706a2cdbe39f51cb176c684a/skills/oma-refactor/resources/governance.md",
+        "The intervention used normal OMA agent/skill surfaces and could be described without OpenSiro, but the motivating need for this new durable organization-wide policy owner was not established from upstream evidence; the PR was closed without merge after the fit concern was identified."
       ],
       "gates": {
         "counterfactual_value": "pass",
@@ -89,9 +89,9 @@
     },
     {
       "evidence": [
-        "StarNet's first-party docs/VOICE_ORCHESTRATION_PLAN.md explicitly defines station.status as the first read-only orchestration verb and requires reusing VoiceLive.statusSnapshot() rather than inventing a parallel status path.",
+        "At PR-base fbddbf992f8e7082196f07c3024781fcf1c276fc, StarNet's first-party docs/VOICE_ORCHESTRATION_PLAN.md explicitly defines station.status as the first read-only orchestration slice and requires reusing VoiceLive.statusSnapshot() rather than inventing a parallel status path: https://github.com/androoAGI/starnet/blob/fbddbf992f8e7082196f07c3024781fcf1c276fc/docs/VOICE_ORCHESTRATION_PLAN.md",
         "The current frontend already implements the truthful station.status bridge verb, while the sidecar orchestrator tool surface and capability allowlist did not expose it; PR https://github.com/androoAGI/starnet/pull/56 closes that upstream-documented product gap through existing StarNet mechanisms.",
-        "PR #56 is limited to the read-only lead tool, allowlist declaration, and regression tests with no new mutation or authority; it is rebased on the current upstream default-branch head and is mergeable."
+        "PR #56 is limited to the read-only lead tool, allowlist declaration, and regression tests with no new mutation or authority; it is open and mergeable against the upstream harness-backend lane."
       ],
       "gates": {
         "counterfactual_value": "pass",
