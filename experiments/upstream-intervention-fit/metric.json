@@ -1,0 +1,45 @@
+{
+  "anti_gaming": [
+    "record every intervention materially initiated or shaped by OpenSiro assessment/research, including failed, rejected, withdrawn, and closed-unmerged work",
+    "one intervention identity counts once regardless of commit or revision count",
+    "an OpenSiro/VSM grade change cannot satisfy a fit gate",
+    "maintainer acceptance is evidence but is not the metric itself",
+    "do not backfill only successful interventions"
+  ],
+  "derived_fit": {
+    "fail": "one or more gates fail",
+    "pass": "all gates pass",
+    "pending": "no gate fails and one or more gates are unknown"
+  },
+  "experiment": "upstream-intervention-fit",
+  "fit_gates": {
+    "counterfactual_value": "the intervention remains justifiable if OpenSiro, VSM, assessment, and grade language are removed",
+    "native_mechanism": "the intervention uses or extends an upstream-owned mechanism/pattern rather than adding a VSM-only control surface",
+    "scope_compatibility": "current public upstream scope/direction does not conflict with the intervention",
+    "upstream_need": "public upstream evidence or maintainer evidence supports a real upstream-native need/problem/workflow served by the intervention"
+  },
+  "gate_states": [
+    "pass",
+    "fail",
+    "unknown"
+  ],
+  "lifecycle_states": [
+    "draft",
+    "open",
+    "merged",
+    "closed_unmerged",
+    "withdrawn"
+  ],
+  "primary_metric": {
+    "denominator": "interventions whose derived fit state is pass or fail",
+    "excluded_from_denominator": [
+      "pending"
+    ],
+    "id": "product_native_fit_rate",
+    "interpretation": "share of completed fit reviews where the intervention has standalone upstream-native value independent of OpenSiro/VSM grade pressure",
+    "kind": "ratio",
+    "numerator": "interventions whose derived fit state is pass"
+  },
+  "schema_version": 1,
+  "status": "experimental"
+}
