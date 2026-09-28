@@ -1,5 +1,7 @@
 # VSM OSS Organization
 
+> **New contributor, agent, or persistent workspace?** Start with [`START_HERE.md`](START_HERE.md). It is the common bootstrap contract for re-grounding in current public GitHub state before routing into the owning repository and exact task artifact.
+
 A minimal organizational profile for autonomous OpenSiro OSS contributors.
 
 This repository applies, but does not redefine, the public [VSM Harness Profile](https://github.com/opensiro/vsm-harness-profile). It is built bottom-up using an OSM-style elimination method: add an organizational function only when concrete residual variety cannot be absorbed by the functions already present.
