@@ -4,9 +4,11 @@ import base64
 import unittest
 
 from scripts.check_public_routing import (
+    START_HERE_URL,
     TODO_URL,
     Repository,
     RoutingError,
+    bootstrap_marker_present,
     decode_readme_payload,
     evaluate_repositories,
     fetch_repository_metadata,
@@ -17,6 +19,22 @@ from scripts.check_public_routing import (
 
 
 class PublicRoutingTests(unittest.TestCase):
+    def test_regular_repository_requires_common_bootstrap(self) -> None:
+        self.assertTrue(
+            bootstrap_marker_present(
+                "opensiro/vsm-harness-index",
+                f"New here? {START_HERE_URL}",
+                "opensiro",
+            )
+        )
+        self.assertFalse(
+            bootstrap_marker_present(
+                "opensiro/vsm-harness-index",
+                "Use a local START_HERE.md file.",
+                "opensiro",
+            )
+        )
+
     def test_regular_repository_requires_organization_route(self) -> None:
         readme = (
             "Repository-local work stays here.\n\n"
@@ -27,11 +45,11 @@ class PublicRoutingTests(unittest.TestCase):
             route_marker_present("opensiro/vsm-harness-index", readme, "opensiro")
         )
 
-    def test_todo_url_alone_does_not_satisfy_organization_route(self) -> None:
+    def test_bootstrap_or_todo_url_alone_does_not_satisfy_organization_route(self) -> None:
         self.assertFalse(
             route_marker_present(
                 "opensiro/vsm-harness-index",
-                f"Current work: {TODO_URL}",
+                f"Start: {START_HERE_URL}\nCurrent work: {TODO_URL}",
                 "opensiro",
             )
         )
@@ -59,8 +77,14 @@ class PublicRoutingTests(unittest.TestCase):
             )
         )
 
-    def test_organization_repository_accepts_relative_route_and_todo(self) -> None:
-        readme = "Start with [CONTRIBUTOR_START.md](CONTRIBUTOR_START.md) and [TODO.md](TODO.md)."
+    def test_organization_repository_accepts_relative_bootstrap_route_and_todo(self) -> None:
+        readme = (
+            "Start with [START_HERE.md](START_HERE.md), "
+            "[CONTRIBUTOR_START.md](CONTRIBUTOR_START.md), and [TODO.md](TODO.md)."
+        )
+        self.assertTrue(
+            bootstrap_marker_present("opensiro/vsm-oss-organization", readme, "opensiro")
+        )
         self.assertTrue(
             route_marker_present("opensiro/vsm-oss-organization", readme, "opensiro")
         )
@@ -133,7 +157,7 @@ Scope membership does not mean all are S1.
                 get_json=get_json,
             )
 
-    def test_evaluation_requires_route_and_todo(self) -> None:
+    def test_evaluation_requires_bootstrap_route_and_todo(self) -> None:
         repositories = [
             Repository("opensiro/vsm-harness-index", "main"),
             Repository("opensiro/vsm-harness-skills", "main"),
@@ -141,13 +165,17 @@ Scope membership does not mean all are S1.
         ]
         readmes = {
             "opensiro/vsm-harness-index": (
+                f"Start: {START_HERE_URL}\n"
                 "See opensiro/vsm-oss-organization for shared authority.\n"
                 f"Current work: {TODO_URL}"
             ),
             "opensiro/vsm-harness-skills": (
-                "See opensiro/vsm-oss-organization for shared authority."
+                "See opensiro/vsm-oss-organization for shared authority.\n"
+                f"Current work: {TODO_URL}"
             ),
-            "opensiro/vsm-harness-profile": f"Current work: {TODO_URL}",
+            "opensiro/vsm-harness-profile": (
+                f"Start: {START_HERE_URL}\nCurrent work: {TODO_URL}"
+            ),
         }
 
         results = evaluate_repositories(
@@ -156,7 +184,7 @@ Scope membership does not mean all are S1.
             readme_loader=lambda repo: readmes[repo.full_name],
         )
         self.assertEqual([True, False, False], [result.ok for result in results])
-        self.assertIn("shared Organization TODO", results[1].detail)
+        self.assertIn("common Organization START_HERE", results[1].detail)
         self.assertIn("vsm-oss-organization route", results[2].detail)
 
     def test_evaluation_treats_unreadable_readme_as_failure(self) -> None:
