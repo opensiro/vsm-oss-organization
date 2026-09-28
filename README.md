@@ -131,6 +131,26 @@ The root README is therefore **not a live milestone-status or work-scheduling su
 
 The roadmap is specific to this reference organization. Its target vectors are design/construction targets, not independently published assessment states, and `A`, `C`, and `P` are ownership arrangements rather than maturity scores. See [`ROADMAP.md`](ROADMAP.md) for the current milestone, evidence state, sequencing, and long-term reference target.
 
+<!-- ROADMAP VALIDATOR PROJECTION:START
+Derived compatibility projection for scripts/validate_contract.py. ROADMAP.md remains authoritative; this block is not a human-facing status or scheduling surface.
+
+Active formal work is M1.
+
+Current milestone target:
+
+```text
+S1  S2  S3  S3* S4  S5
+A   —   C   C   —   —
+```
+
+Long-term reference target:
+
+```text
+S1  S2  S3  S3* S4  S5
+A   A   A   C   A   P
+```
+ROADMAP VALIDATOR PROJECTION:END -->
+
 ## Construction roles
 
 Role and constructor surfaces are introduced and interpreted under [`ROADMAP.md`](ROADMAP.md), the selected Profile, and their owning contracts. Their mere presence in this repository is not evidence that a milestone or autonomy state has been achieved.
