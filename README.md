@@ -1,5 +1,7 @@
 # VSM OSS Organization
 
+> **New contributor, agent, or persistent workspace?** Start with [`START_HERE.md`](START_HERE.md). It is the common bootstrap contract for re-grounding in current public GitHub state before routing into the owning repository and exact task artifact.
+
 A minimal organizational profile for autonomous OpenSiro OSS contributors.
 
 This repository applies, but does not redefine, the public [VSM Harness Profile](https://github.com/opensiro/vsm-harness-profile). It is built bottom-up using an OSM-style elimination method: add an organizational function only when concrete residual variety cannot be absorbed by the functions already present.
@@ -58,10 +60,6 @@ Repositories outside the current in-scope set may consume or present artifacts p
 [`METRICS.md`](METRICS.md) defines the shared observability contract for these five public in-scope repositories, with a machine-readable projection in [`metrics.yaml`](metrics.yaml).
 
 The rule is intentionally outcome-oriented: **count accepted repository-owned state transitions, not edits**. Commits, lines changed, PRs, issues, and workflow runs may be exposed as secondary engineering telemetry, but they are not productivity or verified-output KPIs.
-
-## START HERE
-
-For any fresh human, agent, or persistent ChatGPT Project context, begin with [`START_HERE.md`](START_HERE.md). It is the common bootstrap contract: re-ground in current public GitHub state, load the cross-repository architecture, then continue into the repository and exact issue/PR/artifact that owns the task. Runtime memory and prior chats are continuity aids, not a parallel source of truth.
 
 ## FOR CONTRIBUTORS
 
