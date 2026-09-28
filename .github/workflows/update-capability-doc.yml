@@ -1,0 +1,45 @@
+name: sync capability ecosystem note
+
+on:
+  push:
+    branches:
+      - docs/ecosystem-capability-architecture
+
+permissions:
+  contents: write
+
+jobs:
+  sync:
+    if: github.actor != 'github-actions[bot]'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: docs/ecosystem-capability-architecture
+      - name: Sync completed extraction wording
+        shell: bash
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          p = Path('ECOSYSTEM.md')
+          text = p.read_text()
+          text = text.replace(
+              'It continues the research direction developed in `vsm-harness-index/experiments/functional-capability-depth` while keeping canonical assessment ownership in the Index.',
+              'It was bootstrapped from the predecessor `vsm-harness-index/experiments/functional-capability-depth` research surface; active capability ownership now lives here while canonical assessment ownership remains in the Index.'
+          )
+          text = text.replace(
+              '- frozen historical artifacts from the existing `functional-capability-depth` experiment.',
+              '- frozen historical artifacts migrated from the predecessor `functional-capability-depth` experiment.'
+          )
+          p.write_text(text)
+          PY
+          git diff --check
+      - name: Commit and remove one-shot workflow
+        shell: bash
+        run: |
+          rm -f .github/workflows/update-capability-doc.yml
+          git config user.name github-actions[bot]
+          git config user.email 41898282+github-actions[bot]@users.noreply.github.com
+          git add -A
+          git commit -m 'docs: sync capability extraction state'
+          git push origin HEAD:docs/ecosystem-capability-architecture
