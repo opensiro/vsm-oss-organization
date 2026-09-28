@@ -49,7 +49,7 @@ The current bounded `vsm-oss-organization` system remains the one declared in [`
 
 ## Experimental capability layer
 
-[`opensiro/vsm-harness-capability`](https://github.com/opensiro/vsm-harness-capability) is an **experimental adjacent research repository** for a separate question from canonical VSM assessment. It continues the research direction developed in `vsm-harness-index/experiments/functional-capability-depth` while keeping canonical assessment ownership in the Index.
+[`opensiro/vsm-harness-capability`](https://github.com/opensiro/vsm-harness-capability) is an **experimental adjacent research repository** for a separate question from canonical VSM assessment. It was bootstrapped from the predecessor `vsm-harness-index/experiments/functional-capability-depth` research surface; active capability ownership now lives here while canonical assessment ownership remains in the Index.
 
 ```text
 canonical VSM assessment:
@@ -93,7 +93,7 @@ Its intended durable responsibilities are:
 - derived VSM-function relevance mappings that reference, but do not redefine, Profile semantics;
 - materially matched comparison cells where public evidence supports them;
 - per-function general capability baselines and current evidence frontier;
-- frozen historical artifacts from the existing `functional-capability-depth` experiment.
+- frozen historical artifacts migrated from the predecessor `functional-capability-depth` experiment.
 
 It must not own:
 
