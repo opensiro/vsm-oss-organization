@@ -3,7 +3,7 @@
   "experiment": "upstream-intervention-fit",
   "fit_counts": {
     "fail": 1,
-    "pass": 1,
+    "pass": 2,
     "pending": 3
   },
   "interventions": [
@@ -41,17 +41,24 @@
       "lifecycle": "open",
       "pull_request": "https://github.com/GoogleCloudPlatform/scion/pull/2047",
       "upstream_repository": "GoogleCloudPlatform/scion"
+    },
+    {
+      "fit": "pass",
+      "id": "starnet-55",
+      "lifecycle": "open",
+      "pull_request": "https://github.com/androoAGI/starnet/issues/55",
+      "upstream_repository": "androoAGI/starnet"
     }
   ],
   "lifecycle_counts": {
     "closed_unmerged": 1,
-    "open": 4
+    "open": 5
   },
   "primary_metric": {
-    "denominator_completed_reviews": 2,
+    "denominator_completed_reviews": 3,
     "id": "product_native_fit_rate",
-    "numerator_pass": 1,
-    "value": 0.5
+    "numerator_pass": 2,
+    "value": 0.6667
   },
   "schema_version": 1
 }
