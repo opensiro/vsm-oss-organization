@@ -121,11 +121,20 @@ A scheduler state such as `BLOCKED` is not itself an algedonic signal or metasys
 
 ## OSM roadmap
 
-M0 operational construction is complete: Index, Skills, and Awesome now have explicit local envelopes and real operational evidence paths.
+Roadmap, work-contract, and live-scheduling state are intentionally separate:
 
-Active formal work is M1. The complementary-audit constructor is already established by real use (`S3*=C`); the remaining M1 gap is #39, which must carry one naturally qualifying whole-system current-control decision through the S3 constructor and back into subsequent S1 operation before `S3=C` can be claimed.
+- [`ROADMAP.md`](ROADMAP.md) owns the durable OSM milestone sequence, construction targets, and evidence-state narrative;
+- the corresponding GitHub milestone/tracker issue owns the exact milestone exit contract and reviewable completion history;
+- [`TODO.md`](TODO.md) owns only which already-existing issues are currently selected as `NOW`, `NEXT`, or `BLOCKED`.
 
-M2-specific S5 evidence is already established ahead of formal milestone sequencing: the explicit parent-authority contract and `S5-P-001` routing-scope witness support `S5=P`. M2 remains formally open only because it inherits M1 and therefore cannot close until M1 does.
+The root README is therefore **not a live milestone-status or work-scheduling surface**. For current construction state, read `ROADMAP.md` and the applicable tracker; for current selected work, read `TODO.md` and then return to the linked owning issue/repository.
+
+The roadmap is specific to this reference organization. Its target vectors are design/construction targets, not independently published assessment states, and `A`, `C`, and `P` are ownership arrangements rather than maturity scores. See [`ROADMAP.md`](ROADMAP.md) for the current milestone, evidence state, sequencing, and long-term reference target.
+
+<!-- ROADMAP VALIDATOR PROJECTION:START
+Derived compatibility projection for scripts/validate_contract.py. ROADMAP.md remains authoritative; this block is not a human-facing status or scheduling surface.
+
+Active formal work is M1.
 
 Current milestone target:
 
@@ -134,33 +143,25 @@ S1  S2  S3  S3* S4  S5
 A   —   C   C   —   —
 ```
 
-The vector is a **design/construction target, not an independently published assessment state**. M1 establishes two function-specific constructor paths:
-
-- `S3=C` — a real current-control request/decision/return path into subsequent S1 operation;
-- `S3*=C` — a real complementary-audit path that exposes claim/risk, ordinary reporting, materially complementary evidence, audit judgment/outcome, and a route for material findings into subsequent control.
-
-M1 does not require a permanent autonomous S3 regulator or autonomous S3* verifier. Autonomous ownership is a separate later evidence question.
-
 Long-term reference target:
 
 ```text
 S1  S2  S3  S3* S4  S5
 A   A   A   C   A   P
 ```
+ROADMAP VALIDATOR PROJECTION:END -->
 
-`A`, `C`, and `P` are ownership arrangements, not maturity scores. The milestone ordering is specific to this reference organization, not a universal VSM installation order. A future `S3*=A` step should be added only if real residual audit variety justifies an autonomous audit owner. See [ROADMAP.md](ROADMAP.md).
+## Construction roles
 
-## Current and preparatory roles
+Role and constructor surfaces are introduced and interpreted under [`ROADMAP.md`](ROADMAP.md), the selected Profile, and their owning contracts. Their mere presence in this repository is not evidence that a milestone or autonomy state has been achieved.
 
-The M0 S1 construction uses [roles/S1.md](roles/S1.md) together with [S1_DOMAIN_CONTRACTS.md](S1_DOMAIN_CONTRACTS.md). A run must declare Index, Skills, or Awesome as its operational domain.
+The S1 construction uses [roles/S1.md](roles/S1.md) together with [S1_DOMAIN_CONTRACTS.md](S1_DOMAIN_CONTRACTS.md). A run must declare Index, Skills, or Awesome as its operational domain.
 
-M1 constructor surfaces may exist before the milestone is formally achieved. The current S3* audit surface is established at constructor level by qualifying use; the S3 current-control surface remains awaiting the real #39 functional witness.
+The complementary-audit constructor contract is defined in [S3STAR_AUDIT.md](S3STAR_AUDIT.md), with composition guidance in [roles/S3STAR.md](roles/S3STAR.md). The actual audit judgment owner is recorded per qualifying run rather than inferred from the existence of the role document.
 
-The S3* constructor contract is defined in [S3STAR_AUDIT.md](S3STAR_AUDIT.md). During M1, [roles/S3STAR.md](roles/S3STAR.md) is composition guidance rather than evidence of a permanently running verifier. The actual audit judgment owner is recorded per run.
+The S3 current-control ownership contract is defined in [roles/S3.md](roles/S3.md). Its use, evidence status, and any later autonomous-agent mode are governed by the applicable roadmap milestone and contract rather than by README prose.
 
-The S3 current-control ownership contract is defined in [roles/S3.md](roles/S3.md). During M1 it does **not** activate a permanent S3 agent: it keeps the actual transaction owner explicit while GitHub Projects, queues, schedulers, fields, and automation remain supporting surfaces. Its autonomous-agent mode is gated by the M3 conditions in [ROADMAP.md](ROADMAP.md).
-
-Further roles are added only when concrete residual variety establishes the organizational need. VSM functions are responsibilities and relationships, not a checklist of permanent agent processes.
+For the current milestone/evidence state, consult `ROADMAP.md` and its tracker. For selected executable work, consult `TODO.md`. Further roles are added only when concrete residual variety establishes the organizational need; VSM functions are responsibilities and relationships, not a checklist of permanent agent processes.
 
 ## Supplementary development evidence
 
