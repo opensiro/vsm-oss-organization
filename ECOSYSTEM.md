@@ -17,6 +17,7 @@ Use the repository that owns the fact or procedure being discussed:
 | What do S1, S2, S3, S3*, S4, S5, recursion, autonomy, variety, escalation and closure mean? | `opensiro/vsm-harness-profile` |
 | How is a standalone repository VSM assessment performed and classified? | `opensiro/vsm-harness-skills` |
 | What is the accepted repository-relative VSM assessment of a harness? | `opensiro/vsm-harness-index` |
+| What empirical evidence supports general per-function capability comparisons? | `opensiro/vsm-harness-capability` (**experimental**) |
 | Which organizational forms are selected as representative examples? | `opensiro/awesome-vsm-harness` |
 | How are the bounded VSM OSS repositories organized, routed and coordinated? | `opensiro/vsm-oss-organization` |
 
@@ -24,7 +25,7 @@ Do not duplicate repository-owned facts into this repository when a stable refer
 
 ## Current released architecture
 
-The current public VSM Harness chain is:
+The current released VSM Harness chain is:
 
 ```text
 Beer / cybernetics
@@ -44,11 +45,11 @@ awesome-vsm-harness
 
 This chain separates semantics, procedure, canonical assessment instances and curation.
 
-The current bounded `vsm-oss-organization` system remains the one declared in [`README.md`](README.md) and [`ORGANIZATION.md`](ORGANIZATION.md). In particular, the current operational S1 domains remain Index, Skills and Awesome. This document does not add another operational domain by describing adjacent experimental work.
+The current bounded `vsm-oss-organization` system remains the one declared in [`README.md`](README.md) and [`ORGANIZATION.md`](ORGANIZATION.md). In particular, the current operational S1 domains remain Index, Skills and Awesome. The experimental Capability repository described below exists outside that bounded system unless and until a separate organizational-boundary change admits it.
 
 ## Experimental capability layer
 
-`vsm-harness-index/experiments/functional-capability-depth` currently investigates a separate question from canonical VSM assessment:
+[`opensiro/vsm-harness-capability`](https://github.com/opensiro/vsm-harness-capability) is an **experimental adjacent research repository** for a separate question from canonical VSM assessment. It continues the research direction developed in `vsm-harness-index/experiments/functional-capability-depth` while keeping canonical assessment ownership in the Index.
 
 ```text
 canonical VSM assessment:
@@ -73,9 +74,9 @@ domain-specific assessment
 
 A canonical ownership state such as `A`, `C`, `P`, `A(P)`, `C(P)`, `—`, or `?` is not a performance score. Conversely, benchmark performance does not create or change a canonical ownership state.
 
-### Proposed repository boundary
+### Repository boundary
 
-A future repository may be created as:
+The repository is:
 
 ```text
 opensiro/vsm-harness-capability
@@ -83,9 +84,9 @@ opensiro/vsm-harness-capability
 
 Its intended scope is **general functional capability**. The word `general` is intentionally a scope property rather than part of the repository name.
 
-Until such a repository is actually created and explicitly admitted into the bounded VSM OSS organization, it remains an **experimental adjacent research layer**, not a current S1 domain and not part of the canonical five-repository organization boundary.
+The repository is currently **experimental**. Its existence does not make it a current S1 domain and does not expand the canonical five-repository `vsm-oss-organization` boundary.
 
-Its likely durable responsibilities are:
+Its intended durable responsibilities are:
 
 - neutral public system observations and provenance;
 - linkage between public benchmark/evidence surfaces and concrete systems;
@@ -253,7 +254,7 @@ plain-language public presentation
 
 Examples:
 
-- capability observation schema → `vsm-harness-capability` if/when created;
+- capability observation schema → `vsm-harness-capability`;
 - why Capability is separate from Index → this document;
 - definition of S3* → `vsm-harness-profile`;
 - procedure for canonical S3* assessment → `vsm-harness-skills`;
@@ -265,7 +266,7 @@ Examples:
 
 The capability architecture described here is **experimental**.
 
-Promoting `vsm-harness-capability` into a first-class repository does not automatically make it part of the bounded `vsm-oss-organization` system. Admission into that system requires a separate explicit boundary change with corresponding updates to organizational contracts, routing, observability and any S1-domain construction evidence required by the organization.
+The existence of `vsm-harness-capability` does not automatically make it part of the bounded `vsm-oss-organization` system. Admission into that system requires a separate explicit boundary change with corresponding updates to organizational contracts, routing, observability and any S1-domain construction evidence required by the organization.
 
 Likewise, creating a domain-specific capability repository does not automatically place it inside the same bounded organization.
 
