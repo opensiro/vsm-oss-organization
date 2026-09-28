@@ -4,6 +4,8 @@ A minimal organizational profile for autonomous OpenSiro OSS contributors.
 
 This repository applies, but does not redefine, the public [VSM Harness Profile](https://github.com/opensiro/vsm-harness-profile). It is built bottom-up using an OSM-style elimination method: add an organizational function only when concrete residual variety cannot be absorbed by the functions already present.
 
+> Cross-repository architecture, including the **experimental** `vsm-harness-capability` layer and future domain-specific capability repositories, is documented in [ECOSYSTEM.md](ECOSYSTEM.md). That note does not expand the current bounded organization or its operational S1 domains.
+
 ## Viable-system identity
 
 The bounded organization maintained here exists to keep public, current, evidence-backed VSM Harness knowledge available to the open-source community.
