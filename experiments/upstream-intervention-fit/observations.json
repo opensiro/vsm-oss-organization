@@ -1,0 +1,92 @@
+{
+  "as_of": "2026-09-28",
+  "experiment": "upstream-intervention-fit",
+  "interventions": [
+    {
+      "evidence": [
+        "Maintainer explicitly accepted levels 1/2 and rejected only autonomous level 3 because external README text writing global skills would create a persistent prompt-injection path.",
+        "The revised intervention stays inside Dream Engine's existing progressive-autonomy mechanism and caps the new category at proposal-only level 2.",
+        "Maintainer comment: https://github.com/Szotasz/marveen/pull/1516#issuecomment-5827208384"
+      ],
+      "gates": {
+        "counterfactual_value": "pass",
+        "native_mechanism": "pass",
+        "scope_compatibility": "pass",
+        "upstream_need": "pass"
+      },
+      "id": "marveen-1516",
+      "lifecycle": "open",
+      "pull_request": "https://github.com/Szotasz/marveen/pull/1516",
+      "upstream_repository": "Szotasz/marveen"
+    },
+    {
+      "evidence": [
+        "A fresh upstream review found no first-party S5/VSM/organization-identity governance goal or discussion supporting the proposed new organization-wide policy responsibility.",
+        "The intervention used normal OMA agent/skill surfaces and could be described without OpenSiro, but its motivating need was not established from upstream evidence.",
+        "The PR was closed without merge after the fit concern was identified."
+      ],
+      "gates": {
+        "counterfactual_value": "pass",
+        "native_mechanism": "pass",
+        "scope_compatibility": "unknown",
+        "upstream_need": "fail"
+      },
+      "id": "oh-my-agent-819",
+      "lifecycle": "closed_unmerged",
+      "pull_request": "https://github.com/first-fluke/oh-my-agent/pull/819",
+      "upstream_repository": "first-fluke/oh-my-agent"
+    },
+    {
+      "evidence": [
+        "The intervention is implemented as a normal Scion platform skill plus a contract test and does not add a mandatory runtime gate.",
+        "The PR rationale is independent-review utility for Scion orchestration rather than an OpenSiro grade claim.",
+        "No human maintainer scope/need signal has been received yet; keep the fit review pending."
+      ],
+      "gates": {
+        "counterfactual_value": "pass",
+        "native_mechanism": "pass",
+        "scope_compatibility": "unknown",
+        "upstream_need": "unknown"
+      },
+      "id": "scion-2047",
+      "lifecycle": "open",
+      "pull_request": "https://github.com/GoogleCloudPlatform/scion/pull/2047",
+      "upstream_repository": "GoogleCloudPlatform/scion"
+    },
+    {
+      "evidence": [
+        "The intervention packages a reviewer through Headcount's existing installable security plugin/custom-agent surface.",
+        "The branch passes the repository's canonical local validation, but no maintainer response has established upstream need/scope fit yet.",
+        "Keep pending until a dedicated upstream-fit review or maintainer signal closes the unknown gates."
+      ],
+      "gates": {
+        "counterfactual_value": "pass",
+        "native_mechanism": "pass",
+        "scope_compatibility": "unknown",
+        "upstream_need": "unknown"
+      },
+      "id": "headcount-47",
+      "lifecycle": "open",
+      "pull_request": "https://github.com/cbrock84/headcount/pull/47",
+      "upstream_repository": "cbrock84/headcount"
+    },
+    {
+      "evidence": [
+        "The intervention reuses Hermes delegation rather than adding a separate runtime layer.",
+        "The PR body is explicitly framed around testing whether the project can move toward Full-A, so counterfactual product value must be re-reviewed before classification.",
+        "No upstream maintainer comments or reviews exist yet."
+      ],
+      "gates": {
+        "counterfactual_value": "unknown",
+        "native_mechanism": "pass",
+        "scope_compatibility": "unknown",
+        "upstream_need": "unknown"
+      },
+      "id": "henterprise-1",
+      "lifecycle": "open",
+      "pull_request": "https://github.com/humbertobellor/henterprise/pull/1",
+      "upstream_repository": "humbertobellor/henterprise"
+    }
+  ],
+  "schema_version": 1
+}
