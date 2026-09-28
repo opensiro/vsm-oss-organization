@@ -59,6 +59,10 @@ Repositories outside the current in-scope set may consume or present artifacts p
 
 The rule is intentionally outcome-oriented: **count accepted repository-owned state transitions, not edits**. Commits, lines changed, PRs, issues, and workflow runs may be exposed as secondary engineering telemetry, but they are not productivity or verified-output KPIs.
 
+## START HERE
+
+For any fresh human, agent, or persistent ChatGPT Project context, begin with [`START_HERE.md`](START_HERE.md). It is the common bootstrap contract: re-ground in current public GitHub state, load the cross-repository architecture, then continue into the repository and exact issue/PR/artifact that owns the task. Runtime memory and prior chats are continuity aids, not a parallel source of truth.
+
 ## FOR CONTRIBUTORS
 
 For **current tracked work across the bounded VSM Harness OSS group**, start with [`TODO.md`](TODO.md). It is the Git-native scheduler and owns only current selection/order through `NOW`, `NEXT`, and `BLOCKED`. The linked issue and repository remain authoritative for task scope, evidence, acceptance, and canonical artifacts.
