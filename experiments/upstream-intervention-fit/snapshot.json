@@ -1,0 +1,57 @@
+{
+  "as_of": "2026-09-28",
+  "experiment": "upstream-intervention-fit",
+  "fit_counts": {
+    "fail": 1,
+    "pass": 1,
+    "pending": 3
+  },
+  "interventions": [
+    {
+      "fit": "pending",
+      "id": "headcount-47",
+      "lifecycle": "open",
+      "pull_request": "https://github.com/cbrock84/headcount/pull/47",
+      "upstream_repository": "cbrock84/headcount"
+    },
+    {
+      "fit": "pending",
+      "id": "henterprise-1",
+      "lifecycle": "open",
+      "pull_request": "https://github.com/humbertobellor/henterprise/pull/1",
+      "upstream_repository": "humbertobellor/henterprise"
+    },
+    {
+      "fit": "pass",
+      "id": "marveen-1516",
+      "lifecycle": "open",
+      "pull_request": "https://github.com/Szotasz/marveen/pull/1516",
+      "upstream_repository": "Szotasz/marveen"
+    },
+    {
+      "fit": "fail",
+      "id": "oh-my-agent-819",
+      "lifecycle": "closed_unmerged",
+      "pull_request": "https://github.com/first-fluke/oh-my-agent/pull/819",
+      "upstream_repository": "first-fluke/oh-my-agent"
+    },
+    {
+      "fit": "pending",
+      "id": "scion-2047",
+      "lifecycle": "open",
+      "pull_request": "https://github.com/GoogleCloudPlatform/scion/pull/2047",
+      "upstream_repository": "GoogleCloudPlatform/scion"
+    }
+  ],
+  "lifecycle_counts": {
+    "closed_unmerged": 1,
+    "open": 4
+  },
+  "primary_metric": {
+    "denominator_completed_reviews": 2,
+    "id": "product_native_fit_rate",
+    "numerator_pass": 1,
+    "value": 0.5
+  },
+  "schema_version": 1
+}
