@@ -1,13 +1,27 @@
-# VSM Harness OSS contributor routing conformance
+# VSM Harness OSS contributor bootstrap and routing conformance
 
-This document defines how OpenSiro verifies that a contributor or agent can begin from an arbitrary repository **inside the declared VSM Harness OSS system boundary**, discover the shared current-work entry point, and route into the correct owning repository without turning `vsm-oss-organization` into a second source of truth for repository-local work.
+This document defines how OpenSiro verifies that a contributor or agent can begin from an arbitrary repository **inside the declared VSM Harness OSS system boundary**, discover the common bootstrap, discover shared current work, and route into the correct owning repository without turning `vsm-oss-organization` into a second source of truth for repository-local work.
 
 ## Invariant
 
-Every repository in the canonical `Current in-scope public repositories:` block in [README.md](README.md) must expose two things directly from its root README:
+Every repository in the canonical `Current in-scope public repositories:` block in [README.md](README.md) must expose three things directly from its root README:
 
-1. the Organization routing surface for organization-wide questions;
-2. the shared [TODO.md](TODO.md) current-work entry point for already tracked work.
+1. the common [`START_HERE.md`](START_HERE.md) bootstrap;
+2. the Organization routing surface for organization-wide questions;
+3. the shared [TODO.md](TODO.md) current-work entry point for already tracked work.
+
+These entry points have different jobs:
+
+```text
+START_HERE.md
+= how to establish current canonical context
+
+CONTRIBUTOR_START.md / Organization route
+= where new, unclassified, cross-repository, or authority-sensitive work belongs
+
+TODO.md
+= which already-existing issue is selected as current work
+```
 
 Repository-local work stays with the repository that owns the relevant source of truth. Questions about contributor roles, authority boundaries, escalation, cross-repository coordination, current-work ordering, milestone sequencing, or shared organizational evolution across the in-scope group route to `opensiro/vsm-oss-organization` and its [CONTRIBUTOR_START.md](CONTRIBUTOR_START.md) entry point.
 
@@ -24,12 +38,13 @@ For each in-scope repository it:
 1. reads live GitHub metadata and confirms the repository is public;
 2. reads the repository's reported default branch;
 3. fetches the root README from that branch;
-4. verifies a direct Organization routing reference;
-5. verifies a direct reference to the shared Organization `TODO.md` current-work entry point;
-6. for `vsm-oss-organization` itself, accepts the relative `CONTRIBUTOR_START.md` and `TODO.md` entry points;
-7. reports every missing/unreadable route explicitly and exits non-zero if any in-scope repository fails.
+4. verifies a direct reference to the common Organization `START_HERE.md` bootstrap;
+5. verifies a direct Organization routing reference distinct from the bootstrap/TODO links;
+6. verifies a direct reference to the shared Organization `TODO.md` current-work entry point;
+7. for `vsm-oss-organization` itself, accepts the relative `START_HERE.md`, `CONTRIBUTOR_START.md`, and `TODO.md` entry points;
+8. reports every missing/unreadable route explicitly and exits non-zero if any in-scope repository fails.
 
-The check is intentionally separate from `scripts/validate_contract.py`. The contract validator is repository-local and deterministic; routing discoverability is a temporal cross-repository property that depends on live GitHub state.
+The check is intentionally separate from `scripts/validate_contract.py`. The contract validator is repository-local and deterministic; bootstrap/routing discoverability is a temporal cross-repository property that depends on live GitHub state.
 
 A newly created public OpenSiro repository does not become subject to this oracle merely by existing. It becomes subject to the oracle only when the canonical Organization scope is explicitly changed to admit it.
 
@@ -41,7 +56,9 @@ A passing mechanical check proves **direct discoverability inside the declared s
 
 The mechanical oracle does not prove:
 
-- that an agent will follow the Organization or TODO link;
+- that an agent will follow `START_HERE.md`;
+- that it will follow the Organization or TODO link;
+- that it will distinguish bootstrap from tracked-work selection;
 - that it will distinguish tracked-work selection from repository-local task ownership;
 - that it will distinguish local work from organization-wide work;
 - that it will route back to the owning repository after consulting Organization;
@@ -64,12 +81,13 @@ Each current in-scope repository must appear as a starting point in the batch. T
 
 ### Trial freeze boundary
 
-A routing batch freezes the **agent-visible routing contract**, not the ordinary contents of the current-work queue.
+A routing batch freezes the **agent-visible bootstrap/routing contract**, not the ordinary contents of the current-work queue.
 
 For each run, preserve the starting repository and the exact start SHA used for its root routing surface. Refreeze an unexecuted batch when a material change alters what the run is intended to test, including:
 
 - canonical in-scope repository membership;
-- the root-README route to Organization or `TODO.md`;
+- the root-README route to `START_HERE.md`, Organization, or `TODO.md`;
+- the bootstrap procedure in `START_HERE.md`;
 - the location or ownership semantics of the current-work entry point;
 - `CONTRIBUTOR_START.md` routing/authority decision procedure;
 - `TODO.md` scheduler schema or its planning/work-contract/scheduling ownership boundary;
@@ -79,10 +97,11 @@ By contrast, an ordinary scheduler transition that **only adds, removes, reorder
 
 This separation is required so normal autonomous progress through the queue cannot perpetually invalidate the routing experiment that is meant to validate discovery of that queue.
 
-Unrelated repository movement also does not invalidate a batch unless it changes an agent-visible routing surface or another frozen property above.
+Unrelated repository movement also does not invalidate a batch unless it changes an agent-visible bootstrap/routing surface or another frozen property above.
 
 Representative positive cases:
 
+- enter from an arbitrary in-scope repository and recover the authoritative ecosystem/context chain;
 - find and pick up already tracked cross-repository work without scanning every issue tracker;
 - change contributor authority across in-scope repositories;
 - resolve an escalation spanning two in-scope repository owners;
@@ -96,13 +115,14 @@ Representative negative controls:
 - reassess one Index harness;
 - change Awesome curation.
 
-A trial is a PASS only when the agent chooses the correct destination and states the source-of-truth boundary. Tracked-work tasks should discover `TODO.md` and then return to the linked owner. Organization-wide tasks must independently discover Organization; local tasks must stay in, or explicitly return to, the owning repository.
+A trial is a PASS only when the agent chooses the correct destination and states the source-of-truth boundary. A cold-start task should discover `START_HERE.md` rather than reconstructing the architecture from local prose. Tracked-work tasks should discover `TODO.md` and then return to the linked owner. Organization-wide tasks must independently discover Organization; local tasks must stay in, or explicitly return to, the owning repository.
 
 Record at least:
 
 ```text
 start repository @ SHA
 prompt / task class
+START_HERE.md @ ref/SHA when followed
 TODO.md @ ref/SHA for tracked-work runs
 selected issue for tracked-work runs
 files read
@@ -118,4 +138,4 @@ A batch result is empirical reliability evidence only. It must not be reported a
 
 The routing invariant applies to the five repositories declared in the Organization README: Profile, Skills, Index, Awesome, and Organization itself.
 
-`arctic-0`, `terminal-bench-vsm`, and `opensiro.com` are outside this bounded VSM Harness OSS system and are not subjects of this routing invariant.
+`vsm-harness-capability` is an experimental adjacent research repository and is not currently part of this bounded routing-conformance set. `arctic-0`, `terminal-bench-vsm`, `opensiro.com`, and other out-of-scope OpenSiro repositories are likewise not subjects of this invariant unless the canonical Organization scope is explicitly changed.

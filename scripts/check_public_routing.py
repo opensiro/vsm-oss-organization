@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Check contributor routing for the declared VSM Harness OSS repository scope."""
+"""Check contributor bootstrap/routing for the declared VSM Harness OSS scope."""
 
 from __future__ import annotations
 
@@ -18,6 +18,7 @@ from urllib.request import Request, urlopen
 API_VERSION = "2022-11-28"
 DEFAULT_API_BASE = "https://api.github.com"
 DEFAULT_ORG = "opensiro"
+START_HERE_URL = "https://github.com/opensiro/vsm-oss-organization/blob/main/START_HERE.md"
 TODO_URL = "https://github.com/opensiro/vsm-oss-organization/blob/main/TODO.md"
 SCOPE_MARKER = "Current in-scope public repositories:"
 REPO_RE = re.compile(r"`(opensiro/[A-Za-z0-9_.-]+)`")
@@ -138,13 +139,22 @@ def fetch_root_readme(
     return decode_readme_payload(get_json(url, token))
 
 
+def bootstrap_marker_present(full_name: str, readme: str, org: str) -> bool:
+    text = readme.casefold()
+    organization_repo = f"{org}/vsm-oss-organization".casefold()
+    if full_name.casefold() == organization_repo:
+        return "start_here.md" in text
+    return START_HERE_URL.casefold() in text
+
+
 def route_marker_present(full_name: str, readme: str, org: str) -> bool:
     text = readme.casefold()
     organization_repo = f"{org}/vsm-oss-organization".casefold()
     if full_name.casefold() == organization_repo:
         return "contributor_start.md" in text
     todo_fragment = f"{organization_repo}/blob/main/todo.md"
-    return organization_repo in text.replace(todo_fragment, "")
+    start_fragment = f"{organization_repo}/blob/main/start_here.md"
+    return organization_repo in text.replace(todo_fragment, "").replace(start_fragment, "")
 
 
 def todo_marker_present(full_name: str, readme: str, org: str) -> bool:
@@ -169,19 +179,22 @@ def evaluate_repositories(
             results.append(CheckResult(repository, False, str(exc)))
             continue
 
+        has_bootstrap = bootstrap_marker_present(repository.full_name, readme, org)
         has_route = route_marker_present(repository.full_name, readme, org)
         has_todo = todo_marker_present(repository.full_name, readme, org)
-        if has_route and has_todo:
+        if has_bootstrap and has_route and has_todo:
             results.append(
                 CheckResult(
                     repository,
                     True,
-                    "Organization route and shared TODO are directly discoverable",
+                    "common START_HERE, Organization route, and shared TODO are directly discoverable",
                 )
             )
             continue
 
         missing: list[str] = []
+        if not has_bootstrap:
+            missing.append("common Organization START_HERE")
         if not has_route:
             missing.append(f"{org}/vsm-oss-organization route")
         if not has_todo:
