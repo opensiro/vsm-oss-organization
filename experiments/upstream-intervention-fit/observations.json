@@ -90,8 +90,8 @@
     {
       "evidence": [
         "StarNet's first-party docs/VOICE_ORCHESTRATION_PLAN.md explicitly defines station.status as the first read-only orchestration verb and requires reusing VoiceLive.statusSnapshot() rather than inventing a parallel status path.",
-        "The current frontend already implements the truthful station.status bridge verb, while the sidecar orchestrator tool surface and capability allowlist do not expose it; the proposed change therefore closes an upstream-documented product gap through existing StarNet mechanisms.",
-        "The intervention is currently upstream issue https://github.com/androoAGI/starnet/issues/55 rather than a PR because the active GitHub integration cannot write the contributor fork; the proposal remains limited to a read-only lead tool, allowlist declaration, and regression tests with no new mutation or authority."
+        "The current frontend already implements the truthful station.status bridge verb, while the sidecar orchestrator tool surface and capability allowlist did not expose it; PR https://github.com/androoAGI/starnet/pull/56 closes that upstream-documented product gap through existing StarNet mechanisms.",
+        "PR #56 is limited to the read-only lead tool, allowlist declaration, and regression tests with no new mutation or authority; it is rebased on the current upstream default-branch head and is mergeable."
       ],
       "gates": {
         "counterfactual_value": "pass",
@@ -101,7 +101,7 @@
       },
       "id": "starnet-55",
       "lifecycle": "open",
-      "pull_request": "https://github.com/androoAGI/starnet/issues/55",
+      "pull_request": "https://github.com/androoAGI/starnet/pull/56",
       "upstream_repository": "androoAGI/starnet"
     }
   ],
