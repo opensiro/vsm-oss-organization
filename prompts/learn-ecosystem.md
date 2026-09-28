@@ -1,27 +1,20 @@
 # Learn the OpenSiro VSM Harness OSS group
 
-Use this prompt when you want an agent to understand the in-scope public OSS workspace before taking work.
+Use this prompt when you want an agent to understand the public OpenSiro VSM Harness workspace before taking work.
 
 ```text
-Study the OpenSiro VSM Harness OSS group starting from opensiro/vsm-oss-organization.
+Start from the current public default branch of:
+https://github.com/opensiro/vsm-oss-organization/blob/main/START_HERE.md
 
-Use current public default branches as source of truth. Read the repository scope and control plane first, then follow the authoritative chain:
+Follow START_HERE.md exactly. Do not reconstruct the ecosystem from prior chat context or from this prompt.
 
-VSM Harness Profile
-→ VSM Harness Skills / Methodology
-→ VSM Harness Index
-→ Awesome VSM Harness / other explicitly in-scope curated views.
-
-Only treat repositories listed as in-scope by opensiro/vsm-oss-organization as part of this control plane. In particular, terminal-bench-vsm, arctic-0, and opensiro.com are outside this organizational scope even if they consume, demonstrate, experiment with, or present related artifacts.
-
-Do not use private repositories or private R&D context.
-
-Return a concise map of:
-1. what each in-scope repository owns;
-2. which repository is authoritative for each kind of change;
-3. the current OSM milestone and autonomy vector;
-4. open work that is relevant to a new contributor;
-5. any ambiguity that requires maintainer input.
+After following the bootstrap chain, return a concise map of:
+1. what each relevant repository owns;
+2. which repository is authoritative for each kind of change involved in the task;
+3. current tracked work relevant to a new contributor, if any;
+4. any ambiguity that genuinely requires maintainer input.
 
 Do not modify repositories unless explicitly asked.
 ```
+
+This prompt is only an executable adapter to `START_HERE.md`; it does not own a second copy of the ecosystem architecture, scope, or source-of-truth rules.
