@@ -15,6 +15,5 @@ See [`CONTROL_PLANE.md`](CONTROL_PLANE.md) for the work-lifecycle ownership map.
 ## NEXT
 
 ## BLOCKED
-- https://github.com/opensiro/vsm-oss-organization/issues/171
 - https://github.com/opensiro/vsm-oss-organization/issues/167
 - https://github.com/opensiro/vsm-oss-organization/issues/39
