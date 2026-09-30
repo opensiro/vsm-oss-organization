@@ -5,7 +5,7 @@ This `README.md` is the common entry point for both people and AI runtimes. Choo
 ## I'm human
 
 - **Web overview:** [opensiro.com](https://opensiro.com)
-- **Independent repository statistics:** [Star History](https://www.star-history.com/#opensiro/vsm-oss-organization&Date)
+- **Repository statistics:** [Public outcome metrics](METRICS.md)
 - **How do I contribute?** [Contribute to OpenSiro with AI](CONTRIBUTE_WITH_AI.md)
 
 You do not need to reconstruct the whole VSM/OSM organization before contributing. The contribution guide gives you copy-paste prompts for handing an idea, issue, or open-ended contribution to an AI agent.
