@@ -27,7 +27,8 @@ class AutonomousS1ModeTests(unittest.TestCase):
         run = self.read("modes/s1-autonomous/RUN.md")
         records = self.read("records/s1/runs/README.md")
 
-        self.assertIn("not an autonomy grade", mode.lower())
+        self.assertIn("an autonomy grade by itself", mode.lower())
+        self.assertIn("Positive `S1=A` interpretation still requires", mode)
         self.assertIn("Do not infer `S1=A` inside the run", run)
         self.assertIn("not autonomy grades", records)
 
