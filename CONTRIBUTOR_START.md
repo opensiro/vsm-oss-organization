@@ -32,6 +32,28 @@ Use `opensiro/vsm-oss-organization` when the question is organization-wide withi
 
 Repositories and research tracks outside the declared scope are not governed by this routing contract merely because they are public or live under the `opensiro` organization.
 
+## Supported autonomous S1 entry
+
+When the resolved work is one ordinary bounded operational contribution in exactly one declared S1 domain — Index, Skills, or Awesome — use the supported [`modes/s1-autonomous/README.md`](modes/s1-autonomous/README.md) entrypoint.
+
+That mode composes the canonical S1 actor adapter and contracts into a directly executable path for a compatible autonomous agent:
+
+```text
+CONTRIBUTOR_START.md
+        ↓
+modes/s1-autonomous/README.md
+        ↓
+modes/s1-autonomous/RUN.md
+        ↓
+roles/S1.md + contracts/s1/*
+        ↓
+records/s1/runs/<record>
+```
+
+The mode does not widen authority, does not override an exact issue/frozen-artifact boundary, and does not itself establish `S1=A`. If custom organizational glue, authority wiring, or step-by-step human selection is required, preserve that fact in the run record rather than silently treating the run as first-party autonomous evidence.
+
+Do not use this S1 mode for a genuinely cross-S1, normative, identity/ultimate-policy, security/credential, licensing, or protected-integration decision. Route those rights through their owning contract instead.
+
 ## Autonomous work reporting
 
 For substantial multi-step autonomous work, follow [`AUTONOMOUS_WORK_REPORTING.md`](AUTONOMOUS_WORK_REPORTING.md).
@@ -107,17 +129,18 @@ When starting from an in-scope repository:
 1. If you are looking for **existing tracked work**, open [`TODO.md`](TODO.md), choose the applicable current issue, then return to its owning repository/issue.
 2. Otherwise read the starting repository's README and identify its local source-of-truth responsibility.
 3. If the requested change is local to that responsibility, stay in that repository.
-4. If the requested change concerns contributor authority, escalation, multiple in-scope repositories, current-work ordering, milestone sequencing, or the shared contribution control plane, continue here.
-5. From here, route domain-specific work back to the owning repository rather than duplicating its facts or semantics.
-6. If the unresolved question is specifically about identity, ultimate policy, system boundary, legitimate authority, or the delegated autonomy envelope, use the parent-governed S5 entry above; otherwise do not invoke S5.
+4. If that local work is one bounded ordinary S1 contribution in Index, Skills, or Awesome, enter [`modes/s1-autonomous/README.md`](modes/s1-autonomous/README.md) and execute its `RUN.md` without widening the task boundary.
+5. If the requested change concerns contributor authority, escalation, multiple in-scope repositories, current-work ordering, milestone sequencing, or the shared contribution control plane, continue here.
+6. From here, route domain-specific work back to the owning repository rather than duplicating its facts or semantics.
+7. If the unresolved question is specifically about identity, ultimate policy, system boundary, legitimate authority, or the delegated autonomy envelope, use the parent-governed S5 entry above; otherwise do not invoke S5.
 
 Examples:
 
-- pick up the current Index assessment → `TODO.md` → owning Index issue;
+- pick up the current Index assessment → `TODO.md` → owning Index issue → autonomous S1 mode when the issue admits ordinary bounded S1 execution;
 - change the definition of S3* → `vsm-harness-profile`;
 - change the assessment procedure → `vsm-harness-skills`;
-- reassess one harness → `vsm-harness-index`;
-- change Awesome curation → `awesome-vsm-harness`;
+- reassess one harness → `vsm-harness-index` → autonomous S1 mode when the task boundary is already admitted;
+- change Awesome curation → `awesome-vsm-harness` → autonomous S1 mode when the task boundary is already admitted;
 - decide how contributors escalate a conflict spanning Index and Skills → `vsm-oss-organization`;
 - change authority boundaries or shared contributor workflow across the in-scope repositories → `vsm-oss-organization`;
 - propose changing the declared system boundary or ultimate policy authority → Organization S5 admission via `prompts/parent-control-plane.md`.
