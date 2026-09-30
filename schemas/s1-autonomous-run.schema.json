@@ -1,0 +1,130 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://opensiro.com/schemas/s1-autonomous-run.schema.json",
+  "title": "Opensiro autonomous S1 run record",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "mode",
+    "domain",
+    "work_item",
+    "starting_revision",
+    "governing_artifacts",
+    "boundary",
+    "boundary_reachability",
+    "runtime_support",
+    "admission",
+    "agent_owned_decisions",
+    "human_interventions",
+    "disturbances_and_recovery",
+    "validation",
+    "terminal_state",
+    "artifacts"
+  ],
+  "properties": {
+    "schema_version": {
+      "const": "1"
+    },
+    "mode": {
+      "const": "s1-autonomous"
+    },
+    "domain": {
+      "enum": ["Index", "Skills", "Awesome"]
+    },
+    "work_item": {
+      "type": "string",
+      "minLength": 1
+    },
+    "starting_revision": {
+      "type": "string",
+      "minLength": 7
+    },
+    "governing_artifacts": {
+      "type": "array",
+      "minItems": 1,
+      "items": {"type": "string", "minLength": 1}
+    },
+    "boundary": {
+      "type": "string",
+      "minLength": 1
+    },
+    "boundary_reachability": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["reachable", "statement", "custom_composition_required"],
+      "properties": {
+        "reachable": {"type": "boolean"},
+        "statement": {"type": "string", "minLength": 1},
+        "custom_composition_required": {"type": "boolean"}
+      }
+    },
+    "runtime_support": {
+      "type": "array",
+      "items": {"type": "string", "minLength": 1}
+    },
+    "admission": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["result", "outcome", "delegated_decisions", "forbidden_decisions", "completion_evidence", "escalation_conditions", "integration_boundary"],
+      "properties": {
+        "result": {"enum": ["ADMIT", "NON_ADMITTED", "ESCALATED"]},
+        "outcome": {"type": "string"},
+        "delegated_decisions": {"type": "array", "items": {"type": "string"}},
+        "forbidden_decisions": {"type": "array", "items": {"type": "string"}},
+        "completion_evidence": {"type": "array", "items": {"type": "string"}},
+        "escalation_conditions": {"type": "array", "items": {"type": "string"}},
+        "integration_boundary": {"type": "string"}
+      }
+    },
+    "agent_owned_decisions": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["decision", "evidence"],
+        "properties": {
+          "decision": {"type": "string", "minLength": 1},
+          "evidence": {"type": "string", "minLength": 1}
+        }
+      }
+    },
+    "human_interventions": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["intervention", "affected_decision", "ownership_effect"],
+        "properties": {
+          "intervention": {"type": "string", "minLength": 1},
+          "affected_decision": {"type": "string", "minLength": 1},
+          "ownership_effect": {"type": "string", "minLength": 1}
+        }
+      }
+    },
+    "disturbances_and_recovery": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["disturbance", "response", "boundary_preserved"],
+        "properties": {
+          "disturbance": {"type": "string", "minLength": 1},
+          "response": {"type": "string", "minLength": 1},
+          "boundary_preserved": {"type": "boolean"}
+        }
+      }
+    },
+    "validation": {
+      "type": "array",
+      "items": {"type": "string", "minLength": 1}
+    },
+    "terminal_state": {
+      "enum": ["CLOSED_CHANGE", "CLOSED_NO_CHANGE", "ESCALATED", "NON_ADMITTED"]
+    },
+    "artifacts": {
+      "type": "array",
+      "items": {"type": "string", "minLength": 1}
+    }
+  }
+}
