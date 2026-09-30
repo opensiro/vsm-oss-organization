@@ -1,6 +1,6 @@
 # Admit and execute one S1 work item
 
-Use this prompt when a presented VSM Harness OSS work item must first be classified under the runtime-neutral admission/recovery contract in [`S1_TASK_ADMISSION_RECOVERY.md`](../S1_TASK_ADMISSION_RECOVERY.md).
+Use this prompt when a presented VSM Harness OSS work item must first be classified under the runtime-neutral admission/recovery contract in [`../contracts/s1/task-admission-recovery.md`](../contracts/s1/task-admission-recovery.md).
 
 ```text
 Evaluate one presented work item for bounded S1 execution.

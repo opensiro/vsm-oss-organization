@@ -1,74 +1,47 @@
 # Contributing
 
-This repository defines a VSM-based contribution contract for OpenSiro OSS. Contributors may use any local runtime, scheduler, model provider, or agent harness. OpenSiro standardizes organizational responsibilities and GitHub boundaries, not execution technology.
+This repository defines a VSM-based contribution contract for Opensiro OSS. Contributors may use any local runtime, scheduler, model provider, or agent harness. Opensiro standardizes organizational responsibilities and GitHub boundaries, not execution technology.
 
-## Current milestone: M1
+## Find current state first
 
-The current formal milestone is M1, targeting `A — C C — —`.
+Do not use this file as a live milestone or autonomy-grade dashboard.
 
-Current evidence state:
+- **GitHub milestones + their tracker issues** own planned destination, exit criteria, and completion history.
+- [`TODO.md`](TODO.md) owns only current `NOW` / `NEXT` / `BLOCKED` scheduling.
+- [`ROADMAP.md`](ROADMAP.md) is a readable projection of the construction sequence and evidence narrative, not a second planning authority.
+- [`records/`](records/) contains concrete execution/evidence records and bounded snapshots.
+- Canonical general assessment publication, when one exists, belongs in `opensiro/vsm-harness-index`, not here.
 
-- `S1=A` is established from M0;
-- `S3*=C` is established by the current complementary-audit constructor and real witness;
-- `S3=C` remains open until one naturally qualifying current-control transaction closes #39;
-- M2-specific `S5=P` evidence already exists, but formal M2 completion remains sequentially blocked on M1.
+The latest bounded self-audit of this reference organization is preserved as the explicitly non-canonical [`records/assessment-snapshots/2026-09-30-general-preassessment.md`](records/assessment-snapshots/2026-09-30-general-preassessment.md). Do not silently promote that snapshot into an Index fact.
 
-Do not manufacture an S3 disturbance merely to complete the milestone. Ordinary repository-local work remains with the S1 domain that has the requisite information and delegated authority.
+## One bounded S1 contribution
 
-The reference contribution unit remains one bounded autonomous S1 loop unless the work item genuinely crosses a higher-level organizational boundary:
+The reference operational unit is one bounded S1 contribution inside exactly one declared domain: Index, Skills, or Awesome.
 
 ```text
 Issue / explicit work item
         ↓
 claim one bounded contribution
         ↓
-contributor-owned agent runtime
+contributor-owned runtime
+        ↓
+S1 actor adapter + domain/admission contracts
         ↓
 research / implementation / validation / recovery
         ↓
-Issue artifact or Pull Request
+Issue artifact / Pull Request / no-change / escalation
 ```
 
-A contribution should state:
+Use:
 
-- system-in-focus and repository boundary;
-- expected outcome;
-- evidence/tests required for completion;
-- actions that remain inside local authority;
-- escalation conditions that exceed the contribution boundary.
+- [`roles/S1.md`](roles/S1.md) — executable actor adapter / action loop;
+- [`contracts/s1/domain-contracts.md`](contracts/s1/domain-contracts.md) — local outcome, authority, completion, and escalation envelopes;
+- [`contracts/s1/task-admission-recovery.md`](contracts/s1/task-admission-recovery.md) — admission, intervention, routine recovery, escalation, and terminal states;
+- [`records/s1/autonomy-coverage.md`](records/s1/autonomy-coverage.md) — operational construction evidence.
 
-The agent should own ordinary local decisions and failure recovery. The contributor owns the runtime envelope: scheduler, model choice, credentials, budget, sandbox, and launch cadence.
+A contribution should state the system-in-focus, repository/work boundary, expected outcome, evidence/tests required for completion, locally delegated decisions, and escalation conditions.
 
-## Autonomous work observability
-
-Substantial autonomous work must remain easy for the project owner to supervise without following every intermediate issue, PR, CI run, or tool call.
-
-Follow [`AUTONOMOUS_WORK_REPORTING.md`](AUTONOMOUS_WORK_REPORTING.md) for the common control-plane snapshot and continuation rule.
-
-The default post-run summary is:
-
-```text
-OpenSiro status
-
-DONE
-...
-
-NOW
-...
-
-BLOCKED
-...
-
-NEXT
-...
-
-NEED YOU
-none | <exact decision/input required>
-```
-
-When `NEED YOU = none`, routine work already inside delegated authority may continue autonomously. By default, finish the requested task, complete one or two obvious downstream closure/validation steps, finish any already-started atomic `branch → PR → CI → fix → merge` chain, then emit a snapshot before opening a substantially new line of work.
-
-This reporting contract is an observability/control surface only. It does not create a VSM function, change an autonomy state, transfer decision authority, or make a status summary a second source of truth.
+The contributor owns the runtime envelope: scheduler, model choice, credentials, budget, sandbox, and launch cadence. Those mechanisms do not inherit VSM function ownership merely because they execute or transport an already-selected decision.
 
 ## One S1 does not mean one process
 
@@ -76,11 +49,28 @@ A contributor may use several internal agents or tools. Do not create extra VSM 
 
 Several workers remain one S1 when they jointly close one durable contribution outcome and do not operate as independently regulated operational units with separate environments and autonomy.
 
+## Autonomous work observability
+
+Substantial autonomous work must remain easy for the project owner to supervise without following every intermediate issue, PR, CI run, or tool call.
+
+Follow [`AUTONOMOUS_WORK_REPORTING.md`](AUTONOMOUS_WORK_REPORTING.md) for the common status snapshot and continuation rule. Reporting is an observability surface only; it does not create authority, scheduling truth, or a VSM function.
+
+## Metasystem paths
+
+Organizational contracts live under [`contracts/`](contracts/README.md). Actor-specific composition belongs under `roles/`; concrete executions/evidence belong under `records/`.
+
+- S3 current-control: [`contracts/s3/current-control.md`](contracts/s3/current-control.md) with [`roles/S3.md`](roles/S3.md).
+- S3* complementary audit: [`contracts/s3star/audit.md`](contracts/s3star/audit.md) with [`roles/S3STAR.md`](roles/S3STAR.md).
+- S5 parent boundary: [`contracts/s5/parent-boundary.md`](contracts/s5/parent-boundary.md) and [`contracts/s5/parent-authority.md`](contracts/s5/parent-authority.md).
+- external tool admission: [`contracts/tools/external-entry.md`](contracts/tools/external-entry.md).
+
+A contract or role file is **construction**, not positive function evidence. A later function is credited only when the selected Profile/Methodology evidence requirements are actually met at the declared operating boundary.
+
 ## Escalation and parent-governed S5
 
 Start with [`CONTRIBUTOR_START.md`](CONTRIBUTOR_START.md) for repository ownership and organization-wide routing.
 
-A contributor may operate the parent-governed S5 admission process described in [`prompts/parent-control-plane.md`](prompts/parent-control-plane.md): gather evidence, prepare options, record/apply a returned decision, and verify closure. Running that process does **not** transfer the unresolved S5 decisive right to the contributor.
+A contributor may compose the S5 process using [`prompts/parent-control-plane.md`](prompts/parent-control-plane.md): gather evidence, classify the matter, prepare options, record/apply a returned parent decision, and verify closure. Running the process does not transfer unresolved S5 discretion to the contributor.
 
 Use the shorthand only as an admission request:
 
@@ -89,27 +79,16 @@ S5: рассмотреть <matter>
 S5: consider <matter>
 ```
 
-Existing returned parent policy may be applied by a contributor without creating a new S5 event. A genuinely unresolved identity / ultimate-policy choice must reach the legitimate parent declared by [`S5_PARENT_AUTHORITY.md`](S5_PARENT_AUTHORITY.md). Ordinary S1 work, S3 current-control, S3* audit, PR review, CI repair, or routine tool use must not be promoted into S5 merely because the matter is important.
+Existing returned parent policy may be applied without creating a new S5 event. A genuinely unresolved identity/ultimate-policy choice must reach the legitimate parent declared by the current S5 authority contract. Ordinary S1 work, S3 current-control, S3* audit, PR review, CI repair, or routine tool use must not be promoted into S5 merely because the matter is important.
 
 ## GitHub boundary
 
 Prefer one claimed work item → one reviewable PR unless the work item explicitly defines another artifact.
 
-Do not mutate shared canonical state merely to prove autonomy. Use normal GitHub review/integration boundaries. Whether those boundaries later participate in S2 is a functional question at the relevant recursion level; PRs are not defined as either S2 or non-S2 by name.
+Do not mutate shared canonical state merely to prove autonomy. Human review/merge may remain a separate integration right. Whether a GitHub mechanism later participates in S2/S3/S3*/S4/S5 is a function-first evidence question, not a consequence of its name.
 
 ## Milestone discipline
 
-Do not add permanent S2/S3/S3*/S4/S5 agents pre-emptively. New role prompts and control surfaces count only when the relevant organizational function, decisive right, owner, boundary reachability, and closure evidence are established under the active Profile/Methodology.
+Do not add permanent S2/S3/S3*/S4/S5 agents pre-emptively. New roles, contracts, records, queues, or automation count only when concrete residual variety establishes their need and the applicable function/ownership/closure evidence is satisfied.
 
-The current roadmap target is:
-
-```text
-M0  A — — — — —
-M1  A — C C — —
-M2  A — C C — P
-M3  A — A C — P
-M4  A A A C — P
-M5  A A A C A P
-```
-
-The long-term reference target is therefore `A A A C A P`. Present autonomy claims must follow actual function, ownership, and closure evidence; `A`, `C`, and `P` are ownership arrangements, not a maturity ladder.
+`A`, `C`, and `P` are ownership arrangements, not maturity scores. Milestone target vectors are construction targets for this reference organization; they are not automatic assessment grades.

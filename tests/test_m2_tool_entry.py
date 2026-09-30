@@ -15,7 +15,7 @@ class M2ExternalToolEntryTests(unittest.TestCase):
         return json.loads(self.read(relative))
 
     def test_contract_preserves_function_mechanism_boundary(self) -> None:
-        contract = self.read("EXTERNAL_TOOL_ENTRY.md")
+        contract = self.read("contracts/tools/external-entry.md")
 
         self.assertIn("tool does **not** become S1, S2, S3, S3*, S4, or S5", contract)
         self.assertIn("The tool never widens organizational authority on its own", contract)
@@ -46,8 +46,11 @@ class M2ExternalToolEntryTests(unittest.TestCase):
     def test_github_entry_is_bounded_by_parent_and_scope(self) -> None:
         entry = self.load_json("entries/tools/github-chatgpt.json")
 
-        self.assertEqual(entry["connection_owner"]["role"], "OpenSiro organization owner")
-        self.assertEqual(entry["connection_owner"]["authority_ref"], "S5_PARENT_AUTHORITY.md")
+        self.assertEqual(entry["connection_owner"]["role"], "Opensiro organization owner")
+        self.assertEqual(
+            entry["connection_owner"]["authority_ref"],
+            "contracts/s5/parent-authority.md",
+        )
 
         resources = set(entry["external_boundary"]["resources"])
         self.assertEqual(
@@ -80,6 +83,12 @@ class M2ExternalToolEntryTests(unittest.TestCase):
         self.assertIn("report permission/resource drift explicitly", failure_text)
         self.assertIn("technical permissions materially expand or contract", reentry_text)
         self.assertIn("parent/delegation policy changes", reentry_text)
+
+    def test_root_tool_contract_name_is_compatibility_pointer_only(self) -> None:
+        self.assertIn(
+            "Canonical contract: [`contracts/tools/external-entry.md`]",
+            self.read("EXTERNAL_TOOL_ENTRY.md"),
+        )
 
 
 if __name__ == "__main__":

@@ -13,11 +13,11 @@
     ]
   },
   "connection_owner": {
-    "role": "OpenSiro organization owner",
-    "authority_ref": "S5_PARENT_AUTHORITY.md"
+    "role": "Opensiro organization owner",
+    "authority_ref": "contracts/s5/parent-authority.md"
   },
   "runtime_users": [
-    "authorized ChatGPT/OpenAI runtime acting inside an admitted OpenSiro OSS work item"
+    "authorized ChatGPT/OpenAI runtime acting inside an admitted Opensiro OSS work item"
   ],
   "technical_permissions": [
     "read public repository files, metadata, issues, pull requests, commits and workflow state",
@@ -81,7 +81,7 @@
     ]
   },
   "revocation": {
-    "owner": "OpenSiro organization owner",
+    "owner": "Opensiro organization owner",
     "path": "narrow/disconnect/revoke the integration through the provider/GitHub authorization surface; affected runtime work fails closed until re-entry"
   },
   "failure_behavior": [
