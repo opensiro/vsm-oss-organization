@@ -103,7 +103,8 @@ class M2ParentBoundaryTests(unittest.TestCase):
         self.assertIn("TODO.md", contributing)
         self.assertIn("ROADMAP.md", contributing)
         self.assertIn("not a second planning authority", contributing)
-        self.assertIn("not an Index publication", contributing)
+        self.assertIn("Canonical general assessment publication", contributing)
+        self.assertIn("Do not silently promote that snapshot into an Index fact", contributing)
         self.assertNotIn("## Current milestone: M1", contributing)
         self.assertNotIn("S1=A` is established from M0", contributing)
 
