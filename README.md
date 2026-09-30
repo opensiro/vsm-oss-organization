@@ -77,17 +77,9 @@ Repositories outside the current in-scope set may consume or present artifacts p
 
 The rule is intentionally outcome-oriented: **count accepted repository-owned state transitions, not edits**. Commits, lines changed, PRs, issues, and workflow runs may be exposed as secondary engineering telemetry, but they are not productivity or verified-output KPIs.
 
-## FOR CONTRIBUTORS
+## Contributor tools
 
-For **current tracked work across the bounded VSM Harness OSS group**, start with [`TODO.md`](TODO.md). It is the Git-native scheduler and owns only current selection/order through `NOW`, `NEXT`, and `BLOCKED`. The linked issue and repository remain authoritative for task scope, evidence, acceptance, and canonical artifacts.
-
-The linked organization-level GitHub Project may remain available as an optional human visual projection, but it is not the canonical current-work source and is not required for autonomous correctness.
-
-If you instead need to decide **where a new or unclassified piece of work belongs**, start with [CONTRIBUTOR_START.md](CONTRIBUTOR_START.md). This routing surface follows the declared scope above and does not expand it.
-
-The work-lifecycle ownership map is defined once in [CONTROL_PLANE.md](CONTROL_PLANE.md): GitHub milestones own planned destinations, issues own durable work contracts, `TODO.md` owns current scheduling, and existing S1/metasystem contracts own admission, execution, escalation and closure.
-
-You do not need to implement a VSM runtime to start contributing. Use the prompts as portable entry points with your own agent/runtime:
+The human/AI entry routes at the top of this README own initial bootstrap, current-work selection, and cross-repository routing. Once work is routed and admitted, use these operational prompts as needed:
 
 1. **New to the VSM Harness OSS group:** [prompts/learn-ecosystem.md](prompts/learn-ecosystem.md) — map repositories, authority boundaries, current milestone, and open work.
 2. **Ready to work in an operational domain:** [prompts/contribute.md](prompts/contribute.md) — select Index, Skills, or Awesome, load its contract from `S1_DOMAIN_CONTRACTS.md`, and execute one bounded S1 contribution.
@@ -95,9 +87,7 @@ You do not need to implement a VSM runtime to start contributing. Use the prompt
 4. **Using the M1 complementary-audit constructor:** [prompts/audit-s1-work.md](prompts/audit-s1-work.md) — exercise the first-party S3* path with a composed auditor; M1 does not require a permanent autonomous verifier.
 5. **Applying a returned M1 current-control decision:** [prompts/apply-s3-control.md](prompts/apply-s3-control.md) — arbitrary comments/approvals are not treated as S3 input.
 
-Repository-local contributions still belong in the repository that owns the relevant source of truth. Use this repository for organization-wide questions: contributor roles, authority boundaries, cross-repository control/coordination, escalation, milestone sequencing, shared current-work selection, and evolution of the shared contribution control plane.
-
-The prompt pack and current-work routing surface are operational guidance/control surfaces, not additional VSM semantics and not evidence that a future milestone is complete.
+The work-lifecycle ownership map is defined in [CONTROL_PLANE.md](CONTROL_PLANE.md). The prompt pack is operational guidance, not an additional source of VSM semantics or evidence that a future milestone is complete.
 
 ## Source boundary
 
