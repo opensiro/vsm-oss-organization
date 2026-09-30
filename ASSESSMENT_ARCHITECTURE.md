@@ -1,6 +1,6 @@
 # Profile, assessment, and evidence architecture
 
-This note defines the cross-repository relationship between the VSM Harness Profile, assessment skills, assessment corpora, reference realization work, and downstream research.
+This note is the focused assessment-architecture projection of [`ECOSYSTEM.md`](ECOSYSTEM.md). `ECOSYSTEM.md` remains authoritative for the cross-repository responsibility map; this document makes the Profile → assessment → corpus → research relationship explicit without duplicating repository-local semantics.
 
 It does **not** redefine VSM semantics, assessment-state notation, canonical Index findings, or the current bounded organization. Repository-local owners remain authoritative for those facts.
 
