@@ -23,7 +23,7 @@ Issue / explicit work item
         ↓
 claim one bounded contribution
         ↓
-contributor-owned runtime
+supported autonomous S1 mode
         ↓
 S1 actor adapter + domain/admission contracts
         ↓
@@ -34,14 +34,18 @@ Issue artifact / Pull Request / no-change / escalation
 
 Use:
 
+- [`modes/s1-autonomous/README.md`](modes/s1-autonomous/README.md) — supported first-party autonomous operating mode for an already-bounded S1 contribution;
 - [`roles/S1.md`](roles/S1.md) — executable actor adapter / action loop;
 - [`contracts/s1/domain-contracts.md`](contracts/s1/domain-contracts.md) — local outcome, authority, completion, and escalation envelopes;
 - [`contracts/s1/task-admission-recovery.md`](contracts/s1/task-admission-recovery.md) — admission, intervention, routine recovery, escalation, and terminal states;
-- [`records/s1/autonomy-coverage.md`](records/s1/autonomy-coverage.md) — operational construction evidence.
+- [`records/s1/autonomy-coverage.md`](records/s1/autonomy-coverage.md) — operational construction evidence;
+- [`records/s1/runs/`](records/s1/runs/) — concrete autonomous-mode execution evidence.
 
 A contribution should state the system-in-focus, repository/work boundary, expected outcome, evidence/tests required for completion, locally delegated decisions, and escalation conditions.
 
-The contributor owns the runtime envelope: scheduler, model choice, credentials, budget, sandbox, and launch cadence. Those mechanisms do not inherit VSM function ownership merely because they execute or transport an already-selected decision.
+The runtime implementation, model choice, credentials, budget, sandbox, launch cadence, GitHub transport, CI, and validators are support machinery unless the selected organizational contract assigns a decision right to them. The supported autonomous S1 mode must not require custom organizational glue or step-by-step human selection to compose the ordinary S1 actor from repository contracts.
+
+The existence of the mode or a successful run is not itself an `S1=A` claim. Formal autonomy interpretation remains governed by the selected Profile/Methodology and real ownership/closure evidence.
 
 ## One S1 does not mean one process
 
