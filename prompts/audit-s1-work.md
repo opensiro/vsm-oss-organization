@@ -1,6 +1,6 @@
 # Audit one S1 work item with complementary evidence
 
-Use this prompt with [`S3STAR_AUDIT.md`](../S3STAR_AUDIT.md) to exercise the M1 `S3*=C` constructor path.
+Use this prompt with [`../contracts/s3star/audit.md`](../contracts/s3star/audit.md) to exercise the current S3* constructor path.
 
 ```text
 Audit one bounded S1 contribution/closure claim using a materially complementary evidence path.
@@ -32,9 +32,9 @@ End with exactly one local audit outcome:
 - FINDING — a material issue is established and should enter the declared control destination;
 - INSUFFICIENT — evidence/access cannot support a reliable judgment.
 
-For FINDING, preserve the primary evidence and route the finding to the declared current-control destination. Record whether and how it enters subsequent control; publication alone is not closure.
+For FINDING, preserve primary evidence and route the finding to the declared current-control destination. Publication alone is not closure.
 
-Record the actual judgment owner honestly. M1 does not require an autonomous verifier or a second agent; autonomous ownership is a separate future condition for S3*=A.
+Record the actual judgment owner honestly. Constructor mode does not require an autonomous verifier or a second agent; autonomous ownership is a separate condition for S3*=A.
 
 Use templates/s3star-audit-record.md for the reviewable record. Do not record hidden chain-of-thought.
 
