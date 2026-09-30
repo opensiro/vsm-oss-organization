@@ -2,7 +2,7 @@
 
 This is the human-facing contribution entry for the public OpenSiro VSM Harness ecosystem.
 
-You do not need to reconstruct the repository architecture or learn every VSM/OSM control document before making a contribution. Give your AI agent the repository or idea you want to work on; the agent should reconstruct the current public operating context from `START_HERE.md` and follow the owning repository's contracts.
+You do not need to reconstruct the repository architecture or learn every VSM/OSM control document before making a contribution. Give your AI agent the repository or idea you want to work on. The repository `README.md` is the common entry surface: an AI should follow its **I'm AI** route into the current public bootstrap and then follow the owning repository's contracts.
 
 ## I want to help, but I do not have a task yet
 
@@ -11,10 +11,12 @@ Give an AI agent with GitHub access:
 ```text
 I want to contribute to OpenSiro.
 
-Start from the current public version of:
-https://github.com/opensiro/vsm-oss-organization/blob/main/START_HERE.md
+Start from this repository:
+https://github.com/opensiro/vsm-oss-organization
 
-Follow its bootstrap chain and current public repository state.
+Treat its README.md as the common entry point and follow the "I'm AI" route.
+Reconstruct the current public OpenSiro context from the canonical bootstrap it points to.
+
 Find one appropriate currently tracked contribution, route it to the owning repository, and execute it through the normal review path.
 
 Respect repository authority, task boundaries, admission rules, validation requirements, and source-of-truth boundaries.
@@ -31,13 +33,14 @@ Return to me when:
 Give the agent your idea together with:
 
 ```text
-Route this contribution idea through the current OpenSiro public organization:
+I want to contribute this to OpenSiro:
 
 <idea>
 
 Start from:
-https://github.com/opensiro/vsm-oss-organization/blob/main/START_HERE.md
+https://github.com/opensiro/vsm-oss-organization
 
+Treat README.md as the common entry point and follow its "I'm AI" route.
 Determine which repository owns the outcome, preserve its source-of-truth boundary, and take the work through the normal contribution process.
 ```
 
@@ -49,8 +52,7 @@ Give the agent the repository or issue URL together with:
 Work on this OpenSiro contribution:
 <repository or issue URL>
 
-Before acting, start from the current public version of:
-https://github.com/opensiro/vsm-oss-organization/blob/main/START_HERE.md
+Start from the target repository's README.md when available. Follow its "I'm AI" entry route and the current public bootstrap it identifies before acting.
 
 Follow the current owning repository, issue, authority, evidence, validation, and review contracts. Keep unrelated work out of scope.
 ```
@@ -63,4 +65,4 @@ The AI should reconstruct current context, identify the owning repository and ex
 
 You choose broad intent and provide the accounts, credentials, budget, or access you want the runtime to have. Decisions that are genuinely reserved for human/parent authority remain human-owned; connecting a tool or giving an agent GitHub access does not widen its organizational authority by itself.
 
-The current machine-facing bootstrap is [`START_HERE.md`](START_HERE.md). The detailed routing surface is [`CONTRIBUTOR_START.md`](CONTRIBUTOR_START.md). Current tracked work is selected in [`TODO.md`](TODO.md).
+For AI runtimes, [`START_HERE.md`](START_HERE.md) remains the canonical machine bootstrap after the README handoff. [`CONTRIBUTOR_START.md`](CONTRIBUTOR_START.md) owns detailed routing for new or unclassified work, while [`TODO.md`](TODO.md) selects already tracked current work.
