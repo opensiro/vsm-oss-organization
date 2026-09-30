@@ -16,12 +16,86 @@ Use the repository that owns the fact or procedure being discussed:
 | --- | --- |
 | What do S1, S2, S3, S3*, S4, S5, recursion, autonomy, variety, escalation and closure mean? | `opensiro/vsm-harness-profile` |
 | How is a standalone repository VSM assessment performed and classified? | `opensiro/vsm-harness-skills` |
-| What is the accepted repository-relative VSM assessment of a harness? | `opensiro/vsm-harness-index` |
+| What is the accepted repository-relative **general VSM assessment** of a harness? | `opensiro/vsm-harness-index` |
 | What empirical evidence supports general per-function capability comparisons? | `opensiro/vsm-harness-capability` (**experimental**) |
-| Which organizational forms are selected as representative examples? | `opensiro/awesome-vsm-harness` |
+| Which organizational forms and domain-specific assessment surfaces are selected as representative examples? | `opensiro/awesome-vsm-harness` |
 | How are the bounded VSM OSS repositories organized, routed and coordinated? | `opensiro/vsm-oss-organization` |
 
 Do not duplicate repository-owned facts into this repository when a stable reference to the owning source is sufficient.
+
+## Architectural model
+
+The Profile is the minimal normative organizational model used across the ecosystem. It is not an assessment scorecard and does not require an upstream system to have been designed as VSM.
+
+A system may enter assessment in three materially different ways:
+
+- as an intentional reference realization of the Profile;
+- as an arbitrary agent/harness system in which VSM functions may emerge without explicit VSM design;
+- as another formally specified non-VSM system whose own architecture can still be mapped against the Profile without redefining either formalism.
+
+Assessment specifications live in Skills. The released `assess-vsm-harness` skill is the canonical general assessment, while future domain-specific or community assessment specifications may impose additional purpose-, evidence-, or capability-specific requirements without changing Profile semantics.
+
+```mermaid
+flowchart TB
+    P["VSM PROFILE<br/>minimal organizational model"]
+
+    R["reference realization<br/>vsm-oss-organization"]
+    A["arbitrary systems"]
+    F["non-VSM formalized systems"]
+
+    S["SKILLS<br/>generic / domain assessment specs"]
+    GI["GENERAL INDEX<br/>general VSM assessments"]
+    DI["DOMAIN-SPECIFIC INDEXES<br/>purpose-specific assessments"]
+    AW["AWESOME<br/>curated routes and examples"]
+    CR["CAPABILITY / RESEARCH<br/>empirical consequences"]
+
+    P -->|intentional realization| R
+    P -->|normative semantics| S
+    R -->|assessment target| S
+    A -->|assessment target| S
+    F -->|cross-formalism mapping target| S
+
+    S -->|general methodology| GI
+    S -->|domain-specific methodology| DI
+    GI --> AW
+    DI --> AW
+    GI --> CR
+    DI --> CR
+    CR -. evidence for future Profile evolution .-> P
+
+    classDef core fill:#ffffff,stroke:#111111,stroke-width:2px,color:#111111;
+    classDef target fill:#ffffff,stroke:#666666,stroke-width:1.5px,color:#111111;
+    classDef downstream fill:#ffffff,stroke:#111111,stroke-width:1.5px,color:#111111;
+    classDef research fill:#ffffff,stroke:#777777,stroke-width:1.5px,stroke-dasharray:5 4,color:#111111;
+
+    class P,S core;
+    class R,A,F target;
+    class GI,DI,AW downstream;
+    class CR research;
+```
+
+The diagram is intentionally asymmetric:
+
+- `vsm-oss-organization` is an intentional Profile realization and therefore may be used to demonstrate that Profile constructs are realizable;
+- arbitrary or non-VSM-formalized systems do not inherit the Profile, but may still expose VSM functions when assessed at a declared system boundary;
+- an assessment may discover emergent VSM functions without establishing that the target system itself claims conformance to the Profile;
+- a system that **does** claim to realize the Profile can use the same assessment layer to provide conformance evidence for that claim.
+
+This preserves a non-circular evolution path:
+
+```text
+Profile defines an organizational model
+        ↓
+implementations may realize it
+        ↓
+Skills assess observed structure and closure
+        ↓
+Indexes publish assessment results
+        ↓
+Capability / research studies consequences
+        ↓
+evidence may motivate a future Profile revision
+```
 
 ## Current released architecture
 
@@ -37,7 +111,7 @@ vsm-harness-skills
   assessment + classification methodology
         ↓
 vsm-harness-index
-  repository-relative canonical assessment corpus
+  repository-relative canonical general assessment corpus
         ↓
 awesome-vsm-harness
   curated representative downstream view
@@ -46,6 +120,53 @@ awesome-vsm-harness
 This chain separates semantics, procedure, canonical assessment instances and curation.
 
 The current bounded `vsm-oss-organization` system remains the one declared in [`README.md`](README.md) and [`ORGANIZATION.md`](ORGANIZATION.md). In particular, the current operational S1 domains remain Index, Skills and Awesome. The experimental Capability repository described below exists outside that bounded system unless and until a separate organizational-boundary change admits it.
+
+## Profile versions and downstream assessments
+
+Profile versions identify changes in the normative organizational model independently of any one assessment corpus. Implementations, assessment methodologies, derived profiles, and other consumers may pin or track those versions for their own compatibility purposes.
+
+A Profile release therefore does **not** own a universal reassessment policy for every downstream assessment system. Each assessment specification or corpus decides how a Profile change affects its own evidence contract and migration rules.
+
+For the current general Index, historical Profile/Methodology provenance remains immutable. Existing frozen release-impact metadata and reassessment records remain valid historical evidence, but the architecture should not be extended by treating Profile-owned assessment-impact selectors as the universal future control surface for general or domain-specific indexes.
+
+## Assessment layer
+
+`opensiro/vsm-harness-skills` owns assessment specifications rather than a single universal corpus contract.
+
+The current released skill:
+
+```text
+assess-vsm-harness
+```
+
+is the canonical **general VSM assessment** used by `opensiro/vsm-harness-index`.
+
+Future assessment specifications may be domain-specific or community-contributed. They may define additional:
+
+- operating purposes and declared systems-in-focus;
+- admission boundaries;
+- evidence requirements;
+- capability requirements;
+- permitted or required ownership arrangements;
+- result schemas and domain-specific indexes.
+
+They must not redefine Profile-owned S1-S5 semantics merely to satisfy a local assessment purpose.
+
+## General and domain-specific indexes
+
+`opensiro/vsm-harness-index` is the canonical **general assessment index**. A link to an assessment in that repository should therefore be understood as a link to the general VSM assessment, not to every possible domain-specific conclusion about that system.
+
+Future domain-specific indexes are separate assessment corpora. They may reuse system identity, pinned upstream revisions, general assessment evidence, or public capability observations, but their conclusions remain owned by their own domain contract.
+
+`opensiro/awesome-vsm-harness` may link both the general Index and qualifying domain-specific indexes so readers can distinguish:
+
+```text
+general VSM mapping
+        ≠
+domain-specific fitness / evidence / autonomy requirements
+```
+
+The same upstream system may therefore legitimately have one general assessment and several domain-specific assessments without any of them overwriting the others.
 
 ## Experimental capability layer
 
@@ -159,7 +280,7 @@ The canonical Index remains independent:
 ```text
 repository @ pinned revision
         ↓
-canonical VSM function / ownership assessment
+canonical general VSM function / ownership assessment
 ```
 
 A capability system may link to canonical Index identity and assessment provenance, but it does not own or mutate those facts.
@@ -225,9 +346,9 @@ The same upstream repository may legitimately receive different conclusions in t
 
 ## Relationship to Awesome
 
-`opensiro/awesome-vsm-harness` may organize representative systems by operating domain, but that is a curation and presentation choice rather than a separate domain assessment methodology.
+`opensiro/awesome-vsm-harness` may organize representative systems by operating domain and may link qualifying domain-specific indexes alongside the canonical general Index. That is a curation and routing responsibility rather than authority over either assessment methodology.
 
-Domain relevance and organizational shape remain separate dimensions. A future domain-specific capability repository should therefore not be implemented inside Awesome merely because Awesome already presents domain-oriented examples.
+Domain relevance and organizational shape remain separate dimensions. A future domain-specific assessment repository should therefore not be implemented inside Awesome merely because Awesome presents domain-oriented examples.
 
 ## Relationship to executable research
 
@@ -257,9 +378,9 @@ Examples:
 - capability observation schema → `vsm-harness-capability`;
 - why Capability is separate from Index → this document;
 - definition of S3* → `vsm-harness-profile`;
-- procedure for canonical S3* assessment → `vsm-harness-skills`;
-- accepted S3* state for a particular harness → `vsm-harness-index`;
-- SWE-specific evidence threshold → future SWE-specific repository;
+- procedure for canonical general S3* assessment → `vsm-harness-skills`;
+- accepted general S3* state for a particular harness → `vsm-harness-index`;
+- SWE-specific evidence threshold → future SWE-specific assessment specification/repository;
 - visual explanation for visitors → `opensiro.com`.
 
 ## Promotion boundary
@@ -268,6 +389,6 @@ The capability architecture described here is **experimental**.
 
 The existence of `vsm-harness-capability` does not automatically make it part of the bounded `vsm-oss-organization` system. Admission into that system requires a separate explicit boundary change with corresponding updates to organizational contracts, routing, observability and any S1-domain construction evidence required by the organization.
 
-Likewise, creating a domain-specific capability repository does not automatically place it inside the same bounded organization.
+Likewise, creating a domain-specific assessment or capability repository does not automatically place it inside the same bounded organization.
 
 This keeps architectural explanation separate from claims that a new organizational function or operational domain has already been established.
