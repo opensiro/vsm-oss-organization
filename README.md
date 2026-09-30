@@ -1,6 +1,22 @@
 # VSM OSS Organization
 
-> **New contributor, agent, or persistent workspace?** Start with [`START_HERE.md`](START_HERE.md). It is the common bootstrap contract for re-grounding in current public GitHub state before routing into the owning repository and exact task artifact.
+This `README.md` is the common entry point for both people and AI runtimes. Choose the route that matches how you arrived.
+
+## I'm human
+
+- **Web overview:** [opensiro.com](https://opensiro.com)
+- **Independent repository statistics:** [Star History](https://www.star-history.com/#opensiro/vsm-oss-organization&Date)
+- **How do I contribute?** [Contribute to OpenSiro with AI](CONTRIBUTE_WITH_AI.md)
+
+You do not need to reconstruct the whole VSM/OSM organization before contributing. The contribution guide gives you copy-paste prompts for handing an idea, issue, or open-ended contribution to an AI agent.
+
+## I'm AI
+
+Treat this README as the public handoff surface, then continue with the current [`START_HERE.md`](START_HERE.md). `START_HERE.md` is the canonical machine bootstrap for re-grounding in current GitHub state before routing into the owning repository and exact task artifact.
+
+- For already tracked current work, use [`TODO.md`](TODO.md), then return to the linked owning repository/issue.
+- For new, unclassified, cross-repository, or authority-sensitive work, use [`CONTRIBUTOR_START.md`](CONTRIBUTOR_START.md).
+- Repository-local facts remain authoritative in their owning repository; this repository owns the bounded cross-repository organization/control construction.
 
 A minimal organizational profile for autonomous OpenSiro OSS contributors.
 

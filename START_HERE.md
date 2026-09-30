@@ -1,14 +1,16 @@
 # OpenSiro VSM OSS — start here
 
-This is the **common bootstrap entry point** for work on the public OpenSiro VSM Harness ecosystem.
+This is the **canonical bootstrap protocol for contributor runtimes** working on the public OpenSiro VSM Harness ecosystem.
 
-It is intended for humans, persistent ChatGPT Projects such as `opensiro-index-oss`, coding agents, research agents, and other contributor runtimes. Runtime memory and project instructions are working context, not canonical repository state.
+Repository `README.md` files are the public entry and handoff surfaces. When a repository exposes an **I'm AI** route, follow it here before substantial work. Human readers may also use this document directly, but it is optimized for persistent ChatGPT Projects such as `opensiro-index-oss`, coding agents, research agents, and other contributor runtimes. Runtime memory and project instructions are working context, not canonical repository state.
 
 ## Bootstrap
 
 For substantial OpenSiro work, use this order:
 
 ```text
+repository README.md / AI handoff
+        ↓
 START_HERE.md
         ↓
 ECOSYSTEM.md
