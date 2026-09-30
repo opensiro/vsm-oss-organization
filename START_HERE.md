@@ -79,6 +79,8 @@ For a fresh task:
 5. keep local work with its owner and route only genuinely cross-repository responsibility/authority questions back here;
 6. validate relevant tests, generated artifacts, provenance, and source-of-truth consistency before closure.
 
+When the resolved work is one ordinary bounded S1 contribution in Index, Skills, or Awesome, [`CONTRIBUTOR_START.md`](CONTRIBUTOR_START.md) routes the agent to the supported [`modes/s1-autonomous/`](modes/s1-autonomous/) operating mode. The mode is an execution path, not an autonomy grade, and it never overrides a stricter task-specific boundary.
+
 For substantial autonomous work, follow [`AUTONOMOUS_WORK_REPORTING.md`](AUTONOMOUS_WORK_REPORTING.md).
 
 ## Context drift
