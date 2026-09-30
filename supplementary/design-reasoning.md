@@ -68,7 +68,32 @@ Why it survives:
 
 This makes the regulated interference and closure easy to observe. But S2 is broader than mutex: schedules, negotiated plans, collision avoidance, duplicated-work prevention, and other stabilizing channels may serve the same function.
 
-### 5. S3* can justify an early independent-audit milestone
+### 5. Tolerate safe duplicate work inside one S1 before adding coordination
+
+Good reasoning:
+
+```text
+several contributor-owned workers inside one S1
+        ↓
+may duplicate research / analysis / proposal work
+        ↓
+re-ground on authoritative current state before shared mutation or closure
+        ↓
+result already landed?
+    ├─ equivalent → no-change / independent confirmation
+    ├─ materially different → correction / reassessment / review
+    └─ absent → integrate the bounded change
+```
+
+Why it survives:
+
+At the current Organization recursion, internal workers do not become separate S1 units merely because they run concurrently. Reversible duplicate cognition and speculative work can remain local S1 variety and may be cheaper to absorb through re-grounding, validation, and integration than through a prematurely introduced coordination layer.
+
+This does **not** license duplicate irreversible side effects, stale writes over shared state, or violations of explicit frozen, exclusive, or first-attempt task contracts. Git/GitHub atomicity, SHA preconditions, merge conflicts, CI, and generated-state validation may still serialize or reject mutations as supporting/enforcement machinery without thereby establishing S2 ownership.
+
+If duplicate work, repeated invalidation, oscillation, or blocked integration becomes a persistent material disturbance that the local S1 envelope can no longer absorb, that later evidence may justify a coordination function at the appropriate recursion. The coordination function should be introduced in response to that demonstrated variety rather than merely because multiple workers exist.
+
+### 6. S3* can justify an early independent-audit milestone
 
 Good reasoning:
 
@@ -78,7 +103,7 @@ Why it survives:
 
 This is closer to the Profile's S3* function than ordinary production QA. The audit finding must still enter subsequent control.
 
-### 6. Establish S5=P before increasing autonomy further
+### 7. Establish S5=P before increasing autonomy further
 
 Good reasoning:
 
@@ -96,7 +121,7 @@ Why it survives:
 
 S5 is not required to be the last function introduced. In this design, establishing the parent-governed identity boundary early is useful because later S3/S2/S4 autonomy can then grow inside an explicit delegated envelope. `P` still requires a genuine identity/ultimate-policy escalation → parent decision → return-to-operation loop; ordinary human approval is insufficient.
 
-### 7. Defer S4 until external/future adaptation is actually needed
+### 8. Defer S4 until external/future adaptation is actually needed
 
 Good reasoning:
 
