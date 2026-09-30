@@ -10,15 +10,15 @@ class M2ParentBoundaryTests(unittest.TestCase):
     def read(self, relative: str) -> str:
         return (ROOT / relative).read_text(encoding="utf-8")
 
-    def test_parent_contract_is_preparatory_not_positive_claim(self) -> None:
-        contract = self.read("S5_PARENT_BOUNDARY.md")
+    def test_parent_contract_requires_real_witness_not_file_presence(self) -> None:
+        contract = self.read("contracts/s5/parent-boundary.md")
 
         self.assertIn("does **not** establish `S5=P`", contract)
-        self.assertIn("The active formal roadmap milestone remains M1", contract)
+        self.assertIn("a real qualifying decision and returned closure are required", contract)
         self.assertIn("Repository authorship, maintainer status, merge capability", contract)
 
     def test_parent_contract_requires_function_and_return(self) -> None:
-        contract = self.read("S5_PARENT_BOUNDARY.md")
+        contract = self.read("contracts/s5/parent-boundary.md")
 
         for marker in (
             "## Delegated local envelope",
@@ -34,14 +34,14 @@ class M2ParentBoundaryTests(unittest.TestCase):
         self.assertIn("subsequent operation governed by returned decision", contract)
 
     def test_current_parent_authority_is_explicit(self) -> None:
-        authority = self.read("S5_PARENT_AUTHORITY.md")
+        authority = self.read("contracts/s5/parent-authority.md")
 
-        self.assertIn("**OpenSiro organization owner**", authority)
+        self.assertIn("**Opensiro organization owner**", authority)
         self.assertIn("GitHub identity: `xLagerFeuer`", authority)
-        self.assertIn("authority recorded here comes from this explicit Organization governance declaration", authority)
-        self.assertIn("Continuity for the routing-scope decision", authority)
+        self.assertIn("explicit governance declaration", authority)
+        self.assertIn("Historical continuity", authority)
         self.assertIn("issue #59 / PR #62", authority)
-        self.assertIn("Changing the legitimate parent role", authority)
+        self.assertIn("parent role and holder applied", authority)
 
     def test_parent_record_separates_owner_support_and_closure(self) -> None:
         record = self.read("templates/s5-parent-decision-record.md")
@@ -73,7 +73,7 @@ class M2ParentBoundaryTests(unittest.TestCase):
 
         self.assertIn("S5: рассмотреть <matter>", prompt)
         self.assertIn("S5: consider <matter>", prompt)
-        self.assertIn("Any contributor may initiate S5 admission/review", prompt)
+        self.assertIn("A contributor may collect evidence", prompt)
         self.assertIn("S5_ADMITTED", prompt)
         self.assertIn("POLICY_ALREADY_GOVERNS", prompt)
         self.assertIn("NOT_S5", prompt)
@@ -81,9 +81,8 @@ class M2ParentBoundaryTests(unittest.TestCase):
         self.assertIn("not a transfer of S5 ownership to the contributor invoking it", prompt)
         self.assertIn("Do not manufacture a new S5 event", prompt)
         self.assertIn("Apply function first, ownership second", prompt)
-        self.assertIn("If ordinary S1, S3, or S3* authority can safely close the matter", prompt)
-        self.assertIn("must not exercise unresolved s5 discretion", prompt.lower())
-        self.assertIn("do not infer a new s5 witness merely because this prompt was invoked", prompt.lower())
+        self.assertIn("do not transfer unresolved S5 discretion", prompt)
+        self.assertIn("does not by itself establish another witness", prompt)
 
     def test_contributor_entry_exposes_parent_governed_s5_without_transferring_authority(self) -> None:
         entry = self.read("CONTRIBUTOR_START.md")
@@ -97,16 +96,26 @@ class M2ParentBoundaryTests(unittest.TestCase):
         self.assertIn("do **not** transfer the unresolved S5 decisive right", entry)
         self.assertIn("S3 current-control", entry)
 
-    def test_contributing_tracks_current_milestone_and_roadmap_target(self) -> None:
+    def test_contributing_routes_live_state_to_its_owners(self) -> None:
         contributing = self.read("CONTRIBUTING.md")
 
-        self.assertIn("## Current milestone: M1", contributing)
-        self.assertIn("S3=C` remains open", contributing)
-        self.assertIn("M2-specific `S5=P` evidence already exists", contributing)
-        self.assertIn("M5  A A A C A P", contributing)
-        self.assertIn("long-term reference target is therefore `A A A C A P`", contributing)
-        self.assertNotIn("## Current milestone: M0", contributing)
-        self.assertNotIn("`A A A A A P`", contributing)
+        self.assertIn("GitHub milestones + their tracker issues", contributing)
+        self.assertIn("TODO.md", contributing)
+        self.assertIn("ROADMAP.md", contributing)
+        self.assertIn("not a second planning authority", contributing)
+        self.assertIn("not an Index publication", contributing)
+        self.assertNotIn("## Current milestone: M1", contributing)
+        self.assertNotIn("S1=A` is established from M0", contributing)
+
+    def test_root_s5_names_are_compatibility_pointers_only(self) -> None:
+        self.assertIn(
+            "Canonical contract: [`contracts/s5/parent-boundary.md`]",
+            self.read("S5_PARENT_BOUNDARY.md"),
+        )
+        self.assertIn(
+            "Canonical declaration: [`contracts/s5/parent-authority.md`]",
+            self.read("S5_PARENT_AUTHORITY.md"),
+        )
 
 
 if __name__ == "__main__":
