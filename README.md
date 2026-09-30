@@ -79,7 +79,7 @@ The rule is intentionally outcome-oriented: **count accepted repository-owned st
 
 ## Contributor tools
 
-The human/AI entry routes at the top of this README own initial bootstrap, current-work selection, and cross-repository routing. Once work is routed and admitted, use these operational prompts as needed:
+The human/AI entry routes at the top of this README own initial bootstrap, current-work selection, and cross-repository routing. [`TODO.md`](TODO.md) remains the **Git-native scheduler** for already tracked current work; the linked issue and owning repository remain authoritative for execution. Once work is routed and admitted, use these operational prompts as needed:
 
 1. **New to the VSM Harness OSS group:** [prompts/learn-ecosystem.md](prompts/learn-ecosystem.md) — map repositories, authority boundaries, current milestone, and open work.
 2. **Ready to work in an operational domain:** [prompts/contribute.md](prompts/contribute.md) — select Index, Skills, or Awesome, load its contract from `S1_DOMAIN_CONTRACTS.md`, and execute one bounded S1 contribution.
