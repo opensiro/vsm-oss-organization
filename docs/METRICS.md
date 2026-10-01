@@ -4,7 +4,7 @@ This document defines the public metrics contract for the bounded OpenSiro VSM H
 
 It is an organization-wide observability contract. It does **not** redefine VSM semantics, repository ownership, assessment methodology, curation policy, milestone evidence, or decision authority. Canonical facts remain in the repository that owns them.
 
-The machine-readable projection of this contract is [`metrics.yaml`](metrics.yaml).
+The machine-readable projection of this contract is [`metrics.yaml`](../metrics.yaml).
 
 ## Scope
 
