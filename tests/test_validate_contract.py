@@ -75,8 +75,8 @@ Repositories outside the declared current in-scope set may still consume related
 
 ## Source boundary
 
-[Upstream](UPSTREAM_CONTRACT.json) [Control](CONTROL_PLANE.md)
-[Roadmap](ROADMAP.md) [Contributing](CONTRIBUTING.md)
+[Upstream](UPSTREAM_CONTRACT.json) [Control](docs/CONTROL_PLANE.md)
+[Roadmap](docs/ROADMAP.md) [Contributing](CONTRIBUTING.md)
 [Role](roles/S1.md) [Prompt](prompts/contribute.md)
 
 Active formal work is M0 — test.
@@ -100,7 +100,7 @@ S1  S2  S3  S3* S4  S5
 def control_text() -> str:
     return """# Control Plane
 
-[Upstream contract](UPSTREAM_CONTRACT.json)
+[Upstream contract](../UPSTREAM_CONTRACT.json)
 
 - `opensiro/vsm-harness-profile` owns semantics.
 - `opensiro/vsm-harness-skills` owns methodology.
@@ -176,9 +176,10 @@ class ContractValidatorTests(unittest.TestCase):
 
         (self.root / "roles").mkdir(parents=True)
         (self.root / "prompts").mkdir()
+        (self.root / "docs").mkdir()
         (self.root / "README.md").write_text(readme_text(), encoding="utf-8")
-        (self.root / "CONTROL_PLANE.md").write_text(control_text(), encoding="utf-8")
-        (self.root / "ROADMAP.md").write_text(roadmap_text(), encoding="utf-8")
+        (self.root / "docs" / "CONTROL_PLANE.md").write_text(control_text(), encoding="utf-8")
+        (self.root / "docs" / "ROADMAP.md").write_text(roadmap_text(), encoding="utf-8")
         (self.root / "CONTRIBUTING.md").write_text("# Contributing\n", encoding="utf-8")
         (self.root / "roles" / "S1.md").write_text("# S1\n", encoding="utf-8")
         (self.root / "prompts" / "contribute.md").write_text("# Prompt\n", encoding="utf-8")
@@ -354,7 +355,7 @@ class ContractValidatorTests(unittest.TestCase):
         self.assertTrue(any("requires --profile-root" in error for error in errors))
 
     def test_milestone_vector_drift_is_rejected(self) -> None:
-        path = self.root / "ROADMAP.md"
+        path = self.root / "docs" / "ROADMAP.md"
         text = path.read_text(encoding="utf-8").replace(
             "| M3 — test | `A — A A — P` | why |",
             "| M3 — test | `A A A A — P` | why |",
