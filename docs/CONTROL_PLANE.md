@@ -4,7 +4,7 @@ This document is the operational control plane for the bounded **OpenSiro VSM Ha
 
 The in-scope repository set is maintained explicitly in `README.md`. Repository membership in the `opensiro` organization does not automatically place a project under this control plane. Contributor-local runtimes, schedulers, credentials, budgets, and sandboxes also remain outside this repository's authority.
 
-Contributors who want a minimal human-parent interface before the full M2 implementation may use [`prompts/parent-control-plane.md`](prompts/parent-control-plane.md). That prompt is a demo interface pattern, not evidence that `S5=P` has already been achieved.
+Contributors who want a minimal human-parent interface before the full M2 implementation may use [`prompts/parent-control-plane.md`](../prompts/parent-control-plane.md). That prompt is a demo interface pattern, not evidence that `S5=P` has already been achieved.
 
 ## Authority chain
 
@@ -56,7 +56,7 @@ Ownership by layer:
 | --- | --- | --- | --- |
 | Planning | GitHub milestones and their accepted milestone trackers | planned destination, milestone sequencing, exit intent | task execution or current scheduling |
 | Work contract | owning GitHub issue/repository | scope, evidence boundary, dependencies, acceptance, frozen refs, completion history | cross-repository current ordering |
-| Current scheduling | [`TODO.md`](TODO.md) | `NOW`, `NEXT`, `BLOCKED` selection/order for already-existing issues | task semantics, VSM classification, evidence, acceptance, decision authority |
+| Current scheduling | [`TODO.md`](../TODO.md) | `NOW`, `NEXT`, `BLOCKED` selection/order for already-existing issues | task semantics, VSM classification, evidence, acceptance, decision authority |
 | S1 execution | `roles/S1.md`, `S1_TASK_ADMISSION_RECOVERY.md`, `S1_DOMAIN_CONTRACTS.md` plus the owning repository contract | admission, local execution, recovery, evidence preservation, `CLOSED_*` / `ESCALATED` / `NON_ADMITTED` outcomes | organization-wide metasystem rights outside the admitted envelope |
 | Metasystem execution | the applicable S2/S3/S3*/S4/S5 Organization/Profile contract | only the qualifying organizational decision/feedback right established for that function | generic scheduling or backlog administration merely because it is cross-repository |
 | Reporting | [`AUTONOMOUS_WORK_REPORTING.md`](AUTONOMOUS_WORK_REPORTING.md) | concise observability of the current run | authority, scheduling truth, VSM function ownership |
@@ -80,7 +80,7 @@ If the reusable semantics need clarification, route that change to `vsm-harness-
 
 ## Upstream contract selection
 
-[`UPSTREAM_CONTRACT.json`](UPSTREAM_CONTRACT.json) is the **only local machine-readable selection surface** for the upstream Profile, Methodology, and Index contract inputs used by this organization.
+[`UPSTREAM_CONTRACT.json`](../UPSTREAM_CONTRACT.json) is the **only local machine-readable selection surface** for the upstream Profile, Methodology, and Index contract inputs used by this organization.
 
 It records, for each upstream source:
 
