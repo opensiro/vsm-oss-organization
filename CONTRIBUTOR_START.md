@@ -1,22 +1,10 @@
 # VSM Harness OSS contributor routing
 
-This file is the common **routing** entry point for contributors and agents that arrive through one of the repositories in the bounded **OpenSiro VSM Harness OSS group** and need to determine where work belongs.
+This file is the common **routing** entry point for contributors and agents that arrive through one of the repositories in the bounded **OpenSiro VSM Harness OSS group** and need to determine where new, unclassified, cross-repository, or authority-sensitive work belongs.
 
-For already tracked work, the single current-work entry point is [`TODO.md`](TODO.md). Use this file when the work is new, unclassified, cross-repository, or needs an authority/routing decision.
-
-The canonical membership of that group is the `Current in-scope public repositories:` block in [README.md](README.md). This file does not expand that set.
+For already tracked work, use the single current-work entry point [`TODO.md`](TODO.md), then return to the linked owning repository/issue. The canonical membership of this group is the `Current in-scope public repositories:` block in [README.md](README.md); this file does not expand that set.
 
 The work-lifecycle ownership map is defined in [`CONTROL_PLANE.md`](CONTROL_PLANE.md). Do not duplicate it here: milestones plan destinations, issues own durable work contracts, `TODO.md` schedules current issues, and existing organizational contracts own admission/execution/escalation/closure.
-
-## Current tracked work
-
-Start with [`TODO.md`](TODO.md) when the goal is to pick up existing work.
-
-`TODO.md` owns only cross-repository current selection and ordering through `NOW`, `NEXT`, and `BLOCKED`. The linked repository and issue remain authoritative for scope, evidence, frozen refs, validation and acceptance.
-
-Do not scrape every open issue and treat it as equally current. An open issue may be a frozen batch, durable source tracker, watchlist, future trigger, milestone evidence record, or executable work that simply has not been selected into the current scheduler.
-
-The linked organization-level GitHub Project may be used as an optional human visual projection, but autonomous correctness must not depend on Project fields/items and the Project must not become a second current-work source of truth.
 
 ## New to OpenSiro?
 
@@ -76,17 +64,7 @@ Do not route ordinary S1 work, S3 current-control, S3* audit, PR review, CI repa
 
 ## Routing conformance
 
-Every repository in the canonical in-scope set must expose the Organization boundary directly from its root README and must expose the shared [`TODO.md`](TODO.md) route for already tracked work.
-
-The routing outcome remains:
-
-- repository-local work remains in the repository that owns the source of truth;
-- organization-wide contributor roles, authority, escalation, cross-repository coordination, shared work ordering, milestone sequencing, or organizational evolution route to `opensiro/vsm-oss-organization`;
-- tracked work selection starts at `TODO.md`, then returns to the owning repository/issue for execution.
-
-Equivalent wording is allowed when a repository needs to preserve a domain-specific boundary, but the route itself must remain directly discoverable from the repository root.
-
-See [ROUTING_CONFORMANCE.md](ROUTING_CONFORMANCE.md) for the scoped cross-repository oracle, evidence boundary, and blind-agent trial protocol.
+Direct discoverability of the shared bootstrap, current-work entry, and Organization route from every in-scope root README is checked mechanically. See [ROUTING_CONFORMANCE.md](ROUTING_CONFORMANCE.md) for the scoped oracle, evidence boundary, and blind-agent trial protocol.
 
 ## In-scope repository map
 
