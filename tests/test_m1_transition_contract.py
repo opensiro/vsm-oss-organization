@@ -12,7 +12,7 @@ class M1TransitionContractTests(unittest.TestCase):
 
     def test_active_milestone_state_is_owned_by_planning_surfaces(self) -> None:
         readme = self.read("README.md")
-        roadmap = self.read("ROADMAP.md")
+        roadmap = self.read("docs/ROADMAP.md")
         s3star = self.read("contracts/s3star/audit.md")
         s3 = self.read("contracts/s3/current-control.md")
 
@@ -23,7 +23,7 @@ class M1TransitionContractTests(unittest.TestCase):
 
     def test_m1_target_is_s3_and_s3star_constructor(self) -> None:
         readme = self.read("README.md")
-        roadmap = self.read("ROADMAP.md")
+        roadmap = self.read("docs/ROADMAP.md")
         s3star = self.read("contracts/s3star/audit.md")
         s3 = self.read("contracts/s3/current-control.md")
 
@@ -43,7 +43,7 @@ class M1TransitionContractTests(unittest.TestCase):
         self.assertIn("Apply one returned S3 current-control decision to S1", prompt)
 
     def test_s3star_constructor_contract_is_function_specific(self) -> None:
-        roadmap = self.read("ROADMAP.md")
+        roadmap = self.read("docs/ROADMAP.md")
         s3star = self.read("contracts/s3star/audit.md")
         audit_role = self.read("roles/S3STAR.md")
         audit_prompt = self.read("prompts/audit-s1-work.md")
