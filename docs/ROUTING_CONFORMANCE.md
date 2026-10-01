@@ -4,11 +4,11 @@ This document defines how OpenSiro verifies that a contributor or agent can begi
 
 ## Invariant
 
-Every repository in the canonical `Current in-scope public repositories:` block in [README.md](README.md) must expose three things directly from its root README:
+Every repository in the canonical `Current in-scope public repositories:` block in [README.md](../README.md) must expose three things directly from its root README:
 
-1. the common [`START_HERE.md`](START_HERE.md) bootstrap;
+1. the common [`START_HERE.md`](../START_HERE.md) bootstrap;
 2. the Organization routing surface for organization-wide questions;
-3. the shared [TODO.md](TODO.md) current-work entry point for already tracked work.
+3. the shared [TODO.md](../TODO.md) current-work entry point for already tracked work.
 
 These entry points have different jobs:
 
@@ -23,7 +23,7 @@ TODO.md
 = which already-existing issue is selected as current work
 ```
 
-Repository-local work stays with the repository that owns the relevant source of truth. Questions about contributor roles, authority boundaries, escalation, cross-repository coordination, current-work ordering, milestone sequencing, or shared organizational evolution across the in-scope group route to `opensiro/vsm-oss-organization` and its [CONTRIBUTOR_START.md](CONTRIBUTOR_START.md) entry point.
+Repository-local work stays with the repository that owns the relevant source of truth. Questions about contributor roles, authority boundaries, escalation, cross-repository coordination, current-work ordering, milestone sequencing, or shared organizational evolution across the in-scope group route to `opensiro/vsm-oss-organization` and its [CONTRIBUTOR_START.md](../CONTRIBUTOR_START.md) entry point.
 
 `TODO.md` owns cross-repository selection/status/order only. After a tracked item is selected, the contributor returns to the linked issue and owning repository for task scope, evidence, frozen refs, validation, acceptance, and canonical artifacts.
 
@@ -31,7 +31,7 @@ Public OpenSiro repositories outside that canonical scope are **not** subjects o
 
 ## Mechanical live check
 
-[`scripts/check_public_routing.py`](scripts/check_public_routing.py) reads the canonical repository set from the Organization README scope block. This intentionally reuses the same scope surface consumed by `scripts/validate_contract.py` instead of introducing a second manually maintained allowlist.
+[`scripts/check_public_routing.py`](../scripts/check_public_routing.py) reads the canonical repository set from the Organization README scope block. This intentionally reuses the same scope surface consumed by `scripts/validate_contract.py` instead of introducing a second manually maintained allowlist.
 
 For each in-scope repository it:
 
