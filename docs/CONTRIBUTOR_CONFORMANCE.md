@@ -96,4 +96,4 @@ One passing run demonstrates that the current public surfaces can support one su
 
 Repeated batches should vary the starting time and available work while preserving the same evidence schema. A later regression can therefore be localized to orientation, routing, task acquisition, contract assembly, semantic preparation, execution, validation, or delivery instead of being reported only as "the agent failed."
 
-Trial records live under [`supplementary/contributor-trials/`](supplementary/contributor-trials/).
+Trial records live under [`supplementary/contributor-trials/`](../supplementary/contributor-trials/).
