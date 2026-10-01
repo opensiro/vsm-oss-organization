@@ -267,7 +267,7 @@ def load_upstream_contract(root: Path, errors: list[str]) -> dict | None:
 
 
 def check_manifest_references(readme: str, control: str, errors: list[str]) -> None:
-    for name, text in (("README.md", readme), ("CONTROL_PLANE.md", control)):
+    for name, text in (("README.md", readme), ("docs/CONTROL_PLANE.md", control)):
         if "UPSTREAM_CONTRACT.json" not in text:
             errors.append(f"{name}: must reference UPSTREAM_CONTRACT.json")
     if re.search(
@@ -286,7 +286,7 @@ def check_manifest_references(readme: str, control: str, errors: list[str]) -> N
         )
     if re.search(r"^\|\s*active contract for new work\s*\|", control, re.MULTILINE):
         errors.append(
-            "CONTROL_PLANE.md: do not maintain a second active-contract version table"
+            "docs/CONTROL_PLANE.md: do not maintain a second active-contract version table"
         )
 
 
@@ -450,8 +450,8 @@ def validate(
     root = root.resolve()
     errors: list[str] = []
     readme = read(root, "README.md", errors)
-    control = read(root, "CONTROL_PLANE.md", errors)
-    roadmap = read(root, "ROADMAP.md", errors)
+    control = read(root, "docs/CONTROL_PLANE.md", errors)
+    roadmap = read(root, "docs/ROADMAP.md", errors)
     read(root, "CONTRIBUTING.md", errors)
     read(root, "roles/S1.md", errors)
     manifest = load_upstream_contract(root, errors)

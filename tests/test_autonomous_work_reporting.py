@@ -11,7 +11,7 @@ class AutonomousWorkReportingTests(unittest.TestCase):
         return (ROOT / relative).read_text(encoding="utf-8")
 
     def test_reporting_contract_preserves_snapshot_and_stop_rule(self) -> None:
-        contract = self.read("AUTONOMOUS_WORK_REPORTING.md")
+        contract = self.read("docs/AUTONOMOUS_WORK_REPORTING.md")
 
         for marker in ("DONE", "NOW", "BLOCKED", "NEXT", "NEED YOU"):
             self.assertIn(marker, contract)
@@ -35,7 +35,7 @@ class AutonomousWorkReportingTests(unittest.TestCase):
         self.assertIn("TODO.md", entry)
 
     def test_control_plane_owns_lifecycle_boundary(self) -> None:
-        control = self.read("CONTROL_PLANE.md")
+        control = self.read("docs/CONTROL_PLANE.md")
         todo = self.read("TODO.md")
         root_readme = self.read("README.md")
 
