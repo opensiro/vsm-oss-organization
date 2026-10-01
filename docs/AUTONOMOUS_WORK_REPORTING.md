@@ -14,7 +14,7 @@ The reporting objective is:
 
 > the owner should be able to understand the important state of an autonomous work run in roughly one short status read.
 
-For tracked work in the bounded VSM Harness OSS group, [`TODO.md`](TODO.md) is the shared Git-native current-work scheduler. Status reporting should reconcile with that scheduler rather than creating a second backlog in prose.
+For tracked work in the bounded VSM Harness OSS group, [`TODO.md`](../TODO.md) is the shared Git-native current-work scheduler. Status reporting should reconcile with that scheduler rather than creating a second backlog in prose.
 
 The work-lifecycle ownership boundary is defined in [`CONTROL_PLANE.md`](CONTROL_PLANE.md); this document reports execution state and does not duplicate that lifecycle.
 
