@@ -1,6 +1,6 @@
 # Fresh contributor trials
 
-This directory stores empirical runs for [Fresh contributor conformance](../../CONTRIBUTOR_CONFORMANCE.md).
+This directory stores empirical runs for [Fresh contributor conformance](../../docs/CONTRIBUTOR_CONFORMANCE.md).
 
 These trials are stricter than routing-only trials: a run must progress from the public OpenSiro entry surface through task acquisition, current contract resolution, bounded repository work, validation, and normal delivery/review.
 

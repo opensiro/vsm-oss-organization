@@ -1,6 +1,6 @@
 # Blind routing trials
 
-This directory stores empirical routing trials for [ROUTING_CONFORMANCE.md](../../ROUTING_CONFORMANCE.md).
+This directory stores empirical routing trials for [ROUTING_CONFORMANCE.md](../../docs/ROUTING_CONFORMANCE.md).
 
 A trial batch must use fresh agent/runs without OpenSiro project memory or a preloaded Organization URL. Do not use the current maintainer/assistant conversation as a substitute for a blind run.
 

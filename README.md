@@ -1,57 +1,25 @@
 # VSM OSS Organization
 
-This `README.md` is the common entry point for both people and AI runtimes. Choose the route that matches how you arrived.
+This `README.md` is the common entry point for people and AI runtimes into the bounded OpenSiro VSM Harness OSS organization.
 
 ## I'm human
 
 - **Web overview:** [opensiro.com](https://opensiro.com)
-- **Repository statistics:** [Public outcome metrics](METRICS.md)
-- **How do I contribute?** [Contribute to OpenSiro with AI](CONTRIBUTE_WITH_AI.md)
-
-You do not need to reconstruct the whole VSM/OSM organization before contributing. The contribution guide gives you copy-paste prompts for handing an idea, issue, or open-ended contribution to an AI agent.
+- **Public outcome metrics:** [`docs/METRICS.md`](docs/METRICS.md)
+- **Contribute with AI:** [`CONTRIBUTE_WITH_AI.md`](CONTRIBUTE_WITH_AI.md)
+- **Full documentation index:** [`docs/README.md`](docs/README.md)
 
 ## I'm AI
 
-Treat this README as the public handoff surface, then continue with the current [`START_HERE.md`](START_HERE.md). `START_HERE.md` is the canonical machine bootstrap for re-grounding in current GitHub state before routing into the owning repository and exact task artifact.
+Start with [`START_HERE.md`](START_HERE.md). It is the canonical machine bootstrap for re-grounding in current public GitHub state.
 
-- For already tracked current work, use [`TODO.md`](TODO.md), then return to the linked owning repository/issue.
-- For new, unclassified, cross-repository, or authority-sensitive work, use [`CONTRIBUTOR_START.md`](CONTRIBUTOR_START.md).
-- Repository-local facts remain authoritative in their owning repository; this repository owns the bounded cross-repository organization/control construction.
+- already tracked current work → [`TODO.md`](TODO.md), then return to the linked owning issue/repository;
+- new, unclassified, cross-repository, or authority-sensitive work → [`CONTRIBUTOR_START.md`](CONTRIBUTOR_START.md);
+- cross-repository architecture → [`docs/ECOSYSTEM.md`](docs/ECOSYSTEM.md).
 
-A minimal organizational profile for autonomous OpenSiro OSS contributors.
-
-This repository applies, but does not redefine, the public [VSM Harness Profile](https://github.com/opensiro/vsm-harness-profile). It is built bottom-up using an OSM-style elimination method: add an organizational function only when concrete residual variety cannot be absorbed by the functions already present.
-
-> Cross-repository architecture, including the **experimental** `vsm-harness-capability` layer and future domain-specific capability repositories, is documented in [ECOSYSTEM.md](ECOSYSTEM.md). That note does not expand the current bounded organization or its operational S1 domains.
-
-## Viable-system identity
-
-The bounded organization maintained here exists to keep public, current, evidence-backed VSM Harness knowledge available to the open-source community.
-
-The current system separates a normative/metasystem plane from three operational S1 domains:
-
-```text
-normative / metasystem plane
-├── vsm-harness-profile      authoritative semantics
-└── vsm-oss-organization     organizational/control construction
-
-operational S1 plane
-├── vsm-harness-index
-├── vsm-harness-skills
-└── awesome-vsm-harness
-```
-
-The operational domains produce different durable outcomes:
-
-- **Index** — canonical evidence-backed corpus, provenance, reassessment history, signatures, and deterministic comparative views;
-- **Skills** — reusable VSM Harness assessment procedure/skills/tooling that applies the selected Profile;
-- **Awesome** — curated representative downstream view linked to canonical Index facts.
-
-See [ORGANIZATION.md](ORGANIZATION.md) for the system boundary and viability criterion, [S1_DOMAIN_CONTRACTS.md](S1_DOMAIN_CONTRACTS.md) for the canonical local S1 envelopes, and [S1_AUTONOMY_COVERAGE.md](S1_AUTONOMY_COVERAGE.md) for operational evidence.
+Repository-local facts remain authoritative in their owning repository. This repository owns only the bounded cross-repository organization/control construction.
 
 ## Scope
-
-This repository is the organizational/control plane for a bounded **OpenSiro VSM Harness OSS group**. It is not a control plane for every OpenSiro project, account, research track, or private R&D activity.
 
 Current in-scope public repositories:
 
@@ -61,84 +29,29 @@ Current in-scope public repositories:
 - `opensiro/awesome-vsm-harness`
 - `opensiro/vsm-oss-organization`
 
-Scope membership does not mean that all five repositories are operational S1 units. For the current system-in-focus:
+The operational S1 domains are Index, Skills, and Awesome. Profile is the normative semantic authority consumed by the organization. Organization is the metasystem/control-construction surface.
 
-- `vsm-harness-index`, `vsm-harness-skills`, and `awesome-vsm-harness` are the declared operational S1 domains;
-- `vsm-harness-profile` is the normative semantic authority consumed by the organization;
-- `vsm-oss-organization` is the organizational/metasystem construction surface.
-
-Repository location alone does not determine function. In particular, `vsm-harness-skills` may host general-purpose skills outside this viable-system boundary, and a change inside an operational repository may still leave S1 if it actually changes normative, cross-S1, identity, or metasystem authority.
-
-Repositories outside the current in-scope set may consume or present artifacts produced here without becoming governed by this control plane.
-
-## Public outcome metrics
-
-[`METRICS.md`](METRICS.md) defines the shared observability contract for these five public in-scope repositories, with a machine-readable projection in [`metrics.yaml`](metrics.yaml).
-
-The rule is intentionally outcome-oriented: **count accepted repository-owned state transitions, not edits**. Commits, lines changed, PRs, issues, and workflow runs may be exposed as secondary engineering telemetry, but they are not productivity or verified-output KPIs.
-
-## Contributor tools
-
-The human/AI entry routes at the top of this README own initial bootstrap, current-work selection, and cross-repository routing. [`TODO.md`](TODO.md) remains the **Git-native scheduler** for already tracked current work; the linked issue and owning repository remain authoritative for execution. Once work is routed and admitted, use these operational prompts as needed:
-
-1. **New to the VSM Harness OSS group:** [prompts/learn-ecosystem.md](prompts/learn-ecosystem.md) — map repositories, authority boundaries, current milestone, and open work.
-2. **Ready to work in an operational domain:** [prompts/contribute.md](prompts/contribute.md) — select Index, Skills, or Awesome, load its contract from `S1_DOMAIN_CONTRACTS.md`, and execute one bounded S1 contribution.
-3. **Need the parent-governed identity/policy boundary:** [prompts/parent-control-plane.md](prompts/parent-control-plane.md) — apply the current S5 parent-authority, delegated-envelope, escalation, decision, and return contract. Ordinary approvals or tool permissions are not S5 by themselves.
-4. **Using the M1 complementary-audit constructor:** [prompts/audit-s1-work.md](prompts/audit-s1-work.md) — exercise the first-party S3* path with a composed auditor; M1 does not require a permanent autonomous verifier.
-5. **Applying a returned M1 current-control decision:** [prompts/apply-s3-control.md](prompts/apply-s3-control.md) — arbitrary comments/approvals are not treated as S3 input.
-
-The work-lifecycle ownership map is defined in [CONTROL_PLANE.md](CONTROL_PLANE.md). The prompt pack is operational guidance, not an additional source of VSM semantics or evidence that a future milestone is complete.
+See [`docs/ORGANIZATION.md`](docs/ORGANIZATION.md) for the system boundary and viability criterion.
 
 ## Source boundary
 
 [`UPSTREAM_CONTRACT.json`](UPSTREAM_CONTRACT.json) is the single machine-readable selection of the upstream Profile, Methodology, and Index contract surfaces consumed by this organization.
 
-- Normative VSM semantics remain owned by `opensiro/vsm-harness-profile`.
-- Assessment procedure/autonomy publication conventions remain owned by `opensiro/vsm-harness-skills` under the selected source/provenance contract; local implementation work does not silently gain authority to redefine the Profile.
-- Canonical assessment facts remain owned by `opensiro/vsm-harness-index`.
-- Historical/frozen work keeps its original provenance; later compatible releases do not rewrite the contract under which an older artifact was produced.
-- This repository operationalizes organization/control for the bounded OSS group; it does not redefine S1–S5.
+- Profile owns normative VSM semantics.
+- Skills owns assessment procedure and methodology.
+- Index owns canonical assessment facts.
+- Historical/frozen work keeps its original provenance.
+- Organization does not redefine S1–S5.
 
-See [CONTROL_PLANE.md](CONTROL_PLANE.md) for compatibility gates, frozen-work boundaries, cross-repository validation, merge gates, work-lifecycle ownership, and maintainer decision points.
+See [`docs/CONTROL_PLANE.md`](docs/CONTROL_PLANE.md) for compatibility gates, work-lifecycle ownership, merge gates, and maintainer decision points.
 
-## Contribution model
+## Current construction
 
-OpenSiro defines organizational roles and GitHub contribution boundaries. Contributors own their runtime:
+Planning, work contracts, and current scheduling are separate:
 
-```text
-Organization TODO.md
-        ↓
-linked owning repository / issue
-        ↓
-contributor-owned scheduler / harness / credentials / budget
-        ↓
-select one S1 domain contract when applicable
-        ↓
-S1 role executes bounded local work
-        ↓
-Issue / Pull Request / no-change / escalation
-```
-
-A contributor may use one agent or many internal workers. Internal workers are not separate S1 units merely because they are separate processes or prompts.
-
-Local variety should remain in the relevant operational domain when that domain has the requisite information and delegated authority. Only residual variety should move into later metasystem functions.
-
-A scheduler state such as `BLOCKED` is not itself an algedonic signal or metasystem decision. Exceptional escalation remains governed by the selected Profile and the owning execution contract.
-
-## OSM roadmap
-
-Roadmap, work-contract, and live-scheduling state are intentionally separate:
-
-- [`ROADMAP.md`](ROADMAP.md) owns the durable OSM milestone sequence, construction targets, and evidence-state narrative;
-- the corresponding GitHub milestone/tracker issue owns the exact milestone exit contract and reviewable completion history;
-- [`TODO.md`](TODO.md) owns only which already-existing issues are currently selected as `NOW`, `NEXT`, or `BLOCKED`.
-
-The root README is therefore **not a live milestone-status or work-scheduling surface**. For current construction state, read `ROADMAP.md` and the applicable tracker; for current selected work, read `TODO.md` and then return to the linked owning issue/repository.
-
-The roadmap is specific to this reference organization. Its target vectors are design/construction targets, not independently published assessment states, and `A`, `C`, and `P` are ownership arrangements rather than maturity scores. See [`ROADMAP.md`](ROADMAP.md) for the current milestone, evidence state, sequencing, and long-term reference target.
-
-<!-- ROADMAP VALIDATOR PROJECTION:START
-Derived compatibility projection for scripts/validate_contract.py. ROADMAP.md remains authoritative; this block is not a human-facing status or scheduling surface.
+- **GitHub milestones + their tracker issues** own planned destination and exact exit contracts;
+- [`docs/ROADMAP.md`](docs/ROADMAP.md) is the readable construction/evidence projection;
+- [`TODO.md`](TODO.md) is the **Git-native scheduler** for selected `NOW` / `NEXT` / `BLOCKED` issues only.
 
 Active formal work is M1.
 
@@ -155,30 +68,29 @@ Long-term reference target:
 S1  S2  S3  S3* S4  S5
 A   A   A   C   A   P
 ```
-ROADMAP VALIDATOR PROJECTION:END -->
 
-## Construction roles
+These are construction targets for this reference organization, not a universal maturity ladder or independently published assessment state.
 
-Role and constructor surfaces are introduced and interpreted under [`ROADMAP.md`](ROADMAP.md), the selected Profile, and their owning contracts. Their mere presence in this repository is not evidence that a milestone or autonomy state has been achieved.
+## Operating surfaces
 
-The S1 construction uses [roles/S1.md](roles/S1.md) together with [S1_DOMAIN_CONTRACTS.md](S1_DOMAIN_CONTRACTS.md). A run must declare Index, Skills, or Awesome as its operational domain.
+- S1 domain envelopes: [`contracts/s1/domain-contracts.md`](contracts/s1/domain-contracts.md)
+- S1 admission/recovery: [`contracts/s1/task-admission-recovery.md`](contracts/s1/task-admission-recovery.md)
+- S1 operational evidence: [`records/s1/autonomy-coverage.md`](records/s1/autonomy-coverage.md)
+- supported autonomous S1 mode: [`modes/s1-autonomous/`](modes/s1-autonomous/)
+- S3 current control: [`contracts/s3/current-control.md`](contracts/s3/current-control.md)
+- S3* complementary audit: [`contracts/s3star/audit.md`](contracts/s3star/audit.md)
+- S5 parent boundary and authority: [`contracts/s5/`](contracts/s5/)
+- external-tool admission: [`contracts/tools/external-entry.md`](contracts/tools/external-entry.md)
+- autonomous work reporting: [`docs/AUTONOMOUS_WORK_REPORTING.md`](docs/AUTONOMOUS_WORK_REPORTING.md)
+- routing conformance: [`docs/ROUTING_CONFORMANCE.md`](docs/ROUTING_CONFORMANCE.md)
+- fresh contributor conformance: [`docs/CONTRIBUTOR_CONFORMANCE.md`](docs/CONTRIBUTOR_CONFORMANCE.md)
 
-The complementary-audit constructor contract is defined in [S3STAR_AUDIT.md](S3STAR_AUDIT.md), with composition guidance in [roles/S3STAR.md](roles/S3STAR.md). The actual audit judgment owner is recorded per qualifying run rather than inferred from the existence of the role document.
+Contracts and role files are construction surfaces, not positive function evidence by file presence alone.
 
-The S3 current-control ownership contract is defined in [roles/S3.md](roles/S3.md). Its use, evidence status, and any later autonomous-agent mode are governed by the applicable roadmap milestone and contract rather than by README prose.
+## Repository layout
 
-For the current milestone/evidence state, consult `ROADMAP.md` and its tracker. For selected executable work, consult `TODO.md`. Further roles are added only when concrete residual variety establishes the organizational need; VSM functions are responsibilities and relationships, not a checklist of permanent agent processes.
-
-## Supplementary development evidence
-
-The files under `supplementary/`, especially [supplementary/evolution-log.md](supplementary/evolution-log.md), preserve empirical development history and design reasoning.
-
-They are **side artifacts of building and studying the organization, not primary operational products and not additional S1 domains**.
-
-Their primary downstream purpose is an evidence-backed article/case study testing where applying VSM/OSM exposed organizational problems earlier, reduced rework/coordination cost, or otherwise improved development relative to plausible organically evolved alternatives — including negative cases where no such advantage is supported. A future pipeline may also derive reusable skills or methodology material, but that is a secondary planned use and not part of the current architecture.
-
-See [supplementary/design-reasoning.md](supplementary/design-reasoning.md) for worked reasoning and [supplementary/evolution-log.md](supplementary/evolution-log.md) for the chronological development record.
+The root is intentionally limited to entry/control surfaces. Long-form documentation belongs under [`docs/`](docs/README.md); organizational contracts under [`contracts/`](contracts/README.md); actor adapters under `roles/`; concrete evidence under `records/`; prompts under `prompts/`; schemas under `schemas/`; tests under `tests/`.
 
 ## License
 
-Repository code, prompts, configuration, and original documentation are licensed under the [Apache License 2.0](LICENSE). Third-party material, if added later, must retain its own stated license and attribution rather than being silently relicensed by this repository.
+Repository code, prompts, configuration, and original documentation are licensed under the [Apache License 2.0](LICENSE).

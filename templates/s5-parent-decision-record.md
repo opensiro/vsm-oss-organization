@@ -1,6 +1,6 @@
 # S5 parent decision record
 
-Use this template only for a matter admitted under [`S5_PARENT_BOUNDARY.md`](../S5_PARENT_BOUNDARY.md).
+Use this template only for a matter admitted under [`contracts/s5/parent-boundary.md`](../contracts/s5/parent-boundary.md).
 
 The record makes one parent-governed identity / ultimate-policy decision reconstructable. It does not establish `S5=P` merely because the fields are completed.
 

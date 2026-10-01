@@ -1,5 +1,5 @@
-# Compatibility pointer: S1 domain contracts
+# S1 domain contracts
 
-Canonical compatibility pointer: [`../S1_DOMAIN_CONTRACTS.md`](../S1_DOMAIN_CONTRACTS.md).
+Canonical contract: [`contracts/s1/domain-contracts.md`](../contracts/s1/domain-contracts.md).
 
-This file exists only so historical relative links inside `docs/ROADMAP.md` remain valid during the documentation-layout migration.
+This documentation-local alias exists only for historical links inside `docs/`. Edit the canonical contract under `contracts/s1/`.

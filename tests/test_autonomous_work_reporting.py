@@ -12,10 +12,8 @@ class AutonomousWorkReportingTests(unittest.TestCase):
 
     def test_reporting_contract_preserves_snapshot_and_stop_rule(self) -> None:
         contract = self.read("docs/AUTONOMOUS_WORK_REPORTING.md")
-
         for marker in ("DONE", "NOW", "BLOCKED", "NEXT", "NEED YOU"):
             self.assertIn(marker, contract)
-
         self.assertIn("one or two obvious downstream steps", contract)
         self.assertIn("branch → PR → CI → fix → merge", contract)
         self.assertIn("NEED YOU = none", contract)
@@ -26,9 +24,8 @@ class AutonomousWorkReportingTests(unittest.TestCase):
 
     def test_common_entry_exposes_reporting_contract(self) -> None:
         entry = self.read("CONTRIBUTOR_START.md")
-
         self.assertIn("## Autonomous work reporting", entry)
-        self.assertIn("AUTONOMOUS_WORK_REPORTING.md", entry)
+        self.assertIn("docs/AUTONOMOUS_WORK_REPORTING.md", entry)
         for marker in ("DONE", "NOW", "BLOCKED", "NEXT", "NEED YOU"):
             self.assertIn(marker, entry)
         self.assertIn("does not create a VSM function", entry)
@@ -38,24 +35,15 @@ class AutonomousWorkReportingTests(unittest.TestCase):
         control = self.read("docs/CONTROL_PLANE.md")
         todo = self.read("TODO.md")
         root_readme = self.read("README.md")
-
-        for marker in (
-            "GitHub milestone",
-            "GitHub issue",
-            "TODO.md",
-            "S1 execution",
-            "Metasystem execution",
-            "Optional projection",
-        ):
+        for marker in ("GitHub milestone", "GitHub issue", "TODO.md", "S1 execution", "Metasystem execution", "Optional projection"):
             self.assertIn(marker, control)
-
         self.assertIn("## NOW", todo)
         self.assertIn("## NEXT", todo)
         self.assertIn("## BLOCKED", todo)
         self.assertNotIn("## WATCH", todo)
         self.assertNotIn("## LATER", todo)
         self.assertIn("Git-native scheduler", root_readme)
-        self.assertIn("CONTROL_PLANE.md", root_readme)
+        self.assertIn("docs/CONTROL_PLANE.md", root_readme)
 
 
 if __name__ == "__main__":

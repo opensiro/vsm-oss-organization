@@ -15,7 +15,6 @@ class M1TransitionContractTests(unittest.TestCase):
         roadmap = self.read("docs/ROADMAP.md")
         s3star = self.read("contracts/s3star/audit.md")
         s3 = self.read("contracts/s3/current-control.md")
-
         self.assertIn("Active formal work is M1", readme)
         self.assertIn("M1", roadmap)
         self.assertNotIn("active formal roadmap milestone", s3star.lower())
@@ -26,7 +25,6 @@ class M1TransitionContractTests(unittest.TestCase):
         roadmap = self.read("docs/ROADMAP.md")
         s3star = self.read("contracts/s3star/audit.md")
         s3 = self.read("contracts/s3/current-control.md")
-
         self.assertIn("A   —   C   C   —   —", readme)
         self.assertIn("Target: `A — C C — —`", roadmap)
         self.assertIn("current constructor target is `S3*=C`", s3star)
@@ -36,7 +34,6 @@ class M1TransitionContractTests(unittest.TestCase):
         s1 = self.read("roles/S1.md")
         s3 = self.read("contracts/s3/current-control.md")
         prompt = self.read("prompts/apply-s3-control.md")
-
         self.assertIn("## Returned S3 current control", s1)
         self.assertIn("contracts/s3/current-control.md", s1)
         self.assertIn("The S1-side adapter", s3)
@@ -48,7 +45,6 @@ class M1TransitionContractTests(unittest.TestCase):
         audit_role = self.read("roles/S3STAR.md")
         audit_prompt = self.read("prompts/audit-s1-work.md")
         audit_record = self.read("templates/s3star-audit-record.md")
-
         self.assertIn("S3*=C — complementary-audit constructor", roadmap)
         for outcome in ("`PASS`", "`FINDING`", "`INSUFFICIENT`"):
             self.assertIn(outcome, s3star)
@@ -56,16 +52,6 @@ class M1TransitionContractTests(unittest.TestCase):
         self.assertIn("autonomous verifier or a second agent", audit_prompt)
         self.assertIn("Auditor / composed actor:", audit_record)
         self.assertIn("M1 constructor check", audit_record)
-
-    def test_root_m1_contract_names_are_compatibility_pointers_only(self) -> None:
-        self.assertIn(
-            "Canonical contract: [`contracts/s3/current-control.md`]",
-            self.read("S3_CONTROL_SURFACE.md"),
-        )
-        self.assertIn(
-            "Canonical contract: [`contracts/s3star/audit.md`]",
-            self.read("S3STAR_AUDIT.md"),
-        )
 
 
 if __name__ == "__main__":
