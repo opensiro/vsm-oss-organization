@@ -6,7 +6,8 @@ Long-form repository documentation lives under `docs/`. Root-level files are res
 
 - [`ECOSYSTEM.md`](ECOSYSTEM.md) — cross-repository architecture and responsibility boundaries.
 - [`ORGANIZATION.md`](ORGANIZATION.md) — viable-system identity and system boundary.
-- [`CONTROL_PLANE.md`](CONTROL_PLANE.md) — operational control plane, compatibility gates, and work lifecycle.
+- [`CONTROL_PLANE.md`](CONTROL_PLANE.md) — operational authority, compatibility gates, and work lifecycle.
+- [`AGENT_CONTROL_PLANE.md`](AGENT_CONTROL_PLANE.md) — maintainer-facing single-agent command interface that consumes those authority rules.
 - [`ROADMAP.md`](ROADMAP.md) — OSM construction sequence and evidence narrative.
 - [`METRICS.md`](METRICS.md) — public outcome/observability contract.
 - [`AUTONOMOUS_WORK_REPORTING.md`](AUTONOMOUS_WORK_REPORTING.md) — autonomous-run reporting contract.

@@ -7,6 +7,7 @@ This `README.md` is the common entry point for people and AI runtimes into the b
 - **Web overview:** [opensiro.com](https://opensiro.com)
 - **Public outcome metrics:** [`docs/METRICS.md`](docs/METRICS.md)
 - **Contribute with AI:** [`CONTRIBUTE_WITH_AI.md`](CONTRIBUTE_WITH_AI.md)
+- **Manage OSS through one agent:** [`docs/AGENT_CONTROL_PLANE.md`](docs/AGENT_CONTROL_PLANE.md)
 - **Full documentation index:** [`docs/README.md`](docs/README.md)
 
 ## I'm AI
