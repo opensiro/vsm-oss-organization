@@ -4,7 +4,7 @@ This is the common **routing** entry point for new, unclassified, cross-reposito
 
 For already tracked work, use [`TODO.md`](TODO.md), then return to the linked owning repository/issue. Canonical membership is the `Current in-scope public repositories:` block in [`README.md`](README.md).
 
-The work-lifecycle ownership map is [`docs/CONTROL_PLANE.md`](docs/CONTROL_PLANE.md). Milestones plan destinations, issues own durable work contracts, `TODO.md` schedules current issues, and organizational contracts own admission/execution/escalation/closure.
+The work-lifecycle ownership map is [`docs/CONTROL_PLANE.md`](docs/CONTROL_PLANE.md). Milestones plan destinations, issues own durable work contracts, `TODO.md` schedules current issues, and organizational contracts own admission/execution/escalation/closure. A maintainer driving this route through a single agent conversation can use [`docs/AGENT_CONTROL_PLANE.md`](docs/AGENT_CONTROL_PLANE.md) without changing those ownership rules.
 
 ## Routing rule
 
