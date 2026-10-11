@@ -32,3 +32,39 @@
 ## Audit lifecycle
 
 Local judgment: `FINDING`. Downstream review/closure: **OPEN** until the responsible Index owner confirms/refutes/narrows the subclaim using admissible source evidence. Original source and Index revision fixed. Organization draft PR #191 is a **reviewable, unmerged audit record**; it does not authorize rewriting any Index artifact or count as independent PR approval.
+
+
+## Independent full-tree source completeness probe — frozen code and control alternatives
+
+To check that the earlier observation had not missed another first-party automatic child-termination hook, independently fetched and checked out the **exact** upstream commit `53007abac1d521e32c2508af5328412bd6bbb67b` as detached `HEAD` in an isolated clean Git workspace. Read the complete `src/Flows.sw`, `src/agent.sw`, `src/background.sw`, `src/tools.sw`, `src/FlowsRender.sw`, and the relevant `src/test_runner.sw` cases and ran this **whole tracked-tree** inspection:
+
+```sh
+git rev-parse HEAD
+git grep -n -E 'swarm-flows-stop|kill_task\(|pid_kill_group\(|run_flows\(' -- . ':!docs/*'
+git grep -n -E 'Background\.launch\(|Background\.kill_task\(' -- src tests
+git grep -n -E -i 'flow.*abort|abort.*flow|swarm-flows-stop|flow.*stop' -- tests src/Flows.sw
+git status --short
+```
+
+**Observed facts:**
+
+- The only pinned `/tmp/swarm-flows-stop` decision/consumption in executable implementation is `src/Flows.sw:441–443`; `FlowsRender.sw:561,571` prints a UI hint. No `Background.kill_task`, `pid_kill_group` or `shell_detached` invocation appears anywhere in the complete `src/Flows.sw` (907 lines).
+- **Actual termination alternatives are present elsewhere**: `agent.sw:3621` invokes `Background.kill_task` only inside `bg_cmd_kill` for a separately user-requested `/bg kill <id>`; `tools.sw:460,1600` invoke it for independent foreground/bash/tool-specific kill operations. None of these is called as a consequence of the `/flows` stop-file path.
+- `agent.sw:1243` calls `Flows.run_flows(...)` and then returns the existing conversation `history` when the command exits — the caller does not kill pending child tasks. The detached background spawning and explicit `pid_kill_group` implementation remain distinct operations.
+- The frozen `test_runner.sw:2174–2191` exercises **the explicit `bg_kill_group` mechanism**, demonstrating the project does have a test for terminating a detached worker's process group. The tracked `tests/` tree and the `Flows.sw` stop references show no test of **`/flows` stop-file → active subagent termination** in the pinned source. Absence of an identified test is not itself proof of wrong runtime behavior.
+- A direct independent Python **source-code invariant probe**, executed against the frozen files (exit 0), asserted that a flow task launches through `Background.launch`, `fill_phase_slots` appears **before** the global stop-file check in `render_loop`, aborted state assignment is present, no flow child-kill call is present, explicit process-group termination is available outside Flows, and the parent slash dispatcher returns history after `Flows.run_flows`. It printed:
+
+```text
+EXACT_FROZEN_SOURCE_ASSERTIONS=PASS
+FLOW_STOP_FILE_PASSES=1
+FLOW_KILL_CALL_SITES=0
+BACKGROUND_HAS_PGROUP_TERMINATION=True
+REFILL_PRECEDES_STOP=True
+PARENT_FLOW_RETURN_TO_HISTORY=True
+SWC_COMPILER_PRESENT=no
+CLEAN_UPSTREAM=yes
+```
+
+The test is a **static exact-ref path/invariant check**, not an executable `.sw` runtime replay. The pinned source's `Makefile` requires `../swarmrt/bin/swc`, which is not installed in the isolated checkout. Do not infer a compiled full-system test, observed survivor PID or platform-specific deployed cancellation consequence. Explicit operator `/bg kill` remains possible; it is **not automatic stop-file closure**.
+
+**Auditor outcome unchanged:** one preexisting bounded `FINDING` on the asserted S3 abort-to-subordinate-control-return interpretation. The actual S2 capacity and S3 current phase/admission control evidence remains valid. No new finding is counted, no categorical vector correction is asserted; downstream Index #1011 must adjudicate same-source wording/procedure.
