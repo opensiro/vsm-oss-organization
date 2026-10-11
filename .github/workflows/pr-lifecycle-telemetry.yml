@@ -1,0 +1,81 @@
+name: Archive public PR lifecycle telemetry
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: "29 3 * * *"
+
+permissions:
+  contents: write
+
+concurrency:
+  group: pr-lifecycle-telemetry-archive
+  cancel-in-progress: false
+
+jobs:
+  archive:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout current public Organization contract
+        uses: actions/checkout@v4
+        with:
+          ref: main
+          fetch-depth: 0
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Collect source-pinned secondary PR telemetry
+        id: collect
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
+        shell: bash
+        run: |
+          set +e
+          python3 scripts/collect_pr_activity.py --output "$RUNNER_TEMP/pr-lifecycle.json"
+          code=$?
+          set -e
+          if [ ! -s "$RUNNER_TEMP/pr-lifecycle.json" ]; then
+            echo "No valid snapshot produced; archive withheld."
+            exit 1
+          fi
+          echo "exit_code=$code" >> "$GITHUB_OUTPUT"
+
+      - name: Append observation to durable Git archive (not main)
+        shell: bash
+        run: |
+          set -euo pipefail
+          stamp="$(python3 -c 'import json,os; print(json.load(open(os.environ["RUNNER_TEMP"]+"/pr-lifecycle.json"))["collected_at"])')"
+          year="${stamp:0:4}"
+          month="${stamp:5:2}"
+          day="${stamp:8:2}"
+          filename="${stamp//:/-}.json"
+          if git ls-remote --exit-code origin refs/heads/telemetry/pr-lifecycle >/dev/null; then
+            git fetch origin refs/heads/telemetry/pr-lifecycle:refs/remotes/origin/telemetry/pr-lifecycle
+            git switch -C telemetry/pr-lifecycle origin/telemetry/pr-lifecycle
+          else
+            git switch -c telemetry/pr-lifecycle
+          fi
+          path="data/pr-lifecycle/snapshots/$year/$month/$day/$filename"
+          mkdir -p "$(dirname "$path")"
+          if [ -e "$path" ]; then
+            cmp "$RUNNER_TEMP/pr-lifecycle.json" "$path" || {
+              echo "Refusing to overwrite a different snapshot at $path"
+              exit 1
+            }
+          else
+            cp "$RUNNER_TEMP/pr-lifecycle.json" "$path"
+          fi
+          git add "$path"
+          if ! git diff --cached --quiet; then
+            git -c user.name='github-actions[bot]'                 -c user.email='41898282+github-actions[bot]@users.noreply.github.com'                 commit -m "data(telemetry): PR lifecycle observation $stamp"
+            git push origin HEAD:refs/heads/telemetry/pr-lifecycle
+          fi
+
+      - name: Fail visibly if completeness is not established
+        if: steps.collect.outputs.exit_code != '0'
+        run: |
+          echo "Archived an incomplete source observation. Do not treat null/partial metrics as zeros."
+          exit 1

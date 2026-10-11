@@ -21,6 +21,11 @@ principles:
   secondary_activity_telemetry:
     - commits
     - merged_pull_requests
+    - pull_requests_opened
+    - pull_requests_closed_unmerged
+    - open_pull_requests_stock
+    - pull_request_merge_latency
+    - pull_request_first_review_latency
     - repositories_touched
     - workflow_runs
     - ci_duration

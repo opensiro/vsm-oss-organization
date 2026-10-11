@@ -218,6 +218,25 @@ Optional telemetry may include commits, merged PRs, repositories touched, workfl
 
 A large commit count may demonstrate the amount of auditable Git activity behind the system, but it does not prove useful output by itself.
 
+## Secondary PR lifecycle observability (Organization #208)
+
+A separate, GitHub-owned telemetry surface records the **five public in-scope repositories** as explicitly *non-KPI* PR lifecycle activity. It must not be added to canonical assessment counts, primary repository outcomes, productivity scores, contributor rankings, or the experimental external-upstream intervention cohort.
+
+The source is GitHub's PR/review REST records, not website HTML. The collector `scripts/collect_pr_activity.py` produces a machine-readable snapshot with each repository, UTC `collected_at`, API provenance, data completeness and the half-open event windows **(cutoff, collected_at]** for **24h, 7d, 30d**. For each window:
+
+- `opened`: distinct PR identities with `created_at` in the window.
+- `merged`: distinct PR identities with `merged_at` in the window.
+- `closed_without_merge`: distinct *currently closed, unmerged* PR identities whose current `closed_at` is in the window; GitHub's current-state PR API does not reconstruct every historical reopen/close event. No judgment of rejection follows from this category.
+- `open_prs`: current stock of all open PRs, including ones created over 30 days ago (not an event-window count).
+- `time_to_merge`: median and nearest-rank p90 hours from creation to merge for PRs **merged in that window**, with sample size.
+- `first_review_latency`: median and p90 hours from creation to the earliest **submitted non-author User review** for PRs whose first qualifying review occurred in the window. Excludes author/self reviews, Bot accounts, pending reviews, and plain issue/PR comments; a submitted GitHub `COMMENTED` review qualifies. Missing/unknown reviewer identity is *not* assumed to be human.
+
+One GitHub PR identity counts once regardless of how many people or commits contribute. The external [upstream-intervention-fit](../experiments/upstream-intervention-fit/README.md) ledger separately counts one OpenSiro-shaped upstream intervention across original/replacement PRs and preserves its participant evidence; it does not add PRs to these five-repo figures.
+
+Missing first-review histories produce `partial` with null percentile/sample size rather than fabricated `0`. Missing/incomplete PR pagination or GitHub API failure makes the repository `unavailable` with null counters, never `0`. The collector intentionally does not depend on or edit the canonical `collect_public_metrics.py` outcome metrics.
+
+**Retention:** the dedicated [`PR lifecycle telemetry`](PR_LIFECYCLE_TELEMETRY.md) workflow commits dated, provenance-rich JSON snapshots to the separate Git branch `telemetry/pr-lifecycle` in **this Organization repository**. The immutable original PR/review records continue to belong to GitHub. This branch is *secondary operational telemetry*, not another canonical Index, PR gate, or current-work scheduler. Public website rendering remains deferred.
+
 ## Collection and publication
 
 The public collector must:
