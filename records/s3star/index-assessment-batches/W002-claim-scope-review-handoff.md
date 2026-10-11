@@ -26,10 +26,12 @@ The wave ledger reports **5 bounded `PASS` / 5 `INSUFFICIENT`**. These **are the
 | [#1004](https://github.com/opensiro/vsm-harness-index/issues/1004) | 10 terminal | 10/10 reconciled; cancelled second run #1243 disclosed | 3/3 no demonstrated contradiction | **Not established** by publication CI | `PASS` (bounded source/lifecycle scope) |
 | [#1002](https://github.com/opensiro/vsm-harness-index/issues/1002) | 8 admitted / 2 technical terminal | 8/8 canonical and technical failures separately explained | 3/3 sampled *admitted* source rows; unavailable frozen refs are not graded | **Not established** on public review-event samples | `PASS` (bounded source/lifecycle scope) |
 
+**Additional direct provenance check for partial OPEN issues:** [W002-open-terminal-lifecycle.md](W002-open-terminal-lifecycle.md) establishes **5/5 existing canonical terminal rows** within #1011/#1006, their **10 merged review and admission/exclusion PRs**, and **14 exact-head successful checks**, without adjudicating 35 nonterminal claims. Index `data/signatures.psv` has no Zigent signature, as expected for the excluded harness, and frozen primary Zigent build graph contradicts the aspirational complete-kernel README. This extends the process evidence denominator from six completed batches to all **63 currently canonical terminal row slots (62 included + 1 excluded)**, but does **not** enlarge the frozen 18-deep semantic sample for terminal batches or turn the four open batches into PASS. Submitted GitHub review-event objects are absent for the five historical review PRs inspected; provenance remains separate from CI.
+
 **Safe aggregate statements:**
 
 - W002's frozen population: **10/10 batches, 100/100 row status slots accounted**; 62 included, one excluded, two source-unavailable technical, 35 ordinary S1 nonterminal.
-- **6/6 currently terminal batches** had process/provenance reconstruction and **18 selected primary-source semantic challenges** (three for each); **4/4 open batches** retain PENDING locks.
+- **6/6 currently terminal batches** had process/provenance reconstruction; in addition, **5/5 terminal rows inside open batches** have separate process receipts and **18 selected primary-source semantic challenges** (three for each); **4/4 open batches** retain PENDING locks.
 - **5 bounded local PASS / 5 local INSUFFICIENT / 0 proven canonical grade FINDING**. These local outcome categories are **scope-conditioned**, not "50% of all Index assessments validated" or "5 independent approvals".
 - **Zero new independent Organization PR approvals** are established by these source checks; GitHub structural CI (even green) is not semantic review. The draft PR's actual current head/check/reviewer status must be fetched afresh before any merge.
 
