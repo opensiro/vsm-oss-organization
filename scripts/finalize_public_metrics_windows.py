@@ -46,6 +46,10 @@ class FinalizeError(RuntimeError):
     pass
 
 
+class HistoricalLayoutUnavailable(FinalizeError):
+    """An immutable historical revision predates the owner's current metric schema."""
+
+
 def owner_core_at_revision(root: Path, revision: str, repository: str) -> dict[str, Any]:
     renderer = root / "scripts" / "render_metrics.py"
     if not renderer.is_file():
@@ -62,6 +66,14 @@ def owner_core_at_revision(root: Path, revision: str, repository: str) -> dict[s
                 stderr=subprocess.DEVNULL,
             )
             added = True
+            # Skills predates its current Skill catalog/Methodology release layout.
+            # An early snapshot with no README cannot be evaluated by today's
+            # owner renderer. Preserve unknown rather than count files as skills
+            # or invent a zero/unchanged baseline.
+            if repository == "opensiro/vsm-harness-skills" and not (worktree / "README.md").is_file():
+                raise HistoricalLayoutUnavailable(
+                    f"{repository}@{revision}: historical README skill catalog unavailable"
+                )
             completed = subprocess.run(
                 [
                     sys.executable,
@@ -157,7 +169,7 @@ def finalize_owner_history(
         repository = str(config["repository"])
         root = roots[key]
         metrics = snapshot["repositories"][repository]["metrics"]
-        cache: dict[str, dict[str, Any]] = {}
+        cache: dict[str, dict[str, Any] | None] = {}
 
         # Group gaps by revision first so one historical worktree/query serves all metrics.
         revisions: set[str] = set()
@@ -175,7 +187,13 @@ def finalize_owner_history(
                     revisions.add(str(revision))
 
         for revision in revisions:
-            cache[revision] = owner_core_at_revision(root, revision, repository)
+            try:
+                cache[revision] = owner_core_at_revision(root, revision, repository)
+            except HistoricalLayoutUnavailable:
+                # Source data was never available under the present owner
+                # contract at this frozen historical ref. Keep the collector's
+                # explicit missing baseline rather than manufacture a delta.
+                cache[revision] = None
 
         for metric_name, owner_key in config["metrics"].items():
             metric = metrics.get(metric_name)
@@ -186,6 +204,10 @@ def finalize_owner_history(
                     continue
                 revision = str(entry["baseline_revision"])
                 owner_data = cache[revision]
+                if owner_data is None:
+                    # Retain source_unavailable_at_baseline / baseline=None
+                    # and value=None or changed=None. Do not claim an era change.
+                    continue
                 if owner_key not in owner_data:
                     raise FinalizeError(
                         f"owner renderer for {repository} omitted required key {owner_key}"
@@ -220,7 +242,8 @@ def finalize(snapshot: dict[str, Any], roots: Mapping[str, Path]) -> dict[str, A
     finalize_owner_history(snapshot, roots)
     snapshot.setdefault("publication", {})["historical_gap_policy"] = (
         "owning repository renderer when generated owner artifact predates instrumentation; "
-        "zero baseline before repository inception"
+        "zero baseline before repository inception; historical owner layouts "
+        "without comparable exported metrics remain unavailable"
     )
     return snapshot
 
