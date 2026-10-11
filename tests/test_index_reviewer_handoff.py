@@ -59,6 +59,14 @@ class ReviewHandoffTests(unittest.TestCase):
         r = fixture()
         r["reviewer_input_refs"].append(r["proposal_pr"])
         self.assertTrue(s.validate(r))
+    def test_input_branch_not_pinned(self):
+        r = fixture()
+        r["reviewer_input_refs"] = ["https://github.com/acme/code/blob/main/agent.py"]
+        self.assertTrue(s.validate(r))
+    def test_input_wrong_frozen_sha(self):
+        r = fixture()
+        r["reviewer_input_refs"] = ["https://github.com/acme/code/blob/" + "f" * 40 + "/agent.py"]
+        self.assertTrue(s.validate(r))
     def test_unpinned_source_rejected(self):
         r = fixture()
         r["source_sha"] = "main"
