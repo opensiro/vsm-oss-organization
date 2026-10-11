@@ -40,6 +40,10 @@ def owner_repo(base: Path, name: str, historical: dict, current: dict) -> tuple[
     git(root, "config", "user.name", "Test")
     data = root / "data"
     data.mkdir()
+    if name == "skills":
+        # This historical fixture is intentionally still compatible with its
+        # current owner renderer; missing-layout cases are tested separately.
+        (root / "README.md").write_text("## Skill catalog\n", encoding="utf-8")
     (data / "core_source.json").write_text(json.dumps(historical), encoding="utf-8")
     commit(root, "2026-09-15T12:00:00Z", "historical owner source")
     historical_revision = subprocess.check_output(
@@ -229,6 +233,39 @@ class FinalizeWindowsTests(unittest.TestCase):
         semantic = result["repositories"]["opensiro/vsm-oss-organization"]["metrics"]["current_formal_construction_milestone"]["window_change"]["30d"]
         self.assertEqual(semantic["status"], "unclaimed_semantic_evidence")
         self.assertIsNone(semantic["value"])
+
+    def test_pre_layout_skills_history_preserves_missing_baseline(self):
+        # The real 2026-09-11 Skills revision has no README.md; a current
+        # renderer cannot reconstruct Methodology releases or catalog entries.
+        root = self.skills
+        # Create a separate old-style owner repo with a real frozen pre-layout
+        # revision, keeping the valid historical-renderer fixture intact.
+        legacy = Path(self.temp.name) / "legacy-skills"
+        legacy.mkdir()
+        git(legacy, "init", "-q")
+        git(legacy, "config", "user.email", "test@example.com")
+        git(legacy, "config", "user.name", "Test")
+        (legacy / "SKILL.md").write_text("legacy skill", encoding="utf-8")
+        commit(legacy, "2026-09-11T12:00:00Z", "pre-instrumentation skills layout")
+        legacy_ref = subprocess.check_output(["git", "-C", str(legacy), "rev-parse", "HEAD"], text=True).strip()
+        (legacy / "scripts").mkdir()
+        (legacy / "scripts" / "render_metrics.py").write_text(
+            (root / "scripts" / "render_metrics.py").read_text(encoding="utf-8"), encoding="utf-8"
+        )
+        commit(legacy, "2026-09-25T12:00:00Z", "add current owner renderer")
+        snapshot = self.snapshot()
+        for key in ("current_validated_methodology_release", "skill_catalog_entries"):
+            entry = snapshot["repositories"]["opensiro/vsm-harness-skills"]["metrics"][key]["window_change"]["7d"]
+            entry["baseline_revision"] = legacy_ref
+        roots = dict(self.roots, skills=legacy)
+        result = finalizer.finalize(snapshot, roots)
+        metrics = result["repositories"]["opensiro/vsm-harness-skills"]["metrics"]
+        for key in ("current_validated_methodology_release", "skill_catalog_entries"):
+            entry = metrics[key]["window_change"]["7d"]
+            self.assertEqual(entry["status"], "source_unavailable_at_baseline")
+            self.assertIsNone(entry["baseline"])
+            self.assertIsNone(entry.get("changed", entry.get("value")))
+            self.assertEqual(entry["baseline_revision"], legacy_ref)
 
     def test_missing_owner_root_fails_closed(self):
         roots = dict(self.roots)
