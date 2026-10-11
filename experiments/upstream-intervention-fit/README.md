@@ -14,6 +14,18 @@ One observation is one **upstream intervention identity**: normally an upstream 
 
 Rebases, review-fix commits, force-pushes, and revisions do not create new observations.
 
+## Attribution and PR replacement chains
+
+The durable entry is the **intervention**, not a PR number or a person. A maintainer may rebase or replace a contributor's original PR with a new PR while keeping the contributor's commits; one intervention may therefore have multiple linked PR URLs, but it is still counted once.
+
+The original `pull_request` stays stable. An optional `related_pull_requests` list records each link with its `relation` (`original`, `landed_replacement`, or `related`) and independently observed PR `lifecycle`; when one merged PR is the accepted landing, its URL appears as `landing_pull_request`. The intervention's own `lifecycle` describes the overall accepted outcome. Do not backfill a merged outcome by silently rewriting an original closed-unmerged PR as merged.
+
+Optional `participants` records each public GitHub account once per intervention with `github_login`, `account_type` (`github_user`, `github_bot`, `unknown`), `roles`, and first-party `evidence_urls`. Examples of roles are `original_pr_author`, `source_commit_contributor`, `landing_pr_author`, `merger`, `reviewer`, `review_fix_commit_contributor`. GitHub account classification does **not** certify a natural person or determine a share of impact. Review roles must be backed by an actual GitHub review, not an author comment. A link mentioning OpenSiro is not itself participation evidence.
+
+`as_of` is the date the **ledger was updated**, not proof that every historical PR was rechecked on that day. `last_verified_at` may specify a case actually refreshed. Unverified participant identity and contributions stay unknown; avoid inventing roles or assigning credit by association.
+
+All this remains experimental and **outside** public canonical productivity/outcome metrics. The prospective five-repository internal PR lifecycle collector is independently tracked under [Organization #208](https://github.com/opensiro/vsm-oss-organization/issues/208); the site display is deferred, not the source ledger.
+
 Every intervention materially initiated or shaped by OpenSiro assessment/research belongs in the log, including rejected, withdrawn, closed-unmerged, and unsuccessful work.
 
 ## Primary metric
