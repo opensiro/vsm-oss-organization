@@ -1,6 +1,11 @@
 name: Archive public PR lifecycle telemetry
 
 on:
+  push:
+    branches: ["main"]
+    paths:
+      - "scripts/collect_pr_activity.py"
+      - ".github/workflows/pr-lifecycle-telemetry.yml"
   workflow_dispatch:
   schedule:
     - cron: "29 3 * * *"
