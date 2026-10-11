@@ -2,6 +2,8 @@
 
 This document is the operational control plane for the bounded **OpenSiro VSM Harness OSS group** defined in `README.md`. It records authority boundaries, compatibility gates, work-lifecycle ownership, and hand-off rules between in-scope public repositories. It is **not** a second source of VSM semantics, Methodology rules, or Index assessment data.
 
+For the **maintainer-facing single-agent command interface**, see [`AGENT_CONTROL_PLANE.md`](AGENT_CONTROL_PLANE.md). That interface consumes these rules; it does not duplicate organizational or repository-owned authority.
+
 The in-scope repository set is maintained explicitly in `README.md`. Repository membership in the `opensiro` organization does not automatically place a project under this control plane. Contributor-local runtimes, schedulers, credentials, budgets, and sandboxes also remain outside this repository's authority.
 
 Contributors who want a minimal human-parent interface before the full M2 implementation may use [`prompts/parent-control-plane.md`](../prompts/parent-control-plane.md). That prompt is a demo interface pattern, not evidence that `S5=P` has already been achieved.
