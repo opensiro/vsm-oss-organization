@@ -11,6 +11,43 @@ The wave ledger reports **5 bounded `PASS` / 5 `INSUFFICIENT`**. These **are the
 - Four still-open frozen batches are `INSUFFICIENT/PENDING` because they **do not yet have** all original source/admission claims to audit; that is not a negative verdict about the missing harnesses.
 - The Organization S3* **audit actor** (this bounded separate ChatGPT context inspecting materially complementary pinned source) is distinct by task role and evidence access, but the connected GitHub user overlaps with the historical Index producer. This proves neither an independent **GitHub review approval** nor a distinct-human reviewer. Original receipts explicitly preserve that distinction.
 
+## Normalized W002 status overlay (derived; not a new verdict)
+
+The following **claim-scope normalized reporting view** allows cross-batch comparison without editing historical receipts, retroactively redefining `PASS/FINDING/INSUFFICIENT`, changing preselected 1/5/10 samples, or granting Index/GitHub review authority. It is **editorial reporting of the frozen W002 cut**, not an additional independently executed S3* judgment or a revised claim selection.
+
+Columns have **different denominators**:
+- **Index S1 readiness**: `TERMINAL` only for a completed batch; `PENDING` means original Index serial work remains unfinished, not a negative audit result.
+- **Publication/process**: `RECONCILED` means exact pinned identities, available canonical terminal records, PR transitions, and exact-head checks reconstructed **only for those terminal rows**; `NO_TERMINAL` means there is no canonical terminal row to reconcile. Technical source-unavailable cases remain distinct from included/excluded.
+- **Source semantic sample**: `BOUNDED_NO_CONTRADICTION` describes a 3/3 preselected source challenge in a completed batch, **not** proof that all six grades of all ten rows are correct. `FINDING` identifies a distinct source-grounded counterclaim; `PROPOSED_BOUNDED_PASS` applies only to the named noncanonical proposed subclaim. `NOT_READY` must not be treated as a failure. These descriptors do not replace each receipt's one authorized local verdict.
+- **Historical semantic-review attribution**: `UNVERIFIED` means available PR/CI records do **not establish a separately attributable independent historical semantic reviewer**; it does not mean a reviewer was necessarily absent or that old Index rules mandated one. `NOT_ADJUDICATED` means this overlay makes no claim on that dimension. This is distinct from the current S3* audit actor and PR #191 publication reviewer.
+- **Original W002 outcome** is reproduced verbatim in meaning, is **not normalized into a common score**, and is not a proxy for Index accuracy.
+
+| Frozen Index batch | Index readiness / canonical terminal | Publication/process scope | Source semantic challenge at frozen sample | Historical reviewer attribution | Original local W002 outcome |
+|---|---|---|---|---|---|
+| [#1202](https://github.com/opensiro/vsm-harness-index/issues/1202) | TERMINAL; 10/10 | RECONCILED 10/10 | 3/3 BOUNDED_NO_CONTRADICTION; conditional PrimusClaw S4 supported on follow-up | UNVERIFIED | INSUFFICIENT (stronger combined claim) |
+| [#1181](https://github.com/opensiro/vsm-harness-index/issues/1181) | TERMINAL; 10/10 | RECONCILED 10/10 | 3/3 BOUNDED_NO_CONTRADICTION | UNVERIFIED | PASS (bounded) |
+| [#1015](https://github.com/opensiro/vsm-harness-index/issues/1015) | TERMINAL; 10/10 | RECONCILED 10/10 | 3/3 BOUNDED_NO_CONTRADICTION | UNVERIFIED | PASS (bounded) |
+| [#1013](https://github.com/opensiro/vsm-harness-index/issues/1013) | PENDING; 0/10 | NO_TERMINAL | NOT_READY; sampled 1/5/10 unadmitted | NOT_ADJUDICATED | INSUFFICIENT / NOT_READY |
+| [#1011](https://github.com/opensiro/vsm-harness-index/issues/1011) | PENDING; 3/10 | RECONCILED 3/3 terminal | row1 FINDING on S3 abort wording; rows 5/10 WAITING | UNVERIFIED for checked terminal PRs | INSUFFICIENT / PENDING |
+| [#1009](https://github.com/opensiro/vsm-harness-index/issues/1009) | TERMINAL; 10/10 | RECONCILED 10/10 | 3/3 BOUNDED_NO_CONTRADICTION | UNVERIFIED | PASS (bounded) |
+| [#1006](https://github.com/opensiro/vsm-harness-index/issues/1006) | PENDING; 2/10 (1 included, 1 excluded) | RECONCILED 2/2 terminal | row1 FINDING challenging positive S4=A standard path; rows 5/10 WAITING | UNVERIFIED for checked terminal PRs | INSUFFICIENT / PENDING |
+| [#1005](https://github.com/opensiro/vsm-harness-index/issues/1005) | PENDING; 0/10 | NO_TERMINAL; row1 proposal not admitted | row1 PROPOSED_BOUNDED_PASS for S3* absence only; rows 5/10 WAITING | NOT_ADJUDICATED | INSUFFICIENT / PENDING |
+| [#1004](https://github.com/opensiro/vsm-harness-index/issues/1004) | TERMINAL; 10/10 | RECONCILED 10/10 | 3/3 BOUNDED_NO_CONTRADICTION | UNVERIFIED | PASS (bounded) |
+| [#1002](https://github.com/opensiro/vsm-harness-index/issues/1002) | TERMINAL; 8 included + 2 technical source-unavailable | RECONCILED 8/8 included; 2 technical dispositions separately checked | 3/3 BOUNDED_NO_CONTRADICTION for sampled available source | UNVERIFIED | PASS (bounded) |
+
+**Aggregate over the same frozen cut:** 100/100 row *statuses accounted*, not 100 semantic reviews; 63/63 **canonical terminal** process rows reconciled (62 included + 1 excluded); two **technical** source-unavailable terminal slots separately accounted; 18/18 preregistered deep semantic challenges of the six terminal batches; 35 Index rows nonterminal. The four OPEN batches remain `PENDING` independently of their row1 findings. There are **two distinct row-level findings** and **zero owner-adjudicated canonical grade replacements** in these records. Do not describe 5/10 bounded PASS as a 50% assessment accuracy estimate.
+
+### Finding disposition / verification tracking (separate from local audit verdict)
+
+Disposition is **a downstream control state**, not a fourth S3* verdict. `ROUTED_OPEN` → `ADJUDICATED` (Index owner states an explicit accept, reject, or evidence-insufficient decision with reason and same-ref scope) → `VERIFIED` (later evidence verifies implemented correction or reasoned closure, with exact SHA/PR/main where applicable). An owner decision can reject a finding; neither presence of a finding nor a `PASS` requires automatically changing an autonomy vector. Keep original `FINDING` receipt immutable, append a linked disposition record only after real evidence. An unresolved disposition is **not** S3 corrective closure.
+
+| Audit finding | Original bounded semantic challenge | Downstream Index route | Disposition at this cut | Closure evidence |
+|---|---|---|---|---|
+| [#1011 row1 swarm-code](W002-1011-swarm-code-r01-audit.md) | Flow controller abort does not establish detached-child termination; S3=C unchanged | [Index #1011 finding](https://github.com/opensiro/vsm-harness-index/issues/1011#issuecomment-6108114056), [source follow-up](https://github.com/opensiro/vsm-harness-index/issues/1011#issuecomment-6108788056) | ROUTED_OPEN | None: no Index owner disposition verified |
+| [#1006 row1 SuisuiCode](W002-1006-suisuicode-r01-s4-audit.md) | Unwired default memory-provider path challenges accepted positive standard-mode S4=A premise; replacement grade undecided | [Index #1006 finding](https://github.com/opensiro/vsm-harness-index/issues/1006#issuecomment-6108183284), [executable evidence follow-up](https://github.com/opensiro/vsm-harness-index/issues/1006#issuecomment-6108651908) | ROUTED_OPEN | None: no Index owner disposition verified |
+
+**Publication control:** an independently authorized reviewer may accept PR #191 as accurately bounded **partial W002 evidence** after exact-current-head checks. That neither fills missing original Index rows nor closes [#190](https://github.com/opensiro/vsm-oss-organization/issues/190). The separate prospective reporting/template rule belongs in a new governance item, not retroactively in the frozen W002 audit contract.
+
 ## Multi-axis comparison (preserve the local outcomes above)
 
 | Batch | Frozen S1 state | Historical publication / lifecycle | Preregistered independent source challenge | Historical semantic-review actor attribution | Original W002 local outcome |

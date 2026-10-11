@@ -8,6 +8,12 @@
 
 [W001 pre-outcome manifest](https://github.com/opensiro/vsm-oss-organization/issues/188#issuecomment-6107447382) is owned by **another chat** and freezes the newest ten Index batches: **#1378, #1377, #1352, #1315, #1314, #1302, #1300, #1296, #1273, #1252**. These are all **LOCKED_BY_W001**, not audited by W002 and not included in any denominator below. The earlier empty branch `audit/s3star-188-wave-001-20261011` was explicitly relinquished; it is not this wave's authority. [W002 #190](https://github.com/opensiro/vsm-oss-organization/issues/190) freezes the next ten distinct assessment batches; duplicate Index #1223 of #1181 is excluded, not an extra audited population. This context writes **only** Organization branch `audit/s3star-190-wave-002-20261011`, not any Index assessment/PR branch.
 
+## Comparable reporting and downstream findings (derived view)
+
+[Normalized W002 status overlay](W002-claim-scope-review-handoff.md#normalized-w002-status-overlay-derived-not-a-new-verdict) separates **Index readiness**, **terminal-row process reconciliation**, **bounded semantic evidence**, **historical reviewer attribution**, and the **original local audit outcome**. The pre-existing five bounded PASS / five INSUFFICIENT are **different claim scopes**, not a comparable error rate or evidence of five historical independent reviewer approvals.
+
+For **both** exact-ref row-level findings, downstream state at this evidence cut is **`ROUTED_OPEN`**, not `ADJUDICATED` or `VERIFIED`: [#1011 swarm-code S3 abort wording](https://github.com/opensiro/vsm-harness-index/issues/1011#issuecomment-6108114056) and [#1006 SuisuiCode S4 positive premise](https://github.com/opensiro/vsm-harness-index/issues/1006#issuecomment-6108183284). A subsequent Index disposition must be linked and separately verified before claiming control closure. This overlay **does not alter the original source verdicts, frozen 1/5/10 samples, 100-row population, W001 locks, or Index ownership**.
+
 ## Frozen batch accounting — immutable no-refill sample
 
 | W002 order | Index owner | Board state observed | Canonically terminal admissions/exclusions* | Technical source failure | PENDING / nonterminal rows | Local S3* status | Evidence | Outstanding scope |
