@@ -1,0 +1,56 @@
+# W002 audit result comparability and independent publication-review handoff
+
+**Document type:** bounded evidence-quality cross-check and reviewer handoff, **NOT** an S3* second audit, a new batch, independent review vote, Index correction, or a replacement for original append-only audit receipts. Source: [Organization W002 #190](https://github.com/opensiro/vsm-oss-organization/issues/190), [draft PR #191](https://github.com/opensiro/vsm-oss-organization/pull/191) at its current read-before-review head. Frozen audit claims and samples stay owned by that original wave.
+
+## Why an extra cross-check is warranted
+
+The wave ledger reports **5 bounded `PASS` / 5 `INSUFFICIENT`**. These **are the original local audit outcomes**, but they are **not ten interchangeable measures of one uniform proposition**:
+
+- `PASS (bounded)` for five completed batches is **only** the covered publication claims: pinned upstream identities, distinct review/admission GitHub PRs, status/CI/catalog/signature materialization, plus **3 preselected** primary-source semantic challenge positions. It does **not** establish attributable independent historical PR approval, full-code coverage of all ten harnesses, performance, or human / AI reviewer actor independence.
+- #1202 records `INSUFFICIENT` because its original audit scope also asked the **stronger composite question** of historically independent semantic-review provenance and operational/semantic completeness. Independently queried public review-event endpoints for sampled PRs did **not** establish the former. [PrimusClaw S4 addendum](W002-1202-primusclaw-s4-addendum.md) strengthens source support for its original opt-in `S4=A` and narrows the semantic ambiguity, **but cannot establish the missing independent review actor or change the pre-existing local outcome automatically**.
+- Four still-open frozen batches are `INSUFFICIENT/PENDING` because they **do not yet have** all original source/admission claims to audit; that is not a negative verdict about the missing harnesses.
+- The Organization S3* **audit actor** (this bounded separate ChatGPT context inspecting materially complementary pinned source) is distinct by task role and evidence access, but the connected GitHub user overlaps with the historical Index producer. This proves neither an independent **GitHub review approval** nor a distinct-human reviewer. Original receipts explicitly preserve that distinction.
+
+## Multi-axis comparison (preserve the local outcomes above)
+
+| Batch | Frozen S1 state | Historical publication / lifecycle | Preregistered independent source challenge | Historical semantic-review actor attribution | Original W002 local outcome |
+|---|---|---|---|---|---|
+| [#1202](https://github.com/opensiro/vsm-harness-index/issues/1202) | 10 terminal | 10/10 reconciled, 20 PR heads | 3/3; S4 addendum supports conditional PrimusClaw `A` | **Unproven** on checked original PR records | `INSUFFICIENT` (stronger combined scope) |
+| [#1181](https://github.com/opensiro/vsm-harness-index/issues/1181) | 10 terminal | 10/10 reconciled, 20 PR heads | 3/3 no demonstrated contradiction | **Not established** by public checks; sampled formal PR review objects absent | `PASS` (bounded source/lifecycle scope) |
+| [#1015](https://github.com/opensiro/vsm-harness-index/issues/1015) | 10 terminal | 10/10 reconciled, 20 PR heads | 3/3 no demonstrated contradiction | **Not established**; inspected Orkas formal review absent | `PASS` (bounded source/lifecycle scope) |
+| [#1013](https://github.com/opensiro/vsm-harness-index/issues/1013) | 0/10 terminal | **Unready** | no admitted row1/5/10 claim to close | Not adjudicated | `INSUFFICIENT` / NOT_READY |
+| [#1011](https://github.com/opensiro/vsm-harness-index/issues/1011) | 3/10 terminal | partial, 7 waiting | row1 source probe; 5/10 WAITING | Not adjudicated for whole batch | `INSUFFICIENT` / PENDING |
+| [#1009](https://github.com/opensiro/vsm-harness-index/issues/1009) | 10 terminal | 10/10 reconciled, 20 actual merged PRs; replaced PRs disclosed | 3/3 no demonstrated contradiction | **Not established** by samples of public PR review objects | `PASS` (bounded source/lifecycle scope) |
+| [#1006](https://github.com/opensiro/vsm-harness-index/issues/1006) | 2/10 terminal, incl. one exclusion | partial, 8 waiting | row1 source probe; 5/10 WAITING | Not adjudicated for whole batch | `INSUFFICIENT` / PENDING |
+| [#1005](https://github.com/opensiro/vsm-harness-index/issues/1005) | 0/10 terminal; row1 review proposed | admission blocked | row1 primary-source probe only; 5/10 WAITING | Not adjudicated | `INSUFFICIENT` / PENDING |
+| [#1004](https://github.com/opensiro/vsm-harness-index/issues/1004) | 10 terminal | 10/10 reconciled; cancelled second run #1243 disclosed | 3/3 no demonstrated contradiction | **Not established** by publication CI | `PASS` (bounded source/lifecycle scope) |
+| [#1002](https://github.com/opensiro/vsm-harness-index/issues/1002) | 8 admitted / 2 technical terminal | 8/8 canonical and technical failures separately explained | 3/3 sampled *admitted* source rows; unavailable frozen refs are not graded | **Not established** on public review-event samples | `PASS` (bounded source/lifecycle scope) |
+
+**Safe aggregate statements:**
+
+- W002's frozen population: **10/10 batches, 100/100 row status slots accounted**; 62 included, one excluded, two source-unavailable technical, 35 ordinary S1 nonterminal.
+- **6/6 currently terminal batches** had process/provenance reconstruction and **18 selected primary-source semantic challenges** (three for each); **4/4 open batches** retain PENDING locks.
+- **5 bounded local PASS / 5 local INSUFFICIENT / 0 proven canonical grade FINDING**. These local outcome categories are **scope-conditioned**, not "50% of all Index assessments validated" or "5 independent approvals".
+- **Zero new independent Organization PR approvals** are established by these source checks; GitHub structural CI (even green) is not semantic review. The draft PR's actual current head/check/reviewer status must be fetched afresh before any merge.
+
+## Independent reviewer acceptance questions
+
+A **separately authorized and genuinely independent reviewer**, if admitted, should evaluate **this exact PR head and the original immutable Index source refs**, not rely on this author's claim of independence. Review minimum:
+
+1. Audit the declared source of each claim: inspect full [W002-wave-ledger.md](W002-wave-ledger.md) and original [#190](https://github.com/opensiro/vsm-oss-organization/issues/190). Verify W001 locks and duplicate #1223 exclusion. **Do not** reselect sampling based on published outcomes.
+2. Reproduce one or more claim-relative counterchecks **from primary frozen source**, preferably source/code areas beyond the author-provided citations, and compare with recorded first/lower-median/last-position judgments. In particular evaluate [PrimusClaw S4 addendum](W002-1202-primusclaw-s4-addendum.md) against normative Profile 0.2.4 §9 without retroactive Methodology 0.3.7 migration.
+3. Validate 100-row arithmetic, #1002 technical-vs-exclusion treatment, #1006 Zigent exclusion, the **two actually unmerged admission proposals** in #1009 (#1052/#1078), and exact-head **mixed/cancelled CI** in #1009/#1004; reject any blanket claim that all historical individual runs passed.
+4. Keep distinct **(a)** an S3* complementary evidence verdict, **(b)** historical independent Index semantic PR review provenance, **(c)** Organization PR #191 publication review. Approving one cannot retroactively manufacture either of the others; do not use this review as a new Index authorization.
+5. Record a source-citable `PASS`, `FINDING`, or `INSUFFICIENT` for the **independent publication review's own clearly bounded claim** and actual actor, and submit the legitimate PR/issue review in the interface allowed by reviewer authority. New material contradiction needs an exact source SHA and Index owner route; any downstream S3 decision is separate.
+
+**Fail-closed/publication rule:** no fake reviewer identity; no self-submitted approval by the producer account; no draft→ready→merge merely because CI succeeded. This handoff is preparatory and leaves [PR #191](https://github.com/opensiro/vsm-oss-organization/pull/191) **DRAFT** until an independent reviewer is actually available and the four nonterminal Index batches reach their own legitimate boundaries. Four PENDING batches are not replaced, and the W001 agent's ten batches remain LOCKED_BY_W001.
+
+## Minimal evidence paths
+
+- [Whole W002 wave ledger](W002-wave-ledger.md)
+- [#1202 all ten lifecycle pairs](W002-1202-lifecycle.md) and [PrimusClaw original](W002-1202-primusclaw-audit.md) plus [S4 follow-up](W002-1202-primusclaw-s4-addendum.md)
+- [#1181](W002-1181-audit.md), [#1015](W002-1015-audit.md), [#1009](W002-1009-audit.md), [#1004](W002-1004-audit.md), [#1002](W002-1002-audit.md)
+- [Four open batches](W002-open-batches-pending.md)
+- [Prospective semantic reviewer/provenance design #189](https://github.com/opensiro/vsm-oss-organization/issues/189)
+
+**Current actor:** same W002 audit-writing context doing an *internal evidence/claim consistency check*. No independent reviewer has performed this handoff's requested checks by virtue of this file existing.
