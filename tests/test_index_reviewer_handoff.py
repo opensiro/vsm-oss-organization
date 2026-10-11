@@ -59,6 +59,52 @@ class ReviewHandoffTests(unittest.TestCase):
         r = fixture()
         r["reviewer_input_refs"].append(r["proposal_pr"])
         self.assertTrue(s.validate(r))
+    def test_single_good_input_does_not_hide_exposed_author_issue(self):
+        r = fixture()
+        r["reviewer_input_refs"].append(
+            "https://github.com/opensiro/vsm-harness-index/issues/1387")
+        self.assertTrue(s.validate(r))
+
+    def test_single_good_input_does_not_hide_other_source(self):
+        r = fixture()
+        r["reviewer_input_refs"].append(
+            "https://github.com/another/source/blob/" + "a" * 40 + "/file.py")
+        self.assertTrue(s.validate(r))
+
+    def test_source_first_allows_exact_contract_refs(self):
+        r = fixture()
+        r["reviewer_input_refs"].extend([r["profile_ref"], r["skills_ref"]])
+        self.assertEqual(s.validate(r), [])
+
+    def test_normative_ref_on_floating_branch_rejected(self):
+        r = fixture()
+        r["profile_ref"] = "https://github.com/opensiro/vsm-harness-profile/blob/main/PROFILE.md"
+        self.assertTrue(s.validate(r))
+
+    def test_primary_ref_to_author_pr_rejected(self):
+        r = fixture()
+        r["source_verdict"]["functions"][3]["primary_refs"] = [
+            "https://github.com/opensiro/vsm-harness-index/pull/1388"]
+        self.assertTrue(s.validate(r))
+
+    def test_primary_ref_to_unpinned_other_repo_rejected(self):
+        r = fixture()
+        r["source_verdict"]["functions"][3]["primary_refs"] = [
+            "https://github.com/get-bb/bb/blob/main/src/file.py"]
+        self.assertTrue(s.validate(r))
+
+    def test_primary_ref_to_wrong_upstream_sha_rejected(self):
+        r = fixture()
+        r["source_verdict"]["functions"][3]["primary_refs"] = [
+            "https://github.com/acme/code/blob/" + "f" * 40 + "/agent.py"]
+        self.assertTrue(s.validate(r))
+
+    def test_exact_sha_line_anchor_is_permitted(self):
+        r = fixture()
+        r["source_verdict"]["functions"][3]["primary_refs"] = [
+            "https://github.com/acme/code/blob/" + "a" * 40 + "/agent.py#L10-L20"]
+        self.assertEqual(s.validate(r), [])
+
     def test_input_branch_not_pinned(self):
         r = fixture()
         r["reviewer_input_refs"] = ["https://github.com/acme/code/blob/main/agent.py"]

@@ -16,6 +16,37 @@ PHASES = {"REQUESTED", "SOURCE_VERDICT_RECORDED", "RECONCILED"}
 URL = re.compile(r"^https://github\.com/[^/ ]+/[^/ ]+/(?:blob|tree|issues|pull|commit)/[^ ]+$")
 CONTAMINATING = ("/pull/", "/assessments/", "proposed_vector", "author_rationale", "preferred_outcome")
 
+
+def _pinned_upstream_link(url: object, repository: object, sha: object) -> bool:
+    """Only a frozen upstream tree/file can count as primary source evidence."""
+    if not isinstance(url, str) or not isinstance(repository, str) or not isinstance(sha, str):
+        return False
+    if not HEX40.fullmatch(sha) or not re.fullmatch(r"[^/ ]+/[^/ ]+", repository):
+        return False
+    base = re.escape(f"https://github.com/{repository}")
+    tree = rf"/tree/{sha}(?:/[^?# ]+)?"
+    blob = rf"/blob/{sha}/[^?# ]+"
+    lines = r"(?:#L[0-9]+(?:-L[0-9]+)?)?"
+    return bool(re.fullmatch(rf"{base}(?:{tree}|{blob}){lines}", url))
+
+
+def _pinned_contract_ref(url: object, repository: str) -> bool:
+    """Allow only exact-commit normative references in the reviewer envelope."""
+    if not isinstance(url, str):
+        return False
+    base = re.escape(f"https://github.com/{repository}")
+    tail = r"(?:commit/[0-9a-f]{40}|blob/[0-9a-f]{40}/[^?# ]+|tree/[0-9a-f]{40}(?:/[^?# ]+)?)"
+    return bool(re.fullmatch(rf"{base}/{tail}(?:#L[0-9]+(?:-L[0-9]+)?)?", url))
+
+
+def _allowed_source_first_input(url: object, record: dict) -> bool:
+    if _pinned_upstream_link(url, record["source_repository"], record["source_sha"]):
+        return True
+    return (
+        (url == record["profile_ref"] and _pinned_contract_ref(url, "opensiro/vsm-harness-profile"))
+        or (url == record["skills_ref"] and _pinned_contract_ref(url, "opensiro/vsm-harness-skills"))
+    )
+
 def _date(value: object, where: str, errors: list[str]) -> dt.datetime | None:
     try:
         if not isinstance(value, str):
@@ -48,9 +79,13 @@ def validate(record: object) -> list[str]:
     for key in ("source_sha", "reviewed_head"):
         if not isinstance(record[key], str) or not HEX40.fullmatch(record[key]):
             errors.append(key + ": expected exact full SHA")
-    for key in ("index_issue", "proposal_pr", "profile_ref", "skills_ref"):
+    for key in ("index_issue", "proposal_pr"):
         if not _url(record[key]):
-            errors.append(key + ": expected public pinned GitHub reference")
+            errors.append(key + ": expected public GitHub reference")
+    for key, repo in (("profile_ref", "opensiro/vsm-harness-profile"),
+                      ("skills_ref", "opensiro/vsm-harness-skills")):
+        if not _pinned_contract_ref(record[key], repo):
+            errors.append(key + ": must pin the correct normative repository to exact commit SHA")
     if "/issues/" not in str(record["index_issue"]) or "/pull/" not in str(record["proposal_pr"]):
         errors.append("Index issue / PR URLs must identify correct resource types")
     if not isinstance(record["source_repository"], str) or not re.fullmatch(r"[^/ ]+/[^/ ]+", record["source_repository"]):
@@ -61,20 +96,17 @@ def validate(record: object) -> list[str]:
     if record["producer_context"] == record["reviewer_context"]:
         errors.append("same producer and reviewer context: no independent handoff")
     inputs = record["reviewer_input_refs"]
-    if not isinstance(inputs, list) or not inputs or any(not _url(x) for x in inputs):
-        errors.append("reviewer_input_refs must contain primary public GitHub references")
+    if not isinstance(inputs, list) or not inputs:
+        errors.append("reviewer_input_refs must contain frozen upstream primary sources")
     else:
-        frozen = f"https://github.com/{record['source_repository']}/blob/{record['source_sha']}/"
-        frozen_tree = f"https://github.com/{record['source_repository']}/tree/{record['source_sha']}/"
-        if not any(x.startswith(frozen) or x.startswith(frozen_tree) for x in inputs):
+        if not any(_pinned_upstream_link(x, record["source_repository"], record["source_sha"]) for x in inputs):
             errors.append("no exact frozen primary upstream source link in reviewer inputs")
-        for x in inputs:
-            if any(term in x.lower() for term in CONTAMINATING):
-                errors.append("source-first input contaminated with producer proposal")
+        # Merely having one good source URL is NOT enough: one additional
+        # author issue or unpinned source contaminates a blind reviewer.
+        for url in inputs:
+            if not _allowed_source_first_input(url, record):
+                errors.append("source-first input includes non-primary or non-pinned material")
                 break
-            m = re.match(r"^https://github\.com/[^/]+/[^/]+/(?:blob|tree)/([^/#]+)", x)
-            if m and not HEX40.fullmatch(m.group(1)):
-                errors.append("source-first source/tree URL must pin full commit SHA")
     verdict = record["source_verdict"]
     comparison = record["comparison"]
     if record["phase"] == "REQUESTED":
@@ -102,8 +134,10 @@ def validate(record: object) -> list[str]:
                 break
             if not isinstance(item["judgment"], str) or not item["judgment"].strip():
                 errors.append("empty source-derived judgment")
-            if not isinstance(item["primary_refs"], list) or not item["primary_refs"] or any(not _url(u) for u in item["primary_refs"]):
-                errors.append("missing first-party primary source ref")
+            if (not isinstance(item["primary_refs"], list) or not item["primary_refs"]
+                    or any(not _pinned_upstream_link(u, record["source_repository"], record["source_sha"])
+                           for u in item["primary_refs"])):
+                errors.append("per-function primary refs must be original exact-SHA upstream tree/file links")
             if not isinstance(item["counterevidence"], str) or not item["counterevidence"].strip():
                 errors.append("missing counterevidence/absence/uncertainty check")
     if record["phase"] == "SOURCE_VERDICT_RECORDED":
