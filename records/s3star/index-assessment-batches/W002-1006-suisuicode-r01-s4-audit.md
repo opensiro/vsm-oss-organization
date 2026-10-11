@@ -34,6 +34,7 @@
 **Local `FINDING` remains OPEN until actual Index decision and any correctly gated correction can be verified on live main.** Publication of this record or notification to Index is **not** S3 exceptional-current-control closure and **not** proof of an autonomous Organization S3* state.
 
 **Batch result retained:** #1006 `INSUFFICIENT/PENDING`; five previously accepted bounded PASS batch outcomes elsewhere in W002 are unaffected, as are 35 other nonterminal row slots.
+
 ## Local frozen-source executable reproduction (separate from static path proof)
 
 An **isolated** workspace was created solely for *read-only upstream probing*, not Index canonical mutation. Git initialized and fetched the exact original upstream commit as a detached shallow checkout; independently observed `git rev-parse HEAD == c9017b0613b22151325a5904a521aefe4c62abbc`; `git status --short` empty. A whole-repository tracked-Python search:
@@ -80,7 +81,9 @@ async def check():
 asyncio.run(check())
 ```
 
-**Actual run result (exit 0):**
+The exact Python snippet below (also re-extracted directly from this committed Markdown code fence) was independently executed in the same exact-commit checkout with `PYTHONPATH=src` and exited **0**, printing `DOCUMENTED_REPRO_EXIT_0`. It uses an in-process deterministic provider, not external API/model credentials.
+
+**Actual run result (exit 0, diagnostic variant with prints):**
 
 ```text
 WITHOUT_BINDING: provider_is_none= True provider_calls= 0 notes= 1
