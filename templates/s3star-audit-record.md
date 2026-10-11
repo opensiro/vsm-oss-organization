@@ -87,6 +87,23 @@ Subsequent S1 effect, if any:
 
 Closure/result refs:
 
+## Prospective Index-batch reporting overlay (when applicable)
+
+Use only when the governing audit contract includes the prospective reporting dimensions. This section is **additional metadata**, not another S3* verdict. For non-Index-batch audits, set `applicability: not_applicable`. For frozen historical waves, do not retrofit the original audit receipt; a separately labeled derived view may reference it.
+
+- applicability: Index-batch / not_applicable
+- owning Index batch + actual S1 board/cutoff ref:
+- s1_readiness: TERMINAL / PENDING / NOT_READY (cite source):
+- process_scope: RECONCILED / PARTIAL / NO_TERMINAL; numerator / eligible denominator; exact original PR/CI/catalog refs:
+- semantic_scope: frozen source SHA and contract; preselected row positions; source-checked / eligible; exact bounded subclaim, unsampled limitations and primary refs:
+- historical_reviewer_provenance: ESTABLISHED / UNVERIFIED / NOT_ADJUDICATED; observed reviewer evidence, source of attribution, and uncertainty:
+- finding_disposition (FINDING only): ROUTED_OPEN / ADJUDICATED / VERIFIED / not_applicable:
+- downstream decision owner + routed issue/comment and original evidence SHA:
+- owner decision and reason (accept / reject / insufficient / not_yet_observed), dated exact-ref decision reference:
+- independently verified correction or reasoned closure refs (Index PR/main SHA when applicable), or `none yet`:
+
+Do not confuse a completed **source/PR/CI reconciliation** with a complete semantic review or a GitHub independent approval. An Index-batch `PENDING` or `UNVERIFIED` historical reviewer status does **not** change the local `PASS/FINDING/INSUFFICIENT` choice above. A routed finding is not downstream S3 closure and cannot automatically change Index grades.
+
 ## M1 constructor check
 
 - S3* function established from a real complementary audit need? yes / no / insufficient
