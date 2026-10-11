@@ -12,7 +12,7 @@
 
 | W002 order | Index owner | Board state observed | Canonically terminal admissions/exclusions* | Technical source failure | PENDING / nonterminal rows | Local S3* status | Evidence | Outstanding scope |
 |---:|---|---|---:|---:|---:|---|---|---|
-| 1 | [#1202](https://github.com/opensiro/vsm-harness-index/issues/1202) | TERMINAL | 10 | 0 | 0 | **INSUFFICIENT** | [Receipt](W002-1202-lifecycle.md + three standalone primary-source records) | PrimusClaw S4 boundary and independent reviewer provenance |
+| 1 | [#1202](https://github.com/opensiro/vsm-harness-index/issues/1202) | TERMINAL | 10 | 0 | 0 | **INSUFFICIENT** | [Receipt](W002-1202-lifecycle.md) + three standalone primary-source records | PrimusClaw S4 boundary and independent reviewer provenance |
 | 2 | [#1181](https://github.com/opensiro/vsm-harness-index/issues/1181) | TERMINAL | 10 | 0 | 0 | **PASS (bounded)** | [Receipt](W002-1181-audit.md) | No 10/10 exhaustive semantic guarantee; historical PR review attribution absent in sampled event objects |
 | 3 | [#1015](https://github.com/opensiro/vsm-harness-index/issues/1015) | TERMINAL | 10 | 0 | 0 | **PASS (bounded)** | [Receipt](W002-1015-audit.md) | No independent GitHub formal review inferred from CI |
 | 4 | [#1013](https://github.com/opensiro/vsm-harness-index/issues/1013) | OPEN | 0 | 0 | 10 | **INSUFFICIENT / NOT_READY** | [Receipt](W002-open-batches-pending.md) | CODING row1 NEXT, rows 5 and 10 WAITING |
