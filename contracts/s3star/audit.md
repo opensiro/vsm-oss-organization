@@ -40,3 +40,7 @@ Issue #44 / PR #45 exercised this topology on real repository work. The auditor 
 The audit judgment owner is the actor exercising discretionary judgment over the complementary evidence in the concrete run. During M1 that owner may be human, agent, or another explicitly composed participant. Evidence collectors, APIs, tests, deterministic scripts, validators, parsers, queues, and transport remain support unless they exercise that judgment.
 
 The actor adapter is [`../../roles/S3STAR.md`](../../roles/S3STAR.md). Its presence does not independently establish S3*.
+
+## Prospective concurrent-wave coordination
+
+For new parallel Index-batch audit lanes, use the Organization-owned [atomic S3* slot protocol](claims.md) before starting source judgment. This is a coordination instrument, not a replacement for the complementary-audit threshold, the actual judgment owner or Index review/merge authorization. Preexisting frozen W001 claim comments remain historical rather than retroactively atomically locked.
