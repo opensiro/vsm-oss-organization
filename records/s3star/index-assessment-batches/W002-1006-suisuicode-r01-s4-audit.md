@@ -34,3 +34,59 @@
 **Local `FINDING` remains OPEN until actual Index decision and any correctly gated correction can be verified on live main.** Publication of this record or notification to Index is **not** S3 exceptional-current-control closure and **not** proof of an autonomous Organization S3* state.
 
 **Batch result retained:** #1006 `INSUFFICIENT/PENDING`; five previously accepted bounded PASS batch outcomes elsewhere in W002 are unaffected, as are 35 other nonterminal row slots.
+## Local frozen-source executable reproduction (separate from static path proof)
+
+An **isolated** workspace was created solely for *read-only upstream probing*, not Index canonical mutation. Git initialized and fetched the exact original upstream commit as a detached shallow checkout; independently observed `git rev-parse HEAD == c9017b0613b22151325a5904a521aefe4c62abbc`; `git status --short` empty. A whole-repository tracked-Python search:
+
+```sh
+git grep -n -E 'set_provider\(|_mem_mgr\._provider|mem_mgr\._provider' -- '*.py'
+```
+
+returned **exactly** `src/suisuicode/memory/manager.py:117: def set_provider(...)` and no call site in tracked Python sources. This broadens the main CLI/TUI inspection to all pinned tracked Python files; it is still not a formal control-flow or test of every dynamic/plugin entrypoint.
+
+Executed the **real frozen** `suisuicode.memory.manager.Manager` implementation with `PYTHONPATH=src`, an isolated tempfile as project/user Store, a lightweight deterministic test provider that returns a valid `create` action, and a single synthetic user message. The following probe deliberately compares the **same Manager** before and after an explicit setter:
+
+```python
+import asyncio, pathlib, tempfile, types
+from suisuicode.memory.manager import Manager
+
+class ProbeProvider:
+    def __init__(self):
+        self.calls = 0
+
+    async def stream(self, request):
+        self.calls += 1
+        action = '[{"action":"create","level":"project","name":"future-rule",' \
+                 '"description":"Future rule","type":"feedback",' \
+                 '"content":"remember this"}]'
+        yield types.SimpleNamespace(text=action, err=None, done=True)
+
+async def check():
+    with tempfile.TemporaryDirectory() as tmp:
+        root = pathlib.Path(tmp)
+        provider = ProbeProvider()
+        mgr = Manager(str(root / "project"), str(root / "user"), provider=None)
+        recent = [types.SimpleNamespace(role="user", content="Remember this")]
+        await mgr.update_async(recent)
+        assert mgr._provider is None
+        assert provider.calls == 0
+        assert not (root / "project" / "future-rule.md").exists()
+
+        mgr.set_provider(provider, "probe")
+        await mgr.update_async(recent)
+        assert provider.calls == 1
+        assert (root / "project" / "future-rule.md").exists()
+
+asyncio.run(check())
+```
+
+**Actual run result (exit 0):**
+
+```text
+WITHOUT_BINDING: provider_is_none= True provider_calls= 0 notes= 1
+WITH_EXPLICIT_BINDING: provider_calls= 1 created_note= True
+```
+
+The one note counted before binding is the **empty `MEMORY.md` index created during Store initialization**, **not** a learned or updated future-rule memory; the explicit target note is absent before binding and present afterwards. This proves the pinned updater's provider-null guard prevents even a stub LLM call and that explicit binding changes the behavior. It does **not** execute the whole CLI/TUI live session, establish a real provider-backed learning quality, or choose a replacement VSM grade. Attempt to run focused `tests/test_memory.py` with `python3 -m pytest` was **NOT RUN** because `pytest` is not installed in this isolated environment (`No module named pytest`), not claimed as a test success/failure in the upstream harness. No upstream files were changed.
+
+**S3* impact:** strengthens the original source-native `FINDING` and its confidence; no change to cohort, sampling, published Index grade, W002 batch-level `INSUFFICIENT/PENDING` or Index correction authority. The owner can reproduce using the immutable upstream SHA.
