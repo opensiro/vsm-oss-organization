@@ -38,6 +38,9 @@ The wave ledger reports **5 bounded `PASS` / 5 `INSUFFICIENT`**. These **are the
 
 **Executable corroboration of the #1006 finding:** [row1 pinned-source repro](W002-1006-suisuicode-r01-s4-audit.md#local-frozen-source-executable-reproduction) uses a detached upstream Git checkout at the original exact SHA and `git grep` across all tracked Python to show there is **no caller** of `Manager.set_provider`; the actual `Manager.update_async` under `provider=None` returns without any LLM calls, while explicitly binding a deterministic provider creates a memory note. Both the diagnostic test and the exact recorded Python code fence exited **0**. This is not end-to-end proof of deployed CLI behavior or a replacement-grade determination. Separate upstream `pytest` suite was **NOT RUN** because `pytest` was absent.
 
+
+**Second finding corroboration boundary:** [#1011 pinned whole-tree stop/kill source inventory](W002-1011-swarm-code-r01-audit.md#independent-full-tree-source-completeness-probe--frozen-code-and-control-alternatives) distinguishes direct `/flows` abort-path stop-file handling from separately accessible `/bg kill`, tool kill, and Background's process-group test. A local static invariant probe against the exact frozen `swarm-code` source passed, but the `.sw` compiler `swc` was not present; reviewer **must not** read the source finding as a reproduced detached-child survival incident. It remains a specific S3 abort-control return caveat, not a disputed categorical `S3=C` vector.
+
 ## Independent reviewer acceptance questions
 
 A **separately authorized and genuinely independent reviewer**, if admitted, should evaluate **this exact PR head and the original immutable Index source refs**, not rely on this author's claim of independence. Review minimum:
