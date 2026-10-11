@@ -1,5 +1,5 @@
 {
-  "as_of": "2026-09-29",
+  "as_of": "2026-10-12",
   "experiment": "upstream-intervention-fit",
   "fit_counts": {
     "fail": 1,
@@ -17,8 +17,47 @@
     {
       "fit": "pending",
       "id": "henterprise-1",
-      "lifecycle": "open",
+      "landing_pull_request": "https://github.com/humbertobellor/henterprise/pull/3",
+      "last_verified_at": "2026-10-12",
+      "lifecycle": "merged",
+      "participants": [
+        {
+          "account_type": "github_user",
+          "evidence_urls": [
+            "https://github.com/humbertobellor/henterprise/pull/1",
+            "https://github.com/humbertobellor/henterprise/commit/95851c2107db"
+          ],
+          "github_login": "xLagerFeuer",
+          "roles": [
+            "original_pr_author",
+            "source_commit_contributor"
+          ]
+        },
+        {
+          "account_type": "github_user",
+          "evidence_urls": [
+            "https://github.com/humbertobellor/henterprise/pull/3"
+          ],
+          "github_login": "humbertobellor",
+          "roles": [
+            "landing_pr_author",
+            "merger"
+          ]
+        }
+      ],
       "pull_request": "https://github.com/humbertobellor/henterprise/pull/1",
+      "related_pull_requests": [
+        {
+          "lifecycle": "closed_unmerged",
+          "relation": "original",
+          "url": "https://github.com/humbertobellor/henterprise/pull/1"
+        },
+        {
+          "lifecycle": "merged",
+          "relation": "landed_replacement",
+          "url": "https://github.com/humbertobellor/henterprise/pull/3"
+        }
+      ],
       "upstream_repository": "humbertobellor/henterprise"
     },
     {
@@ -52,7 +91,8 @@
   ],
   "lifecycle_counts": {
     "closed_unmerged": 1,
-    "open": 5
+    "merged": 1,
+    "open": 4
   },
   "primary_metric": {
     "denominator_completed_reviews": 3,

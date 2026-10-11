@@ -4,7 +4,10 @@
     "one intervention identity counts once regardless of commit or revision count",
     "an OpenSiro/VSM grade change cannot satisfy a fit gate",
     "maintainer acceptance is evidence but is not the metric itself",
-    "do not backfill only successful interventions"
+    "do not backfill only successful interventions",
+    "related original/replacement PRs count as one intervention identity; retain both upstream permalinks and lifecycles",
+    "a reference to OpenSiro or VSM in a PR alone is not evidence that an actor wrote, reviewed, or merged code",
+    "participant roles must have first-party PR/commit/review evidence; GitHub account type must not be mistaken for a verified natural person"
   ],
   "derived_fit": {
     "fail": "one or more gates fail",

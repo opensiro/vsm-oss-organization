@@ -1,5 +1,5 @@
 {
-  "as_of": "2026-09-29",
+  "as_of": "2026-10-12",
   "experiment": "upstream-intervention-fit",
   "interventions": [
     {
@@ -74,7 +74,10 @@
       "evidence": [
         "The intervention reuses Hermes delegation rather than adding a separate runtime layer.",
         "The PR body is explicitly framed around testing whether the project can move toward Full-A, so counterfactual product value must be re-reviewed before classification.",
-        "No upstream maintainer comments or reviews exist yet."
+        "No upstream maintainer comments or reviews exist yet.",
+        "Original PR #1 was closed unmerged on 2026-10-11; accepted implementation uses the separately merged replacement PR #3, so both PRs belong to the same intervention rather than two successful contributions: https://github.com/humbertobellor/henterprise/pull/1",
+        "Upstream maintainer explicitly recorded PR #3 as replacing PR #1, containing the original six commits with authorship preserved plus a review-fix commit; PR #3 merged on 2026-10-08T05:58:08Z: https://github.com/humbertobellor/henterprise/pull/3",
+        "GitHub attributes the source commits to xLagerFeuer, while PR #3 was opened and merged by humbertobellor. No inference about the human operator behind any automation is made."
       ],
       "gates": {
         "counterfactual_value": "unknown",
@@ -83,9 +86,48 @@
         "upstream_need": "unknown"
       },
       "id": "henterprise-1",
-      "lifecycle": "open",
+      "lifecycle": "merged",
       "pull_request": "https://github.com/humbertobellor/henterprise/pull/1",
-      "upstream_repository": "humbertobellor/henterprise"
+      "upstream_repository": "humbertobellor/henterprise",
+      "last_verified_at": "2026-10-12",
+      "landing_pull_request": "https://github.com/humbertobellor/henterprise/pull/3",
+      "related_pull_requests": [
+        {
+          "url": "https://github.com/humbertobellor/henterprise/pull/1",
+          "relation": "original",
+          "lifecycle": "closed_unmerged"
+        },
+        {
+          "url": "https://github.com/humbertobellor/henterprise/pull/3",
+          "relation": "landed_replacement",
+          "lifecycle": "merged"
+        }
+      ],
+      "participants": [
+        {
+          "github_login": "xLagerFeuer",
+          "account_type": "github_user",
+          "roles": [
+            "original_pr_author",
+            "source_commit_contributor"
+          ],
+          "evidence_urls": [
+            "https://github.com/humbertobellor/henterprise/pull/1",
+            "https://github.com/humbertobellor/henterprise/commit/95851c2107db"
+          ]
+        },
+        {
+          "github_login": "humbertobellor",
+          "account_type": "github_user",
+          "roles": [
+            "landing_pr_author",
+            "merger"
+          ],
+          "evidence_urls": [
+            "https://github.com/humbertobellor/henterprise/pull/3"
+          ]
+        }
+      ]
     },
     {
       "evidence": [
