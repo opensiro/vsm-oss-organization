@@ -45,6 +45,10 @@ On `continue`, do **not** stop after planning or demand routine confirmation whe
 
 ## Independent review without forced new chats
 
+**No automatic post-batch reviewer request.** Closing an ordinary Index assessment row or completing a ten-row batch does **not** by itself require announcing, creating, or waiting on a separate semantic-review task, fresh reviewer context, or Organization S3* audit. An Index `review PR` names the proposed assessment stage, not a second reviewing agent. Do not create a review issue or a `REVIEW_REQUESTED / UNASSIGNED` record simply because a batch ended or because zero reviewers are online. Continue ordinary Index PR/CI/admission under the real current contract and ruleset.
+
+Separate reviewer execution is required **only when an explicit applicable owning task/review contract, actual repository approval requirement, or specific admitted investigation establishes that obligation**. Such an existing explicit contract must not be retrospectively waived by this document. Periodic Organization S3* audits (e.g. [#188](https://github.com/opensiro/vsm-oss-organization/issues/188)) have their own independent batch selection, frozen wave manifests, slots, provenance and finding-return; they do not automatically become a mandatory post-batch Index admission gate. A future every-50-canonical-assessments audit cadence, if separately admitted, would schedule audit work and track debt rather than impose a silent stop on ordinary Index publication.
+
 Four distinct things must remain separate:
 
 1. **The assessed harness's S3* grade** describes a function in the *harness*. It creates no OpenSiro reviewer requirement.
