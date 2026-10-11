@@ -12,7 +12,7 @@
 
 | W002 order | Index owner | Board state observed | Canonically terminal admissions/exclusions* | Technical source failure | PENDING / nonterminal rows | Local S3* status | Evidence | Outstanding scope |
 |---:|---|---|---:|---:|---:|---|---|---|
-| 1 | [#1202](https://github.com/opensiro/vsm-harness-index/issues/1202) | TERMINAL | 10 | 0 | 0 | **INSUFFICIENT** | [Receipt](W002-1202-lifecycle.md) + three standalone primary-source records | PrimusClaw S4 boundary and independent reviewer provenance |
+| 1 | [#1202](https://github.com/opensiro/vsm-harness-index/issues/1202) | TERMINAL | 10 | 0 | 0 | **INSUFFICIENT** | [Receipt](W002-1202-lifecycle.md) + three standalone primary-source records | PrimusClaw S4 source follow-up clarifies conditional support; historical reviewer attribution remains unverified |
 | 2 | [#1181](https://github.com/opensiro/vsm-harness-index/issues/1181) | TERMINAL | 10 | 0 | 0 | **PASS (bounded)** | [Receipt](W002-1181-audit.md) | No 10/10 exhaustive semantic guarantee; historical PR review attribution absent in sampled event objects |
 | 3 | [#1015](https://github.com/opensiro/vsm-harness-index/issues/1015) | TERMINAL | 10 | 0 | 0 | **PASS (bounded)** | [Receipt](W002-1015-audit.md) | No independent GitHub formal review inferred from CI |
 | 4 | [#1013](https://github.com/opensiro/vsm-harness-index/issues/1013) | OPEN | 0 | 0 | 10 | **INSUFFICIENT / NOT_READY** | [Receipt](W002-open-batches-pending.md) | CODING row1 NEXT, rows 5 and 10 WAITING |
@@ -34,7 +34,7 @@
 - **Batch local outcomes:** 5 bounded `PASS` (#1181, #1015, #1009, #1004, #1002); **5 `INSUFFICIENT`** (#1202 substantive uncertainty/reviewer provenance, plus four pending #1013/#1011/#1006/#1005); `FINDING` count **0** because no demonstrably contrary source-grounded canonical state/lifecycle fact was proved in the reviewed scope.
 - **Observed verification complexity:** #1009 includes two abandoned closed-unmerged admission proposals (#1052/#1078), and three reviewed PR heads with one failure plus another successful exact-head run; #1004 Horse Code admission #1243 has one success and one cancelled exact-head check; #1002 source-unavailable forge/Koda cannot legitimately become graded. These do not prove a historical gate violation.
 - **Actual auditor identity:** dedicated Organization ChatGPT judgment context, same GitHub account as many Index writers. GitHub Actions or deterministic schema/CI are support, not complementary audit judgment; no distinct historical formal semantic reviewer is invented. Absence of published PR review events on sampled PRs constrains provenance but is **not** retroactively a required review rule.
-- **Source interpretation debt:** in #1202 PrimusClaw positive S4 from internally derived skill adaptation may merit separate Profile-grounded same-ref independent adjudication; this record intentionally uses `INSUFFICIENT`, not an invented reclassification.
+- **Source interpretation follow-up:** [PrimusClaw S4 matrix](W002-1202-primusclaw-s4-addendum.md) shows the opt-in learner draws not only internal run metrics but **actual user requests and environmental task outcomes** into prospective LLM-directed skill changes that return to future S1. This supports the existing conditional `S4=A` without asserting empirical performance. The earlier S4 ambiguity is narrowed; #1202 retains conservative `INSUFFICIENT` for independent historic reviewer attribution/stronger audit assertions, not a proven S4 error. This is deliberately consistent with no Index correction.
 
 ## Control routing and genuine exit
 
