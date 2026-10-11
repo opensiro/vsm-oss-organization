@@ -90,10 +90,18 @@ def validate(record: object) -> list[str]:
         errors.append("Index issue / PR URLs must identify correct resource types")
     if not isinstance(record["source_repository"], str) or not re.fullmatch(r"[^/ ]+/[^/ ]+", record["source_repository"]):
         errors.append("source_repository must be owner/repo")
+    # A REQUESTED/UNASSIGNED record is pending, not a reviewer execution.
+    # Do not require invented actor or execution-context IDs before admission.
+    pending = record["phase"] == "REQUESTED"
     for key in ("producer_context", "reviewer_context"):
-        if not isinstance(record[key], str) or len(record[key].strip()) < 3:
+        value = record[key]
+        if pending and value is None:
+            continue
+        if not isinstance(value, str) or len(value.strip()) < 3:
             errors.append(key + ": missing actual context identifier")
-    if record["producer_context"] == record["reviewer_context"]:
+    if (isinstance(record["producer_context"], str)
+            and isinstance(record["reviewer_context"], str)
+            and record["producer_context"] == record["reviewer_context"]):
         errors.append("same producer and reviewer context: no independent handoff")
     inputs = record["reviewer_input_refs"]
     if not isinstance(inputs, list) or not inputs:

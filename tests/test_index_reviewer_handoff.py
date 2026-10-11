@@ -47,6 +47,35 @@ class ReviewHandoffTests(unittest.TestCase):
         r = fixture()
         r.update(phase="REQUESTED", source_verdict=None, comparison=None, reviewer_execution_ref=None)
         self.assertEqual(s.validate(r), [])
+    def test_requested_unassigned_does_not_invent_reviewer(self):
+        r = fixture()
+        r.update(phase="REQUESTED", reviewer_context=None, reviewer_execution_ref=None,
+                 source_verdict=None, comparison=None)
+        self.assertEqual(s.validate(r), [])
+
+    def test_requested_without_either_known_context_is_pending(self):
+        r = fixture()
+        r.update(phase="REQUESTED", producer_context=None, reviewer_context=None,
+                 reviewer_execution_ref=None, source_verdict=None, comparison=None)
+        self.assertEqual(s.validate(r), [])
+
+    def test_requested_same_predeclared_context_fails(self):
+        r = fixture()
+        r.update(phase="REQUESTED", reviewer_context=r["producer_context"],
+                 reviewer_execution_ref=None, source_verdict=None, comparison=None)
+        self.assertTrue(s.validate(r))
+
+    def test_source_verdict_requires_real_reviewer_context(self):
+        r = fixture()
+        r.update(phase="SOURCE_VERDICT_RECORDED", reviewer_context=None,
+                 comparison=None)
+        self.assertTrue(s.validate(r))
+
+    def test_reconciled_requires_real_producer_context(self):
+        r = fixture()
+        r["producer_context"] = None
+        self.assertTrue(s.validate(r))
+
     def test_source_only_has_no_comparison(self):
         r = fixture()
         r.update(phase="SOURCE_VERDICT_RECORDED", comparison=None)
