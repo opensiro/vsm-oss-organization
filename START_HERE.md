@@ -26,7 +26,7 @@ For already tracked current work, consult [`TODO.md`](TODO.md) and then return t
 
 ## Single-agent operator entry
 
-A maintainer can use one agent conversation for `статус`, `продолжай`, a named issue/PR, or a cross-repository status request. The owner-facing command and gate-handling interface is [`docs/AGENT_CONTROL_PLANE.md`](docs/AGENT_CONTROL_PLANE.md). It **uses** this bootstrap and the owning repository contracts; it is not a new scheduler, an independent reviewer runtime, or an authorization override. The maintainer need not create a new chat by default, but genuine source-first independence cannot be claimed from a contaminated context.
+A maintainer can use one agent conversation for `status`, `continue`, a named issue/PR, or a cross-repository status request. The owner-facing command and gate-handling interface is [`docs/AGENT_CONTROL_PLANE.md`](docs/AGENT_CONTROL_PLANE.md). It **uses** this bootstrap and the owning repository contracts; it is not a new scheduler, an independent reviewer runtime, or an authorization override. The maintainer need not create a new chat by default, but genuine source-first independence cannot be claimed from a contaminated context.
 
 ## Source-of-truth rule
 

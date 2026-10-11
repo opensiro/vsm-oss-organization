@@ -1,6 +1,6 @@
 # OpenSiro OSS — agent control plane
 
-**Purpose:** one human-facing agent interface for navigating, executing, and reporting work across the **currently bounded** public OpenSiro VSM Harness OSS organization. A maintainer can keep one conversation and issue instructions such as `статус`, `продолжай`, or `продолжай Index #123` without manually rebuilding repository context on each turn.
+**Purpose:** one human-facing agent interface for navigating, executing, and reporting work across the **currently bounded** public OpenSiro VSM Harness OSS organization. A maintainer can keep one conversation and issue instructions such as `status`, `continue`, or `continue Index #123` without manually rebuilding repository context on each turn.
 
 **Status:** interface/contributor operating instructions, **not** an autonomous agent deployment, a new scheduler, a source of canonical facts, a grant of repository permissions, or evidence of S1/S2/S3/S3*/S4/S5 autonomy. It does not promise background execution or the ability to create independent agent sessions when no authorized runtime exists.
 
@@ -22,13 +22,13 @@ The conversation is a **control surface**, not a second GitHub issue board, evid
 
 | Say to the agent | Intended operation |
 | --- | --- |
-| `статус` / `обнови статус OSS` | Refresh canonical sources, summarize active milestone, scheduled work, relevant open issues/PRs, CI/gates and observed blockers; distinguish unscheduled issues from `TODO.md` selections. No write is implied. |
-| `продолжай` | Continue a clearly identified already-admitted current work item from the conversation, otherwise follow `TODO.md` `NOW` then `NEXT`; re-check ownership/locks and do only the next legitimately admitted action. |
-| `продолжай <repo> #<issue>` / `продолжай PR #<n>` | Resume that exact owner/issue/PR, subject to its independent/frozen/permission constraints. Do not silently switch to other batches or repos. |
-| `оформи batch assessment` | Route to Index, check current method, discovery queue, frozen identities and competing locks; create/execute only a legitimately admitted batch under Index rules. |
-| `проверь review` / `проверь S3* аудит` | Identify the **specific** semantic/PR/audit gate and its owner; do not conflate a harness S3* classification with Organization complementary audit. |
-| `оформи изменение` / `сделай PR` | Implement the scoped change through its owning repository, tests, an attributable PR and appropriate exact-head checks. |
-| `S5: рассмотреть <matter>` | Request classification through the [parent-governed S5 entry](../prompts/parent-control-plane.md); the prefix does not confer parent decision authority. |
+| `status` / `show OSS status` | Refresh canonical sources, summarize active milestone, scheduled work, relevant open issues/PRs, CI/gates and observed blockers; distinguish unscheduled issues from `TODO.md` selections. No write is implied. |
+| `continue` | Continue a clearly identified already-admitted current work item from the conversation, otherwise follow `TODO.md` `NOW` then `NEXT`; re-check ownership/locks and do only the next legitimately admitted action. |
+| `continue <repo> #<issue>` / `continue PR #<n>` | Resume that exact owner/issue/PR, subject to its independent/frozen/permission constraints. Do not silently switch to other batches or repos. |
+| `start a batch assessment` | Route to Index, check current method, discovery queue, frozen identities and competing locks; create/execute only a legitimately admitted batch under Index rules. |
+| `check PR review status` / `check S3* audit status` | Identify the **specific** semantic/PR/audit gate and its owner; do not conflate a harness S3* classification with Organization complementary audit. |
+| `implement this change` / `open a PR` | Implement the scoped change through its owning repository, tests, an attributable PR and appropriate exact-head checks. |
+| `S5: consider <matter>` | Request classification through the [parent-governed S5 entry](../prompts/parent-control-plane.md); the prefix does not confer parent decision authority. |
 
 If a command does not name a work item, do **not** promote every open issue or PR into `TODO.md`. If `NOW` and `NEXT` are empty, report `no current scheduled item` and present genuinely eligible choices through [CONTRIBUTOR_START.md](../CONTRIBUTOR_START.md); do not pretend that the scheduler selected one. An explicit user-directed issue/PR can still be handled under its **own** admission contract without changing global scheduling.
 
@@ -41,7 +41,7 @@ If a command does not name a work item, do **not** promote every open issue or P
 5. **Execute within authority.** Use available tools for the smallest authorized concrete action. Prefer reviewable PRs for meaningful changes. If one batch is serial, never skip locked `NEXT` rows or advance `WAITING` before canonical terminal evidence.
 6. **Verify and return.** Recheck the exact resulting PR/commit, applicable validations, permitted merge and live owning `main`. If incomplete, state precisely what remains. Record durable progress at the owner before reporting; do not claim that a proposal or CI green is canonical admission.
 
-On `продолжай`, do **not** stop after planning or demand routine confirmation when a valid, in-scope next action is executable. Conversely, never claim asynchronous work, automatic agent dispatch, a completed review, or a merge that did not actually occur. Work that is explicitly continuous or batched may proceed through its own bounded lifecycle; a default invocation does not silently expand into a new program.
+On `continue`, do **not** stop after planning or demand routine confirmation when a valid, in-scope next action is executable. Conversely, never claim asynchronous work, automatic agent dispatch, a completed review, or a merge that did not actually occur. Work that is explicitly continuous or batched may proceed through its own bounded lifecycle; a default invocation does not silently expand into a new program.
 
 ## Independent review without forced new chats
 
@@ -77,7 +77,7 @@ Explain **what was actually executed**, and distinguish `proposed`, `reviewed`, 
 - A normal Index assessment with no task-specific independent-review requirement and no required GitHub approving reviews is **not** sent to a mandatory S3* wait gate merely because no external agent is online.
 - An Index issue explicitly requiring independent source-first review **stops at that gate** without a genuine eligible executor; same-chat role switching and PR/CI-only evidence fail closed.
 - An Organization S3* `FINDING` is routed to its owning Index correction/adjudication work, **not** counted as accepted grade change or GitHub merge.
-- A bare `продолжай` with empty `TODO.md` `NOW`/`NEXT` does **not** silently treat some unrelated open PR as current scheduled work.
+- A bare `continue` with empty `TODO.md` `NOW`/`NEXT` does **not** silently treat some unrelated open PR as current scheduled work.
 - A named task with an existing frozen SHA or claimed serial row resumes that exact lane and preserves its locks; a stale issue checkpoint is checked against live owner state.
 
 ## Non-goals
