@@ -23,6 +23,10 @@
 
 **#1013 row 1 CODING:** frozen upstream [Guo-Yixin/coding-agent@1af81bc](https://github.com/Guo-Yixin/coding-agent/tree/1af81bc01090ed7c9ff59c59974ae5537cb640fa) identified by immutable board, but **no published Index assessment claim to S3*-audit** at snapshot, so no grade inference or speculative source-recovery adjudication was performed. The semantic audit obligation remains `NOT_READY`.
 
+## Independently checked terminal-row ledger (supplement, not new batch verdict)
+
+The read-only [five-row terminal lifecycle receipt](W002-open-terminal-lifecycle.md) independently corroborates the **3 existing #1011 included** entries and **2 existing #1006 terminal** entries (SuisuiCode included, Zigent excluded) without advancing either issue. At their exact historic PR heads, **10/10 actual merged review/admission-or-exclusion PRs** and **14/14 retrieved completed-success `index` check runs** are corroborated; canonical Index rows #338/#339/#341/#344/#345 retain pinned full upstream SHAs. The `data/signatures.psv` entries exist for **the four included systems only**; **Zigent correctly has no signature** because its accepted assessment is `excluded-no-agentic-vsm`. Independent pinned Zigent `build.zig`, `ROADMAP.md` and 21-entry complete Git tree confirm only the utility base is shipped despite README overclaims. Its first-party negative S1 admission/exclusion is source-supported, but it is not a positive VSM grade. Exactly 15 source slots remain PENDING in these two open issues (7 #1011, 8 #1006), and 20 additional source slots in #1013/#1005; 4/4 whole batch-level outcomes remain `INSUFFICIENT/PENDING`.
+
 ## Observable evidence, outcome, owner and closure
 
 - **Local outcome exactly `INSUFFICIENT`** across these four live open batches: 5/10 or 10/10 sample positions are not yet valid accepted/terminal claims, not a sampler `PASS`. Shipped source probes above are provisional counterexamples only; source completeness and review provenance have bounded limits.
