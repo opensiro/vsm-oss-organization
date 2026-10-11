@@ -24,6 +24,10 @@ Cross-repository architecture and ownership routing live in [`docs/ECOSYSTEM.md`
 
 For already tracked current work, consult [`TODO.md`](TODO.md) and then return to the linked owning repository/issue. For new, unclassified, or authority-sensitive work, use [`CONTRIBUTOR_START.md`](CONTRIBUTOR_START.md).
 
+## Single-agent operator entry
+
+A maintainer can use one agent conversation for `статус`, `продолжай`, a named issue/PR, or a cross-repository status request. The owner-facing command and gate-handling interface is [`docs/AGENT_CONTROL_PLANE.md`](docs/AGENT_CONTROL_PLANE.md). It **uses** this bootstrap and the owning repository contracts; it is not a new scheduler, an independent reviewer runtime, or an authorization override. The maintainer need not create a new chat by default, but genuine source-first independence cannot be claimed from a contaminated context.
+
 ## Source-of-truth rule
 
 1. Inspect the relevant public repository and its current default branch.
