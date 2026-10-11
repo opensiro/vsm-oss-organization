@@ -19,7 +19,7 @@ The wave ledger reports **5 bounded `PASS` / 5 `INSUFFICIENT`**. These **are the
 | [#1181](https://github.com/opensiro/vsm-harness-index/issues/1181) | 10 terminal | 10/10 reconciled, 20 PR heads | 3/3 no demonstrated contradiction | **Not established** by public checks; sampled formal PR review objects absent | `PASS` (bounded source/lifecycle scope) |
 | [#1015](https://github.com/opensiro/vsm-harness-index/issues/1015) | 10 terminal | 10/10 reconciled, 20 PR heads | 3/3 no demonstrated contradiction | **Not established**; inspected Orkas formal review absent | `PASS` (bounded source/lifecycle scope) |
 | [#1013](https://github.com/opensiro/vsm-harness-index/issues/1013) | 0/10 terminal | **Unready** | no admitted row1/5/10 claim to close | Not adjudicated | `INSUFFICIENT` / NOT_READY |
-| [#1011](https://github.com/opensiro/vsm-harness-index/issues/1011) | 3/10 terminal | partial, 7 waiting | row1 source probe; 5/10 WAITING | Not adjudicated for whole batch | `INSUFFICIENT` / PENDING |
+| [#1011](https://github.com/opensiro/vsm-harness-index/issues/1011) | 3/10 terminal | partial, 7 waiting | [row1 S3 abort-closure FINDING](W002-1011-swarm-code-r01-audit.md); 5/10 WAITING | Not adjudicated for whole batch | `INSUFFICIENT` / PENDING |
 | [#1009](https://github.com/opensiro/vsm-harness-index/issues/1009) | 10 terminal | 10/10 reconciled, 20 actual merged PRs; replaced PRs disclosed | 3/3 no demonstrated contradiction | **Not established** by samples of public PR review objects | `PASS` (bounded source/lifecycle scope) |
 | [#1006](https://github.com/opensiro/vsm-harness-index/issues/1006) | 2/10 terminal, incl. one exclusion | partial, 8 waiting | row1 source probe; 5/10 WAITING | Not adjudicated for whole batch | `INSUFFICIENT` / PENDING |
 | [#1005](https://github.com/opensiro/vsm-harness-index/issues/1005) | 0/10 terminal; row1 review proposed | admission blocked | row1 primary-source probe only; 5/10 WAITING | Not adjudicated | `INSUFFICIENT` / PENDING |
@@ -32,7 +32,7 @@ The wave ledger reports **5 bounded `PASS` / 5 `INSUFFICIENT`**. These **are the
 
 - W002's frozen population: **10/10 batches, 100/100 row status slots accounted**; 62 included, one excluded, two source-unavailable technical, 35 ordinary S1 nonterminal.
 - **6/6 currently terminal batches** had process/provenance reconstruction; in addition, **5/5 terminal rows inside open batches** have separate process receipts and **18 selected primary-source semantic challenges** (three for each); **4/4 open batches** retain PENDING locks.
-- **5 bounded local PASS / 5 local INSUFFICIENT / 0 proven canonical grade FINDING**. These local outcome categories are **scope-conditioned**, not "50% of all Index assessments validated" or "5 independent approvals".
+- **5 bounded batch local PASS / 5 batch local INSUFFICIENT**, plus **one real, source-grounded row-level S3 abort-closure `FINDING`** within pending #1011, routed to the [Index owner](https://github.com/opensiro/vsm-harness-index/issues/1011#issuecomment-6108114056). This **does not demonstrate an incorrect categorical VSM grade** or change the batch-outcome denominator. These local outcome categories are **scope-conditioned**, not "50% of all Index assessments validated" or "5 independent approvals".
 - **Zero new independent Organization PR approvals** are established by these source checks; GitHub structural CI (even green) is not semantic review. The draft PR's actual current head/check/reviewer status must be fetched afresh before any merge.
 
 ## Independent reviewer acceptance questions
