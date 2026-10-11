@@ -43,7 +43,7 @@ def validate(record: object) -> list[str]:
     errors.extend("unexpected " + k for k in sorted(record.keys() - required))
     if errors:
         return errors
-    if record["version"] != 1 or record["phase"] not in PHASES:
+    if record["version"] != 1 or not isinstance(record["phase"], str) or record["phase"] not in PHASES:
         errors.append("invalid version or phase")
     for key in ("source_sha", "reviewed_head"):
         if not isinstance(record[key], str) or not HEX40.fullmatch(record[key]):
@@ -64,10 +64,17 @@ def validate(record: object) -> list[str]:
     if not isinstance(inputs, list) or not inputs or any(not _url(x) for x in inputs):
         errors.append("reviewer_input_refs must contain primary public GitHub references")
     else:
+        frozen = f"https://github.com/{record['source_repository']}/blob/{record['source_sha']}/"
+        frozen_tree = f"https://github.com/{record['source_repository']}/tree/{record['source_sha']}/"
+        if not any(x.startswith(frozen) or x.startswith(frozen_tree) for x in inputs):
+            errors.append("no exact frozen primary upstream source link in reviewer inputs")
         for x in inputs:
             if any(term in x.lower() for term in CONTAMINATING):
                 errors.append("source-first input contaminated with producer proposal")
                 break
+            m = re.match(r"^https://github\.com/[^/]+/[^/]+/(?:blob|tree)/([^/#]+)", x)
+            if m and not HEX40.fullmatch(m.group(1)):
+                errors.append("source-first source/tree URL must pin full commit SHA")
     verdict = record["source_verdict"]
     comparison = record["comparison"]
     if record["phase"] == "REQUESTED":
@@ -81,7 +88,7 @@ def validate(record: object) -> list[str]:
         return errors
     first_time = _date(verdict["recorded_at"], "source_verdict.recorded_at", errors)
     if not _url(verdict["receipt_url"]):
-        errors.append("source_verdict: missing public immutable-reference receipt")
+        errors.append("source_verdict: missing public attributable receipt reference")
     items = verdict["functions"]
     if not isinstance(items, list) or len(items) != 6 or not all(isinstance(x, dict) for x in items):
         errors.append("source_verdict: six function judgments required")
