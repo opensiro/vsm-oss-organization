@@ -76,8 +76,12 @@ def validate(record: object) -> list[str]:
     errors.extend("unexpected " + k for k in sorted(record.keys() - required))
     if errors:
         return errors
-    if record["version"] != 1 or not isinstance(record["phase"], str) or record["phase"] not in PHASES:
-        errors.append("invalid version or phase")
+    # bool is an int subclass in Python, and 1.0 compares equal to 1.
+    # Schema version must be the exact JSON integer 1, not an equal-valued type.
+    if type(record["version"]) is not int or record["version"] != 1:
+        errors.append("version: expected exact integer 1")
+    if not isinstance(record["phase"], str) or record["phase"] not in PHASES:
+        errors.append("invalid phase")
     for key in ("source_sha", "reviewed_head"):
         if not isinstance(record[key], str) or not HEX40.fullmatch(record[key]):
             errors.append(key + ": expected exact full SHA")

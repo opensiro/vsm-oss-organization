@@ -43,6 +43,14 @@ def fixture():
 class ReviewHandoffTests(unittest.TestCase):
     def test_valid_structure_not_proof_of_execution(self):
         self.assertEqual(s.validate(fixture()), [])
+    def test_schema_version_is_exact_integer_one(self):
+        r = fixture()
+        self.assertEqual(s.validate(r), [])
+        for bad_version in (True, 1.0, False, 0.0, "1", None, 0, 2):
+            with self.subTest(version=repr(bad_version)):
+                r["version"] = bad_version
+                self.assertIn("version: expected exact integer 1", s.validate(r))
+
     def test_requested_has_no_verdict(self):
         r = fixture()
         r.update(phase="REQUESTED", source_verdict=None, comparison=None, reviewer_execution_ref=None)
@@ -75,6 +83,33 @@ class ReviewHandoffTests(unittest.TestCase):
         r = fixture()
         r["producer_context"] = None
         self.assertTrue(s.validate(r))
+
+    def test_early_insufficient_is_not_a_fabricated_completed_phase(self):
+        r = fixture()
+        r.update(phase="INSUFFICIENT", reviewer_context=None,
+                 reviewer_execution_ref=None, source_verdict=None, comparison=None)
+        self.assertIn("invalid phase", s.validate(r))
+
+    def test_no_source_verdict_phase_without_first_verdict(self):
+        r = fixture()
+        r.update(phase="SOURCE_VERDICT_RECORDED", reviewer_context=None,
+                 reviewer_execution_ref=None, source_verdict=None, comparison=None)
+        self.assertIn("source_verdict missing required fields", s.validate(r))
+
+    def test_no_reconciliation_without_first_verdict(self):
+        r = fixture()
+        r.update(phase="RECONCILED", source_verdict=None)
+        self.assertIn("source_verdict missing required fields", s.validate(r))
+
+    def test_contract_documents_external_early_stop_receipt(self):
+        contract = (Path(__file__).resolve().parents[1] /
+                    "contracts" / "s3star" / "index-review-handoff.md").read_text(encoding="utf-8")
+        for required in ("Early INSUFFICIENT: external fail-closed receipt",
+                         "REVIEW_INSUFFICIENT", "owning Index issue",
+                         "no source-first verdict was recorded",
+                         "does not satisfy a task-specific independent-review gate"):
+            with self.subTest(required=required):
+                self.assertIn(required, contract)
 
     def test_source_only_has_no_comparison(self):
         r = fixture()

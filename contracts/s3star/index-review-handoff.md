@@ -31,6 +31,32 @@ Run:
 
 A record may be submitted as evidence to an Index issue/PR only under its own authorizations. This Organization artifact may not rewrite Index assessments, issue boards, Profile/Skills definitions, historic W001/W002 receipts, or the selected current-work scheduler.
 
+## Early INSUFFICIENT: external fail-closed receipt
+
+The three machine handoff `phase` values document progress **only if that phase actually happened**. An early failure (no separately attributable reviewer, contaminated input, missing pinned sources, inability to preserve a source-first checkpoint, or missing access) may occur **before** any six-function `source_verdict` exists. Do **not** change `phase` to an invented completed state, add placeholder S1–S5 judgments, or create a fake `reviewer_context` / `reviewer_execution_ref`. The validator intentionally does not accept `phase=INSUFFICIENT` or a missing verdict as `SOURCE_VERDICT_RECORDED`.
+
+**External fail-closed receipt path (not the JSON handoff record):**
+
+1. The actual coordinator/observer records a durable, dated **`REVIEW_INSUFFICIENT`** Markdown comment in the **owning Index issue**, with a link from the relevant Index PR when one exists. Cross-link Organization #189 / #207 only as relevant. This is an operational workflow disposition, **not a VSM grade, reviewer verdict, or GitHub approval**. A simply unassigned `REQUESTED` packet remains pending unless an actual bounded attempt is explicitly terminated as insufficient.
+2. The comment must identify: the exact Index issue/PR URLs and reviewed PR head (if known); frozen `source_repository@source_sha` and Profile/Skills refs (or state which ones could not be established); observed UTC time; **actual** reporting actor/context (or honestly unknown); observed reason and specific missing evidence/independence/execution capability; whether proposed conclusions were already exposed (yes/no/unknown); and the next permissible remedy or explicit stop. State that **no source-first verdict was recorded** when that is the case. A not-started reviewer has **no** reviewer identity, execution URL or initial verdict; never substitute the reporting actor for the reviewer.
+3. Preserve any structurally valid `REQUESTED` JSON packet separately as pending, or record that no JSON packet could be formed. The external comment is linked evidence of a failed attempt, **not** a completed `SOURCE_VERDICT_RECORDED` / `RECONCILED` record and **not** input that can validate as a successful handoff. Reattempt only under a newly verified actor/input/head boundary; preserve the earlier failed receipt rather than overwriting history.
+4. The **Index owner** determines the applicable gate: where a task-specific independent-review gate exists, `REVIEW_INSUFFICIENT` **does not satisfy a task-specific independent-review gate** and admission remains blocked. Where no such gate exists, ordinary Index PR/CI policy may proceed with explicitly non-blind provenance; never invent an unconditional reviewer requirement for every assessment. Organization does not decide Index admission or grant GitHub review permissions.
+
+Example comment (values must be observed, not fabricated):
+
+```text
+Disposition: REVIEW_INSUFFICIENT (external fail-closed receipt; no review executed)
+Index issue / PR / exact head: <actual URLs and SHA, or unknown>
+Frozen source / Profile / Skills: <actual pinned refs, or missing>
+Recorded at (UTC): <observed timestamp>
+Reporter identity/context: <actual coordinator/observer, or unknown>
+Reviewer identity/execution: NOT ESTABLISHED
+Producer proposal exposure: <yes/no/unknown>
+Reason and missing evidence: <concrete observed blocker>
+Source-first checkpoint: NONE; no source-first verdict was recorded
+Applicable Index gate / next step: <verified gate and remedy or stop>
+```
+
 ## Explicit negative gates
 
 - same producer/reviewer context, fabricated context identifier or absent independently checkable execution trace: **INSUFFICIENT**, never claim independently conducted review;
