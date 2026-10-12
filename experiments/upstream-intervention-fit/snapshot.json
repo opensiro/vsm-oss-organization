@@ -2,8 +2,8 @@
   "as_of": "2026-10-12",
   "experiment": "upstream-intervention-fit",
   "fit_counts": {
-    "fail": 1,
-    "pass": 2,
+    "fail": 2,
+    "pass": 3,
     "pending": 3
   },
   "interventions": [
@@ -63,7 +63,8 @@
     {
       "fit": "pass",
       "id": "marveen-1516",
-      "lifecycle": "open",
+      "last_verified_at": "2026-10-12",
+      "lifecycle": "merged",
       "pull_request": "https://github.com/Szotasz/marveen/pull/1516",
       "upstream_repository": "Szotasz/marveen"
     },
@@ -75,11 +76,88 @@
       "upstream_repository": "first-fluke/oh-my-agent"
     },
     {
-      "fit": "pending",
+      "fit": "fail",
       "id": "scion-2047",
-      "lifecycle": "open",
+      "last_verified_at": "2026-10-12",
+      "lifecycle": "closed_unmerged",
       "pull_request": "https://github.com/GoogleCloudPlatform/scion/pull/2047",
       "upstream_repository": "GoogleCloudPlatform/scion"
+    },
+    {
+      "fit": "pending",
+      "id": "shep-933",
+      "last_verified_at": "2026-10-12",
+      "lifecycle": "open",
+      "participants": [
+        {
+          "account_type": "github_user",
+          "evidence_urls": [
+            "https://github.com/shep-ai/shep/pull/933",
+            "https://github.com/shep-ai/shep/commit/44cfc00775cb6dbbf527eca8952a6b86f5561e52",
+            "https://github.com/shep-ai/shep/commit/00c9b4fbba2d0f6f3b858255a6b9ffd75a66d3f4"
+          ],
+          "github_login": "xLagerFeuer",
+          "roles": [
+            "original_pr_author",
+            "source_commit_contributor",
+            "review_fix_commit_contributor"
+          ]
+        },
+        {
+          "account_type": "github_user",
+          "evidence_urls": [
+            "https://github.com/shep-ai/shep/pull/933#pullrequestreview-5488007885"
+          ],
+          "github_login": "arielshad",
+          "roles": [
+            "reviewer"
+          ]
+        },
+        {
+          "account_type": "github_user",
+          "evidence_urls": [
+            "https://github.com/shep-ai/shep/commit/58fdda8434b93a5199ec25998307bd9e791713fc"
+          ],
+          "github_login": "claude",
+          "roles": [
+            "review_fix_commit_contributor"
+          ]
+        }
+      ],
+      "pull_request": "https://github.com/shep-ai/shep/pull/933",
+      "upstream_repository": "shep-ai/shep"
+    },
+    {
+      "fit": "pass",
+      "id": "shep-934",
+      "last_verified_at": "2026-10-12",
+      "lifecycle": "open",
+      "participants": [
+        {
+          "account_type": "github_user",
+          "evidence_urls": [
+            "https://github.com/shep-ai/shep/pull/934",
+            "https://github.com/shep-ai/shep/commit/6fd504a8bcd06ec9af9c371e41b4b42448a28016"
+          ],
+          "github_login": "xLagerFeuer",
+          "roles": [
+            "original_pr_author",
+            "source_commit_contributor"
+          ]
+        },
+        {
+          "account_type": "github_user",
+          "evidence_urls": [
+            "https://github.com/shep-ai/shep/commit/c9eb38374788298d0363d862cb72f75ea07e46a4"
+          ],
+          "github_login": "claude",
+          "roles": [
+            "source_commit_contributor"
+          ]
+        }
+      ],
+      "pull_request": "https://github.com/shep-ai/shep/pull/934",
+      "upstream_repository": "shep-ai/shep"
     },
     {
       "fit": "pass",
@@ -90,15 +168,15 @@
     }
   ],
   "lifecycle_counts": {
-    "closed_unmerged": 1,
-    "merged": 1,
+    "closed_unmerged": 2,
+    "merged": 2,
     "open": 4
   },
   "primary_metric": {
-    "denominator_completed_reviews": 3,
+    "denominator_completed_reviews": 5,
     "id": "product_native_fit_rate",
-    "numerator_pass": 2,
-    "value": 0.6667
+    "numerator_pass": 3,
+    "value": 0.6
   },
   "schema_version": 1
 }

@@ -6,7 +6,8 @@
       "evidence": [
         "Maintainer explicitly accepted levels 1/2 and rejected only autonomous level 3 because external README text writing global skills would create a persistent prompt-injection path.",
         "The revised intervention stays inside Dream Engine's existing progressive-autonomy mechanism and caps the new category at proposal-only level 2.",
-        "Maintainer comment: https://github.com/Szotasz/marveen/pull/1516#issuecomment-5827208384"
+        "Maintainer comment: https://github.com/Szotasz/marveen/pull/1516#issuecomment-5827208384",
+        "Szotasz confirmed merge into develop at d2e05621f after requested test hardening and green full suite: https://github.com/Szotasz/marveen/pull/1516#issuecomment-5906554788"
       ],
       "gates": {
         "counterfactual_value": "pass",
@@ -15,9 +16,10 @@
         "upstream_need": "pass"
       },
       "id": "marveen-1516",
-      "lifecycle": "open",
+      "lifecycle": "merged",
       "pull_request": "https://github.com/Szotasz/marveen/pull/1516",
-      "upstream_repository": "Szotasz/marveen"
+      "upstream_repository": "Szotasz/marveen",
+      "last_verified_at": "2026-10-12"
     },
     {
       "evidence": [
@@ -40,18 +42,20 @@
       "evidence": [
         "The intervention is implemented as a normal Scion platform skill plus a contract test and does not add a mandatory runtime gate.",
         "The PR rationale is independent-review utility for Scion orchestration rather than an OpenSiro grade claim.",
-        "No human maintainer scope/need signal has been received yet; keep the fit review pending."
+        "Maintainer ptone explained independent-review skill fits a Scion solution, not core; solution-level value is not denied, but scope compatibility for this PR is false: https://github.com/GoogleCloudPlatform/scion/pull/2047#issuecomment-5880411960",
+        "PR #2047 closed unmerged on 2026-09-28: https://github.com/GoogleCloudPlatform/scion/pull/2047"
       ],
       "gates": {
         "counterfactual_value": "pass",
         "native_mechanism": "pass",
-        "scope_compatibility": "unknown",
+        "scope_compatibility": "fail",
         "upstream_need": "unknown"
       },
       "id": "scion-2047",
-      "lifecycle": "open",
+      "lifecycle": "closed_unmerged",
       "pull_request": "https://github.com/GoogleCloudPlatform/scion/pull/2047",
-      "upstream_repository": "GoogleCloudPlatform/scion"
+      "upstream_repository": "GoogleCloudPlatform/scion",
+      "last_verified_at": "2026-10-12"
     },
     {
       "evidence": [
@@ -145,6 +149,104 @@
       "lifecycle": "open",
       "pull_request": "https://github.com/androoAGI/starnet/pull/56",
       "upstream_repository": "androoAGI/starnet"
+    },
+    {
+      "id": "shep-933",
+      "upstream_repository": "shep-ai/shep",
+      "pull_request": "https://github.com/shep-ai/shep/pull/933",
+      "lifecycle": "open",
+      "last_verified_at": "2026-10-12",
+      "gates": {
+        "upstream_need": "pass",
+        "native_mechanism": "pass",
+        "counterfactual_value": "pass",
+        "scope_compatibility": "unknown"
+      },
+      "evidence": [
+        "Opt-in bounded overlapping-workcell coordination extends native Shep feature dependencies and ReparentFeatureUseCase, with no new VSM-only merge or approval authority: https://github.com/shep-ai/shep/pull/933",
+        "Upstream reviewer arielshad endorsed the bounded approach and reproduced defer/block/stop/rebase/resume and continue with real CLI and SQLite; changes were requested for security, settings, and missing user surface. Final scope/merge admission is unconfirmed: https://github.com/shep-ai/shep/pull/933#pullrequestreview-5488007885",
+        "Original implementation 44cfc007 was updated in 00c9b4f by xLagerFeuer based on upstream reviewer changes attributed to GitHub account claude. Revision is the same intervention: https://github.com/shep-ai/shep/pull/933",
+        "PR still open, with CI workflow action_required and no jobs executed at verification: https://github.com/shep-ai/shep/actions/runs/38271174322"
+      ],
+      "participants": [
+        {
+          "github_login": "xLagerFeuer",
+          "account_type": "github_user",
+          "roles": [
+            "original_pr_author",
+            "source_commit_contributor",
+            "review_fix_commit_contributor"
+          ],
+          "evidence_urls": [
+            "https://github.com/shep-ai/shep/pull/933",
+            "https://github.com/shep-ai/shep/commit/44cfc00775cb6dbbf527eca8952a6b86f5561e52",
+            "https://github.com/shep-ai/shep/commit/00c9b4fbba2d0f6f3b858255a6b9ffd75a66d3f4"
+          ]
+        },
+        {
+          "github_login": "arielshad",
+          "account_type": "github_user",
+          "roles": [
+            "reviewer"
+          ],
+          "evidence_urls": [
+            "https://github.com/shep-ai/shep/pull/933#pullrequestreview-5488007885"
+          ]
+        },
+        {
+          "github_login": "claude",
+          "account_type": "github_user",
+          "roles": [
+            "review_fix_commit_contributor"
+          ],
+          "evidence_urls": [
+            "https://github.com/shep-ai/shep/commit/58fdda8434b93a5199ec25998307bd9e791713fc"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "shep-934",
+      "upstream_repository": "shep-ai/shep",
+      "pull_request": "https://github.com/shep-ai/shep/pull/934",
+      "lifecycle": "open",
+      "last_verified_at": "2026-10-12",
+      "gates": {
+        "upstream_need": "pass",
+        "native_mechanism": "pass",
+        "counterfactual_value": "pass",
+        "scope_compatibility": "pass"
+      },
+      "evidence": [
+        "Reviewer reproduced existing compiled ESM feature-worker crash (__dirname undefined) in published Shep CLI and explicitly requested an independent hotfix, unrelated to VSM: https://github.com/shep-ai/shep/pull/933#pullrequestreview-5488007885",
+        "Hotfix #934 repairs existing decision-tool-startup.ts and adds a regression guard without S2 feature semantics: https://github.com/shep-ai/shep/pull/934",
+        "First-party patch attributed to GitHub account claude at c9eb383 was ported into standalone PR #934 by xLagerFeuer; distinct product fix rather than a rewrite of #933: https://github.com/shep-ai/shep/commit/c9eb38374788298d0363d862cb72f75ea07e46a4",
+        "Fit reflects the reviewer-confirmed need and native scope, not merge or CI success; PR is open and fork CI action_required: https://github.com/shep-ai/shep/actions/runs/38271032693"
+      ],
+      "participants": [
+        {
+          "github_login": "xLagerFeuer",
+          "account_type": "github_user",
+          "roles": [
+            "original_pr_author",
+            "source_commit_contributor"
+          ],
+          "evidence_urls": [
+            "https://github.com/shep-ai/shep/pull/934",
+            "https://github.com/shep-ai/shep/commit/6fd504a8bcd06ec9af9c371e41b4b42448a28016"
+          ]
+        },
+        {
+          "github_login": "claude",
+          "account_type": "github_user",
+          "roles": [
+            "source_commit_contributor"
+          ],
+          "evidence_urls": [
+            "https://github.com/shep-ai/shep/commit/c9eb38374788298d0363d862cb72f75ea07e46a4"
+          ]
+        }
+      ]
     }
   ],
   "schema_version": 1
