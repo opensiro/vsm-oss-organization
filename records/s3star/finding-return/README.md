@@ -14,6 +14,8 @@
 
 [2026-10-11-index-open.json](2026-10-11-index-open.json) enumerates exactly four *already routed* claim-specific findings, with frozen source SHAs and their legitimate Index owner destinations. All are `ROUTED_OPEN` **at this observation cut**. This does not assert that they will remain open later.
 
+The structural validator pins the SHA-256 of that initial four-finding JSON and compares every later snapshot against its exact frozen finding identities, upstream SHAs, claim scopes, original audit references, and owning Index destinations. A syntactically valid but different 40-character SHA or alternate valid Index issue must fail closed. New snapshots may update dates, observed repository main refs and attributed owner/verification evidence, **not** silently replace or drop historical findings. This pin is an internal integrity gate only; it does not authenticate independent semantic judgments or current GitHub outcomes.
+
 ```bash
 python scripts/check_s3star_finding_return.py \
   records/s3star/finding-return/2026-10-11-index-open.json

@@ -7,6 +7,7 @@ correctness, actor separation, GitHub identity/permissions, or a live closure.
 from __future__ import annotations
 
 import datetime as dt
+import hashlib
 import json
 import re
 import sys
@@ -37,6 +38,28 @@ VERIFICATION = {
     "index_main_sha", "result_pr_ref",
 }
 FUNCTIONS = {"S1", "S2", "S3", "S3*", "S4", "S5"}
+
+# The initial four-finding cut is a derived historical anchor, not a new
+# source of semantic authority. A digest guards against quietly rewriting it.
+FROZEN_BASELINE = (
+    Path(__file__).resolve().parents[1]
+    / "records/s3star/finding-return/2026-10-11-index-open.json"
+)
+FROZEN_BASELINE_SHA256 = "4769a04cacecc06d37a979476b010c63150c73e05e63282f8c5b80ff21ae896d"
+FROZEN_FIELDS = (
+    "id", "wave", "index_batch", "row", "source_repository", "source_sha",
+    "audited_function", "scope", "original_audit_ref", "index_owner_issue",
+    "routed_ref", "original_outcome",
+)
+
+
+def frozen_findings() -> dict[str, dict]:
+    """Load the fixed #200 population only after verifying its original bytes."""
+    original = FROZEN_BASELINE.read_bytes()
+    if hashlib.sha256(original).hexdigest() != FROZEN_BASELINE_SHA256:
+        raise ValueError("historical four-finding baseline digest mismatch")
+    rows = json.loads(original)["findings"]
+    return {f["id"]: {field: f[field] for field in FROZEN_FIELDS} for f in rows}
 
 
 def date(value: object) -> dt.date | None:
@@ -84,6 +107,12 @@ def validate(data: object) -> list[str]:
     findings = data["findings"]
     if not isinstance(findings, list) or not findings:
         return errors + ["nonempty findings required"]
+    try:
+        frozen = frozen_findings()
+    except (OSError, ValueError, KeyError, TypeError, json.JSONDecodeError) as exc:
+        return errors + ["frozen baseline unavailable or changed: " + str(exc)]
+    if len(findings) != len(frozen):
+        errors.append("exactly four frozen #200 findings required")
     seen: set[tuple[str, int, int]] = set()
     ids: set[str] = set()
     for pos, f in enumerate(findings):
@@ -91,6 +120,13 @@ def validate(data: object) -> list[str]:
         if not isinstance(f, dict) or set(f) != FIELDS:
             errors.append(at + ": wrong fields")
             continue
+        expected = frozen.get(f["id"]) if isinstance(f["id"], str) else None
+        if expected is None:
+            errors.append(at + ": finding identity not in frozen #200 population")
+        else:
+            for field in FROZEN_FIELDS:
+                if f[field] != expected[field]:
+                    errors.append(at + ": frozen " + field + " altered")
         wave, batch, row = f["wave"], f["index_batch"], f["row"]
         if wave not in {"W001", "W002"} or type(batch) is not int or batch <= 0 or type(row) is not int or row <= 0:
             errors.append(at + ": invalid frozen row identity")
@@ -167,6 +203,8 @@ def validate(data: object) -> list[str]:
         elif outcome == "NO_CHANGE_EVIDENCED":
             if verification["effect"] != "JUSTIFIED_NO_CHANGE" or verification["result_pr_ref"] is not None:
                 errors.append(at + ": reasoned no-change must not claim merged correction")
+    if ids != set(frozen):
+        errors.append("missing or extra frozen finding IDs")
     return errors
 
 

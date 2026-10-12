@@ -63,6 +63,38 @@ class FindingReturnTests(unittest.TestCase):
         f = fixture()
         f["findings"][0]["source_sha"] = "main"
         self.assertBlocked(f)
+    def test_well_formed_but_wrong_frozen_sha_rejected(self):
+        f = fixture()
+        f["findings"][0]["source_sha"] = "f" * 40
+        self.assertBlocked(f)
+    def test_other_valid_index_owner_and_routing_rejected(self):
+        f = fixture()
+        owner = "https://github.com/opensiro/vsm-harness-index/issues/999999"
+        f["findings"][0]["index_owner_issue"] = owner
+        f["findings"][0]["routed_ref"] = owner
+        self.assertBlocked(f)
+    def test_frozen_claim_scope_cannot_silently_change(self):
+        f = fixture()
+        f["findings"][0]["scope"] = "A newly asserted claim"
+        self.assertBlocked(f)
+    def test_frozen_audit_origin_cannot_be_repointed(self):
+        f = fixture()
+        f["findings"][2]["original_audit_ref"] = "https://github.com/opensiro/vsm-oss-organization/issues/188"
+        self.assertBlocked(f)
+    def test_dropping_frozen_finding_is_rejected(self):
+        f = fixture()
+        f["findings"].pop()
+        self.assertBlocked(f)
+    def test_reordering_four_frozen_findings_is_allowed(self):
+        f = fixture()
+        f["findings"].reverse()
+        self.assertEqual(validator.validate(f), [])
+    def test_later_derived_snapshot_preserves_frozen_identity(self):
+        f = fixture()
+        f["snapshot_date_utc"] = "2026-10-12"
+        f["organization_main_sha"] = "f" * 40
+        f["index_main_sha"] = "e" * 40
+        self.assertEqual(validator.validate(f), [])
     def test_unrelated_owner_issue_not_allowed(self):
         f = fixture()
         f["findings"][0]["index_owner_issue"] = "https://github.com/not-index/repo/issues/1"
