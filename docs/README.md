@@ -8,6 +8,7 @@ Long-form repository documentation lives under `docs/`. Root-level files are res
 - [`ORGANIZATION.md`](ORGANIZATION.md) — viable-system identity and system boundary.
 - [`CONTROL_PLANE.md`](CONTROL_PLANE.md) — operational authority, compatibility gates, and work lifecycle.
 - [`AGENT_CONTROL_PLANE.md`](AGENT_CONTROL_PLANE.md) — maintainer-facing single-agent command interface that consumes those authority rules.
+- [`INDEPENDENT_REVIEWER_BATCH_HYPOTHESIS.md`](INDEPENDENT_REVIEWER_BATCH_HYPOTHESIS.md) — prospective coordination hypothesis; not a deployed reviewer or an S2 verdict.
 - [`ROADMAP.md`](ROADMAP.md) — OSM construction sequence and evidence narrative.
 - [`METRICS.md`](METRICS.md) — public outcome/observability contract.
 - [`AUTONOMOUS_WORK_REPORTING.md`](AUTONOMOUS_WORK_REPORTING.md) — autonomous-run reporting contract.
