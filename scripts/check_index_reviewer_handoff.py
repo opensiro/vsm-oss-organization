@@ -14,6 +14,8 @@ HEX40 = re.compile(r"^[0-9a-f]{40}$")
 FUNCTIONS = {"S1", "S2", "S3", "S3*", "S4", "S5"}
 PHASES = {"REQUESTED", "SOURCE_VERDICT_RECORDED", "RECONCILED"}
 URL = re.compile(r"^https://github\.com/[^/ ]+/[^/ ]+/(?:blob|tree|issues|pull|commit)/[^ ]+$")
+INDEX_ISSUE = re.compile(r"https://github\.com/opensiro/vsm-harness-index/issues/[1-9][0-9]*")
+INDEX_PR = re.compile(r"https://github\.com/opensiro/vsm-harness-index/pull/[1-9][0-9]*")
 CONTAMINATING = ("/pull/", "/assessments/", "proposed_vector", "author_rationale", "preferred_outcome")
 
 
@@ -79,15 +81,15 @@ def validate(record: object) -> list[str]:
     for key in ("source_sha", "reviewed_head"):
         if not isinstance(record[key], str) or not HEX40.fullmatch(record[key]):
             errors.append(key + ": expected exact full SHA")
-    for key in ("index_issue", "proposal_pr"):
-        if not _url(record[key]):
-            errors.append(key + ": expected public GitHub reference")
+    # These are Index-owned work items, not arbitrary GitHub issue/PR links.
+    # An unrelated repository must not pass as the owning adjudication gate.
+    for key, pattern in (("index_issue", INDEX_ISSUE), ("proposal_pr", INDEX_PR)):
+        if not isinstance(record[key], str) or not pattern.fullmatch(record[key]):
+            errors.append(key + ": expected canonical opensiro/vsm-harness-index URL")
     for key, repo in (("profile_ref", "opensiro/vsm-harness-profile"),
                       ("skills_ref", "opensiro/vsm-harness-skills")):
         if not _pinned_contract_ref(record[key], repo):
             errors.append(key + ": must pin the correct normative repository to exact commit SHA")
-    if "/issues/" not in str(record["index_issue"]) or "/pull/" not in str(record["proposal_pr"]):
-        errors.append("Index issue / PR URLs must identify correct resource types")
     if not isinstance(record["source_repository"], str) or not re.fullmatch(r"[^/ ]+/[^/ ]+", record["source_repository"]):
         errors.append("source_repository must be owner/repo")
     # A REQUESTED/UNASSIGNED record is pending, not a reviewer execution.
@@ -101,7 +103,7 @@ def validate(record: object) -> list[str]:
             errors.append(key + ": missing actual context identifier")
     if (isinstance(record["producer_context"], str)
             and isinstance(record["reviewer_context"], str)
-            and record["producer_context"] == record["reviewer_context"]):
+            and record["producer_context"].strip() == record["reviewer_context"].strip()):
         errors.append("same producer and reviewer context: no independent handoff")
     inputs = record["reviewer_input_refs"]
     if not isinstance(inputs, list) or not inputs:
