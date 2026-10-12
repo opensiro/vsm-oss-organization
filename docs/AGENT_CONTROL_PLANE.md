@@ -26,11 +26,48 @@ The conversation is a **control surface**, not a second GitHub issue board, evid
 | `continue` | Continue a clearly identified already-admitted current work item from the conversation, otherwise follow `TODO.md` `NOW` then `NEXT`; re-check ownership/locks and do only the next legitimately admitted action. |
 | `continue <repo> #<issue>` / `continue PR #<n>` | Resume that exact owner/issue/PR, subject to its independent/frozen/permission constraints. Do not silently switch to other batches or repos. |
 | `start a batch assessment` | Route to Index, check current method, discovery queue, frozen identities and competing locks; create/execute only a legitimately admitted batch under Index rules. |
+| `contribute to other harnesses` / `find upstream contribution opportunities` | Discover and present a fresh, actionable shortlist of **external** OSS harness contributions; ask whether the contributor wants optional public GitHub-profile tracking. Discovery is read-only and outside the bounded Organization S1 scheduler. See [External upstream contributions](#external-upstream-contributions). |
 | `check PR review status` / `check S3* audit status` | Identify the **specific** semantic/PR/audit gate and its owner; do not conflate a harness S3* classification with Organization complementary audit. |
 | `implement this change` / `open a PR` | Implement the scoped change through its owning repository, tests, an attributable PR and appropriate exact-head checks. |
 | `S5: consider <matter>` | Request classification through the [parent-governed S5 entry](../prompts/parent-control-plane.md); the prefix does not confer parent decision authority. |
 
 If a command does not name a work item, do **not** promote every open issue or PR into `TODO.md`. If `NOW` and `NEXT` are empty, report `no current scheduled item` and present genuinely eligible choices through [CONTRIBUTOR_START.md](../CONTRIBUTOR_START.md); do not pretend that the scheduler selected one. An explicit user-directed issue/PR can still be handled under its **own** admission contract without changing global scheduling.
+
+## External upstream contributions
+
+**Commands:** `contribute to other harnesses` (discovery), `find upstream contribution opportunities` (alias), or `contribute to <owner/repo>` / `contribute to <upstream issue URL>` (targeted intake). The first two **show choices**, not automatically choose a repository or open a PR. The contributor may select an offered opportunity, ask for a new shortlist, or supply a specific upstream issue.
+
+**Boundary:** This is an **opt-in contribution-discovery interface for independent external OSS projects**, outside the bounded Organization S1 scheduler and not an admission of those projects into the five-repository OpenSiro organization, `TODO.md`, its S1 modes, or its decision rights. The external project's maintainers, current default branch, contributing/CLA/licensing/security rules, open issues, PR review and CI own acceptance. OpenSiro Index/Awesome are candidate-discovery inputs **only**; their assessment classifications never authorize upstream modifications or establish a need to improve a grade.
+
+### Discovery and the offered list
+
+On a discovery invocation, without requiring a GitHub username or permission to track it:
+
+1. Re-establish the current OpenSiro bootstrap and read the owning Index/Awesome catalog as **discovery sources**; identify real public upstream harness repositories, not static hard-coded favourites. Check the current default branch and upstream primary sources for each shortlisted repository.
+2. Prefer **upstream-native** opportunities backed by a live open issue, maintainer request, roadmap or documented product gap. Check `CONTRIBUTING`, licensing/CLA, repository activity, relevant code paths/tests, and existing open PRs before describing a change as actionable. A VSM S1-S5 assessment gap or potential grade uplift **alone is not an upstream need**. If a candidate lacks a first-party need signal, label it *speculative* rather than presenting it as approved work.
+3. Reconcile against [the external intervention ledger](../experiments/upstream-intervention-fit/README.md) and current upstream PRs to avoid proposing a duplicate active intervention or confusing a replacement PR with a second contribution. Recent closed/merged interventions can inform lessons but do not imply another opportunity exists.
+4. Display a **ranked but non-binding shortlist of about 5-10 eligible harnesses** when enough evidence exists. Each row must give: upstream repository link, **specific issue/problem and first-party evidence URL**, plausible minimal upstream-native patch, current upstream status/checked date, contributor prerequisites or CLA if known, active-PR/duplication risk, and confidence/effort. Offer fewer rather than inventing or padding the list; clearly distinguish open maintainer-backed tasks from speculative investigations and unknown prerequisites.
+5. Ask which harness/issue the contributor wants to take. Do not create forks, branches, PRs, tracking tasks, or public records as a side effect of `show`/discovery. If no suitable first-party evidence exists, report that honestly and offer broader search/filtering instead of manufacturing changes.
+
+### Optional contributor-profile tracking — explicit permission gate
+
+After presenting the opportunities (or upon targeted contribution intake), **offer** a separate, non-blocking choice in plain language:
+
+> May I check your **public GitHub profile and PR activity** for future contributions to other harnesses? If yes, which GitHub username should I use: **one-time scan** or **ongoing monitoring**? You can also decline; it will not affect your ability to contribute.
+
+- **Default: OFF.** Do not infer permission from a linked GitHub tool, the logged-in account, a previous PR, profile URL, or merely invoking this command. Never silently enroll another contributor, scan that account's contribution history, or create a recurring task. If declined or unanswered, proceed with the shortlist and any selected upstream contribution without tracking. The contributor may provide PR links voluntarily.
+- **One-time scan:** only after an affirmative choice and explicit public GitHub login; inspect public authored PRs relevant to external OSS harnesses. A match is a **candidate observation**, not proof that OpenSiro initiated the work. Cross-check original upstream PRs, commits and reviews before attribution or a durable ledger entry.
+- **Ongoing monitoring:** requires a separate affirmative choice **plus a stated schedule/monitoring mechanism** accepted by the contributor. Set up monitoring only if an actually authorized recurring capability exists; otherwise offer a reusable manual check without claiming a background watcher. Scope it to the stated public login and public PR information, not private repositories, connected-account secrets, email, browsing history, or everyone who collaborated on a PR.
+- **Storage and revocation:** distinguish permission to *look* from permission to *publish or store the monitored username or monitoring preferences* in a public repository. Do not commit a tracking roster or consent record publicly without a separate explicit publication decision. Allow the contributor to withdraw future monitoring permission; stop further scheduled scans where the environment permits. Do not promise retroactive deletion of independently public upstream GitHub evidence.
+- **Anti-attribution shortcut:** a matching username, OpenSiro mention, or merged PR is not itself evidence of an OpenSiro-shaped intervention, human identity, equal participant credit, or `product_native_fit=pass`. The [ledger contract](../experiments/upstream-intervention-fit/README.md) governs inclusion, replacement-chain deduplication, participants and four evidence gates.
+
+### Selected contribution execution and outcome
+
+After the contributor **selects** a candidate or requests a specific upstream issue, treat the upstream as the **system-in-focus**: refresh its live default branch, exact issue/PR and contribution policy; record the intended product-native problem, smallest patch, permission/test gates and overlap with existing work. Do not substitute an OpenSiro assessment vector for a feature request. Read-only investigation can proceed without modification rights; pushing, PR creation and any integration-sensitive action require the actual user's/tool's authority and upstream rules. Use normal reviewable PRs, run relevant checks and record what *really* happened (proposed, opened, reviewed, merged, rejected, blocked).
+
+When the work is materially initiated or shaped by OpenSiro assessment/research, preserve both successes and negative outcomes under `experiments/upstream-intervention-fit/observations.json` with evidence and regenerate `snapshot.json` through its owner computation contract; do **not** create a new intervention for each review fix, rebase, contributor, or replacement PR. Public profile tracking is **not required** for this manual evidence-backed recording. If the chosen work is independent of OpenSiro, do not falsely claim it as OpenSiro-generated impact. The ledger is experimental, separate from internal five-repo PR telemetry, canonical VSM assessments, the website, and productivity rankings.
+
+Reporting after discovery should include the shortlist, provenance and unknowns, the **optional** profile-tracking question, and a clear choice of next upstream task. After execution report concrete upstream PR/commit/CI status and any ledger change; do not imply that a discovery command, follow-up scan or proposed contribution is a deployed continuous service.
 
 ## Per-command operating loop
 

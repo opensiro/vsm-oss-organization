@@ -28,6 +28,16 @@ Return to me when:
 - the work cannot safely be admitted.
 ```
 
+## I want to contribute to another OSS harness
+
+Ask your AI agent:
+
+```text
+contribute to other harnesses
+```
+
+It should follow [the agent control plane's external contribution command](docs/AGENT_CONTROL_PLANE.md#external-upstream-contributions), show a fresh shortlist of real upstream harness issues/product gaps with source links and contributor prerequisites, and let you choose. It will **also ask whether you want an optional scan of your public GitHub PR activity** (one time or ongoing, with an explicit username and further schedule approval). Tracking is **off by default** and declining does not block contribution discovery or an upstream PR. Other projects keep their own contribution/merge rules; an Index grade is never by itself a reason for an upstream change.
+
 ## I have an idea
 
 Give the agent your idea together with:
