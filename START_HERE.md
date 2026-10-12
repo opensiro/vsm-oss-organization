@@ -24,6 +24,18 @@ Cross-repository architecture and ownership routing live in [`docs/ECOSYSTEM.md`
 
 For already tracked current work, consult [`TODO.md`](TODO.md) and then return to the linked owning repository/issue. For new, unclassified, or authority-sensitive work, use [`CONTRIBUTOR_START.md`](CONTRIBUTOR_START.md).
 
+## First-contact control plane
+
+When a user supplies this bootstrap URL, asks to `start`, `help`, or `show control plane`, or otherwise requests an **open-ended OpenSiro entry point** without a concrete task, the agent should **present the operator interface**, not stop after listing documentation links or silently begin an execution lane.
+
+1. Follow the bootstrap above. Read [`docs/AGENT_CONTROL_PLANE.md`](docs/AGENT_CONTROL_PLANE.md), the current [`README.md`](README.md) scope, and [`TODO.md`](TODO.md). Resolve any displayed milestone, issue, PR, blocker or available work from its **current owning GitHub source**; label unverified state if live access is unavailable.
+2. Display a concise **OpenSiro Control Plane** entry surface: what the bounded OSS system is, a source-linked current-work/status snapshot where verified, and the available actions. Distinguish `TODO.md` selected work from other open issues and distinguish milestone targets from established evidence.
+3. Offer an **action menu** using real, native clickable buttons or comparable controls **only when the current chat/client supports them**. Button labels may be localized; each action must map to an exact command in [`docs/AGENT_CONTROL_PLANE.md`](docs/AGENT_CONTROL_PLANE.md). No assumed universal button syntax, HTML/Markdown pseudo-buttons, fake click targets, or unsupported host actions.
+4. If clickable controls are unavailable, render the **same choices as a compact numbered text menu with copyable commands** and accept free-form commands or repository/issue URLs. This is a required usable fallback, not a failed startup.
+5. Merely displaying the interface is **read-only**. A selection is a new command subject to the normal owner/task/permissions/independence/CI gates, never an automatic scheduling, batch admission, review, GitHub write, approval, merge, or background task. Do not suggest an action is executable if the tool or authority to perform it is missing; expose the limitation and permissible read-only path.
+
+For a **specific actionable request** (for example `continue Index #123` or a named PR), carry out that task under the normal bootstrap and controls **without forcing the introductory menu**. The interface is a discoverability aid, not a modal gate, role assignment, scheduler, or new VSM function. The complete command list, display defaults and acceptance cases live in [`docs/AGENT_CONTROL_PLANE.md`](docs/AGENT_CONTROL_PLANE.md).
+
 ## Single-agent operator entry
 
 A maintainer can use one agent conversation for `status`, `continue`, a named issue/PR, or a cross-repository status request. The owner-facing command and gate-handling interface is [`docs/AGENT_CONTROL_PLANE.md`](docs/AGENT_CONTROL_PLANE.md). It **uses** this bootstrap and the owning repository contracts; it is not a new scheduler, an independent reviewer runtime, or an authorization override. The maintainer need not create a new chat by default, but genuine source-first independence cannot be claimed from a contaminated context.

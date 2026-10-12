@@ -18,11 +18,37 @@ Use these existing contracts rather than replacing them:
 
 The conversation is a **control surface**, not a second GitHub issue board, evidence database, reviewer identity, or organizational decision owner. Its remembered state is never authoritative over current owning repository records.
 
+## First-contact action menu (client-adaptive presentation)
+
+`START_HERE.md` is the discovery/bootstrap entry; **this document owns the command mappings and behavior**. On a bare bootstrap/control-plane/help request with no named task, show a compact **OpenSiro Control Plane** panel rather than a wall of repository instructions. A concrete user task always takes precedence over the introductory panel.
+
+Before offering live status, read the current Organization scope and `TODO.md` and relevant owner records. Show a short, **source-linked, time-of-check** `NOW / BLOCKED / NEXT` snapshot only for facts actually verified. If GitHub or required tools cannot be reached, mark the snapshot `unverified / read-only`, explain the access limitation, and avoid inventing a current queue or enabled operations.
+
+| Visible action | Command dispatched on selection | Initial behavior |
+| --- | --- | --- |
+| **OSS Status** | `status` | Read-only live status and gates. |
+| **Roadmap** | `show OSS roadmap` | Read-only milestone/roadmap view; check live tracker issues and distinguish goals from demonstrated evidence. |
+| **Continue Work** | `continue` | Re-evaluate `TODO.md` `NOW`/`NEXT`, current conversation target, locks and admission; report `no current scheduled item` if none. |
+| **Batch Assessment** | `start a batch assessment` | Route to Index and apply Index discovery/admission/serial-lock rules before any write. |
+| **PR Review** / **S3* Audit** | `check PR review status` / `check S3* audit status` | Separate read-only gate inspections; never fabricate independent review. |
+| **Contribute Upstream** | `contribute to other harnesses` | Read-only opportunity discovery first; optional contributor-profile monitoring is a later **explicit opt-in**. |
+| **Open Issue or PR** | `continue <repo> #<issue>` / `continue PR #<n>` | Ask for an exact target when missing; do not dispatch a literal placeholder or guess across repositories. |
+| **Propose Change** / **S5 Matter** | `open a PR` / `S5: consider <matter>` | Require the actual scope/matter and all owner/parent permission gates. |
+
+**Render rules:**
+
+- Prefer **real native buttons/action controls** supported by the current chat client; their click action must dispatch the mapped command as a *new user-selected request*, not execute hidden work while constructing the menu. Labels may match the user's language; underlying command semantics remain stable. Do not invent platform-specific JSON, code, fake Markdown links that look like buttons, or claim that GitHub Markdown itself runs agent actions.
+- If interactive controls are not supported, render the **same high-value actions** as one concise numbered text menu with exact copyable command strings; accept typed commands, natural-language requests and issue/PR links equally. No UI library, hosted service, plugin or new runtime is required for this fallback.
+- Present useful **read-only options without requiring write permissions**. Do not imply a mutating action is available when tools/credentials are absent. Selection may yield an explicit permission blocker or reviewable draft; a rendered button is never delegation or evidence of execution.
+- Do not initiate `continue`, batch execution, a GitHub write, S5 escalation, a reviewer session or profile monitoring merely because the panel was displayed. An affirmative menu selection still passes through the [per-command operating loop](#per-command-operating-loop) and the owning authorization/independence gates. A blocked `continue` must not silently select some unrelated open issue.
+- Do not turn this presentation into a global scheduler, S2 coordination owner, S3 controller, S3* reviewer, or S5 policy authority. The panel is a view/control **interface** over existing GitHub-backed contracts, never their replacement.
+
 ## Maintainer commands
 
 | Say to the agent | Intended operation |
 | --- | --- |
 | `status` / `show OSS status` | Refresh canonical sources, summarize active milestone, scheduled work, relevant open issues/PRs, CI/gates and observed blockers; distinguish unscheduled issues from `TODO.md` selections. No write is implied. |
+| `show OSS roadmap` | Show current milestones and next admissible milestone work, using live Organization milestone tracker issues/owner evidence alongside `docs/ROADMAP.md`; distinguish planned target vectors from established construction/evidence state. Read-only. |
 | `continue` | Continue a clearly identified already-admitted current work item from the conversation, otherwise follow `TODO.md` `NOW` then `NEXT`; re-check ownership/locks and do only the next legitimately admitted action. |
 | `continue <repo> #<issue>` / `continue PR #<n>` | Resume that exact owner/issue/PR, subject to its independent/frozen/permission constraints. Do not silently switch to other batches or repos. |
 | `start a batch assessment` | Route to Index, check current method, discovery queue, frozen identities and competing locks; create/execute only a legitimately admitted batch under Index rules. |
@@ -121,6 +147,10 @@ Explain **what was actually executed**, and distinguish `proposed`, `reviewed`, 
 - A bare `continue` with empty `TODO.md` `NOW`/`NEXT` does **not** silently treat some unrelated open PR as current scheduled work.
 - A named task with an existing frozen SHA or claimed serial row resumes that exact lane and preserves its locks; a stale issue checkpoint is checked against live owner state.
 
+- Bare `START_HERE.md` URL / `show control plane` with no specific task produces a source-linked bounded Control Plane summary and **real clickable actions where supported**, with no GitHub write before a selection.
+- A text-only client sees a readable numbered menu exposing the same commands; a user can type `status` or provide a named issue instead of clicking a button.
+- A concrete named PR/issue command executes the ordinary gated task path directly; the introduction does not block it, and a button does not confer review, merge, scheduling, or S5 authority.
+- With unavailable live GitHub access or write tools, the interface labels status unverified and actions constrained rather than claiming current facts or pretending a write succeeded.
 ## Non-goals
 
 No new global scheduler, shadow state database, unconditional independent-audit rule, agent spawning service, review rights, changed VSM grades, S3*/S5 authority, CI bypass or blanket merge delegation. This file is an **interface contract for an agent that already has appropriate tools and permissions**; executor provisioning and independent reviewer deployment remain separate work.
