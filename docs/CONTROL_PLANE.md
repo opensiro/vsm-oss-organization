@@ -64,7 +64,7 @@ Ownership by layer:
 | Reporting | [`AUTONOMOUS_WORK_REPORTING.md`](AUTONOMOUS_WORK_REPORTING.md) | concise observability of the current run | authority, scheduling truth, VSM function ownership |
 | Optional projection | linked GitHub Project #1 | human visual projection when maintained | canonical current-work state or autonomous correctness |
 
-A milestone item is not permission to execute. An open issue is not automatically current work. A `TODO.md` entry is not proof that the issue is admissible as S1 or that any metasystem function exists. The owning execution contract must still admit and classify the work.
+A milestone item is not permission to execute. An open issue is not automatically current work. A `TODO.md` entry is not proof that the issue is admissible as S1 or that any metasystem function exists. The owning execution contract must still admit and classify the work. A milestone may schedule construction and a bounded real-work reference trial (including S3) **before** operational demand grows; it cannot itself establish the VSM function, decisional authority, or return/closure evidence.
 
 `TODO.md` deliberately contains only `NOW`, `NEXT`, and `BLOCKED`. `WATCH` and `LATER` are planning/discovery concerns rather than current execution state and must stay in milestones, source trackers, ordinary issues, or their owning repositories until selected.
 

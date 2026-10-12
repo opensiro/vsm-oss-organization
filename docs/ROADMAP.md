@@ -41,7 +41,7 @@ This status records construction/evidence progress only. It does not convert mil
 | M0 — Autonomous operation | `A — — — — —` | Establish repeatable local S1 operation for Index, Skills, and Awesome while keeping residual variety explicit. |
 | M1 — Audit + control constructors | `A — C C — —` | Establish real S3 and S3* functions with first-party construction paths, without yet requiring autonomous owners for either metasystem function. |
 | M2 — Parent-governed identity boundary | `A — C C — P` | Establish genuine S5 escalation and return so later autonomy grows inside an explicit parent-governed policy envelope. |
-| M3 — Autonomous current control | `A — A C — P` | Give an agent whole-system current view and bounded intervention authority when S1 domains can no longer absorb all current exceptions locally. |
+| M3 — Autonomous current control | `A — A C — P` | Build autonomous whole-system current-control ownership in roadmap order, ahead of contributor scaling, while requiring real current decisions and returned S1 effects for evidence. |
 | M4 — Cross-S1 coordination | `A A A C — P` | Add autonomous S2 only after the already-existing S1 domains exhibit concrete interference that requires coordination. |
 | M5 — External adaptation | `A A A C A P` | Add S4 only when the organization must model external/future change and feed adaptation options back into current capability. |
 
@@ -118,7 +118,7 @@ M0 construction is complete when:
 
 Target: `A — C C — —`
 
-**Current evidence status:** `S3*=C` is established by #44 / PR #45. `S3=C` remains open on #39 because no naturally qualifying whole-system current-control transaction has yet exercised the constructor and returned into S1 with reviewable closure.
+**Current evidence status:** `S3*=C` is established by #44 / PR #45. `S3=C` remains open on #39 because no real whole-system current-control transaction has yet exercised the constructor and returned into S1 with reviewable closure. The frozen 2026-09-30 [general pre-assessment](../records/assessment-snapshots/2026-09-30-general-preassessment.md) independently recorded `S3=?`; it is non-canonical and distinct from this milestone target.
 
 M1 establishes **two constructor paths**. It does not require a permanent autonomous S3 regulator or a permanent autonomous S3* verifier.
 
@@ -144,14 +144,16 @@ Issue #44 / PR #45 is the first real functional witness: it exercised a compleme
 
 S3 remains pending at constructor level: the repository exposes a first-party current-control/intervention path, but the function cannot be credited `C` until one real qualifying current-control transaction establishes the function in use.
 
-The path must be capable of carrying a real whole-system current-control decision back into affected operation. The trigger may come from S3*, from another legitimate current exception, or from any other source that establishes the S3 function at the declared boundary.
+The path must be capable of carrying a real whole-system current-control decision back into affected operation. An actual present-tense allocation, prioritization, commitment, or shared-constraint choice can qualify when its decisive authority belongs to the whole system rather than one S1. A material S3* finding or current exception can also trigger the path, but neither an emergency nor S1 failure is a prerequisite.
 
 Reference flow:
 
 ```text
 S1 operation
         ↓
-material current exception and/or composed S3* finding
+real current whole-system control need
+(present allocation/commitment/constraint choice,
+or a current exception / S3* finding)
         ↓
 S3 control request
         ↓
@@ -166,6 +168,19 @@ subsequent S1 operation
 
 An algedonic signal is not itself S3* or S3.
 
+### Roadmap-driven reference trial, evidence-driven classification
+
+Milestones select **when to construct and test** S3. They do not require waiting for more contributors, the maintainer becoming unavailable, an outage, or another naturally occurring crisis before attempting M1 or developing the later M3 owner. The intended benefit is to prepare bounded current management before contributor load grows.
+
+For M1, deliberately plan a bounded reference transaction around **existing, real operational work**:
+
+1. Identify active Index, Skills, and/or Awesome S1 commitments and a substantive current decision over shared capacity, priorities, commitments, constraints, or accountability that an individual S1 is not authorized to settle for the whole.
+2. Record the relevant whole-system present-state facts, affected S1 work and exact refs **before** the decision. Keep normal S1 discretion and any S2 coordination distinct from the S3 decision right.
+3. Identify the legitimate decision owner. Use the existing S3 constructor/return hook to carry the bounded choice into affected S1 operation; preserve acknowledgement/application and an observable change or justified preservation of subsequent work.
+4. Review the actual function, owner/support split, boundary reachability, and closure under the selected Profile/Methodology before asserting `S3=C`. If no substantive whole-system current decision is available, report `INSUFFICIENT` and leave M1 open rather than manufacturing a trade-off.
+
+A milestone, S3 role file, task priority label, TODO reorder, reviewer delay, or ordinary local S1 repair is **not** a functional S3 witness. Do not invent a conflict, budget pressure, blocker, audit finding, or meaningless work change merely to obtain a `C` classification. The frozen [2026-09-30 pre-assessment](../records/assessment-snapshots/2026-09-30-general-preassessment.md) remains historical; a later assessment of new evidence must pin its own source revision and provide its own verdict.
+
 Current implementation readiness is complete: the S3-specific control surface, machine-readable transaction, reviewable record, decision-owner contract, and canonical S3→S1 return hook already exist. Additional preparatory machinery is not an M1 substitute for the missing real #39 witness.
 
 ### Exit criteria
@@ -179,7 +194,7 @@ M1 closes when:
 - actual decision/judgment owners remain explicit and support/enforcement remains separate;
 - neither S3 nor S3* is claimed `A` merely because constructor infrastructure exists.
 
-Do not manufacture a current-control disturbance solely to complete M1. Ordinary Index discovery/assessment concurrency, local Skills repair, and local Awesome curation remain S1 variety unless a concrete case exceeds the relevant local authority envelope.
+Do not manufacture a current-control disturbance solely to complete M1. Ordinary Index discovery/assessment concurrency, local Skills repair, and local Awesome curation remain S1 variety unless a real present-tense control choice requires authority on behalf of the whole Organization. A planned trial is allowed; a planned trial without a genuine decision and returned S1 effect is not evidence.
 
 ## M2 — Parent-governed identity boundary
 
@@ -228,9 +243,9 @@ After M1 closes, perform a bounded current-main revalidation of inherited M1 evi
 
 Target: `A — A C — P`
 
-Add autonomous S3 only when observed current operational variety across the organization exceeds what the S1 domains should absorb locally.
+M3 is selected by the roadmap after M2, **not** by reaching a contributor-count threshold or waiting until the maintainer is overloaded. Build and validate an autonomous current-control actor in advance of anticipated growth, while retaining each S1 domain's local discretion and the M2 S5 delegated envelope.
 
-Typical triggers include repeated stalled work, budget/retry trade-offs, current commitment conflicts, or exception-based intervention across the active operational scope.
+Functional `S3=A` evidence still requires a real model-owned choice over present whole-system commitments, capacity, priorities, constraints, or intervention with returned effects on S1. Examples include genuine current resource trade-offs, conflicting active commitments, and exception-driven intervention. A planned exercise cannot manufacture the relevant operational variety or substitute for a real actor-owned decision.
 
 Exit criteria:
 
