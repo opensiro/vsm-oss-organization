@@ -39,8 +39,8 @@ class UpstreamAttributionTests(unittest.TestCase):
 
     def test_original_fit_and_other_interventions_are_preserved(self):
         self.assertEqual(sum(1 for x in self.data["interventions"] if x["id"] == "henterprise-1"), 1)
-        self.assertEqual(len(self.data["interventions"]), 6)
-        self.assertEqual(compute.compute(self.data)["fit_counts"], {"pass": 2, "fail": 1, "pending": 3})
+        self.assertEqual(len(self.data["interventions"]), 8)
+        self.assertEqual(compute.compute(self.data)["fit_counts"], {"pass": 3, "fail": 2, "pending": 3})
 
     def test_duplicate_intervention_identity_rejected(self):
         value = copy.deepcopy(self.data)
@@ -80,6 +80,36 @@ class UpstreamAttributionTests(unittest.TestCase):
         value["interventions"][4]["participants"][0]["account_type"] = "unknown"
         compute.validate_observations(value)
         self.assert_rejected(lambda row: row["participants"][0].update(account_type="human"), "invalid account type")
+
+
+    def test_refreshed_eight_intervention_cohort(self):
+        rows = {x["id"]: x for x in self.data["interventions"]}
+        self.assertEqual(rows["marveen-1516"]["lifecycle"], "merged")
+        self.assertEqual(rows["scion-2047"]["lifecycle"], "closed_unmerged")
+        self.assertEqual(rows["scion-2047"]["gates"]["scope_compatibility"], "fail")
+        self.assertEqual(rows["scion-2047"]["gates"]["upstream_need"], "unknown")
+        self.assertEqual(rows["shep-933"]["lifecycle"], "open")
+        self.assertEqual(rows["shep-934"]["lifecycle"], "open")
+        self.assertNotEqual(rows["shep-933"]["pull_request"], rows["shep-934"]["pull_request"])
+        summary = compute.compute(self.data)
+        self.assertEqual(summary["lifecycle_counts"], {"closed_unmerged": 2, "merged": 2, "open": 4})
+        self.assertEqual(summary["primary_metric"]["numerator_pass"], 3)
+        self.assertEqual(summary["primary_metric"]["denominator_completed_reviews"], 5)
+        self.assertEqual(summary["primary_metric"]["value"], 0.6)
+
+    def test_shep_contributor_roles_have_first_party_evidence(self):
+        rows = {x["id"]: x for x in self.data["interventions"]}
+        s2, hotfix = rows["shep-933"], rows["shep-934"]
+        self.assertEqual([p["github_login"] for p in s2["participants"]],
+                         ["xLagerFeuer", "arielshad", "claude"])
+        reviewer = s2["participants"][1]
+        self.assertEqual(reviewer["roles"], ["reviewer"])
+        self.assertTrue(any("#pullrequestreview-" in u for u in reviewer["evidence_urls"]))
+        self.assertEqual([p["github_login"] for p in hotfix["participants"]],
+                         ["xLagerFeuer", "claude"])
+        self.assertEqual(compute.derived_fit(s2["gates"]), "pending")
+        self.assertEqual(compute.derived_fit(hotfix["gates"]), "pass")
+        compute.validate_observations(copy.deepcopy(self.data))
 
     def test_snapshot_is_pinned_to_validated_observations(self):
         actual = (SOURCE.parent / "snapshot.json").read_text(encoding="utf-8")
