@@ -38,7 +38,7 @@ class ExternalContributionCommandTests(unittest.TestCase):
         for clause in ("outside the bounded Organization S1 scheduler",
                        "upstream as the **system-in-focus**",
                        "product_native_fit=pass", "observations.json", "snapshot.json",
-                       "not an upstream need", "not required"):
+                       "not an upstream need", "**not required**"):
             self.assertIn(clause, self.command)
         self.assertIn("Do not create forks, branches, PRs", self.command)
 
