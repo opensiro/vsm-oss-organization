@@ -97,7 +97,8 @@ def validate(data: object) -> list[str]:
         errors.append("schema version mismatch")
     if data["view_kind"] != "DERIVED_READ_ONLY":
         errors.append("must explicitly be derived read-only")
-    if date(data["snapshot_date_utc"]) is None:
+    snapshot_day = date(data["snapshot_date_utc"])
+    if snapshot_day is None:
         errors.append("snapshot date invalid")
     if data["authority_issue"] != "https://github.com/opensiro/vsm-oss-organization/issues/200":
         errors.append("wrong authority issue")
@@ -128,7 +129,7 @@ def validate(data: object) -> list[str]:
                 if f[field] != expected[field]:
                     errors.append(at + ": frozen " + field + " altered")
         wave, batch, row = f["wave"], f["index_batch"], f["row"]
-        if wave not in {"W001", "W002"} or type(batch) is not int or batch <= 0 or type(row) is not int or row <= 0:
+        if not isinstance(wave, str) or wave not in {"W001", "W002"} or type(batch) is not int or batch <= 0 or type(row) is not int or row <= 0:
             errors.append(at + ": invalid frozen row identity")
         else:
             key = wave, batch, row
@@ -143,7 +144,7 @@ def validate(data: object) -> list[str]:
             errors.append(at + ": invalid frozen upstream repository")
         if not sha(f["source_sha"]):
             errors.append(at + ": invalid frozen source SHA")
-        if f["audited_function"] not in FUNCTIONS or not nonempty(f["scope"]):
+        if not isinstance(f["audited_function"], str) or f["audited_function"] not in FUNCTIONS or not nonempty(f["scope"]):
             errors.append(at + ": missing audited claim scope")
         if not isinstance(f["original_audit_ref"], str) or not ORG_REF.fullmatch(f["original_audit_ref"]):
             errors.append(at + ": invalid original Organization evidence reference")
@@ -156,7 +157,7 @@ def validate(data: object) -> list[str]:
         if f["original_outcome"] != "FINDING":
             errors.append(at + ": historical audit outcome must stay FINDING")
         disposition, decision, verification = f["disposition"], f["owner_decision"], f["verification"]
-        if disposition not in {"ROUTED_OPEN", "ADJUDICATED", "VERIFIED"}:
+        if not isinstance(disposition, str) or disposition not in {"ROUTED_OPEN", "ADJUDICATED", "VERIFIED"}:
             errors.append(at + ": invalid disposition")
             continue
         if disposition == "ROUTED_OPEN":
@@ -167,13 +168,15 @@ def validate(data: object) -> list[str]:
             errors.append(at + ": adjudication requires complete Index owner evidence")
             continue
         outcome = decision["outcome"]
-        if outcome not in {"CORRECTION_REQUIRED", "NO_CHANGE_EVIDENCED", "INSUFFICIENT_EVIDENCE"}:
+        if not isinstance(outcome, str) or outcome not in {"CORRECTION_REQUIRED", "NO_CHANGE_EVIDENCED", "INSUFFICIENT_EVIDENCE"}:
             errors.append(at + ": invalid owner disposition")
         if not nonempty(decision["owner_actor"]) or not nonempty(decision["reason"]):
             errors.append(at + ": owner identity/reason missing")
         decided = timestamp(decision["decided_at_utc"])
         if decided is None:
             errors.append(at + ": owner decision timestamp invalid")
+        elif snapshot_day is not None and decided.astimezone(dt.timezone.utc).date() > snapshot_day:
+            errors.append(at + ": owner decision occurs after dated snapshot")
         if not sha(decision["index_main_sha"]):
             errors.append(at + ": owner decision Index main SHA absent")
         decision_ref = decision["index_reference"]
@@ -193,6 +196,8 @@ def validate(data: object) -> list[str]:
         verified = timestamp(verification["verified_at_utc"])
         if verified is None or (decided is not None and verified <= decided):
             errors.append(at + ": verification must be dated after owner decision")
+        if verified is not None and snapshot_day is not None and verified.astimezone(dt.timezone.utc).date() > snapshot_day:
+            errors.append(at + ": verification occurs after dated snapshot")
         if not sha(verification["index_main_sha"]):
             errors.append(at + ": verified Index main SHA absent")
         if not isinstance(verification["verification_ref"], str) or not ORG_REF.fullmatch(verification["verification_ref"]):

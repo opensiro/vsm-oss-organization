@@ -154,6 +154,76 @@ class FindingReturnTests(unittest.TestCase):
         f = fixture()
         f["findings"][0].update(disposition="VERIFIED", owner_decision=decision("NO_CHANGE_EVIDENCED"), verification=verification(effect="JUSTIFIED_NO_CHANGE", pr=False))
         self.assertEqual(validator.validate(f), [])
+    def test_malformed_snapshot_day_with_decision_fails_closed(self):
+        f = fixture()
+        f["findings"][0].update(disposition="VERIFIED", owner_decision=decision(), verification=verification())
+        for invalid in (None, [], {}, 0, True, ""):
+            with self.subTest(value=invalid):
+                f["snapshot_date_utc"] = invalid
+                self.assertBlocked(f)
+
+    def test_unhashable_json_values_fail_closed_without_crashing(self):
+        for field in ("wave", "audited_function", "disposition"):
+            with self.subTest(field=field):
+                f = fixture()
+                f["findings"][0][field] = []
+                self.assertBlocked(f)
+        f = fixture()
+        f["findings"][0].update(disposition="ADJUDICATED", owner_decision=decision())
+        f["findings"][0]["owner_decision"]["outcome"] = []
+        self.assertBlocked(f)
+    def test_owner_decision_after_snapshot_rejected(self):
+        f = fixture()
+        f["findings"][0].update(disposition="ADJUDICATED", owner_decision=decision())
+        f["snapshot_date_utc"] = "2026-10-10"
+        self.assertBlocked(f)
+    def test_verified_effect_after_snapshot_rejected(self):
+        f = fixture()
+        f["findings"][0].update(disposition="VERIFIED", owner_decision=decision(), verification=verification())
+        f["snapshot_date_utc"] = "2026-10-10"
+        self.assertBlocked(f)
+    def test_timezone_aware_decision_cutoff_in_utc(self):
+        f = fixture()
+        f["findings"][0].update(disposition="ADJUDICATED", owner_decision=decision())
+        # Local October 12 is still October 11 in the UTC snapshot.
+        f["findings"][0]["owner_decision"]["decided_at_utc"] = "2026-10-12T00:10:00+02:00"
+        self.assertEqual(validator.validate(f), [])
+        f["findings"][0]["owner_decision"]["decided_at_utc"] = "2026-10-12T00:10:00Z"
+        self.assertBlocked(f)
+    def test_verification_on_snapshot_date_after_owner_is_valid_structurally(self):
+        f = fixture()
+        f["findings"][0].update(disposition="VERIFIED", owner_decision=decision(), verification=verification())
+        self.assertEqual(validator.validate(f), [])
+
+    def test_malformed_json_shapes_fail_closed_across_all_fields(self):
+        # A deterministic, bounded mutation matrix: no malformed JSON scalar
+        # may crash the structural guard or be accepted as a valid snapshot.
+        valid_decision = decision()
+        valid_verification = verification()
+        baseline = fixture()
+        total = 0
+        for location, fields in (
+            ("root", tuple(baseline)),
+            ("finding", tuple(baseline["findings"][0])),
+            ("decision", tuple(valid_decision)),
+            ("verification", tuple(valid_verification)),
+        ):
+            for field in fields:
+                for bad in (None, [], {}, 0, True, ""):
+                    with self.subTest(location=location, field=field, bad=bad):
+                        f = fixture()
+                        record = f["findings"][0]
+                        record.update(disposition="VERIFIED", owner_decision=decision(), verification=verification())
+                        target = {
+                            "root": f, "finding": record,
+                            "decision": record["owner_decision"],
+                            "verification": record["verification"],
+                        }[location]
+                        target[field] = bad
+                        self.assertBlocked(f)
+                        total += 1
+        self.assertEqual(total, 204)
+
     def test_wrong_schema_rejected(self):
         f = fixture()
         f["view_kind"] = "CANONICAL_ASSESSMENT"
