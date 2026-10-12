@@ -37,7 +37,7 @@ If a command does not name a work item, do **not** promote every open issue or P
 
 **Commands:** `contribute to other harnesses` (discovery), `find upstream contribution opportunities` (alias), or `contribute to <owner/repo>` / `contribute to <upstream issue URL>` (targeted intake). The first two **show choices**, not automatically choose a repository or open a PR. The contributor may select an offered opportunity, ask for a new shortlist, or supply a specific upstream issue.
 
-**Boundary:** This is an **opt-in contribution-discovery interface for independent external OSS projects**, not an admission of those projects into the five-repository OpenSiro organization, `TODO.md`, its S1 modes, or its decision rights. The external project's maintainers, current default branch, contributing/CLA/licensing/security rules, open issues, PR review and CI own acceptance. OpenSiro Index/Awesome are candidate-discovery inputs **only**; their assessment classifications never authorize upstream modifications or establish a need to improve a grade.
+**Boundary:** This is an **opt-in contribution-discovery interface for independent external OSS projects**, outside the bounded Organization S1 scheduler and not an admission of those projects into the five-repository OpenSiro organization, `TODO.md`, its S1 modes, or its decision rights. The external project's maintainers, current default branch, contributing/CLA/licensing/security rules, open issues, PR review and CI own acceptance. OpenSiro Index/Awesome are candidate-discovery inputs **only**; their assessment classifications never authorize upstream modifications or establish a need to improve a grade.
 
 ### Discovery and the offered list
 
