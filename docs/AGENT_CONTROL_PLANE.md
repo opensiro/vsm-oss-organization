@@ -31,6 +31,7 @@ Before offering live status, read the current Organization scope and `TODO.md` a
 | **Continue Work** | `continue` | Re-evaluate `TODO.md` `NOW`/`NEXT`, current conversation target, locks and admission; report `no current scheduled item` if none. |
 | **Batch Assessment** | `start a batch assessment` | Route to Index and apply Index discovery/admission/serial-lock rules before any write. |
 | **PR Review** / **S3* Audit** | `check PR review status` / `check S3* audit status` | Separate read-only gate inspections; never fabricate independent review. |
+| **Current Control (S3)** | `S3: inspect current control` | Read-only source-first intake across actual S1 operations; **does not itself create an S3 decision or witness**. |
 | **Contribute Upstream** | `contribute to other harnesses` | Read-only opportunity discovery first; optional contributor-profile monitoring is a later **explicit opt-in**. |
 | **Open Issue or PR** | `continue <repo> #<issue>` / `continue PR #<n>` | Ask for an exact target when missing; do not dispatch a literal placeholder or guess across repositories. |
 | **Propose Change** / **S5 Matter** | `open a PR` / `S5: consider <matter>` | Require the actual scope/matter and all owner/parent permission gates. |
@@ -55,9 +56,18 @@ Before offering live status, read the current Organization scope and `TODO.md` a
 | `contribute to other harnesses` / `find upstream contribution opportunities` | Discover and present a fresh, actionable shortlist of **external** OSS harness contributions; ask whether the contributor wants optional public GitHub-profile tracking. Discovery is read-only and outside the bounded Organization S1 scheduler. See [External upstream contributions](#external-upstream-contributions). |
 | `check PR review status` / `check S3* audit status` | Identify the **specific** semantic/PR/audit gate and its owner; do not conflate a harness S3* classification with Organization complementary audit. |
 | `implement this change` / `open a PR` | Implement the scoped change through its owning repository, tests, an attributable PR and appropriate exact-head checks. |
+| `S3: inspect current control` / `S3: consider <present choice>` | Run [pre-admission S3 intake](../prompts/intake-s3-current-control.md) for a real current Organization-wide decision. No S3 transaction, owner discretion or classification is implied by invoking this command. |
 | `S5: consider <matter>` | Request classification through the [parent-governed S5 entry](../prompts/parent-control-plane.md); the prefix does not confer parent decision authority. |
 
 If a command does not name a work item, do **not** promote every open issue or PR into `TODO.md`. If `NOW` and `NEXT` are empty, report `no current scheduled item` and present genuinely eligible choices through [CONTRIBUTOR_START.md](../CONTRIBUTOR_START.md); do not pretend that the scheduler selected one. An explicit user-directed issue/PR can still be handled under its **own** admission contract without changing global scheduling.
+
+## S3 current-control intake (M1)
+
+The **Current Control (S3)** menu action dispatches only `S3: inspect current control`; a typed `S3: consider <present choice>` may identify an existing present-tense cross-Organization choice. Both read the current [S3 intake](../prompts/intake-s3-current-control.md), [S3 contract](../contracts/s3/current-control.md) and [M1 #39](https://github.com/opensiro/vsm-oss-organization/issues/39) after the shared bootstrap. They are distinct from the **S3* Audit** action (complementary verification), `continue` (scheduled work), and **S5 Matter** (ultimate policy). Showing the action does not trigger it.
+
+The initial inventory is **read-only**. A new `REQUESTED` transaction is not admissible until facts establish existing S1 work, a concrete whole-system current resource/commitment/constraint choice, an authorized and explicitly attributed decisive owner, specific S1 return targets and observable closure criteria. Preserve local S1 and S2 authority. The actual owner must make the decision; the panel, selected menu item, operator prompt, issue/PR comment or generic user `continue` cannot impersonate that decision. After a real owner decision, apply the existing [S3 → S1 return procedure](../prompts/apply-s3-control.md), and verify application/effects separately.
+
+If the current evidence does not establish a genuine present S3 matter or legitimate authority, report **no S3 transaction**, the exact missing evidence/owner decision and permissible next source check. No manufactured budget conflict, no standing autonomous S3 agent, no change to the historical pre-assessment, and **no `S3=C` promotion** on menu integration, intake or CI success. M1 is developed on the roadmap rather than on an emergency schedule; classification remains evidence-driven.
 
 ## External upstream contributions
 
@@ -149,6 +159,8 @@ Explain **what was actually executed**, and distinguish `proposed`, `reviewed`, 
 
 - Bare `START_HERE.md` URL / `show control plane` with no specific task produces a source-linked bounded Control Plane summary and **real clickable actions where supported**, with no GitHub write before a selection.
 - A text-only client sees a readable numbered menu exposing the same commands; a user can type `status` or provide a named issue instead of clicking a button.
+- Selecting **Current Control (S3)** calls `S3: inspect current control` as an independent new user request; it performs only source-first inventory and does not invent a `REQUESTED` transaction or a decisive owner. A targeted `S3: consider <present choice>` must obey the same gate.
+- **S3 intake** is not **S3* Audit**, S1 local repair, S2 coordination or S5 policy. A menu item, issue status or CI result is never `S3=C` evidence.
 - A concrete named PR/issue command executes the ordinary gated task path directly; the introduction does not block it, and a button does not confer review, merge, scheduling, or S5 authority.
 - With unavailable live GitHub access or write tools, the interface labels status unverified and actions constrained rather than claiming current facts or pretending a write succeeded.
 ## Non-goals
