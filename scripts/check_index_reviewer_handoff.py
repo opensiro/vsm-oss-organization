@@ -136,7 +136,7 @@ def validate(record: object) -> list[str]:
         errors.append("source_verdict: six function judgments required")
     else:
         labels = [x.get("function") for x in items]
-        if set(labels) != FUNCTIONS or len(set(labels)) != 6:
+        if not all(isinstance(label, str) for label in labels) or set(labels) != FUNCTIONS or len(set(labels)) != 6:
             errors.append("source_verdict: exact S1/S2/S3/S3*/S4/S5 coverage required")
         for item in items:
             if set(item) != {"function", "judgment", "primary_refs", "counterevidence"}:
@@ -162,7 +162,7 @@ def validate(record: object) -> list[str]:
         errors.append("no proven chronological source-first verdict")
     if comparison["pr_head"] != record["reviewed_head"]:
         errors.append("PR head changed: fail closed")
-    if comparison["outcome"] not in {"PASS", "FINDING", "INSUFFICIENT"}:
+    if not isinstance(comparison["outcome"], str) or comparison["outcome"] not in {"PASS", "FINDING", "INSUFFICIENT"}:
         errors.append("invalid bounded local outcome")
     if not _url(comparison["receipt_url"]) or not isinstance(comparison["difference_summary"], str) or not comparison["difference_summary"].strip():
         errors.append("reconciliation missing attributable evidence/differences")

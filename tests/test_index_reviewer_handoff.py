@@ -190,6 +190,16 @@ class ReviewHandoffTests(unittest.TestCase):
         r = fixture()
         r["source_verdict"]["functions"][0]["function"] = "S2"
         self.assertTrue(s.validate(r))
+    def test_non_string_function_label_rejected_without_exception(self):
+        r = fixture()
+        r["source_verdict"]["functions"][0]["function"] = ["S1"]
+        self.assertTrue(s.validate(r))
+
+    def test_non_string_outcome_rejected_without_exception(self):
+        r = fixture()
+        r["comparison"]["outcome"] = ["PASS"]
+        self.assertTrue(s.validate(r))
+
     def test_proposal_exposed_in_source_only_rejected(self):
         r = fixture()
         r.update(phase="SOURCE_VERDICT_RECORDED")
