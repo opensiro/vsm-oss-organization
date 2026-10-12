@@ -84,6 +84,26 @@ class ReviewHandoffTests(unittest.TestCase):
         r = fixture()
         r["reviewer_context"] = r["producer_context"]
         self.assertTrue(s.validate(r))
+    def test_index_issue_must_belong_to_owning_index(self):
+        r = fixture()
+        r["index_issue"] = "https://github.com/other/project/issues/1000"
+        self.assertTrue(s.validate(r))
+
+    def test_proposal_pr_must_belong_to_owning_index(self):
+        r = fixture()
+        r["proposal_pr"] = "https://github.com/other/project/pull/1001"
+        self.assertTrue(s.validate(r))
+
+    def test_index_issue_cannot_smuggle_nested_or_comment_url(self):
+        r = fixture()
+        r["index_issue"] += "/pull/123"
+        self.assertTrue(s.validate(r))
+
+    def test_context_collision_with_incidental_whitespace(self):
+        r = fixture()
+        r["reviewer_context"] = "  " + r["producer_context"] + "  "
+        self.assertTrue(s.validate(r))
+
     def test_proposal_contamination_rejected(self):
         r = fixture()
         r["reviewer_input_refs"].append(r["proposal_pr"])
