@@ -39,6 +39,25 @@ class M1TransitionContractTests(unittest.TestCase):
         self.assertIn("The S1-side adapter", s3)
         self.assertIn("Apply one returned S3 current-control decision to S1", prompt)
 
+    def test_pre_admission_s3_operator_intake_keeps_decision_and_review_gates(self) -> None:
+        role = self.read("roles/S3.md")
+        intake = self.read("prompts/intake-s3-current-control.md")
+        index = self.read("docs/README.md")
+        self.assertIn("prompts/intake-s3-current-control.md", role)
+        self.assertIn("prompts/intake-s3-current-control.md", index)
+        for clause in (
+            "existing S1 work",
+            "whole-system current view",
+            "legitimate decision owner",
+            "S1 return target",
+            "prompts/apply-s3-control.md",
+            "S1, S2, S4 or S5",
+            "no S3 transaction",
+            "not evidence of `S3=C`",
+            "generic `continue`",
+        ):
+            self.assertIn(clause, intake)
+
     def test_s3star_constructor_contract_is_function_specific(self) -> None:
         roadmap = self.read("docs/ROADMAP.md")
         s3star = self.read("contracts/s3star/audit.md")
