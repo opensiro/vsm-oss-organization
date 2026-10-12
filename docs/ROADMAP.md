@@ -25,7 +25,7 @@ The tracker issue defines the milestone's construction/exit contract. Neither th
 
 ```text
 M0  complete
-M1  S3*=C established; S3=C pending one natural current-control witness (#39)
+M1  S3*=C established; S3=C pending one real whole-system current-control witness (#39)
 M2  S5=P established; formal completion waits on M1
 M3  blocked on M2
 M4  blocked on M3
