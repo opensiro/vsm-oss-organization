@@ -93,7 +93,7 @@ def validate(obj: object) -> str:
     require(type(state) is str and state in STATES, "status: invalid")
 
     trigger = keys(t["trigger"], {"kind", "summary", "evidence_refs"}, "trigger")
-    require(trigger["kind"] in TRIGGERS, "trigger.kind: invalid")
+    require(type(trigger["kind"]) is str and trigger["kind"] in TRIGGERS, "trigger.kind: invalid")
     real_text(trigger["summary"], "trigger.summary")
     refs(trigger["evidence_refs"], "trigger.evidence_refs", require_one=True)
 
@@ -118,7 +118,7 @@ def validate(obj: object) -> str:
     decision = keys(t["decision"], {
         "owner_class", "owner_ref", "class", "instruction", "evidence_refs",
     }, "decision")
-    require(decision["owner_class"] in OWNERS, "decision.owner_class: invalid")
+    require(type(decision["owner_class"]) is str and decision["owner_class"] in OWNERS, "decision.owner_class: invalid")
     if state == "REQUESTED":
         # The initial template may carry an as-yet-unverified owner reference.
         optional_text(decision["owner_ref"], "decision.owner_ref")

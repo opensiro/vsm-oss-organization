@@ -177,6 +177,14 @@ class S3StructuralGuardTests(unittest.TestCase):
         with self.assertRaisesRegex(s.InvalidS3Transaction, "immutable"):
             s.validate_transition(packet(), n)
 
+    def test_unhashable_trigger_and_owner_shapes_fail_without_traceback(self):
+        t = packet()
+        t["trigger"]["kind"] = ["other_current_control_need"]
+        self.assertBlocked(t)
+        t = packet()
+        t["decision"]["owner_class"] = ["human"]
+        self.assertBlocked(t)
+
     def test_unknown_fields_fail_closed(self):
         t = packet()
         t["decision"]["pretend_s3_a"] = True
