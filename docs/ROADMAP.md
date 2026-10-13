@@ -168,6 +168,22 @@ subsequent S1 operation
 
 An algedonic signal is not itself S3* or S3.
 
+### Proposed alternate M1 acceptance — **pending governing-owner decision**
+
+**PROPOSAL ONLY — NOT ACTIVE WHILE #3/#39 CONTINUE TO REQUIRE THE REAL-USE TRIAL.** The Organization may elect a source-first functional/constructor evidence route *in addition to* the existing end-to-end trial route. This subsection is reviewable amendment text; it does **not** itself change the authoritative issue gates or assign `S3=C`.
+
+Under the proposed alternate route, the M1 S3 constructor target can be accepted **only after** a source-pinned, function-first review establishes all of:
+
+1. **Present S3 function, not a named component:** a genuine whole-system inside-and-now allocation/commitment/priority/resource/constraint variety at the Index–Skills–Awesome boundary that cannot be accounted for solely as ordinary S1 or S2 discretion;
+2. **Decisive right and whole-system reach:** an explicit and legitimate S3-level decision/feedback right over that variety with relevant current-system visibility; the actor/authority/closure may still require **external composition** as the selected Methodology allows for `C`, but missing regulation may not be described as implemented;
+3. **Function-specific first-party construction:** the committed S3 contract, bounded transaction and return adapter provide a reachable S3 decision/feedback path in the supported Organization mode, rather than generic GitHub comments, scheduler state or arbitrary plugin hooks;
+4. **A real return path:** the construction can carry the chosen bounded current-control instruction back to specified S1 work without pretending that a not-yet-issued instruction was acknowledged or executed;
+5. **Attributable evidence and falsifiers:** exact pinned sources, author/decision authority versus machinery distinction, counterexample S1/S2/S5 classification, and a reproducible reviewer conclusion. No fabricated or hypothetical transaction is used as positive actual-use proof.
+
+**Alternative evidence methods:** a **completed real source-linked S3→S1 transaction** (the current #39 route) is sufficient when it establishes the same function/owner/return facts; it is **not universally necessary** for a composable `C` if the evidence above is independently sufficient. Tests of JSON structure alone and this draft's review do not satisfy the alternate route. A true `A` grade would still require an autonomous organizational decision owner with operational closure.
+
+**Governance order:** the legitimate M1 owner must first **explicitly approve or reject** this proposed acceptance change, update [#3](https://github.com/opensiro/vsm-oss-organization/issues/3) and [#39](https://github.com/opensiro/vsm-oss-organization/issues/39) together, and reconcile the active ROADMAP/contract before publication. **Until then, the existing real-use trial remains required and #39 stays OPEN.** After approval, a separate source-first reassessment must positively establish the S3 function before anyone reports `S3=C` or closes M1. This proposal does not act as an independent adjudication.
+
 ### Roadmap-driven reference trial, evidence-driven classification
 
 **Two tests, different authority:** Skills owns the general `C` classification; Organization issues [#3](https://github.com/opensiro/vsm-oss-organization/issues/3) and [#39](https://github.com/opensiro/vsm-oss-organization/issues/39) own this M1's stronger, selected real-work trial. A source-first challenge may recommend revising those local exit criteria, but this draft does not do so, and a `C` constructor cannot be inferred from documentation/API names without a substantiated S3 function, credible whole-system authority and return path.

@@ -56,6 +56,20 @@ class M1TransitionContractTests(unittest.TestCase):
         self.assertIn("S1 application", s3)
         self.assertIn("milestone requirements must then be explicitly reconciled", s3)
 
+    def test_proposed_alternate_m1_gate_is_not_current_authority(self) -> None:
+        roadmap = self.read("docs/ROADMAP.md")
+        s3 = self.read("contracts/s3/current-control.md")
+        self.assertIn("PROPOSAL ONLY — NOT ACTIVE", roadmap)
+        self.assertIn("existing real-use trial remains required", roadmap)
+        self.assertIn("M1 owner must first **explicitly approve or reject**", roadmap)
+        self.assertIn("source-first functional/constructor evidence", roadmap)
+        self.assertIn("separate source-first reassessment", roadmap)
+        self.assertIn("Current issue #3/#39 acceptance remains unchanged", s3)
+        self.assertIn("mere naming, templates", s3)
+        self.assertIn("### Exit criteria", roadmap)
+        self.assertIn("real-use trial", roadmap)
+        self.assertIn("not a universal Methodology prerequisite", s3)
+
     def test_s3_constructor_has_canonical_s1_return_hook(self) -> None:
         s1 = self.read("roles/S1.md")
         s3 = self.read("contracts/s3/current-control.md")
