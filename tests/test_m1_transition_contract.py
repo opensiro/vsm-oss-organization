@@ -30,6 +30,32 @@ class M1TransitionContractTests(unittest.TestCase):
         self.assertIn("current constructor target is `S3*=C`", s3star)
         self.assertIn("does **not** establish `S3=C` or `S3=A`", s3)
 
+    def test_s3_c_methodology_threshold_is_not_identical_to_local_m1_exit(self) -> None:
+        s3 = self.read("contracts/s3/current-control.md")
+        roadmap = self.read("docs/ROADMAP.md")
+        review = self.read("docs/reviews/2026-10-13-s3-c-threshold.md")
+        self.assertIn("not a universal Methodology prerequisite", s3)
+        self.assertIn("local M1 exit", s3)
+        self.assertIn("not a universal Skills Methodology prerequisite", roadmap)
+        self.assertIn("LOCAL_M1_THRESHOLD_CONFLATION_CONFIRMED", review)
+        self.assertIn("S3_POSITIVE_NOT_ADJUDICATED", review)
+        self.assertIn("M1 #39", roadmap + s3 + review)
+        self.assertIn("whole-system S3 function", s3)
+        self.assertIn("first-party", s3)
+        self.assertIn("S3=A", s3)
+        self.assertIn("S3=C", s3)
+        self.assertIn("no profile or skills release", review.lower())
+
+    def test_threshold_review_does_not_erase_existing_m1_witness_gate(self) -> None:
+        roadmap = self.read("docs/ROADMAP.md")
+        s3 = self.read("contracts/s3/current-control.md")
+        self.assertIn("one real owner-attributed present-tense decision", s3)
+        self.assertIn("genuine S3 current-control need", roadmap)
+        self.assertIn("### Exit criteria", roadmap)
+        self.assertIn("issue #39", s3)
+        self.assertIn("S1 application", s3)
+        self.assertIn("milestone requirements must then be explicitly reconciled", s3)
+
     def test_s3_constructor_has_canonical_s1_return_hook(self) -> None:
         s1 = self.read("roles/S1.md")
         s3 = self.read("contracts/s3/current-control.md")

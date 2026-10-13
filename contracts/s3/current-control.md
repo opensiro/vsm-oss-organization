@@ -4,7 +4,7 @@ This contract defines the first-party Organization path for carrying a bounded *
 
 It applies the selected Profile and Methodology through [`../../UPSTREAM_CONTRACT.json`](../../UPSTREAM_CONTRACT.json). It does not redefine S3 or the Methodology state `C`.
 
-The presence of this contract does **not** establish `S3=C` or `S3=A`. A positive mapping still requires a real S3 function at the declared boundary and reviewable closure.
+The presence of this contract does **not** establish `S3=C` or `S3=A`. Under the selected Skills Methodology, `C` still requires an **established S3 function** and a boundary-reachable, S3-specific decisive decision/feedback construction path; a developer may yet need to compose the actor, authority or closure loop. A completed live transaction is strong evidence but **not a universal Methodology prerequisite for every `C`**. This Organization additionally requires the real-use reference trial described in M1 #39 **before its local M1 exit**; that planned acceptance gate must not silently redefine the general `C` threshold. See [the source-first threshold review](../../docs/reviews/2026-10-13-s3-c-threshold.md). No current S3 grade changes.
 
 ## Admission
 
@@ -25,6 +25,8 @@ A qualifying transaction establishes:
 Ordinary local repair remains S1; ordinary inter-S1 conflict attenuation without a whole-system control choice remains S2. Identity/ultimate-policy matters leave this contract for the S5 boundary. A planned M1 trial may select existing S1 work and a real current organizational choice; it must not create a synthetic conflict, arbitrary constraint, or meaningless intervention solely to claim `S3=C`.
 
 ## Milestone selection versus functional evidence
+
+The **classification test** (function established, first-party S3-specific path, supported operating boundary, owner/support distinction, composable closure) is separate from the **Organization's current M1 trial acceptance test** (a real owner decision executed and returned into S1). The latter is governed by [#39](https://github.com/opensiro/vsm-oss-organization/issues/39) and [M1 #3](https://github.com/opensiro/vsm-oss-organization/issues/3), not by a new universal Methodology rule. Changing the local exit gate requires an explicit owner-governed amendment to those issues; this documentation clarification alone does not change it.
 
 M1 may deliberately schedule a **bounded reference trial before organizational load demands regular S3 operation**. The trial must still freeze genuine active S1 commitments, relevant whole-system state, the actual S3 decision right and owner, a real choice with operational consequences, and the return target before the decision. The transaction is evidence only after the returned instruction has been acknowledged/applied (or explicitly rejected/escalated), with an observable effect or justified preservation of subsequent operation. If no substantive current-control choice exists, do not stage a dummy transaction or promote the autonomy grade.
 
@@ -83,6 +85,6 @@ A material S3* finding may trigger this contract, but audit and current-control 
 
 ## Current evidence boundary
 
-The constructor is implemented, but issue #39 remains the missing real-use witness for `S3=C`: one qualifying present-tense whole-system current-control choice, relevant current view, explicit owner, returned decision, S1 application, and observable closure must occur in one reconstructable transaction. The reference trial may be scheduled under M1 rather than waiting for an incident; scheduling is not the witness.
+The constructor is implemented, but a *qualifying whole-system S3 function at this boundary* is not yet positively established by the available source-linked evidence. The current **Organization M1 exit gate** in issue #39 still requires one real owner-attributed present-tense decision, whole-system view, returned S3 instruction, S1 application and observable closure. This live-run requirement is **local acceptance policy**, not a definition of `C` applicable to every external harness. A later source-first review could independently establish a positive `C` constructor claim using suitably strong functional and structural evidence, but this branch asserts no such result; milestone requirements must then be explicitly reconciled by the owner rather than bypassed.
 
 The actor adapter is [`../../roles/S3.md`](../../roles/S3.md). It must not be treated as evidence that the function already exists.
