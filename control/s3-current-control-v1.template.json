@@ -39,11 +39,9 @@
   "decision": {
     "owner_class": "human|agent|parent|distributed|unknown",
     "owner_ref": "<primary actor/authority evidence reference>",
-    "class": "<one allowed class after decision>",
-    "instruction": "<bounded returned current-control instruction>",
-    "evidence_refs": [
-      "<decision evidence reference>"
-    ]
+    "class": null,
+    "instruction": null,
+    "evidence_refs": []
   },
   "support_and_enforcement": [
     {
@@ -56,17 +54,13 @@
     "target_work_refs": [
       "<affected S1 work item>"
     ],
-    "acknowledgement_ref": "<S1 acknowledgement reference>",
-    "application_summary": "<observable change/preservation in subsequent S1 operation>",
-    "effect_refs": [
-      "<commit, issue, PR, run, or other closure evidence>"
-    ]
+    "acknowledgement_ref": null,
+    "application_summary": null,
+    "effect_refs": []
   },
   "closure": {
-    "final_status": "CLOSED|ESCALATED|CANCELLED",
-    "summary": "<observable closure fact>",
-    "evidence_refs": [
-      "<closure evidence reference>"
-    ]
+    "final_status": null,
+    "summary": null,
+    "evidence_refs": []
   }
 }

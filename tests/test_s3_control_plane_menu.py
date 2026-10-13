@@ -1,5 +1,6 @@
 """Contract smoke test for the source-first S3 Control Plane menu action."""
 
+import json
 from pathlib import Path
 import unittest
 
@@ -8,6 +9,7 @@ ROOT = Path(__file__).resolve().parents[1]
 MENU = ROOT / "docs" / "AGENT_CONTROL_PLANE.md"
 INTAKE = ROOT / "prompts" / "intake-s3-current-control.md"
 RECORD = ROOT / "templates" / "s3-control-record.md"
+TRANSACTION = ROOT / "control" / "s3-current-control-v1.template.json"
 
 
 class S3ControlPlaneMenuTests(unittest.TestCase):
@@ -49,6 +51,21 @@ class S3ControlPlaneMenuTests(unittest.TestCase):
             with self.subTest(relative=relative):
                 self.assertIn(f"]({relative})", record)
                 self.assertTrue((RECORD.parent / relative).is_file())
+
+
+
+    def test_requested_s3_template_has_no_decision_or_closure(self):
+        transaction = json.loads(TRANSACTION.read_text(encoding="utf-8"))
+        self.assertEqual("REQUESTED", transaction["status"])
+        self.assertIsNone(transaction["decision"]["class"])
+        self.assertIsNone(transaction["decision"]["instruction"])
+        self.assertEqual([], transaction["decision"]["evidence_refs"])
+        self.assertIsNone(transaction["return_to_s1"]["acknowledgement_ref"])
+        self.assertIsNone(transaction["return_to_s1"]["application_summary"])
+        self.assertEqual([], transaction["return_to_s1"]["effect_refs"])
+        self.assertIsNone(transaction["closure"]["final_status"])
+        self.assertIsNone(transaction["closure"]["summary"])
+        self.assertEqual([], transaction["closure"]["evidence_refs"])
 
 
 
