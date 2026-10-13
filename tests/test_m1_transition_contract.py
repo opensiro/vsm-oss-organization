@@ -46,29 +46,30 @@ class M1TransitionContractTests(unittest.TestCase):
         self.assertIn("S3=C", s3)
         self.assertIn("no profile or skills release", review.lower())
 
-    def test_threshold_review_does_not_erase_existing_m1_witness_gate(self) -> None:
+    def test_approved_m1_exit_preserves_positive_function_threshold(self) -> None:
         roadmap = self.read("docs/ROADMAP.md")
         s3 = self.read("contracts/s3/current-control.md")
-        self.assertIn("one real owner-attributed present-tense decision", s3)
-        self.assertIn("genuine S3 current-control need", roadmap)
+        self.assertIn("approved source-first alternative", roadmap)
+        self.assertIn("approved **Organization M1 exit gate**", s3)
+        self.assertIn("genuine S3 whole-system current-control function", roadmap)
+        self.assertIn("legitimate decisive", roadmap)
+        self.assertIn("boundary-reachable", roadmap)
         self.assertIn("### Exit criteria", roadmap)
-        self.assertIn("issue #39", s3)
-        self.assertIn("S1 application", s3)
-        self.assertIn("milestone requirements must then be explicitly reconciled", s3)
-
-    def test_proposed_alternate_m1_gate_is_not_current_authority(self) -> None:
-        roadmap = self.read("docs/ROADMAP.md")
-        s3 = self.read("contracts/s3/current-control.md")
-        self.assertIn("PROPOSAL ONLY — NOT ACTIVE", roadmap)
-        self.assertIn("existing real-use trial remains required", roadmap)
-        self.assertIn("M1 owner must first **explicitly approve or reject**", roadmap)
-        self.assertIn("source-first functional/constructor evidence", roadmap)
-        self.assertIn("separate source-first reassessment", roadmap)
-        self.assertIn("Current issue #3/#39 acceptance remains unchanged", s3)
-        self.assertIn("mere naming, templates", s3)
-        self.assertIn("### Exit criteria", roadmap)
-        self.assertIn("real-use trial", roadmap)
+        self.assertIn("optional", s3)
+        self.assertIn("first-party", s3)
         self.assertIn("not a universal Methodology prerequisite", s3)
+
+    def test_accepted_operator_option_b_is_not_a_grade(self) -> None:
+        roadmap = self.read("docs/ROADMAP.md")
+        s3 = self.read("contracts/s3/current-control.md")
+        decision = self.read("docs/proposals/2026-10-13-m1-s3-c-alternate-acceptance.md")
+        self.assertIn("effective", roadmap.lower())
+        self.assertIn("source-first", roadmap)
+        self.assertIn("S3=C NOT ESTABLISHED", decision)
+        self.assertIn("OPTION_B_APPROVED", decision)
+        self.assertIn("mere naming, templates", s3)
+        self.assertIn("no present grade changes", s3)
+        self.assertIn("### Exit criteria", roadmap)
 
     def test_s3_constructor_has_canonical_s1_return_hook(self) -> None:
         s1 = self.read("roles/S1.md")
