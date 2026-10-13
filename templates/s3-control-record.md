@@ -1,6 +1,6 @@
 # S3 current-control transaction record
 
-Use with `S3_CONTROL_SURFACE.md`. Preserve observable facts, ownership, support, and return closure.
+Use with the [canonical S3 current-control contract](../contracts/s3/current-control.md) and the [transaction JSON template](../control/s3-current-control-v1.template.json). Preserve observable facts, ownership, support, and return closure.
 
 ## Transaction identity
 
