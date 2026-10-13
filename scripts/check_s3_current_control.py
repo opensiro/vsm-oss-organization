@@ -183,12 +183,43 @@ def complete(closure: dict, state: str) -> None:
     refs(closure["evidence_refs"], "closure.evidence_refs", require_one=True)
 
 
+ALLOWED_TRANSITIONS = {
+    "REQUESTED": {"DECIDED", "ESCALATED", "CANCELLED"},
+    "DECIDED": {"APPLIED", "ESCALATED", "CANCELLED"},
+    "APPLIED": {"CLOSED", "ESCALATED", "CANCELLED"},
+    "CLOSED": set(), "ESCALATED": set(), "CANCELLED": set(),
+}
+
+
+def validate_transition(previous: object, current: object) -> str:
+    """Check adjacent snapshots, not authenticated provenance or actual GitHub events."""
+    validate(previous)
+    validate(current)
+    old, new = previous, current
+    require(new["status"] in ALLOWED_TRANSITIONS[old["status"]],
+            "transition: skipped stage, terminal rewrite or invalid status step")
+    for field in ("control_version", "transaction_id", "system_in_focus",
+                  "trigger", "current_view", "requested_decision"):
+        require(old[field] == new[field], f"transition: immutable {field} changed")
+    require(old["return_to_s1"]["target_work_refs"] == new["return_to_s1"]["target_work_refs"],
+            "transition: S1 return target changed")
+    if old["status"] != "REQUESTED":
+        require(old["decision"] == new["decision"], "transition: already decided instruction changed")
+    if old["status"] == "APPLIED":
+        require(old["return_to_s1"] == new["return_to_s1"],
+                "transition: already applied S1 outcome changed")
+    return "STRUCTURAL_TRANSITION_VALID_NOT_AUTHORITY_OR_S3_WITNESS"
+
+
 def main(argv: list[str] | None = None) -> int:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("path", type=Path, help="one instantiated transaction JSON")
+    parser.add_argument("--previous", type=Path, help="optional previous snapshot for strict transition check")
     args = parser.parse_args(argv)
     try:
-        result = validate(json.loads(args.path.read_text(encoding="utf-8")))
+        obj = json.loads(args.path.read_text(encoding="utf-8"))
+        result = (validate_transition(json.loads(args.previous.read_text(encoding="utf-8")), obj)
+                  if args.previous else validate(obj))
     except (InvalidS3Transaction, json.JSONDecodeError, OSError) as exc:
         print(f"BLOCKED: {exc}", file=sys.stderr)
         return 1

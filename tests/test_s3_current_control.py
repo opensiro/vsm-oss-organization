@@ -145,6 +145,38 @@ class S3StructuralGuardTests(unittest.TestCase):
             t["closure"]["evidence_refs"] = []
             self.assertBlocked(t)
 
+    def test_valid_adjacent_transitions(self):
+        pairs = [
+            (packet(), decided()), (decided(), applied()), (applied(), closed()),
+        ]
+        for earlier, later in pairs:
+            self.assertEqual("STRUCTURAL_TRANSITION_VALID_NOT_AUTHORITY_OR_S3_WITNESS",
+                             s.validate_transition(earlier, later))
+
+    def test_skipping_and_terminal_rewrites_fail(self):
+        for before, after in (
+            (packet(), applied()), (packet(), closed()), (decided(), closed()),
+            (closed(), decided()), (closed(), closed()),
+        ):
+            with self.assertRaises(s.InvalidS3Transaction):
+                s.validate_transition(before, after)
+
+    def test_mutating_decision_scope_and_existing_effect_fails(self):
+        n = decided()
+        n["decision"]["instruction"] = "changed after original decision"
+        with self.assertRaisesRegex(s.InvalidS3Transaction, "decided instruction"):
+            s.validate_transition(decided(), n)
+        n = applied()
+        n["return_to_s1"]["application_summary"] = "rewritten"
+        n["status"] = "CLOSED"
+        n["closure"] = {"final_status": "CLOSED", "summary": "test-only", "evidence_refs": [ORG]}
+        with self.assertRaisesRegex(s.InvalidS3Transaction, "already applied"):
+            s.validate_transition(applied(), n)
+        n = decided()
+        n["requested_decision"]["authority_boundary"] = "new scope"
+        with self.assertRaisesRegex(s.InvalidS3Transaction, "immutable"):
+            s.validate_transition(packet(), n)
+
     def test_unknown_fields_fail_closed(self):
         t = packet()
         t["decision"]["pretend_s3_a"] = True
