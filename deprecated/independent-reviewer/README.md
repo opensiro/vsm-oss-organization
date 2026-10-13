@@ -9,7 +9,9 @@ The following proposal files are copied **verbatim from immutable Git commit ref
 | Proposal | Exact original head commit | Historical draft | Stored snapshot |
 | --- | --- | --- | --- |
 | Source-first Index independent reviewer handoff | `6eb01686f108d68a1cffcf8d8f85b43525059eb4` | [Organization PR #198](https://github.com/opensiro/vsm-oss-organization/pull/198), governed by [#189](https://github.com/opensiro/vsm-oss-organization/issues/189), [#207](https://github.com/opensiro/vsm-oss-organization/issues/207) | `pr-198/`: `contracts/s3star/index-review-handoff.md`, `scripts/check_index_reviewer_handoff.py`, `tests/test_index_reviewer_handoff.py` |
-| Independent Reviewer Batch coordination hypothesis | `6a66ccdac21ac6f0847dfbe2bbc32dac616210fa` | [Organization PR #215](https://github.com/opensiro/vsm-oss-organization/pull/215), related [M4 #6](https://github.com/opensiro/vsm-oss-organization/issues/6) | `pr-215/docs/INDEPENDENT_REVIEWER_BATCH_HYPOTHESIS.md` |
+| Independent Reviewer Batch coordination hypothesis | `6a66ccdac21ac6f0847dfbe2bbc32dac616210fa` | [Organization PR #215](https://github.com/opensiro/vsm-oss-organization/pull/215), related [M4 #6](https://github.com/opensiro/vsm-oss-organization/issues/6) | `pr-215/docs/INDEPENDENT_REVIEWER_BATCH_HYPOTHESIS.md.txt` |
+
+The Reviewer Batch Markdown proposal is stored with a `.txt` cold-archive suffix: its **byte-identical** original Markdown contains historical, original-directory-relative links, which must not be interpreted as live local-document links by the Organization validator.
 
 Original PRs, issue discussions and commits remain the authoritative **historical** provenance. Intra-file links and import paths in these snapshots refer to their pre-archive proposal locations and are preserved unchanged. Archived Python files **must not be executed or imported as active tooling**.
 

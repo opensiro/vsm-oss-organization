@@ -22,7 +22,7 @@ class DeprecatedReviewerPlacementTest(unittest.TestCase):
             "pr-198/contracts/s3star/index-review-handoff.md",
             "pr-198/scripts/check_index_reviewer_handoff.py",
             "pr-198/tests/test_index_reviewer_handoff.py",
-            "pr-215/docs/INDEPENDENT_REVIEWER_BATCH_HYPOTHESIS.md",
+            "pr-215/docs/INDEPENDENT_REVIEWER_BATCH_HYPOTHESIS.md.txt",
         )
         for item in snapshots:
             with self.subTest(item=item):
