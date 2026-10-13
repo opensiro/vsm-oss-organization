@@ -44,7 +44,7 @@ class M1TransitionContractTests(unittest.TestCase):
         self.assertIn("first-party", s3)
         self.assertIn("S3=A", s3)
         self.assertIn("S3=C", s3)
-        self.assertIn("no s3 transaction", review.lower())
+        self.assertIn("no profile or skills release", review.lower())
 
     def test_threshold_review_does_not_erase_existing_m1_witness_gate(self) -> None:
         roadmap = self.read("docs/ROADMAP.md")
