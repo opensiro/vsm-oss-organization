@@ -162,7 +162,7 @@ class S3StructuralGuardTests(unittest.TestCase):
                 s.validate_transition(before, after)
 
     def test_mutating_decision_scope_and_existing_effect_fails(self):
-        n = decided()
+        n = applied()
         n["decision"]["instruction"] = "changed after original decision"
         with self.assertRaisesRegex(s.InvalidS3Transaction, "decided instruction"):
             s.validate_transition(decided(), n)
