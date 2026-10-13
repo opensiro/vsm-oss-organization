@@ -18,4 +18,5 @@ Current record families:
 
 - `s1/` — operational S1 construction/coverage evidence;
 - `s5/` — concrete S5 parent-decision witnesses;
+- `s3-candidates/` — retrospective source-linked S3 evidence screens that are **not admitted transactions or positive grades**;
 - `assessment-snapshots/` — explicitly non-canonical bounded assessment/pre-assessment snapshots used to audit this reference implementation against the general Methodology.
