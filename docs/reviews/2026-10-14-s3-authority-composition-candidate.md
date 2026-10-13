@@ -31,6 +31,12 @@ A proposed delegation must identify its **issuer**, the issuer's legitimate poli
 
 In particular, no inferred delegation arises from the maintainer's generic command `continue`, Organization authorship, GitHub organization ownership, issue assignment or passing CI.
 
+## Tested present-work candidate — S3* findings returned to Index
+
+The strongest newly rechecked operational-adjacent candidate is [Organization #200](https://github.com/opensiro/vsm-oss-organization/issues/200) and its [draft implementation PR #201](https://github.com/opensiro/vsm-oss-organization/pull/201), which monitor four genuinely source-pinned S3* findings returned to Index, including [Rum #1381](https://github.com/opensiro/vsm-harness-index/issues/1381), [bb #1382](https://github.com/opensiro/vsm-harness-index/issues/1382), and [SuisuiCode #1387](https://github.com/opensiro/vsm-harness-index/issues/1387). As inspected in this source cut, these follow-ups explicitly reserve correction/adjudication to the original Index S1 authority, and the Organization validator observes only whether the owner later decides and the effect is verified. A derived `ROUTED_OPEN` record is not a whole-system current-control decision.
+
+**Falsifier result:** These existing matters establish real audit-to-S1 feedback pressure but **not** an additional S3 discretion over active Organization commitments. Do not convert a material audit finding into a blanket Index freeze, reassessment mandate or priority override merely to make an S3 witness. The Index repository's actual current contract and each affected S1 work item must govern any such action. An explicit future whole-system choice may qualify even if it returns to *only one* S1, but it must have independent present-current-control facts and a legitimate S3 authority path absent from this example.
+
 ## Falsifiable qualification packet for a later, real case
 
 | Required observation | Primary source | Pass boundary |
