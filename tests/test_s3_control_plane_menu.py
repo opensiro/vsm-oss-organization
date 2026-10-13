@@ -7,6 +7,7 @@ import unittest
 ROOT = Path(__file__).resolve().parents[1]
 MENU = ROOT / "docs" / "AGENT_CONTROL_PLANE.md"
 INTAKE = ROOT / "prompts" / "intake-s3-current-control.md"
+RECORD = ROOT / "templates" / "s3-control-record.md"
 
 
 class S3ControlPlaneMenuTests(unittest.TestCase):
@@ -36,6 +37,19 @@ class S3ControlPlaneMenuTests(unittest.TestCase):
         ):
             self.assertIn(text, section)
         self.assertNotIn("auto-admit", section)
+
+
+    def test_s3_record_references_live_authority(self):
+        record = RECORD.read_text(encoding="utf-8")
+        self.assertNotIn("S3_CONTROL_SURFACE.md", record)
+        for relative in (
+            "../contracts/s3/current-control.md",
+            "../control/s3-current-control-v1.template.json",
+        ):
+            with self.subTest(relative=relative):
+                self.assertIn(f"]({relative})", record)
+                self.assertTrue((RECORD.parent / relative).is_file())
+
 
 
 if __name__ == "__main__":
