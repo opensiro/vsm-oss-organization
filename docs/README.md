@@ -10,6 +10,7 @@ Long-form repository documentation lives under `docs/`. Root-level files are res
 - [`AGENT_CONTROL_PLANE.md`](AGENT_CONTROL_PLANE.md) — maintainer-facing single-agent command interface that consumes those authority rules.
 - [`../prompts/intake-s3-current-control.md`](../prompts/intake-s3-current-control.md) — bounded S3 current-decision intake for the existing constructor; does not grant authority or establish a witness.
 - [`ROADMAP.md`](ROADMAP.md) — OSM construction sequence and evidence narrative.
+- [`S2_CROSS_S1_CONSISTENCY_COORDINATOR.md`](S2_CROSS_S1_CONSISTENCY_COORDINATOR.md) — **prospective, not deployed** M4 cross-S1 assessment-operations coordination candidate; not an Independent Reviewer gate or S2=A claim.
 - [`METRICS.md`](METRICS.md) — public outcome/observability contract.
 - [`AUTONOMOUS_WORK_REPORTING.md`](AUTONOMOUS_WORK_REPORTING.md) — autonomous-run reporting contract.
 - [`ROUTING_CONFORMANCE.md`](ROUTING_CONFORMANCE.md) — bootstrap/routing conformance protocol.
