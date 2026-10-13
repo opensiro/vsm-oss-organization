@@ -75,6 +75,20 @@ Use [`../../control/s3-current-control-v1.template.json`](../../control/s3-curre
 
 Lifecycle states are `REQUESTED`, `DECIDED`, `APPLIED`, `CLOSED`, `ESCALATED`, and `CANCELLED`. They are operational states, not autonomy grades.
 
+## Offline transaction-state validation (structural only)
+
+An instantiated S3 transaction may be checked before publication or application:
+
+```bash
+python scripts/check_s3_current_control.py path/to/instantiated-transaction.json
+python scripts/check_s3_current_control.py --previous path/to/prior.json path/to/next.json
+python -m unittest tests.test_s3_current_control -v
+```
+
+When `--previous` is supplied, it also checks strict adjacent lifecycle progression and immutable decision scope; it cannot establish that the supplied previous file is authentic. The checker rejects uninstantiated template placeholders, unknown fields, out-of-bound S1 work-item targets, prefilled decisions at `REQUESTED`, unsupported decision classes, or unsubstantiated structural jumps to `APPLIED` / `CLOSED`. `ESCALATED` and `CANCELLED` remain possible before an actual owner choice if their terminal disposition has proper source references.
+
+**Limit:** Offline validation checks types, state completeness and GitHub reference *shapes*, not whether a URL resolves, an actor is legitimately authorized, a function is S3 rather than S1/S2/S5, or a returned effect actually happened. Passing output is `STRUCTURALLY_VALID_NOT_S3_FUNCTION_WITNESS`; this check never authorizes a decision or establishes `S3=C` / `S3=A`.
+
 ## S1 return
 
 A returned decision affects S1 only when the transaction identifies the affected work, records the decision owner, stays within the admitted current-control envelope, and supplies a bounded instruction that S1 can acknowledge/apply or explicitly reject/escalate.
