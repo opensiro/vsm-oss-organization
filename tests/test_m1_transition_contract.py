@@ -40,11 +40,11 @@ class M1TransitionContractTests(unittest.TestCase):
         self.assertIn("LOCAL_M1_THRESHOLD_CONFLATION_CONFIRMED", review)
         self.assertIn("S3_POSITIVE_NOT_ADJUDICATED", review)
         self.assertIn("M1 #39", roadmap + s3 + review)
-        self.assertIn("current-control function", s3)
+        self.assertIn("whole-system S3 function", s3)
         self.assertIn("first-party", s3)
         self.assertIn("S3=A", s3)
         self.assertIn("S3=C", s3)
-        self.assertIn("no S3 transaction", review.lower())
+        self.assertIn("no s3 transaction", review.lower())
 
     def test_threshold_review_does_not_erase_existing_m1_witness_gate(self) -> None:
         roadmap = self.read("docs/ROADMAP.md")
