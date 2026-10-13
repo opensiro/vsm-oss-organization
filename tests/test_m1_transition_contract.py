@@ -39,7 +39,7 @@ class M1TransitionContractTests(unittest.TestCase):
         self.assertIn("not a universal Skills Methodology prerequisite", roadmap)
         self.assertIn("LOCAL_M1_THRESHOLD_CONFLATION_CONFIRMED", review)
         self.assertIn("S3_POSITIVE_NOT_ADJUDICATED", review)
-        self.assertIn("M1 #39", roadmap + s3 + review)
+        self.assertIn("issue #39", roadmap + s3 + review)
         self.assertIn("whole-system S3 function", s3)
         self.assertIn("first-party", s3)
         self.assertIn("S3=A", s3)
@@ -67,7 +67,7 @@ class M1TransitionContractTests(unittest.TestCase):
         self.assertIn("source-first", roadmap)
         self.assertIn("S3=C NOT ESTABLISHED", decision)
         self.assertIn("OPTION_B_APPROVED", decision)
-        self.assertIn("mere naming, templates", s3)
+        self.assertIn("Mere naming, templates", s3)
         self.assertIn("no present grade changes", s3)
         self.assertIn("### Exit criteria", roadmap)
 
