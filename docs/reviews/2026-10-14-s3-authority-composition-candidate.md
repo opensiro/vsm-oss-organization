@@ -14,20 +14,20 @@ The unresolved question is **substantive whole-system present-control authority*
 
 ## Prospective bounded delegation candidate (NOT EFFECTIVE)
 
-The legitimate S5 parent **could prospectively authorize** an identified S3 decision holder to regulate **current cross-domain commitments or operational constraints**, but only within the fixed existing system identity, selected Profile/Methodology, and Index/Skills/Awesome owner boundaries. The parent must decide whether to create such delegation; this record does not make that choice.
+The legitimate S5 parent **could prospectively authorize** an identified S3 decision holder to regulate **whole-system present commitments or operational constraints**, whether the returned intervention affects one S1 or several. The requirement is whole-system regulation, not a mandatory cross-domain conflict or shared scarcity. The permitted scope must remain within the fixed system identity, selected Profile/Methodology, and Index/Skills/Awesome owner boundaries. The parent must decide whether to create such delegation; this record does not make that choice.
 
 **Possible eligible envelope, if and only if live facts substantiate it:**
 
-- A documented *currently binding, shared Organization-level operational constraint*, e.g. a real cross-domain current commitment whose continued execution cannot be settled by Index, Skills or Awesome independently. An open issue, optional method release or hypothetical scarcity does not establish one.
-- A narrowly identified choice to maintain/suspend/constrain the affected **current** operation within that constraint, with observable alternatives and a bounded, already-active S1 work target.
-- A named and source-evidenced decision-right holder plus its permissible classes, limits, expiration/revocation, conflicts and S1 escalation fallback.
+- A documented *currently material Organization-level current commitment, priority, resource or constraint*, with a source-linked whole-system view and a specific choice outside the applicable S1's local decision rights. It may affect **one** active S1 work item or several; an actual inter-S1 collision or scarcity is not required. An open issue, optional method release, ordinary Index correction or hypothetical constraint does not establish one.
+- A narrowly identified choice to maintain/suspend/constrain the affected **current** operation on behalf of the whole Organization, with observable alternatives and a bounded, existing S1 work target. A decision wholly settled under local S1 authority or routine S2 coordination is not S3.
+- A specifically constructible authority envelope and decision-right composition path, identifying the legitimate authority **source** and prospective owner, allowed classes, limits, expiration/revocation, conflicts and S1 escalation fallback. This is *constructor readiness only*, not proof that the owner already holds or exercised that right.
 - First-party `REQUESTED -> DECIDED -> APPLIED -> CLOSED` *or* justified alternate state progression and a source-pinned S1 acknowledgement/effect, without treating validator PASS as semantic or authorization proof.
 
 **Explicitly excluded:** Profile meaning/release, Methodology authority, Index canonical assessment grades, identity/purpose, licensing/security policy, discretionary priority invented for a test, generic workload assignment, S3* auditor judgment, an autonomous S3=A claim, any override of frozen refs or independent reviewer gates. Those rights remain with their actual owners.
 
 ## Required authority act (future, separate and attributable)
 
-A proposed delegation must identify its **issuer**, the issuer's legitimate policy/delegation right, named **recipient**, current-control decision classes, affected domain(s), effective date or activation event, valid triggering constraints, expiration/revocation and return/evidence obligations. The issuer and recipient may be different actors. The parent governance source may authenticate a delegation-model decision, but that S5 act is **not** itself an S3 current-control decision. The recipient may not invoke this note as permission.
+A proposed delegation must identify its **issuer**, the issuer's legitimate policy/delegation right, named **recipient**, current-control decision classes, affected S1 domain(s) (which may be only one), effective date or activation event, valid triggering constraints, expiration/revocation and return/evidence obligations. The issuer and recipient may be different actors. The parent governance source may authenticate a delegation-model decision, but that S5 act is **not** itself an S3 current-control decision. The recipient may not invoke this note as permission.
 
 In particular, no inferred delegation arises from the maintainer's generic command `continue`, Organization authorship, GitHub organization ownership, issue assignment or passing CI.
 
@@ -35,18 +35,18 @@ In particular, no inferred delegation arises from the maintainer's generic comma
 
 | Required observation | Primary source | Pass boundary |
 | --- | --- | --- |
-| Currently operative whole-system variety | Live Index/Skills/Awesome commitments and constraints at pinned refs | Identifies a real present choice beyond local S1 authority and ordinary S2 interference/compatibility work |
-| Legitimate decisive S3 right | Explicit actual delegation/authority declaration plus identified holder | Shows who can choose a specific bounded present control response; no presumed S5-to-S3 rights |
+| Currently operative whole-system variety | Live materially relevant Index/Skills/Awesome commitments, priorities and constraints at pinned refs | Identifies a real whole-system present choice, possibly returned to one S1, beyond local S1 authority and routine S2/compatibility work |
+| Legitimate decisive S3 right | Source-grounded explicit authority or a specifically composable decision-right/owner path, distinguished from any actually effective delegation | For constructor `C`, explains how a legitimate holder **could** choose the bounded S3 response; actual exercise must separately cite effective authorization and actor |
 | Whole-system current view | Live source-linked context across the materially relevant domain(s) | Makes alternatives, impact, and constraints reviewable |
 | Named affected S1 work | Existing admitted Index/Skills/Awesome issue/PR and original task contract | A legitimate instruction could alter or intentionally preserve later S1 operation |
 | S3-specific path | Existing first-party contract, role, transaction surface, validator and S1 adapter | Decision/return constructible at the declared Organization boundary, not a generic callback |
 | Ownership versus support | Issuer/decision owner distinct from script, scheduler, reviewer, CI, GitHub transport | Removing the support alone cannot explain who legitimately chooses |
 | Application/closure (when claiming exercised integration) | S1 acknowledgement, downstream source/receipts | Effect or preservation genuinely evidenced, not invented by structurally valid JSON |
 
-**Classification gate:** A source-first `S3=C` requires affirmative established whole-system S3 function and function-specific decisive/feedback construction; a full live transaction need not be executed under approved M1 Option B, but no scenario may be promoted from a hypothetical envelope or declaration alone. `S3=A` separately requires autonomous discretion and closure. `INSUFFICIENT` remains the correct disposition absent the positive function/authority proof.
+**Classification gate:** A source-first `S3=C` requires affirmative established whole-system S3 function and a function-specific decisive/feedback construction path. The actor/authority/closure may still need composition for `C`; an *actually effective delegation* is mandatory only to attribute an exercised decision to that delegate. A full live transaction need not be executed under approved M1 Option B, but no scenario may be promoted from a hypothetical envelope or declaration alone. `S3=A` separately requires autonomous discretion and closure. `INSUFFICIENT` remains the correct disposition absent the positive function/authority proof.
 
 ## Current disposition and stop boundary
 
 This file constitutes **a candidate for legitimate future composition**, not evidence that such a delegation or operational choice is currently in force. Current evidence still supports `S3=C: INSUFFICIENT` in M1 #39. No transaction is opened; no S1 is directed; no parent decision is asserted; historical `S3=?` and M1 status remain unchanged.
 
-If a genuine current constraint and authority are later found, update the issue with source-pinned facts and seek an explicitly attributable authority act **only if needed**. Reject redundant paperwork and do not create a simulated incident just to clear M1.
+If genuine current whole-system decision variety and a specific authority construction path are established, update the issue with source-pinned facts. Require an actually effective, attributable authority act before any live decision **only if the right has not already been legitimately granted**. Reject redundant paperwork and do not create a simulated incident just to clear M1.
