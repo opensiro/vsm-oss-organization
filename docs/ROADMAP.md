@@ -118,7 +118,7 @@ M0 construction is complete when:
 
 Target: `A — C C — —`
 
-**Current evidence status:** `S3*=C` is established by #44 / PR #45. `S3=C` remains unproven; the available primary evidence has not yet established the whole-system S3 function, while #39 separately requires a live return/closure as the current **local M1 exit criterion**. That live trial is **not a universal Skills Methodology prerequisite for `C`**. See [the source-first threshold review](reviews/2026-10-13-s3-c-threshold.md). The frozen 2026-09-30 [general pre-assessment](../records/assessment-snapshots/2026-09-30-general-preassessment.md) independently recorded `S3=?`; it is non-canonical and distinct from this milestone target.
+**Current evidence status:** `S3*=C` is established by #44 / PR #45. `S3=C` remains unproven; the available primary evidence has not yet established the whole-system S3 function, while #39 now permits a source-first positive function/constructor review as the **local M1 exit criterion**. That live trial is **not a universal Skills Methodology prerequisite for `C`**. See [the source-first threshold review](reviews/2026-10-13-s3-c-threshold.md). The frozen 2026-09-30 [general pre-assessment](../records/assessment-snapshots/2026-09-30-general-preassessment.md) independently recorded `S3=?`; it is non-canonical and distinct from this milestone target.
 
 M1 establishes **two constructor paths**. It does not require a permanent autonomous S3 regulator or a permanent autonomous S3* verifier.
 
@@ -142,7 +142,7 @@ Issue #44 / PR #45 is the first real functional witness: it exercised a compleme
 
 ### S3=C — current-control constructor
 
-S3 remains pending at constructor level: the repository exposes a first-party current-control/intervention path, but the existing record does not yet prove the S3 function. The **local M1 exit** currently demands a real-use transaction via #39. The general `C` threshold also allows function-specific, boundary-reachable construction when the decisive actor/authority/closure still requires composition; consequently a completed live transaction must not be presented as a *universal* condition for `C`. Neither an interface alone nor a milestone target is enough for positive classification.
+S3 remains pending at constructor level: the repository exposes a first-party current-control/intervention path, but the existing record does not yet prove the S3 function. The **local M1 exit** now permits a positive source-first function/constructor qualification via #39. The general `C` threshold also allows function-specific, boundary-reachable construction when the decisive actor/authority/closure still requires composition; consequently a completed live transaction must not be presented as a *universal* condition for `C`. Neither an interface alone nor a milestone target is enough for positive classification.
 
 The path must be capable of carrying a real whole-system current-control decision back into affected operation. An actual present-tense allocation, prioritization, commitment, or shared-constraint choice can qualify when its decisive authority belongs to the whole system rather than one S1. A material S3* finding or current exception can also trigger the path, but neither an emergency nor S1 failure is a prerequisite.
 
@@ -168,13 +168,23 @@ subsequent S1 operation
 
 An algedonic signal is not itself S3* or S3.
 
+### M1 S3(C) acceptance — approved source-first alternative (2026-10-13)
+
+**Effective policy:** [M1 #3 owner decision](https://github.com/opensiro/vsm-oss-organization/issues/3#issuecomment-6154518187) and the prospectively updated [#3](https://github.com/opensiro/vsm-oss-organization/issues/3) / [#39](https://github.com/opensiro/vsm-oss-organization/issues/39) permit source-first positive function/constructor qualification, **without requiring completed live S3→S1 execution**.
+
+A source-first `S3=C` acceptance still requires: (1) a **real present whole-system S3 control function**, material current commitments/resources/priorities/constraints and appropriate shared visibility; (2) **legitimate decisive authority** over that variety, separated from CI/transport and ordinary local S1/S2 work; (3) a **specialized first-party, boundary-reachable decision/feedback constructor**, not a generic plugin or task router; (4) a structurally credible **return path to affected S1 work**, with explicit limits where actor, authority or closure requires composition; (5) pinned primary sources, a transparent review context and checks of counterexamples. Documentation names, JSON schemas, unrelated approvals, and this governance amendment alone are insufficient.
+
+An authentic S3→S1 current-control transaction is an equally acceptable witness when it proves these facts, but is **optional integration evidence**, not mandatory for `C`. The separate `A` state still requires an autonomous agent to own decisive S3 discretion and operationally close the loop.
+
+**Evidence status:** no new `S3=C` determination is made by this acceptance update. #39 remains active until separately reviewable positive functional evidence is available; historical `S3=?` remains frozen. The [owner decision packet](proposals/2026-10-13-m1-s3-c-alternate-acceptance.md) records alternatives and selected policy.
+
 ### Roadmap-driven reference trial, evidence-driven classification
 
-**Two tests, different authority:** Skills owns the general `C` classification; Organization issues [#3](https://github.com/opensiro/vsm-oss-organization/issues/3) and [#39](https://github.com/opensiro/vsm-oss-organization/issues/39) own this M1's stronger, selected real-work trial. A source-first challenge may recommend revising those local exit criteria, but this draft does not do so, and a `C` constructor cannot be inferred from documentation/API names without a substantiated S3 function, credible whole-system authority and return path.
+**Two tests, different authority:** Skills owns the general `C` classification; Organization issues [#3](https://github.com/opensiro/vsm-oss-organization/issues/3) and [#39](https://github.com/opensiro/vsm-oss-organization/issues/39) now allow source-first qualification or a genuine real-work trial. These are different evidence routes, and a `C` constructor cannot be inferred from documentation/API names without a substantiated S3 function, credible whole-system authority and return path.
 
 Milestones select **when to construct and test** S3. They do not require waiting for more contributors, the maintainer becoming unavailable, an outage, or another naturally occurring crisis before attempting M1 or developing the later M3 owner. The intended benefit is to prepare bounded current management before contributor load grows.
 
-For M1, deliberately plan a bounded reference transaction around **existing, real operational work**:
+For an **optional real-use integration trial**, use **existing, real operational work**:
 
 1. Identify active Index, Skills, and/or Awesome S1 commitments and a substantive current decision over shared capacity, priorities, commitments, constraints, or accountability that an individual S1 is not authorized to settle for the whole.
 2. Record the relevant whole-system present-state facts, affected S1 work and exact refs **before** the decision. Keep normal S1 discretion and any S2 coordination distinct from the S3 decision right.
@@ -183,7 +193,7 @@ For M1, deliberately plan a bounded reference transaction around **existing, rea
 
 A milestone, S3 role file, task priority label, TODO reorder, reviewer delay, or ordinary local S1 repair is **not** a functional S3 witness. Do not invent a conflict, budget pressure, blocker, audit finding, or meaningless work change merely to obtain a `C` classification. The frozen [2026-09-30 pre-assessment](../records/assessment-snapshots/2026-09-30-general-preassessment.md) remains historical; a later assessment of new evidence must pin its own source revision and provide its own verdict.
 
-Current implementation readiness is complete: the S3-specific control surface, machine-readable transaction, reviewable record, decision-owner contract, and canonical S3→S1 return hook already exist. Additional preparatory machinery is not an M1 substitute for the missing real #39 witness.
+Current implementation readiness is complete: the S3-specific control surface, machine-readable transaction, reviewable record, decision-owner contract, and canonical S3→S1 return hook already exist. Additional preparatory machinery is not an M1 substitute for a missing positive S3 function/constructor qualification.
 
 ### Exit criteria
 
@@ -191,8 +201,8 @@ M1 closes when:
 
 - the S3* function has a real first-party constructor witness with ordinary vs complementary evidence paths distinguishable and a reviewable audit outcome;
 - the S3* constructor exposes a route for material findings into current control without requiring an autonomous verifier;
-- a genuine S3 current-control need is carried through the first-party S3 constructor path;
-- the returned S3 decision changes, constrains, stops, repairs, resumes, or intentionally preserves subsequent S1 operation with reviewable closure;
+- a genuine S3 whole-system current-control function and specialized first-party constructor are positively established by source-first review or real-use evidence;
+- the S3 decision/feedback return path to affected S1 is established; if a live instruction was issued, its application/effect/closure must be separately evidenced;
 - actual decision/judgment owners remain explicit and support/enforcement remains separate;
 - neither S3 nor S3* is claimed `A` merely because constructor infrastructure exists.
 
