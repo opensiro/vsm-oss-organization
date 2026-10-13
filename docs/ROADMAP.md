@@ -118,7 +118,7 @@ M0 construction is complete when:
 
 Target: `A — C C — —`
 
-**Current evidence status:** `S3*=C` is established by #44 / PR #45. `S3=C` remains open on #39 because no real whole-system current-control transaction has yet exercised the constructor and returned into S1 with reviewable closure. The frozen 2026-09-30 [general pre-assessment](../records/assessment-snapshots/2026-09-30-general-preassessment.md) independently recorded `S3=?`; it is non-canonical and distinct from this milestone target.
+**Current evidence status:** `S3*=C` is established by #44 / PR #45. `S3=C` remains unproven; the available primary evidence has not yet established the whole-system S3 function, while #39 separately requires a live return/closure as the current **local M1 exit criterion**. That live trial is **not a universal Skills Methodology prerequisite for `C`**. See [the source-first threshold review](reviews/2026-10-13-s3-c-threshold.md). The frozen 2026-09-30 [general pre-assessment](../records/assessment-snapshots/2026-09-30-general-preassessment.md) independently recorded `S3=?`; it is non-canonical and distinct from this milestone target.
 
 M1 establishes **two constructor paths**. It does not require a permanent autonomous S3 regulator or a permanent autonomous S3* verifier.
 
@@ -142,7 +142,7 @@ Issue #44 / PR #45 is the first real functional witness: it exercised a compleme
 
 ### S3=C — current-control constructor
 
-S3 remains pending at constructor level: the repository exposes a first-party current-control/intervention path, but the function cannot be credited `C` until one real qualifying current-control transaction establishes the function in use.
+S3 remains pending at constructor level: the repository exposes a first-party current-control/intervention path, but the existing record does not yet prove the S3 function. The **local M1 exit** currently demands a real-use transaction via #39. The general `C` threshold also allows function-specific, boundary-reachable construction when the decisive actor/authority/closure still requires composition; consequently a completed live transaction must not be presented as a *universal* condition for `C`. Neither an interface alone nor a milestone target is enough for positive classification.
 
 The path must be capable of carrying a real whole-system current-control decision back into affected operation. An actual present-tense allocation, prioritization, commitment, or shared-constraint choice can qualify when its decisive authority belongs to the whole system rather than one S1. A material S3* finding or current exception can also trigger the path, but neither an emergency nor S1 failure is a prerequisite.
 
@@ -169,6 +169,8 @@ subsequent S1 operation
 An algedonic signal is not itself S3* or S3.
 
 ### Roadmap-driven reference trial, evidence-driven classification
+
+**Two tests, different authority:** Skills owns the general `C` classification; Organization issues [#3](https://github.com/opensiro/vsm-oss-organization/issues/3) and [#39](https://github.com/opensiro/vsm-oss-organization/issues/39) own this M1's stronger, selected real-work trial. A source-first challenge may recommend revising those local exit criteria, but this draft does not do so, and a `C` constructor cannot be inferred from documentation/API names without a substantiated S3 function, credible whole-system authority and return path.
 
 Milestones select **when to construct and test** S3. They do not require waiting for more contributors, the maintainer becoming unavailable, an outage, or another naturally occurring crisis before attempting M1 or developing the later M3 owner. The intended benefit is to prepare bounded current management before contributor load grows.
 
