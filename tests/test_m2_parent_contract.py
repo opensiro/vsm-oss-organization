@@ -102,7 +102,7 @@ class M2ParentBoundaryTests(unittest.TestCase):
         self.assertIn("2026-11-13T12:00:00Z", grant)
         for marker in ("CONTINUE", "SET_CONSTRAINT", "REQUIRE_REPAIR", "STOP", "SET_RETRY_BUDGET", "OTHER_CURRENT_CONTROL"):
             self.assertIn(marker, grant)
-        self.assertIn("No S3 case", grant.replace("no S3 case", "No S3 case"))
+        self.assertIn("NO_S3_CASE_OPENED", grant)
         self.assertIn("S5-P-G1-238", parent_record)
         self.assertIn("RETURN_PENDING_PUBLICATION", parent_record)
         self.assertIn("parent-assisted-g1.md", s3_contract)
