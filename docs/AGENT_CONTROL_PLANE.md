@@ -18,6 +18,12 @@ Use these existing contracts rather than replacing them:
 
 The conversation is a **control surface**, not a second GitHub issue board, evidence database, reviewer identity, or organizational decision owner. Its remembered state is never authoritative over current owning repository records.
 
+## Parent S5 decision before assessment
+
+For a request to establish S3 for the Organization, choose its domain, mandate or holder, route the **governance decision** to the legitimate S5 parent before evaluating any individual S3 intervention. The parent can approve prospective/conditional authority even without an incident or positive `S3=C` assessment. A particular **operational S3 action** still needs a real whole-system case and effective delegated rights. An **assessment grade** requires its own evidence and never grants or revokes authority.
+
+Do not interpret an `INSUFFICIENT` grade or missing live case as a veto over a legitimate parent's prospective decision. Do not treat a design-only S5 choice or a generic `continue` as appointment or activation. See [S5 parent authority](../contracts/s5/parent-authority.md) and the [source-based failure review](reviews/2026-10-14-s5-s3-assessment-gate-inversion.md).
+
 ## First-contact action menu (client-adaptive presentation)
 
 `START_HERE.md` is the discovery/bootstrap entry; **this document owns the command mappings and behavior**. On a bare bootstrap/control-plane/help request with no named task, show a compact **OpenSiro Control Plane** panel rather than a wall of repository instructions. A concrete user task always takes precedence over the introductory panel.

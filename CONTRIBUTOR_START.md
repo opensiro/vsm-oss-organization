@@ -70,6 +70,8 @@ The prefix requests classification/routing; it does **not** transfer the unresol
 
 The legitimate parent is defined by [`contracts/s5/parent-authority.md`](contracts/s5/parent-authority.md). Ordinary S1 work, **S3 current-control**, S3* audit, PR review, CI repair, or routine tool use must not be promoted into S5 merely because the matter is important.
 
+S5 domain-fit and delegation choices belong to the [legitimate parent](contracts/s5/parent-authority.md), even if no S3 incident exists and a source-first `S3=C` assessment is `INSUFFICIENT`. A real present whole-system case is required to **exercise S3**, not necessarily to create **prospective S3 authority**. Neither a grade nor a workflow tool grants S5 authority. See [the governing S5 contract](contracts/s5/parent-boundary.md) and [failure review](docs/reviews/2026-10-14-s5-s3-assessment-gate-inversion.md).
+
 ## Routing conformance
 
 Direct discoverability of the shared bootstrap/current-work/Organization route is checked mechanically. See [`docs/ROUTING_CONFORMANCE.md`](docs/ROUTING_CONFORMANCE.md) for the scoped oracle and blind-agent protocol.
