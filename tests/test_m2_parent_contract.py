@@ -83,6 +83,21 @@ class M2ParentBoundaryTests(unittest.TestCase):
         self.assertIn("VSM evidence assessment", review)
         self.assertIn("Stage-2", review)
 
+    def test_selected_s3_cp_target_has_two_rows_but_no_grant_or_grade(self) -> None:
+        """S5 may choose a dual-mode target without fabricating C(P) evidence."""
+        mandate = self.read("docs/proposals/2026-10-14-s3-parent-assisted-general-mandate.md")
+        self.assertIn("S5 TARGET MODE `C(P)` SELECTED", mandate)
+        self.assertIn("## 2A. Selected target mode `C(P)`", mandate)
+        self.assertIn("**Base `C`**", mandate)
+        self.assertIn("**Parent `P`**", mandate)
+        self.assertIn("HOLDER UNAPPOINTED, GRANT NOT EFFECTIVE", mandate)
+        self.assertIn("NOT YET ESTABLISHED", mandate)
+        self.assertIn("## 5. S5 design selection made; separate grant choices remain", mandate)
+        self.assertIn("G1 — HUMAN_S3_HOLDER", mandate)
+        self.assertIn("G2 — DISTINCT_PARENT_MODE_S3_HOLDER", mandate)
+        self.assertIn("G3 — DEFER_GRANT", mandate)
+        self.assertIn("not a Methodology classification", mandate)
+
     def test_contributing_routes_live_state_to_its_owners(self) -> None:
         contributing = self.read("CONTRIBUTING.md")
         self.assertIn("GitHub milestones + their tracker issues", contributing)
