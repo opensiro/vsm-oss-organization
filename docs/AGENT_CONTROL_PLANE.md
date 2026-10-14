@@ -111,6 +111,17 @@ When the work is materially initiated or shaped by OpenSiro assessment/research,
 
 Reporting after discovery should include the shortlist, provenance and unknowns, the **optional** profile-tracking question, and a clear choice of next upstream task. After execution report concrete upstream PR/commit/CI status and any ledger change; do not imply that a discovery command, follow-up scan or proposed contribution is a deployed continuous service.
 
+## Internal assessment → repair → reassessment loop
+
+When the operator asks to *assess our own OpenSiro organization, implement what the assessment finds missing, and repeat*, make the **bounded Organization system** the assessment target; external harness grade repair remains Index S1. Run the following cycle within the actual owning task and authority:
+
+1. **Assess current first-party evidence** under the Organization-selected Profile and Methodology; separate **established VSM function**, ownership/autonomy, technical prerequisites and real organizational permissions. Record a falsifiable precise gap with source refs. A missing *real current obligation or owner act* is not a missing code file.
+2. **Implement only an actionable admitted gap** at its owning first-party source, preferably one small reviewable PR with regression tests. Do not manufacture S3 incidents, introduce new human review gates or rewrite normative upstream semantics.
+3. **Validate the exact changed head**, and where legitimately permitted integrate via GitHub's real checks. Then **reassess against that new source**, explicitly distinguishing a repaired tool/guard from newly proven whole-system S3 function, G1 parent `P` closure or autonomous `A`.
+4. Repeat while a new source-supported **implementable** gap remains in scope; otherwise report the exact non-code evidence or owner-decision blocker, and show the owner the actual completed change, limitations and next entry condition. Do not loop identical `INSUFFICIENT` source scans, schedule unsupervised background work, or create a fresh reviewer task.
+
+**Concrete S3 example:** a general structurally valid S3 transaction can request `STOP`, but the current human G1 grant prohibits it. Implement and test an **opt-in G1 envelope guard** on the existing transaction checker, then reassess honestly: this closes an enforcement-boundary defect, **not** the separate missing positive real whole-system S3 function. Existing M1 [#39](https://github.com/opensiro/vsm-oss-organization/issues/39) governs S3 source-first positive evidence.
+
 ## Per-command operating loop
 
 1. **Resolve intent and scope.** Is this status-only, a named task, a selected current-work item, or new intake? Identify the declared system-in-focus and actual owning repository; preserve separate adjacent-research boundaries.
