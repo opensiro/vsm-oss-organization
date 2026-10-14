@@ -211,15 +211,64 @@ def validate_transition(previous: object, current: object) -> str:
     return "STRUCTURAL_TRANSITION_VALID_NOT_AUTHORITY_OR_S3_WITNESS"
 
 
+def g1_allowed_classes(grant_path: Path | None = None) -> set[str]:
+    """Read the allowed G1 class names from its owning first-party grant.
+
+    This is static source parsing, NOT authentication of an active grant.
+    """
+    path = grant_path or (
+        Path(__file__).resolve().parents[1] / "contracts" / "s3" / "parent-assisted-g1.md"
+    )
+    grant = path.read_text(encoding="utf-8")
+    start = "### Authorized response classes"
+    stop = "**Never under this grant:**"
+    require(grant.count(start) == 1 and grant.count(stop) == 1,
+            "G1: grant class boundaries changed; fail closed")
+    section = grant.split(start, 1)[1].split(stop, 1)[0]
+    classes = set(re.findall(r"(?m)^- \`([A-Z_]+)\`", section))
+    require(bool(classes) and classes <= CLASSES,
+            "G1: invalid or missing authorized response classes")
+    return classes
+
+
+def validate_g1_envelope(obj: object, *, grant_path: Path | None = None) -> str:
+    """Optional G1-specific structural guard; never an owner/authority witness.
+
+    The generic S3 checker permits other grants with broader class vocabularies.
+    G1 must only carry the classes actually named in the current canonical grant.
+    """
+    validate(obj)
+    t = obj
+    allowed = g1_allowed_classes(grant_path)
+    require(set(t["requested_decision"]["allowed_classes"]) <= allowed,
+            "G1: requested class exceeds the published grant")
+    owner_class = t["decision"]["owner_class"]
+    if t["status"] == "REQUESTED":
+        require(owner_class in {"human", "unknown"},
+                "G1: cannot preassign a non-human decision owner")
+    else:
+        require(owner_class == "human",
+                "G1: later states require the actual human S3 holder")
+    return "G1_SHAPE_VALID_NOT_AUTHORITY_OR_S3_FUNCTION_WITNESS"
+
+
 def main(argv: list[str] | None = None) -> int:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("path", type=Path, help="one instantiated transaction JSON")
     parser.add_argument("--previous", type=Path, help="optional previous snapshot for strict transition check")
+    parser.add_argument("--g1", action="store_true", help="check G1 grant class/owner shape; NOT authorization")
     args = parser.parse_args(argv)
     try:
         obj = json.loads(args.path.read_text(encoding="utf-8"))
-        result = (validate_transition(json.loads(args.previous.read_text(encoding="utf-8")), obj)
-                  if args.previous else validate(obj))
+        if args.previous:
+            prior = json.loads(args.previous.read_text(encoding="utf-8"))
+            result = validate_transition(prior, obj)
+            if args.g1:
+                validate_g1_envelope(prior)
+                validate_g1_envelope(obj)
+                result = "G1_TRANSITION_SHAPE_VALID_NOT_AUTHORITY_OR_S3_FUNCTION_WITNESS"
+        else:
+            result = validate_g1_envelope(obj) if args.g1 else validate(obj)
     except (InvalidS3Transaction, json.JSONDecodeError, OSError) as exc:
         print(f"BLOCKED: {exc}", file=sys.stderr)
         return 1

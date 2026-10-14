@@ -88,12 +88,16 @@ An instantiated S3 transaction may be checked before publication or application:
 ```bash
 python scripts/check_s3_current_control.py path/to/instantiated-transaction.json
 python scripts/check_s3_current_control.py --previous path/to/prior.json path/to/next.json
+python scripts/check_s3_current_control.py --g1 path/to/instantiated-transaction.json
+python scripts/check_s3_current_control.py --g1 --previous path/to/prior.json path/to/next.json
 python -m unittest tests.test_s3_current_control -v
 ```
 
 When `--previous` is supplied, it also checks strict adjacent lifecycle progression and immutable decision scope; it cannot establish that the supplied previous file is authentic. The checker rejects uninstantiated template placeholders, unknown fields, out-of-bound S1 work-item targets, prefilled decisions at `REQUESTED`, unsupported decision classes, or unsubstantiated structural jumps to `APPLIED` / `CLOSED`. `ESCALATED` and `CANCELLED` remain possible before an actual owner choice if their terminal disposition has proper source references.
 
-**Limit:** Offline validation checks types, state completeness and GitHub reference *shapes*, not whether a URL resolves, an actor is legitimately authorized, a function is S3 rather than S1/S2/S5, or a returned effect actually happened. Passing output is `STRUCTURALLY_VALID_NOT_S3_FUNCTION_WITNESS`; this check never authorizes a decision or establishes `S3=C` / `S3=A`.
+**Limit:** Offline validation checks types, state completeness and GitHub reference *shapes*, not whether a URL resolves, an actor is legitimately authorized, a function is S3 rather than S1/S2/S5, or a returned effect actually happened. Generic passing output is `STRUCTURALLY_VALID_NOT_S3_FUNCTION_WITNESS`; this check never authorizes a decision or establishes `S3=C` / `S3=A`.
+
+**G1-specific authority-envelope regression guard:** `--g1` additionally reads the **currently checked-out** [G1 grant](parent-assisted-g1.md) and fails closed when requested decision classes exceed its published `CONTINUE`, bounded `SET_CONSTRAINT`, `REQUIRE_REPAIR` envelope, or when a non-human is attributed as the G1 decisor. Generic S3 transactions remain governed by their own grant rather than silently inheriting G1 restrictions. This guard does **not** authenticate an individual GitHub owner decision, validate the grant's live start/expiry/revocation, confirm case admissibility or verify S1 effect. Callers must independently check those facts immediately before any S3 action; a `G1_*_SHAPE_VALID_*` output is **never** an authority token, a transaction admission, or an S3 functional witness.
 
 ## S1 return
 

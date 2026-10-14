@@ -191,5 +191,71 @@ class S3StructuralGuardTests(unittest.TestCase):
         self.assertBlocked(t)
 
 
+class G1EnvelopeGuardTests(unittest.TestCase):
+    """G1-specific regression tests; no synthetic packet is a live S3 act."""
+
+    def test_grant_is_the_source_of_allowed_classes(self):
+        self.assertEqual(
+            {"CONTINUE", "SET_CONSTRAINT", "REQUIRE_REPAIR"},
+            s.g1_allowed_classes(),
+        )
+
+    def test_allowed_g1_request_is_only_structurally_eligible(self):
+        t = packet()
+        t["requested_decision"]["allowed_classes"] = [
+            "CONTINUE", "SET_CONSTRAINT", "REQUIRE_REPAIR",
+        ]
+        self.assertEqual(
+            "G1_SHAPE_VALID_NOT_AUTHORITY_OR_S3_FUNCTION_WITNESS",
+            s.validate_g1_envelope(t),
+        )
+
+    def test_generic_valid_stop_packet_is_rejected_under_g1(self):
+        t = packet()
+        self.assertEqual(
+            "STRUCTURALLY_VALID_NOT_S3_FUNCTION_WITNESS", s.validate(t)
+        )
+        with self.assertRaisesRegex(s.InvalidS3Transaction, "exceeds the published grant"):
+            s.validate_g1_envelope(t)
+
+    def test_g1_rejects_ungranted_classes_even_before_owner_decision(self):
+        for excluded in ("STOP", "SET_RETRY_BUDGET", "OTHER_CURRENT_CONTROL"):
+            t = packet()
+            t["requested_decision"]["allowed_classes"] = ["CONTINUE", excluded]
+            with self.subTest(excluded=excluded):
+                with self.assertRaises(s.InvalidS3Transaction):
+                    s.validate_g1_envelope(t)
+
+    def test_g1_decided_requires_human_holder(self):
+        t = decided()
+        t["requested_decision"]["allowed_classes"] = ["CONTINUE"]
+        self.assertEqual(
+            "G1_SHAPE_VALID_NOT_AUTHORITY_OR_S3_FUNCTION_WITNESS",
+            s.validate_g1_envelope(t),
+        )
+        t["decision"]["owner_class"] = "agent"
+        self.assertEqual(
+            "STRUCTURALLY_VALID_NOT_S3_FUNCTION_WITNESS", s.validate(t)
+        )
+        with self.assertRaisesRegex(s.InvalidS3Transaction, "human S3 holder"):
+            s.validate_g1_envelope(t)
+
+    def test_g1_cli_wont_publish_generic_stop_packet(self):
+        import json
+        import tempfile
+        with tempfile.TemporaryDirectory() as temp_dir:
+            path = Path(temp_dir) / "s3.json"
+            path.write_text(json.dumps(packet()), encoding="utf-8")
+            self.assertEqual(1, s.main([str(path), "--g1"]))
+
+    def test_missing_or_ambiguous_grant_policy_fails_closed(self):
+        import tempfile
+        with tempfile.TemporaryDirectory() as temp_dir:
+            path = Path(temp_dir) / "grant.md"
+            path.write_text("no valid authority section", encoding="utf-8")
+            with self.assertRaisesRegex(s.InvalidS3Transaction, "fail closed"):
+                s.g1_allowed_classes(path)
+
+
 if __name__ == "__main__":
     unittest.main()
