@@ -67,8 +67,9 @@ class S3ControlPlaneMenuTests(unittest.TestCase):
             with self.subTest(name=name):
                 self.assertIn("check_s3_current_control.py --g1", document)
                 self.assertIn("not", document.lower())
-        self.assertIn("--g1 --previous", grant)
-        self.assertIn("--g1 --previous", apply)
+        self.assertIn("--g1 --g1-now --previous", grant)
+        self.assertIn("--g1 --g1-now --previous", apply)
+        self.assertIn("--g1 --g1-now", intake)
         self.assertIn("current whole-system", grant)
 
     def test_requested_s3_template_has_no_decision_or_closure(self):
