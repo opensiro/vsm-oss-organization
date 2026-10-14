@@ -83,20 +83,30 @@ class M2ParentBoundaryTests(unittest.TestCase):
         self.assertIn("VSM evidence assessment", review)
         self.assertIn("Stage-2", review)
 
-    def test_selected_s3_cp_target_has_two_rows_but_no_grant_or_grade(self) -> None:
-        """S5 may choose a dual-mode target without fabricating C(P) evidence."""
+    def test_s3_cp_target_and_g1_issued_but_not_grade_or_case(self) -> None:
+        """S5 can grant conditional standing S3 rights without inventing C(P) evidence."""
         mandate = self.read("docs/proposals/2026-10-14-s3-parent-assisted-general-mandate.md")
+        grant = self.read("contracts/s3/parent-assisted-g1.md")
+        parent_record = self.read("records/s5/2026-10-14-s3-g1-parent-assisted-grant.md")
+        s3_contract = self.read("contracts/s3/current-control.md")
         self.assertIn("S5 TARGET MODE `C(P)` SELECTED", mandate)
         self.assertIn("## 2A. Selected target mode `C(P)`", mandate)
         self.assertIn("**Base `C`**", mandate)
         self.assertIn("**Parent `P`**", mandate)
-        self.assertIn("HOLDER UNAPPOINTED, GRANT NOT EFFECTIVE", mandate)
+        self.assertIn("G1 HOLDER APPOINTED by S5", mandate)
         self.assertIn("NOT YET ESTABLISHED", mandate)
-        self.assertIn("## 5. S5 design selection made; separate grant choices remain", mandate)
+        self.assertIn("## 5. G1 holder and bounded conditional grant", mandate)
         self.assertIn("G1 — HUMAN_S3_HOLDER", mandate)
-        self.assertIn("G2 — DISTINCT_PARENT_MODE_S3_HOLDER", mandate)
-        self.assertIn("G3 — DEFER_GRANT", mandate)
-        self.assertIn("not a Methodology classification", mandate)
+        self.assertIn("## Grant identity and effective window", grant)
+        self.assertIn("GitHub merge-commit UTC timestamp", grant)
+        self.assertIn("2026-11-13T12:00:00Z", grant)
+        for marker in ("CONTINUE", "SET_CONSTRAINT", "REQUIRE_REPAIR", "STOP", "SET_RETRY_BUDGET", "OTHER_CURRENT_CONTROL"):
+            self.assertIn(marker, grant)
+        self.assertIn("No S3 case", grant.replace("no S3 case", "No S3 case"))
+        self.assertIn("S5-P-G1-238", parent_record)
+        self.assertIn("RETURN_PENDING_PUBLICATION", parent_record)
+        self.assertIn("parent-assisted-g1.md", s3_contract)
+        self.assertIn("does **not** establish `C(P)`", s3_contract)
 
     def test_contributing_routes_live_state_to_its_owners(self) -> None:
         contributing = self.read("CONTRIBUTING.md")
