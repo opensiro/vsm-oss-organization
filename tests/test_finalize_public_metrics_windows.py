@@ -279,8 +279,8 @@ class FinalizeWindowsTests(unittest.TestCase):
         data = legacy / "data"
         data.mkdir()
         (data / "catalog.psv").write_text(
-            "catalog_position|harness_id|tldr_status|vsm_tldr\\n"
-            "1|rasa|included|S1 A\\n", encoding="utf-8"
+            "catalog_position|harness_id|tldr_status|vsm_tldr\n"
+            "1|rasa|included|S1 A\n", encoding="utf-8"
         )
         commit(legacy, "2026-09-13T12:00:00Z", "legacy Index TLDR era")
         legacy_ref = subprocess.check_output(
@@ -318,7 +318,7 @@ class FinalizeWindowsTests(unittest.TestCase):
         git(broken, "config", "user.name", "Test")
         (broken / "data").mkdir()
         (broken / "data" / "catalog.psv").write_text(
-            "catalog_position|harness_id|pinned_at\\n1|x|2026-09-13\\n",
+            "catalog_position|harness_id|pinned_at\n1|x|2026-09-13\n",
             encoding="utf-8",
         )
         commit(broken, "2026-09-13T12:00:00Z", "nonlegacy incomplete data")
