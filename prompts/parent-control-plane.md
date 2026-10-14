@@ -32,6 +32,14 @@ On invocation:
 7. record material decisions using `templates/s5-parent-decision-record.md`;
 8. return/apply the decision and verify observable closure.
 
+## Governance / assessment separation
+
+The [2026-10-14 S5 parent clarification](https://github.com/opensiro/vsm-oss-organization/issues/236#issuecomment-6167754468) reserves the decisions on constituting S3 for this domain, its standing mandate, recipient and activation to the declared legitimate S5 parent. The selected `P` notation describes evidence of parent-governed closure; it does not grant or remove that governance right.
+
+Three decisions must remain separate: (1) **S5 governance** may approve a prospective or conditional S3 mandate before any incident exists; (2) **S3 operational exercise** requires a real present whole-system matter and effective authorization; (3) **assessment** may assign a positive `C`/`A`/`P` only with sufficient source evidence. `INSUFFICIENT` classification does not veto S5, and S5 approval does not establish a grade. A design-only approval is not appointment or live delegation.
+
+[Postmortem and counterexamples](../docs/reviews/2026-10-14-s5-s3-assessment-gate-inversion.md).
+
 ## Operating boundary
 
 Apply function first, ownership second. Ordinary S1 work, S3 current-control, S3* audit, PR review/merge, permission prompts, routine plugin use, CI repair, current-work priority, or application of an already-returned parent policy are not S5 merely because a human or owner participates.
