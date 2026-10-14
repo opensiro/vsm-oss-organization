@@ -267,6 +267,78 @@ class FinalizeWindowsTests(unittest.TestCase):
             self.assertIsNone(entry.get("changed", entry.get("value")))
             self.assertEqual(entry["baseline_revision"], legacy_ref)
 
+    def test_pre_standalone_index_tldr_history_preserves_missing_baselines(self):
+        # Index@81e10df... (2026-09-13) has a TLDR catalog, but no
+        # standalone assessments or data/signatures.psv. Current Index
+        # render_tldr.data() needs both, so its historical renderer fails.
+        legacy = Path(self.temp.name) / "legacy-index"
+        legacy.mkdir()
+        git(legacy, "init", "-q")
+        git(legacy, "config", "user.email", "test@example.com")
+        git(legacy, "config", "user.name", "Test")
+        data = legacy / "data"
+        data.mkdir()
+        (data / "catalog.psv").write_text(
+            "catalog_position|harness_id|tldr_status|vsm_tldr\\n"
+            "1|rasa|included|S1 A\\n", encoding="utf-8"
+        )
+        commit(legacy, "2026-09-13T12:00:00Z", "legacy Index TLDR era")
+        legacy_ref = subprocess.check_output(
+            ["git", "-C", str(legacy), "rev-parse", "HEAD"], text=True
+        ).strip()
+        (legacy / "scripts").mkdir()
+        (legacy / "scripts" / "render_metrics.py").write_text(
+            (self.index / "scripts" / "render_metrics.py").read_text(
+                encoding="utf-8"
+            ), encoding="utf-8"
+        )
+        commit(legacy, "2026-09-25T12:00:00Z", "add current owner renderer")
+
+        snapshot = self.snapshot()
+        metrics = snapshot["repositories"]["opensiro/vsm-harness-index"]["metrics"]
+        for key in ("included_assessments", "catalog_entries"):
+            metrics[key]["window_change"]["7d"]["baseline_revision"] = legacy_ref
+        result = finalizer.finalize(snapshot, dict(self.roots, index=legacy))
+        resolved = result["repositories"]["opensiro/vsm-harness-index"]["metrics"]
+        for key in ("included_assessments", "catalog_entries"):
+            entry = resolved[key]["window_change"]["7d"]
+            self.assertEqual(entry["status"], "source_unavailable_at_baseline")
+            self.assertIsNone(entry["baseline"])
+            self.assertIsNone(entry["value"])
+            self.assertEqual(entry["baseline_revision"], legacy_ref)
+            self.assertNotIn("baseline_source", entry)
+
+    def test_nonlegacy_index_renderer_failure_still_fails_closed(self):
+        # The fallback is only for the positive legacy TLDR schema marker.
+        # Modern or unknown layout errors must not silently become gaps.
+        broken = Path(self.temp.name) / "broken-index"
+        broken.mkdir()
+        git(broken, "init", "-q")
+        git(broken, "config", "user.email", "test@example.com")
+        git(broken, "config", "user.name", "Test")
+        (broken / "data").mkdir()
+        (broken / "data" / "catalog.psv").write_text(
+            "catalog_position|harness_id|pinned_at\\n1|x|2026-09-13\\n",
+            encoding="utf-8",
+        )
+        commit(broken, "2026-09-13T12:00:00Z", "nonlegacy incomplete data")
+        broken_ref = subprocess.check_output(
+            ["git", "-C", str(broken), "rev-parse", "HEAD"], text=True
+        ).strip()
+        (broken / "scripts").mkdir()
+        (broken / "scripts" / "render_metrics.py").write_text(
+            (self.index / "scripts" / "render_metrics.py").read_text(
+                encoding="utf-8"
+            ), encoding="utf-8"
+        )
+        commit(broken, "2026-09-25T12:00:00Z", "add current renderer")
+        snapshot = self.snapshot()
+        snapshot["repositories"]["opensiro/vsm-harness-index"]["metrics"][
+            "included_assessments"
+        ]["window_change"]["7d"]["baseline_revision"] = broken_ref
+        with self.assertRaisesRegex(finalizer.FinalizeError, "owner renderer failed"):
+            finalizer.finalize(snapshot, dict(self.roots, index=broken))
+
     def test_missing_owner_root_fails_closed(self):
         roots = dict(self.roots)
         roots.pop("awesome")
