@@ -80,7 +80,7 @@ class M2ParentBoundaryTests(unittest.TestCase):
         self.assertIn("## Parent S5 decision before assessment", control)
         self.assertIn("A particular **operational S3 action**", control)
         self.assertIn("Primary root cause", review)
-        self.assertIn("Assessment", review)
+        self.assertIn("VSM evidence assessment", review)
         self.assertIn("Stage-2", review)
 
     def test_contributing_routes_live_state_to_its_owners(self) -> None:
