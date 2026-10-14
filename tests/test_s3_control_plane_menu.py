@@ -54,6 +54,23 @@ class S3ControlPlaneMenuTests(unittest.TestCase):
 
 
 
+    def test_current_g1_runtime_path_invokes_authority_envelope_guard(self):
+        """Prevent a valid but disconnected G1 helper from becoming dead code."""
+        grant = (ROOT / "contracts" / "s3" / "parent-assisted-g1.md").read_text(
+            encoding="utf-8"
+        )
+        intake = INTAKE.read_text(encoding="utf-8")
+        apply = (ROOT / "prompts" / "apply-s3-control.md").read_text(
+            encoding="utf-8"
+        )
+        for name, document in (("grant", grant), ("intake", intake), ("apply", apply)):
+            with self.subTest(name=name):
+                self.assertIn("check_s3_current_control.py --g1", document)
+                self.assertIn("not", document.lower())
+        self.assertIn("--g1 --previous", grant)
+        self.assertIn("--g1 --previous", apply)
+        self.assertIn("current whole-system", grant)
+
     def test_requested_s3_template_has_no_decision_or_closure(self):
         transaction = json.loads(TRANSACTION.read_text(encoding="utf-8"))
         self.assertEqual("REQUESTED", transaction["status"])
