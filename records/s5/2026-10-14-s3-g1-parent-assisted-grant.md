@@ -7,7 +7,7 @@
 - system-in-focus: bounded OpenSiro VSM Harness OSS Organization: operational S1 Index, Skills, Awesome
 - governing Organization revision at choice: `main@4759cca7240ef1cb7ecacdf4c59e6929d05af729`
 - governing Profile / Methodology: selected Profile `v0.2.4`, Methodology `v0.3.7` via [UPSTREAM_CONTRACT.json](../../UPSTREAM_CONTRACT.json)
-- policy publication target: [PR #239](https://github.com/opensiro/vsm-oss-organization/pull/239), `main` after normal merge/CI; source artifact alone is not an operational case
+- **policy publication receipt:** [PR #239 merged](https://github.com/opensiro/vsm-oss-organization/pull/239), exact merge commit [`6fb4ab2e51a27402f678530127834f6b72c334e5`](https://github.com/opensiro/vsm-oss-organization/commit/6fb4ab2e51a27402f678530127834f6b72c334e5), committed `main` at **`2026-10-14T13:32:30Z`**; [exact post-merge `validate` SUCCESS](https://github.com/opensiro/vsm-oss-organization/actions/runs/38572645118). An S5 policy return, not an operational S3 case
 
 ## Matter
 
@@ -37,7 +37,7 @@
 - authoritative S5 choice: **G1** — appoint `xLagerFeuer` as a **distinct bounded S3 inside-and-now current-control decisor**, with the agent as evidence/options/transport/validation **support**, not as the decisive owner.
 - primary decision evidence: [authenticated S5-G1-238 comment](https://github.com/opensiro/vsm-oss-organization/issues/238#issuecomment-6169376275).
 - **grant source:** [G1 S3 operating contract](../../contracts/s3/parent-assisted-g1.md), which implements these bounds and is incorporated by reference. If it conflicts with the authenticated owner choice, stop and re-escalate; do not silently extend authority.
-- effective trigger: only **after** the G1 record and operating contract are merged into Organization `main` by an ordinary PR and verified reachable. GitHub's resulting merge-commit timestamp is the start of the conditional standing grant. **This decision comment is not itself the effective start.**
+- **effective start VERIFIED:** both the G1 record and operating contract reached Organization `main` through normal PR #239 at **`2026-10-14T13:32:30Z`**, the GitHub merge-commit UTC timestamp. The standing grant is now `ACTIVE_CONDITIONAL`, meaning **authorized for a later real case only**. The owner comment alone had no earlier operational effect.
 - outer limit: absolute `2026-11-13T12:00:00Z` (earlier on revocation; no automatic extension), intentionally under 30 days from this decision.
 - per-case constraint duration: no later than seven elapsed days, grant expiry, case completion, or revocation, whichever is first; any continuing constraint requires an attributable new decision.
 - response classes: `CONTINUE`, narrow `SET_CONSTRAINT`, scoped `REQUIRE_REPAIR`; excludes `STOP`, `SET_RETRY_BUDGET`, `OTHER_CURRENT_CONTROL` unless another S5 decision expressly extends them.
@@ -54,13 +54,13 @@
 ## Return into Organization
 
 - intended normative return: grant [operating contract](../../contracts/s3/parent-assisted-g1.md) reachable from [S3 constructor](../../contracts/s3/current-control.md) after PR #239 publication.
-- acknowledgement/application refs: **PENDING PUBLICATION** at drafting; fill with actual merge commit and verified `main` receipt. Do not claim already applied.
+- policy application refs: exact [merge commit `6fb4ab2e...`](https://github.com/opensiro/vsm-oss-organization/commit/6fb4ab2e51a27402f678530127834f6b72c334e5), [post-merge CI success](https://github.com/opensiro/vsm-oss-organization/actions/runs/38572645118), verified `main` includes [G1 operational contract](../../contracts/s3/parent-assisted-g1.md) and this S5 record. **This is S5 policy return**, not S1 acknowledgement of an S3 case.
 - subsequent policy consequence: only after publication may **future real** S3 cases use this conditional parent-governed holder and the S3→S1 mechanism.
 - operational S3 return: **NONE** at owner choice. Every future case separately needs real evidence, holder decision, S1 acknowledgement, application/effect, closure.
 
 ## Closure and grade boundary
 
-- governance state: `DECIDED / RETURN_PENDING_PUBLICATION` in draft. After verified merge, grant implementation can be recorded `RETURNED/APPLIED` **as policy**, without asserting any S3 case was completed.
+- governance state: **`S5_DECIDED / POLICY_RETURNED_AND_APPLIED / G1_ACTIVE_CONDITIONAL`** at the verified 2026-10-14T13:32:30Z publication. This is a policy/authority effect only: **`S3_CASES_NONE / P_MODE_NOT_OPERATIONALLY_CLOSED`**; no S3 S1-return or Methodology classification is inferred.
 - independent reviewer: **NOT ESTABLISHED**; this is continuing GPT-6 author-context technical composition.
 - supports new `S5=P` witness? **NOT CLAIMED** based on the issue comment or this record alone; requires legitimate returned closure under selected contracts.
 - supports S3 `C(P)`? **NO**. Base `C` function/decisive path remains `INSUFFICIENT` in #39; distinct `P` would require a real operationally closed parent-governed S3 case.
