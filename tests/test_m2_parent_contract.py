@@ -60,6 +60,29 @@ class M2ParentBoundaryTests(unittest.TestCase):
         self.assertIn("does **not** transfer the unresolved S5 decisive right", entry)
         self.assertIn("S3 current-control", entry)
 
+    def test_parent_governance_is_not_gated_by_s3_assessment(self) -> None:
+        """Regression: a lack of S3 evidence may block a grade or case, not a parent choice."""
+        authority = self.read("contracts/s5/parent-authority.md")
+        boundary = self.read("contracts/s5/parent-boundary.md")
+        prompt = self.read("prompts/parent-control-plane.md")
+        entry = self.read("CONTRIBUTOR_START.md")
+        control = self.read("docs/AGENT_CONTROL_PLANE.md")
+        review = self.read("docs/reviews/2026-10-14-s5-s3-assessment-gate-inversion.md")
+
+        self.assertIn("## Reserved decisions while parent-governed", authority)
+        self.assertIn("INSUFFICIENT", authority)
+        self.assertIn("prospective/conditional S3 authority", authority)
+        self.assertIn("## Governance decision is not an assessment admission gate", boundary)
+        self.assertIn("blocks that intervention", boundary)
+        self.assertIn("blocks only the positive grade claim", boundary)
+        self.assertIn("Three decisions must remain separate", prompt)
+        self.assertIn("S5 domain-fit and delegation choices belong", entry)
+        self.assertIn("## Parent S5 decision before assessment", control)
+        self.assertIn("A particular **operational S3 action**", control)
+        self.assertIn("Primary root cause", review)
+        self.assertIn("Assessment", review)
+        self.assertIn("Stage-2", review)
+
     def test_contributing_routes_live_state_to_its_owners(self) -> None:
         contributing = self.read("CONTRIBUTING.md")
         self.assertIn("GitHub milestones + their tracker issues", contributing)
