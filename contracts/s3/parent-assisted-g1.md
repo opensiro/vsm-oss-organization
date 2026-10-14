@@ -4,6 +4,12 @@
 
 **Canonical authorizing S5 act:** authenticated [Organization #238 G1 owner decision](https://github.com/opensiro/vsm-oss-organization/issues/238#issuecomment-6169376275), with reconstructable [S5 parent decision record](../../records/s5/2026-10-14-s3-g1-parent-assisted-grant.md). [Earlier `C(P)` target choice](https://github.com/opensiro/vsm-oss-organization/issues/238#issuecomment-6169206967) concerns intended design; neither authorizes an agent S3 decision nor proves `C(P)` under the selected Methodology.
 
+## Verified source-of-truth publication receipt
+
+**G1 is now `ACTIVE_CONDITIONAL` as a standing grant:** [PR #239](https://github.com/opensiro/vsm-oss-organization/pull/239) was published by a normal PR merge into Organization `main`, exact [merge commit `6fb4ab2e51a27402f678530127834f6b72c334e5`](https://github.com/opensiro/vsm-oss-organization/commit/6fb4ab2e51a27402f678530127834f6b72c334e5), **effective UTC `2026-10-14T13:32:30Z`**, verified `main` and [post-merge `validate` CI PASS](https://github.com/opensiro/vsm-oss-organization/actions/runs/38572645118). This receipt documents the already-applied S5 policy return; it **does not create a second grant, a new expiry, or a fictional S3 case**. The original [S5 G1 decision](https://github.com/opensiro/vsm-oss-organization/issues/238#issuecomment-6169376275) and [S5 record](../../records/s5/2026-10-14-s3-g1-parent-assisted-grant.md) remain authoritative.
+
+The grant ends `2026-11-13T12:00:00Z` (or earlier on revocation/identity drift); only after checking that it remains active may an agent prepare a **specific** S3 case packet. **No operational parent-mode `P` closure or positive `C(P)` assessment has been observed from this publication.**
+
 ## Grant identity and effective window
 
 | Field | Approved value |
