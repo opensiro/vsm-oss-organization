@@ -74,6 +74,25 @@ def owner_core_at_revision(root: Path, revision: str, repository: str) -> dict[s
                 raise HistoricalLayoutUnavailable(
                     f"{repository}@{revision}: historical README skill catalog unavailable"
                 )
+            # The first Index corpus used a TLDR catalog rather than the
+            # standalone assessments/signatures schema expected by today's
+            # owner renderer. Historical TLDR rows cannot be translated into
+            # comparable standalone assessment stock without re-assessment.
+            # Keep that explicit gap unknown, like pre-catalog Skills, instead
+            # of failing website materialization or inventing a zero baseline.
+            if repository == "opensiro/vsm-harness-index":
+                catalog = worktree / "data" / "catalog.psv"
+                if catalog.is_file():
+                    with catalog.open(encoding="utf-8") as handle:
+                        header = set(handle.readline().strip().split("|"))
+                    if {"tldr_status", "vsm_tldr"}.issubset(header) and (
+                        not (worktree / "data" / "signatures.psv").is_file()
+                        or not (worktree / "assessments").is_dir()
+                    ):
+                        raise HistoricalLayoutUnavailable(
+                            f"{repository}@{revision}: legacy TLDR catalog predates "
+                            "standalone assessments and signatures"
+                        )
             completed = subprocess.run(
                 [
                     sys.executable,
