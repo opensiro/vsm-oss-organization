@@ -1,6 +1,6 @@
 # Candidate mandate — OpenSiro OSS S3 current control (parent-assisted)
 
-**Status: PROPOSED / NON-OPERATIVE / S5 OPTION PENDING.** This document is a concrete mandate **for S5 consideration**, not a presently delegated S3 right, a new autonomous actor, a case transaction or evidence establishing an autonomy grade. The S5 choice/record is [Organization #238](https://github.com/opensiro/vsm-oss-organization/issues/238).
+**Status: S5 TARGET MODE `C(P)` SELECTED / DESIGN NON-OPERATIVE / S3 GRANT PENDING.** This document specifies the owner's **chosen prospective two-mode architecture**, not a currently operational S3 role, delegated rights, completed transaction, or a positive assessment grade. The authenticated [S5 decision in Organization #238](https://github.com/opensiro/vsm-oss-organization/issues/238#issuecomment-6169206967) explicitly chose target `C(P)` and **did not** appoint a recipient or activate an S3 grant. `C(P)` is **not** menu option “C — design only” and must not be asserted as the observed autonomy state without evidence of *both* modes.
 
 **Source cut:** Organization `main@4759cca7240ef1cb7ecacdf4c59e6929d05af729` at 2026-10-14; selected [Profile `v0.2.4`](https://github.com/opensiro/vsm-harness-profile/blob/v0.2.4/PROFILE.md) and [Skills Methodology `v0.3.7`](https://github.com/opensiro/vsm-harness-skills/blob/v0.3.7/skills/assess-vsm-harness/references/autonomy-states.md) via [Organization upstream selector](../../UPSTREAM_CONTRACT.json). Re-read owning repository state when a real case is proposed.
 
@@ -33,6 +33,19 @@ Profile defines what S3 and S5 *mean*; the Organization composes their local rol
 
 The [one-pass source-first S3 review](../reviews/2026-10-14-s3-c-existing-constructor-qualification.md) reported **`INSUFFICIENT` for positive `S3=C`**. That is evidence status only; it does not prohibit an S5 owner from approving a standing conditional organizational role, and owner approval does not fabricate a positive assessment.
 
+## 2A. Selected target mode `C(P)` — two distinct evidence rows
+
+[Methodology `v0.3.7` autonomy states](https://github.com/opensiro/vsm-harness-skills/blob/v0.3.7/skills/assess-vsm-harness/references/autonomy-states.md) defines `C(P)` as **an established C function/first-party path AND a separately operationally closed parent-governed mode**. This is **not** a compromise grade between `C` and `P`, not proof of autonomy `A`, and not a direct synonym for “human-in-the-loop.” Each row must independently identify decisive right, actor, trigger, S1 return and primary closure evidence at the same reviewed boundary.
+
+| Mode row | Proposed decisive owner and admission | First-party path and return | Actual evidence status |
+| --- | --- | --- | --- |
+| **Base `C`** — specifically composable current-control path | A developer-composed legitimate actor (not necessarily autonomous until composed) may choose a bounded real whole-system present-control decision once the actor, scope and effective authority are independently identified | Existing [S3 current-control constructor](../../contracts/s3/current-control.md), [intake](../../prompts/intake-s3-current-control.md), [transaction](../../control/s3-current-control-v1.template.json) and [S1 return](../../prompts/apply-s3-control.md) | **Constructor/return plumbing observed; genuine S3 function/decisive right NOT YET ESTABLISHED** in [#39 assessment review](../reviews/2026-10-14-s3-c-existing-constructor-qualification.md). Do not publish `C` merely because files/tests exist |
+| **Parent `P`** — separately usable owner-governed mode | S5 parent [`xLagerFeuer`](../../contracts/s5/parent-authority.md) retains S5 delegation choices; a **separately appointed S3 holder** (candidate: the same human acting in a distinct S3 role) makes the real present-control decision after receiving an agent-prepared options packet | Agent prepares evidence/options; legitimate holder selects bounded class; first-party S3 transaction carries actual owner decision into named S1 acknowledgement/application and observable closure | **TARGET SELECTED, HOLDER UNAPPOINTED, GRANT NOT EFFECTIVE, NO CLOSED P-MODE CASE**; no observed `P` function closure yet |
+
+A genuine operational **`P`** mode needs the *actual S3 decision and returned closure*, not just the S5 owner's authorization or ability to approve a GitHub PR. A source-first `C` finding may be considered **without universally mandating a completed live transaction**, but must still positively establish the specific S3 whole-system control function and first-party decision path. The future assessor must verify two rows separately; one cannot compensate for the other.
+
+**S5-approved architecture only:** [owner decision #238](https://github.com/opensiro/vsm-oss-organization/issues/238#issuecomment-6169206967) selects intended `C(P)`, with an agent-assisted human-selectable parent mode and an independently composable `C` path. **No owner/term/decision classes for a live S3 grant have yet been accepted.** The selected target is a design requirement, not a Methodology classification.
+
 ## 3. Proposed mandate — present whole-system discretion, not routine execution
 
 A future effective S3 holder **may consider**, within specifically parent-granted limits, the following *classes of whole-system current decision* when positively grounded in live primary evidence:
@@ -48,7 +61,7 @@ A future effective S3 holder **may consider**, within specifically parent-grante
 
 ## 4. Parent-assisted decision protocol (default proposal)
 
-**Parent-assisted is a proposed operating arrangement, not itself a Methodology autonomy grade.** The agent provides choices; the rightful decision owner chooses. Where `xLagerFeuer` is simultaneously the legitimate S5 parent and *later explicitly appointed* S3 holder, **the role is recorded for each decision**: S5 for identity/mandate/succession and S3 for an admitted *current-control* choice. Sharing a human does not make ordinary S3 into S5.
+**Parent-assisted is the selected *target parent-mode operating design*, not itself evidence of the Methodology parent mode `P`.** The agent provides choices; the duly appointed S3 decision owner chooses. The separate base `C` constructor remains composable and does **not** inherit parent authority or an automatic `A` grade. Where `xLagerFeuer` is simultaneously the legitimate S5 parent and *later explicitly appointed* S3 holder, **the role is recorded for each decision**: S5 for identity/mandate/succession and S3 for an admitted *current-control* choice. Sharing a human does not make ordinary S3 into S5.
 
 For each candidate **real** S3 matter, the option-preparing agent must provide one compact packet:
 
@@ -65,18 +78,21 @@ For each candidate **real** S3 matter, the option-preparing agent must provide o
 
 **No indefinite approvals by silence.** If unavailable, missing actor authentication, uncertain boundary, or unresolved case evidence, present `ESCALATE / NO_ACTION`; keep the actual intervention unexecuted. Do not misstate a tool comment/CI status as the owner's choice.
 
-## 5. Owner's actual S5 decision: options (NONE selected in this draft)
+## 5. S5 design selection made; separate grant choices remain
 
-The pending authoritative choice is owned by [#238](https://github.com/opensiro/vsm-oss-organization/issues/238) under the declared S5 parent. Select **exactly one**:
+**RESOLVED:** [S5 owner #238 explicitly chose TARGET `C(P)`](https://github.com/opensiro/vsm-oss-organization/issues/238#issuecomment-6169206967). It supersedes the prior A/B/C/D owner menu **for target mode selection only**. The parent-assisted parent-mode path and base constructor mode are now design requirements. An agent must not ask the parent to re-choose the same target simply because the previous menu offered different letters.
 
-- **A — `ADOPT_PARENT_ASSISTED_STANDING_MANDATE` (proposed default):** approve §§1–4 as a **standing but conditional** current-control remit. Explicitly designate the S3 holder (candidate: `xLagerFeuer`, acting in a *separate S3 role*) and confirm the allowed classes and term. Agent prepares packets and the human selects each substantive current S3 decision. **No routine S3 action by AI without the holder's choice.**
-- **B — `ADOPT_DELEGATED_CONDITIONAL_MANDATE`:** parent approves the remit but names **another verifiable S3 decisive actor** and a narrower or equal allowed scope. Agent autonomy/limits must be source-grounded; until the real actor, effective rights and closure are proven, **do not claim `S3=A`**.
-- **C — `APPROVE_DESIGN_ONLY / REVISE`:** publish or amend the design as a candidate without appointing anyone or granting operational discretion.
-- **D — `REJECT`:** no new general mandate; retain S1/S2/S3*/S5 existing rights.
+**UNRESOLVED — operational appointment/delegation**, which the S5 parent must choose separately. These are **proposed** alternatives, not active grants:
+
+- **G1 — HUMAN_S3_HOLDER (recommended):** S5 holder `xLagerFeuer` also receives a **distinct, explicit, conditional S3 current-control appointment**. The assistant prepares evidence/options/recommendations; the human as S3 chooses each admitted operational response; subsequent agent support only applies/records that choice. The separate `C` first-party construction path remains available for external composition.
+- **G2 — DISTINCT_PARENT_MODE_S3_HOLDER:** S5 appoints a specifically attributable different holder to exercise a **bounded parent-governed S3 mode**, with a distinct S5-issued source of authority. The base `C` mode remains distinct. Mere possession of a GitHub token or an agent proposal does not confer ownership.
+- **G3 — DEFER_GRANT:** retain the approved `C(P)` architecture target with no effective operational holder while exact actor, limits and conditions are prepared. This does **not** revoke the target S5 choice.
+
+The S5 parent must specifically choose **G1/G2/G3** before a grant record can be finalized. A design PR merge cannot choose for the parent.
 
 For A or B, a legitimate **operative grant** still requires: attributable issuer and decision ref; **named recipient and actor context**; exact permitted classes, system/domain and term; **effective UTC start / maximum duration and per-case expiry**; reserved-parent revocation; conditions on real whole-system case admission; S1 return, exceptions, reporting and closure. As a *proposed default*, use a maximum **30-day grant** and at most **7-day check of any temporary case constraint**, borrowed from the **non-operative design** in #235 but **not automatically approved for the general mandate**. If any material operational term remains undecided, record a parent **scope decision only**, **GRANT_NOT_EFFECTIVE**.
 
-This new **general S3 mandate** is separate from #235's already adopted **narrow Stage-1 design**. Do not silently widen that decision, merge PR #235, or regrade M1 via a charter.
+The **selected target `C(P)` general S3 mandate** is separate from #235's already adopted **narrow Stage-1 design**. Do not silently widen that decision, merge PR #235, or regrade M1 via a charter.
 
 ## 6. Future evidence, reviews, and falsifiers
 
@@ -85,4 +101,4 @@ This new **general S3 mandate** is separate from #235's already adopted **narrow
 - **Assessment evidence:** applying [selected Methodology](https://github.com/opensiro/vsm-harness-skills/blob/v0.3.7/skills/assess-vsm-harness/references/autonomy-states.md) is separate: human-held/parent-governed modes may substantiate `P` only with closure evidence; first-party autonomous composer may support `C` when function/path evidence meets threshold; `A` requires autonomous decisive ownership and closed loop. **No instant upgrade** on this draft, CI or any parent declaration alone.
 - **Negative controls:** `TODO.md` scheduling is not S3; Skills release approval is not S3 merely because multiple repositories consume it; S3* finding is feedback, not decisive control; Index issue correction belongs to Index unless independently evidenced beyond-local current regulation; approval/merge alone is not a whole-system decision.
 
-**Preparation provenance:** GPT-6 continuing author-context; non-independent proposal. Do not change `TODO.md`, #39 evidence status, historical `S3=?`, Index assessments, Profile/Skills semantics or any live S3 transaction on publication.
+**Preparation and S5 provenance:** GPT-6 continuing author-context prepared this non-independent proposal. The target `C(P)` was explicitly selected by the S5 owner in [#238](https://github.com/opensiro/vsm-oss-organization/issues/238#issuecomment-6169206967); this is an owner policy/design act, **not** an independent Methodology assessment, an operational S3 parent-mode closure, or a grant. Do not change `TODO.md`, #39 evidence status, historical `S3=?`, Index assessments, Profile/Skills semantics or any live S3 transaction on publication.
