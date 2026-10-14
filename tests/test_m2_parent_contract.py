@@ -104,7 +104,11 @@ class M2ParentBoundaryTests(unittest.TestCase):
             self.assertIn(marker, grant)
         self.assertIn("NO_S3_CASE_OPENED", grant)
         self.assertIn("S5-P-G1-238", parent_record)
-        self.assertIn("RETURN_PENDING_PUBLICATION", parent_record)
+        self.assertIn("POLICY_RETURNED_AND_APPLIED", parent_record)
+        self.assertIn("S3_CASES_NONE / P_MODE_NOT_OPERATIONALLY_CLOSED", parent_record)
+        self.assertIn("2026-10-14T13:32:30Z", parent_record)
+        self.assertIn("2026-10-14T13:32:30Z", grant)
+        self.assertIn("ACTIVE_CONDITIONAL", grant)
         self.assertIn("parent-assisted-g1.md", s3_contract)
         self.assertIn("does **not** establish `C(P)`", s3_contract)
 
