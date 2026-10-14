@@ -6,6 +6,12 @@ It applies the selected Profile and Methodology through [`../../UPSTREAM_CONTRAC
 
 The presence of this contract does **not** establish `S3=C` or `S3=A`. Under the selected Skills Methodology, `C` still requires an **established S3 function** and a boundary-reachable, S3-specific decisive decision/feedback construction path; a developer may yet need to compose the actor, authority or closure loop. A completed live transaction is strong evidence but **not a universal Methodology prerequisite for every `C`**. Under the approved #3/#39 alternative, the local M1 exit accepts a sufficiently evidenced source-first functional constructor witness instead of mandatory live execution. See [the source-first threshold review](../../docs/reviews/2026-10-13-s3-c-threshold.md). No current S3 grade changes.
 
+## Time-bounded G1 parent-assisted holder grant (S5-issued)
+
+The declared S5 parent has [selected the `C(P)` target](https://github.com/opensiro/vsm-oss-organization/issues/238#issuecomment-6169206967) and subsequently made an [explicit `G1` S3 holder appointment](https://github.com/opensiro/vsm-oss-organization/issues/238#issuecomment-6169376275). The **only canonical operational bounds** for this temporary role are [`parent-assisted-g1.md`](parent-assisted-g1.md), under the attributable [S5 decision record](../../records/s5/2026-10-14-s3-g1-parent-assisted-grant.md).
+
+**G1 names human `xLagerFeuer` separately in an S3 role; agents present options and apply only the owner's selected bounded choice.** No live authority derives from this source before the grant is on current `main` through a verified normal merge, and it expires absolutely on `2026-11-13T12:00:00Z` or earlier on revocation. Every S3 case still needs independent evidence, current whole-system admission, an actual chosen decision and real S1 return/closure. This does **not** establish `C(P)`, `C`, `P`, or autonomous `A` by itself.
+
 ## Admission
 
 Use this path only for a **real present-tense whole-system current-control choice** that exceeds ordinary local S1 decision authority and regulates the declared system's existing operations. A prospective allocation, priority, commitment, resource, or shared-constraint decision can qualify, as can a material current exception or S3* finding. An emergency, failed S1, contributor-count threshold, or overloaded maintainer is **not** a prerequisite. A mere task assignment, generic scheduling decision, or milestone declaration is not sufficient.
