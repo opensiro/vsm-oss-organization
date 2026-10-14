@@ -10,6 +10,7 @@ import argparse
 import json
 import re
 import sys
+from datetime import datetime, timezone
 from pathlib import Path
 
 STATES = {"REQUESTED", "DECIDED", "APPLIED", "CLOSED", "ESCALATED", "CANCELLED"}
@@ -211,6 +212,45 @@ def validate_transition(previous: object, current: object) -> str:
     return "STRUCTURAL_TRANSITION_VALID_NOT_AUTHORITY_OR_S3_WITNESS"
 
 
+def g1_local_time_window(grant_path: Path | None = None) -> tuple[datetime, datetime]:
+    """Parse published G1 start and absolute end; not a revocation/authority check."""
+    path = grant_path or (
+        Path(__file__).resolve().parents[1] / "contracts" / "s3" / "parent-assisted-g1.md"
+    )
+    grant = path.read_text(encoding="utf-8")
+    iso = r"(\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}Z)"
+    starts = re.findall(r"\*\*effective UTC \`" + iso + r"\`\*\*", grant)
+    ends = re.findall(r"(?m)^\| \*\*Absolute expiry\*\* \| \`" + iso + r"\`;", grant)
+    require(len(starts) == 1 and len(ends) == 1,
+            "G1: one published effective UTC and absolute expiry must be present")
+    try:
+        begin, end = (
+            datetime.fromisoformat(value.replace("Z", "+00:00"))
+            for value in (starts[0], ends[0])
+        )
+    except ValueError as exc:
+        raise InvalidS3Transaction("G1: invalid published time window") from exc
+    require(begin < end, "G1: empty/inverted published time window")
+    return begin, end
+
+
+def g1_check_local_time(
+    grant_path: Path | None = None, *, at_utc: datetime | None = None
+) -> None:
+    """Fail closed for future new G1 actions outside the grant's UTC interval.
+
+    Does not check grant revocation, actor identity, published repo freshness,
+    legitimacy of the case or authority. Passing is NOT grant activation.
+    """
+    begin, end = g1_local_time_window(grant_path)
+    checked = at_utc if at_utc is not None else datetime.now(timezone.utc)
+    require(isinstance(checked, datetime) and
+            checked.tzinfo is not None and checked.utcoffset() is not None,
+            "G1: comparison requires timezone-aware UTC datetime")
+    require(begin <= checked.astimezone(timezone.utc) < end,
+            "G1: outside published local time window; no new G1 action")
+
+
 def g1_allowed_classes(grant_path: Path | None = None) -> set[str]:
     """Read the allowed G1 class names from its owning first-party grant.
 
@@ -257,8 +297,10 @@ def main(argv: list[str] | None = None) -> int:
     parser.add_argument("path", type=Path, help="one instantiated transaction JSON")
     parser.add_argument("--previous", type=Path, help="optional previous snapshot for strict transition check")
     parser.add_argument("--g1", action="store_true", help="check G1 grant class/owner shape; NOT authorization")
+    parser.add_argument("--g1-now", action="store_true", help="also reject new G1 action outside local published UTC window; still NOT authority")
     args = parser.parse_args(argv)
     try:
+        require(not args.g1_now or args.g1, "G1: --g1-now requires --g1")
         obj = json.loads(args.path.read_text(encoding="utf-8"))
         if args.previous:
             prior = json.loads(args.previous.read_text(encoding="utf-8"))
@@ -269,6 +311,9 @@ def main(argv: list[str] | None = None) -> int:
                 result = "G1_TRANSITION_SHAPE_VALID_NOT_AUTHORITY_OR_S3_FUNCTION_WITNESS"
         else:
             result = validate_g1_envelope(obj) if args.g1 else validate(obj)
+        if args.g1_now:
+            g1_check_local_time()
+            result = "G1_TIME_AND_SHAPE_PASS_NOT_REVOCATION_AUTHORITY_OR_S3_WITNESS"
     except (InvalidS3Transaction, json.JSONDecodeError, OSError) as exc:
         print(f"BLOCKED: {exc}", file=sys.stderr)
         return 1

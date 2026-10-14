@@ -1,6 +1,7 @@
 """Offline negative tests for the S3 transaction structural guard; not S3 witnesses."""
 import copy
 import importlib.util
+from datetime import datetime, timezone
 import unittest
 from pathlib import Path
 
@@ -247,6 +248,48 @@ class G1EnvelopeGuardTests(unittest.TestCase):
             path = Path(temp_dir) / "s3.json"
             path.write_text(json.dumps(packet()), encoding="utf-8")
             self.assertEqual(1, s.main([str(path), "--g1"]))
+
+    def test_published_window_is_parsed_and_nonempty(self):
+        start, end = s.g1_local_time_window()
+        self.assertEqual("2026-10-14T13:32:30+00:00", start.isoformat())
+        self.assertEqual("2026-11-13T12:00:00+00:00", end.isoformat())
+
+    def test_g1_new_action_refused_before_start_and_at_expiry(self):
+        for instant in ("2026-10-14T13:32:29+00:00",
+                        "2026-11-13T12:00:00+00:00",
+                        "2026-12-01T00:00:00+00:00"):
+            with self.subTest(instant=instant):
+                with self.assertRaisesRegex(s.InvalidS3Transaction, "outside published"):
+                    s.g1_check_local_time(at_utc=datetime.fromisoformat(instant))
+
+    def test_g1_local_time_accepts_half_open_window_but_not_unauthorized_action(self):
+        for instant in ("2026-10-14T13:32:30+00:00",
+                        "2026-10-15T02:30:00+03:00"):
+            with self.subTest(instant=instant):
+                self.assertIsNone(
+                    s.g1_check_local_time(at_utc=datetime.fromisoformat(instant))
+                )
+        with self.assertRaisesRegex(s.InvalidS3Transaction, "timezone-aware"):
+            s.g1_check_local_time(at_utc=datetime(2026, 10, 15))
+
+    def test_g1_time_gate_fails_closed_on_malformed_grant(self):
+        import tempfile
+        with tempfile.TemporaryDirectory() as d:
+            path = Path(d) / "grant.md"
+            path.write_text("no published dates", encoding="utf-8")
+            with self.assertRaisesRegex(s.InvalidS3Transaction, "one published"):
+                s.g1_check_local_time(path)
+
+    def test_cli_now_requires_g1_and_does_not_prevent_historical_inspection(self):
+        import json
+        import tempfile
+        with tempfile.TemporaryDirectory() as d:
+            path = Path(d) / "historical.json"
+            obj = packet()
+            obj["requested_decision"]["allowed_classes"] = ["CONTINUE"]
+            path.write_text(json.dumps(obj), encoding="utf-8")
+            self.assertEqual(0, s.main([str(path), "--g1"]))
+            self.assertEqual(1, s.main([str(path), "--g1-now"]))
 
     def test_missing_or_ambiguous_grant_policy_fails_closed(self):
         import tempfile

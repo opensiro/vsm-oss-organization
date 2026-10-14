@@ -16,7 +16,7 @@ First inspect:
 Do not treat an arbitrary comment, approval, label, chat message, or human instruction as S3. Apply this prompt only when the transaction satisfies contracts/s3/current-control.md and explicitly targets this S1 work item.
 
 Before applying the decision, verify:
-- if the transaction purports to use the **current G1 human-holder grant**, first run `python scripts/check_s3_current_control.py --g1 path/to/decided-transaction.json` (and `--g1 --previous` on later state transitions); reject an excluded decision class or non-human assigned owner **before** S1 application. This is only a structural envelope check; separately verify the effective/revocable G1 grant, actual holder's attributable decision, qualifying current whole-system case and authentic S1 refs;
+- if the transaction purports to use the **current G1 human-holder grant**, first run `python scripts/check_s3_current_control.py --g1 --g1-now path/to/decided-transaction.json` (and `--g1 --g1-now --previous` on later new state transitions); reject an excluded decision class or non-human assigned owner **before** S1 application. This is only a structural envelope check; separately verify the effective/revocable G1 grant, actual holder's attributable decision, qualifying current whole-system case and authentic S1 refs;
 - the transaction identifies this S1 work item/boundary;
 - the decision is one of the transaction's allowed response classes;
 - the actual decision owner is recorded;
