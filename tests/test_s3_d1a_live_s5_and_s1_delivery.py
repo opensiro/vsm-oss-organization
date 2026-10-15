@@ -33,7 +33,9 @@ def active():
     return d
 def fixtures():
     d=active()
-    p={**d,"grant_publication_commit":None}
+    # The earlier source snapshot cannot know a later S5 comment URL or
+    # its own commit SHA. Both pointers remain null until phase two.
+    p={**d,"owner_attestation_url":None,"grant_publication_commit":None}
     obj={"decision":"AUTHORIZE_D1A","recipient_execution_identity":ACTOR,
       "allowed_classes":d["allowed_classes"],
       "allowed_standing_commitments":d["allowed_standing_commitments"],
@@ -82,6 +84,37 @@ class S5Checks(unittest.TestCase):
             self.verify()
     def test_structural_source_check_requires_parent_assurance(self):
         self.assertTrue(self.verify(parent_authorship=lambda _:True)["authorized"])
+    def test_first_phase_snapshot_is_not_operational(self):
+        d=fixtures()
+        pre="/repos/opensiro/vsm-oss-organization"
+        path=pre+"/contents/contracts/s3/autonomous-d1a.json?ref="+BASE
+        snapshot=json.loads(base64.b64decode(d[path]["content"]))
+        self.assertIsNone(snapshot["owner_attestation_url"])
+        self.assertIsNone(snapshot["grant_publication_commit"])
+        with self.assertRaisesRegex(auth.S5AuthorizationError,"Invalid bounded"):
+            auth.verify_active_grant(snapshot, ACTOR, fetch(d),
+                                     parent_authorship=lambda _:True, now=AT)
+
+    def test_first_phase_cannot_preclaim_future_s5_comment(self):
+        d=fixtures()
+        pre="/repos/opensiro/vsm-oss-organization"
+        path=pre+"/contents/contracts/s3/autonomous-d1a.json?ref="+BASE
+        snapshot=json.loads(base64.b64decode(d[path]["content"]))
+        snapshot["owner_attestation_url"]=REF
+        d[path]["content"]=base64.b64encode(json.dumps(snapshot).encode()).decode()
+        with self.assertRaisesRegex(auth.S5AuthorizationError,"inert grant snapshot"):
+            self.verify(d,parent_authorship=lambda _:True)
+
+    def test_second_phase_cannot_mutate_scope(self):
+        d=fixtures()
+        pre="/repos/opensiro/vsm-oss-organization"
+        path=pre+"/contents/contracts/s3/autonomous-d1a.json?ref="+BASE
+        snapshot=json.loads(base64.b64decode(d[path]["content"]))
+        snapshot["allowed_classes"]=["CONTINUE"]
+        d[path]["content"]=base64.b64encode(json.dumps(snapshot).encode()).decode()
+        with self.assertRaisesRegex(auth.S5AuthorizationError,"inert grant snapshot"):
+            self.verify(d,parent_authorship=lambda _:True)
+
     def test_revocation_blocks_even_with_active_grant(self):
         d=fixtures()
         d["/repos/opensiro/vsm-oss-organization/issues/5/comments?per_page=100&page=1"]=[

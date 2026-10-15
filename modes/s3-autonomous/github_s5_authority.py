@@ -114,13 +114,17 @@ def verify_active_grant(grant: dict, actor_id: str, github_get: Callable[[str], 
     current = file_at(head)
     require(current == grant, "supplied grant is not current Organization main")
     published = file_at(base_sha)
-    # Two-phase activation: the earlier published ACTIVE snapshot has a null
-    # forward pointer. A later commit fills the exact previous publication SHA.
+    # First snapshot cannot cite a later owner comment or its own commit SHA.
+    # A distinct later owner statement cites that snapshot; only the second
+    # grant commit fills BOTH references without changing the delegated scope.
     require(published.get("status") == "ACTIVE" and
+            published.get("owner_attestation_url") is None and
             published.get("grant_publication_commit") is None and
-            {k:v for k,v in current.items() if k != "grant_publication_commit"} ==
-            {k:v for k,v in published.items() if k != "grant_publication_commit"},
-            "referenced grant publication snapshot does not match active grant")
+            {k:v for k,v in current.items()
+             if k not in ("owner_attestation_url", "grant_publication_commit")} ==
+            {k:v for k,v in published.items()
+             if k not in ("owner_attestation_url", "grant_publication_commit")},
+            "referenced inert grant snapshot does not match active grant")
     comment = github_get("/repos/" + SOURCE + "/issues/comments/" + m.group(2))
     require(type(comment) is dict and comment.get("html_url") == ref,
             "owner attestation comment mismatch")
