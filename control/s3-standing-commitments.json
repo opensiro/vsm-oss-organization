@@ -1,0 +1,41 @@
+{
+  "version": 1,
+  "system_in_focus": "opensiro-bounded-oss",
+  "standing_commitments": [
+    {
+      "id": "selected-methodology-continuity",
+      "regulates": "Current published assessment work of Index must use the Profile/Methodology selected for the bounded Organization while Skills remains the procedure authority and Awesome consumes canonical Index results.",
+      "affected_s1": [
+        "Index",
+        "Skills",
+        "Awesome"
+      ],
+      "canonical_sources": [
+        "UPSTREAM_CONTRACT.json",
+        "contracts/s1/domain-contracts.md"
+      ],
+      "s3_choice": "Only a material current cross-S1 operating-commitment reconciliation that cannot be decided by the local S1 owners; bounded interim CONTINUE/REQUIRE_REPAIR/SET_CONSTRAINT without selecting/redefining Profile or Methodology.",
+      "never": "Changing selected Methodology/Profile is reserved above G1; ordinary version checks and local Index errors remain S1."
+    },
+    {
+      "id": "canonical-publication-continuity",
+      "regulates": "Index remains the canonical evidence and grade owner; Awesome consumes its canonical relationships without independently editing assessments, while downstream publication obligations must remain mutually consistent.",
+      "affected_s1": [
+        "Index",
+        "Awesome"
+      ],
+      "canonical_sources": [
+        "contracts/s1/domain-contracts.md",
+        "docs/CONTROL_PLANE.md"
+      ],
+      "s3_choice": "Only material present cross-S1 commitment or shared-constraint tradeoff that exceeds ordinary Index correctness and Awesome curation/repair; bounded interim CONTINUE/REQUIRE_REPAIR/SET_CONSTRAINT returned to an admitted affected S1 item.",
+      "never": "No Index grade veto/override, no Awesome editorial substitution, no blanket publication freeze or automatic human gate."
+    }
+  ],
+  "granted_classes": [
+    "CONTINUE",
+    "REQUIRE_REPAIR",
+    "SET_CONSTRAINT"
+  ],
+  "grant_source": "contracts/s3/parent-assisted-g1.md"
+}

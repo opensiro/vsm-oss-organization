@@ -68,6 +68,10 @@ Before offering live status, read the current Organization scope and `TODO.md` a
 
 If a command does not name a work item, do **not** promote every open issue or PR into `TODO.md`. If `NOW` and `NEXT` are empty, report `no current scheduled item` and present genuinely eligible choices through [CONTRIBUTOR_START.md](../CONTRIBUTOR_START.md); do not pretend that the scheduler selected one. An explicit user-directed issue/PR can still be handled under its **own** admission contract without changing global scheduling.
 
+## Operational current-commitment regulation (S3 candidate constructor)
+
+The [standing shared-commitment contract](../contracts/s3/standing-current-commitments.md) owns the already-binding selected-Methodology and canonical Index→Awesome continuity subjects; `python scripts/s3_current_regulation.py --help` exposes a read-only whole-current-contract observation and bounded **unselected** G1 current-regulation options. It does **not** convert automatic compatibility checks into an S3 choice or turn an open Issue into admitted work. S3 functional assessment remains separate from individual case admission, and actual application always follows the existing G1 and S1 return contracts.
+
 ## M1 S3 source-first assessment vs live case intake
 
 **Two independent evidence questions:**
