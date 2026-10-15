@@ -1,0 +1,42 @@
+{
+  "grant_version": "d1a-v1",
+  "status": "PENDING_S5_PUBLIC_ATTESTATION",
+  "issued_for": "M3 #5 - bounded OSS S3 current control",
+  "system_in_focus": "opensiro-bounded-oss",
+  "parent_role": "S5",
+  "parent_github_holder": "xLagerFeuer",
+  "recipient_role": "S3 autonomous agent (distinct from human G1)",
+  "recipient_execution_identity": null,
+  "allowed_classes": [
+    "CONTINUE",
+    "REQUIRE_REPAIR"
+  ],
+  "allowed_standing_commitments": [
+    "selected-methodology-continuity",
+    "canonical-publication-continuity"
+  ],
+  "s1_domains": [
+    "Index",
+    "Skills",
+    "Awesome"
+  ],
+  "forbidden": [
+    "Index canonical grade or evidence override",
+    "Skills Methodology or Profile selection",
+    "Awesome independent curation decision",
+    "S5 identity, boundary, policy, delegated authority",
+    "Security, credential, permissions, budget or blanket freeze",
+    "STOP, SET_CONSTRAINT, retries, silent downstream delegation",
+    "S3* audit judgment and routine local S1/S2 work"
+  ],
+  "owner_attestation_url": null,
+  "grant_publication_commit": null,
+  "effective_from_utc": null,
+  "expires_at_utc": null,
+  "revocation_issue_url": "https://github.com/opensiro/vsm-oss-organization/issues/5",
+  "conflicts_with_human_g1": "no concurrent contradictory decisions on identical current case",
+  "requires_live_authority_checks": true,
+  "case_preflight": "source-first present beyond-S1/S2 whole-system need, actual admitted S1 work, named return target, S5 exception check",
+  "decision_record": "modes/s3-autonomous/RUN.md",
+  "note": "Prepared after user's D1-A selection in this conversation. Agent-created GitHub records are not S5 holder attestation. No authority before separately attributable GitHub owner decision and published bounded grant."
+}
