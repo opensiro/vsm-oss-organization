@@ -167,7 +167,8 @@ def run_decision(
     require(type(receipt) is dict and
             receipt.get("target_issue") == action["return_target"] and
             isinstance(receipt.get("transport_url"), str) and
-            SOURCE.fullmatch(receipt["transport_url"]),
+            re.fullmatch(re.escape(action["return_target"]) + r"#issuecomment-[1-9][0-9]*",
+                         receipt["transport_url"]),
             "transport: no verifiable bounded S1 delivery receipt")
     # Receipt proves only sending. No agent-side S1 success/closure claim.
     return {**action,

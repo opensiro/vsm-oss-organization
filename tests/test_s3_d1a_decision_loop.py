@@ -156,6 +156,16 @@ class AgentD1AFlow(unittest.TestCase):
         self.assertIsNone(obj["S1_acknowledgement_ref"])
         with self.assertRaisesRegex(loop.DecisionBlocked,"transport"):
             self.execute(return_to_s1=lambda a: {"target_issue":IDX})
+        with self.assertRaisesRegex(loop.DecisionBlocked,"transport"):
+            self.execute(return_to_s1=lambda a: {
+                "target_issue":AWESOME,
+                "transport_url":"https://github.com/opensiro/vsm-harness-index/issues/1567#issuecomment-777"
+            })
+        with self.assertRaisesRegex(loop.DecisionBlocked,"transport"):
+            self.execute(return_to_s1=lambda a: {
+                "target_issue":AWESOME,
+                "transport_url":AWESOME
+            })
 
     def test_missing_runtime_adapters_fail_closed(self):
         with self.assertRaisesRegex(loop.DecisionBlocked,"adapters"):
