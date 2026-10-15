@@ -22,11 +22,11 @@ No "wide autonomous mandate" is offered by default; broader classes would need a
 
 ### D2 — M3 evidence acceptance
 
-**Recommended D2-B: SOURCE_FIRST_AUTONOMOUS_MODE_ASSESSMENT** (not adopted by this document). Prospectively amend M3 #5's local completion gate to permit a source-first positive assessment of a **shipped, boundary-reachable first-party agent-decision + S1-return loop**, when actual model-owned discretion, effective delegated authority, operational closure capability, and falsifiers are demonstrated from reproducible primary sources. **No fabricated runtime transaction is required by the general Methodology merely to demonstrate `A`.** A string-only schema, stub, prompt template, deterministic selector or approval-required "agent" is not sufficient positive `A` evidence. If the positive first-party autonomous ownership/closure path cannot be reconstructed, return `INSUFFICIENT`.
+**D2-B: SOURCE_FIRST_AUTONOMOUS_MODE_ASSESSMENT — operator-selected evidence route (2026-10-15).** The user explicitly stated that assessment-level evidence suffices for the target S3 autonomy modes; this author-context publication records that **evidence-policy instruction only**, without asserting independent authentication of a new S5 grant. Prospectively amend M3 #5's local completion gate to permit a source-first positive assessment of a **shipped, boundary-reachable first-party agent-decision + S1-return loop**, when actual model-owned discretion, effective delegated authority, operational closure capability, and falsifiers are demonstrated from reproducible primary sources. **No fabricated runtime transaction is required by the general Methodology merely to demonstrate `A`.** A string-only schema, stub, prompt template, deterministic selector or approval-required "agent" is not sufficient positive `A` evidence. If the positive first-party autonomous ownership/closure path cannot be reconstructed, return `INSUFFICIENT`.
 
-**Alternative D2-A: PRESERVE_M3_REAL_TRANSACTION_GATE.** Keep #5's current stricter project-specific requirement to cite at least one actual agent-owned decision, S1 application and effect; this is not silently the general Methodology threshold.
+**Superseded alternative D2-A: PRESERVE_M3_REAL_TRANSACTION_GATE.** The older M3 #5 live-transaction-only gate remains historical context but is prospectively superseded by the explicit user instruction for source-first assessment. This change does not eliminate the requirement for a **real first-party autonomous owner, authority and S1 closure capability**.
 
-D1 and D2 are distinct: authorizing an agent does not establish its supported first-party operating mode; allowing source-first assessment does not grant authority. No selection made in this document.
+D1 and D2 are distinct: allowing source-first assessment does **not** authorize an agent. **D2-B evidence method is selected; D1 authority remains unselected and not granted.** No operative decision may use the existing human G1 mandate as a substitute.
 
 ## D1-A implementation contract if actually selected by S5
 
@@ -48,4 +48,4 @@ D1 and D2 are distinct: authorizing an agent does not establish its supported fi
 
 ## Verification and owner choice
 
-This proposal can be published with ordinary documentation CI because its only effects are **options and an implementation specification**. It cannot authorize a decision, start a run, claim a `S3=A` witness, amend the M3 gate, or change `TODO.md`. After inspection, the legitimate S5 holder can select D1-A/D1-B and D2-A/D2-B **explicitly**. Only then implement the operative mode and assess under the chosen evidence gate.
+This non-operative proposal can be published with ordinary documentation CI. The **separate owning M3 #5 issue** carries the prospective D2-B source-first assessment acceptance; this document alone does not amend its gate. The legitimate S5 holder still must select **D1-A or D1-B explicitly** before any operative autonomous mode may be enabled. No actual agent authorization, run, `S3=A` outcome, or `TODO.md` scheduling is created.
