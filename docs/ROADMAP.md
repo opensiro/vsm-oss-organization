@@ -21,16 +21,18 @@ The sequence is specific to this reference organization. It is not a universal V
 
 The tracker issue defines the milestone's construction/exit contract. Neither the tracker nor this roadmap is a second source of VSM semantics.
 
-## Current evidence state — 2026-09-20
+## Current evidence state — 2026-10-15
 
 ```text
 M0  complete
-M1  S3*=C established; S3=C pending one real whole-system current-control witness (#39)
-M2  S5=P established; formal completion waits on M1
+M1  S3*=C established; S3=C positive source-first constructor qualification (#39)
+M2  S5=P established; separate formal closure revalidation remains
 M3  blocked on M2
 M4  blocked on M3
 M5  blocked on M4
 ```
+
+M1 source-first positive evidence: [published S3=C assessment](reviews/2026-10-15-s3-c-standing-commitment-qualification.md) at Organization `5a08fbb18950cb2e424ae62c496cf747a7ea5c74`, built on [PR #254](https://github.com/opensiro/vsm-oss-organization/pull/254), accepted by [assessment PR #255](https://github.com/opensiro/vsm-oss-organization/pull/255). This is an **Organization-local current source-cut constructor outcome**, not a new canonical Index general grade or a claim of `C(P)`, `A` or live G1 execution. Historical 2026-09-30 `S3=?` remains immutable.
 
 This status records construction/evidence progress only. It does not convert milestone target vectors into independent published assessments, and it does not lower any function-specific evidence threshold.
 
@@ -118,7 +120,7 @@ M0 construction is complete when:
 
 Target: `A — C C — —`
 
-**Current evidence status:** `S3*=C` is established by #44 / PR #45. `S3=C` remains unproven; the available primary evidence has not yet established the whole-system S3 function, while #39 now permits a source-first positive function/constructor review as the **local M1 exit criterion**. That live trial is **not a universal Skills Methodology prerequisite for `C`**. See [the source-first threshold review](reviews/2026-10-13-s3-c-threshold.md). The frozen 2026-09-30 [general pre-assessment](../records/assessment-snapshots/2026-09-30-general-preassessment.md) independently recorded `S3=?`; it is non-canonical and distinct from this milestone target.
+**Current evidence status:** `S3*=C` is established by #44 / PR #45; `S3=C` is **source-first positively qualified** for the bounded Organization M1 by [current source-cut assessment](reviews/2026-10-15-s3-c-standing-commitment-qualification.md), after first-party regulation implementation [PR #254](https://github.com/opensiro/vsm-oss-organization/pull/254) and [assessment PR #255](https://github.com/opensiro/vsm-oss-organization/pull/255). This satisfies the **approved local M1 Option B** without inventing an S3 transaction. It does **not** prove `C(P)`, `P`, `A`, or an independent general assessment. The frozen 2026-09-30 [general pre-assessment](../records/assessment-snapshots/2026-09-30-general-preassessment.md) independently recorded `S3=?`; it is not retroactively changed.
 
 M1 establishes **two constructor paths**. It does not require a permanent autonomous S3 regulator or a permanent autonomous S3* verifier.
 
@@ -142,7 +144,7 @@ Issue #44 / PR #45 is the first real functional witness: it exercised a compleme
 
 ### S3=C — current-control constructor
 
-S3 remains pending at constructor level: the repository exposes a first-party current-control/intervention path, but the existing record does not yet prove the S3 function. The **local M1 exit** now permits a positive source-first function/constructor qualification via #39. The general `C` threshold also allows function-specific, boundary-reachable construction when the decisive actor/authority/closure still requires composition; consequently a completed live transaction must not be presented as a *universal* condition for `C`. Neither an interface alone nor a milestone target is enough for positive classification.
+S3's **current shared-commitment regulation subject and constructor** are implemented and supported by the [2026-10-15 source-first functional qualification](reviews/2026-10-15-s3-c-standing-commitment-qualification.md). The function covers existing selected-methodology and canonical Index→Awesome commitments, a G1-bounded current nonlocal decision right, and a first-party source/owner/S1-return path. The general `C` threshold permits actor/authority/closure composition; a completed live transaction is **not universally required**. The separate closed parent `(P)` mode remains unproved, and a first-party interface or CI result **alone** would not have supported this positive outcome.
 
 The path must be capable of carrying a real whole-system current-control decision back into affected operation. An actual present-tense allocation, prioritization, commitment, or shared-constraint choice can qualify when its decisive authority belongs to the whole system rather than one S1. A material S3* finding or current exception can also trigger the path, but neither an emergency nor S1 failure is a prerequisite.
 
@@ -176,7 +178,7 @@ A source-first `S3=C` acceptance still requires: (1) a **real present whole-syst
 
 An authentic S3→S1 current-control transaction is an equally acceptable witness when it proves these facts, but is **optional integration evidence**, not mandatory for `C`. The separate `A` state still requires an autonomous agent to own decisive S3 discretion and operationally close the loop.
 
-**Evidence status:** no new `S3=C` determination is made by this acceptance update. #39 remains active until separately reviewable positive functional evidence is available; historical `S3=?` remains frozen. The [owner decision packet](proposals/2026-10-13-m1-s3-c-alternate-acceptance.md) records alternatives and selected policy.
+**Current evidence result (2026-10-15):** a separately reviewable [source-first positive `S3=C` qualification](reviews/2026-10-15-s3-c-standing-commitment-qualification.md) is now published for the bounded Organization M1 scope. The result is function/constructor evidence under this already-approved acceptance route, not an executed G1 action; historical `S3=?` remains frozen. The [owner decision packet](proposals/2026-10-13-m1-s3-c-alternate-acceptance.md) records the earlier governing route, not the later functional proof.
 
 ### Roadmap-driven reference trial, evidence-driven classification
 
@@ -193,7 +195,7 @@ For an **optional real-use integration trial**, use **existing, real operational
 
 A milestone, S3 role file, task priority label, TODO reorder, reviewer delay, or ordinary local S1 repair is **not** a functional S3 witness. Do not invent a conflict, budget pressure, blocker, audit finding, or meaningless work change merely to obtain a `C` classification. The frozen [2026-09-30 pre-assessment](../records/assessment-snapshots/2026-09-30-general-preassessment.md) remains historical; a later assessment of new evidence must pin its own source revision and provide its own verdict.
 
-Current implementation readiness is complete: the S3-specific control surface, machine-readable transaction, reviewable record, decision-owner contract, and canonical S3→S1 return hook already exist. Additional preparatory machinery is not an M1 substitute for a missing positive S3 function/constructor qualification.
+Current S3 function/constructor qualification is **positive for `C`** at the cited 2026-10-15 source cut: implemented standing current commitments plus G1-bounded nonlocal regulatory choices and the first-party S3→S1 return path are source linked and tested. This does **not** attest to an already applied S3 decision, actual current shared-resource shortage, or closed parent mode. Further preparatory validators cannot upgrade this grade to `A` or `C(P)`.
 
 ### Exit criteria
 
