@@ -8,6 +8,10 @@
 2. Read the machine grant `contracts/s3/autonomous-d1a.json`. **Fail closed** unless its status is `ACTIVE`, concrete agent execution identity is attributable to this actual runtime, expiry/time is current, and a *separately owner-authored* S5 decision and normal grant publication on `main` are independently verified using the owning sources. Read linked revocations; local metadata and a GitHub account used as transport **do not authenticate** parent authorship.
 3. Check `python scripts/check_s3_d1a_gate.py contracts/s3/autonomous-d1a.json --agent-id <attested-current-runtime-id>`. Even if it reports `STRUCTURAL_READY_LIVE_AUTHORITY_STILL_REQUIRED`, independently verify all live publication/parent/revocation facts. Human `G1` is **not** a fallback agent grant. Reject any unrecognized/changed policy or grant.
 
+## Optional first-party GitHub evidence/S3* support
+
+[`github_s1_receipts.py`](github_s1_receipts.py) verifies facts about the **real** owning S1 issue, separately attributable admission comment and later S1 PR/acknowledgement, failing closed when source/permissions are inaccessible. It deliberately cannot mark `nonlocal_right_verified` or `s1_s2_s5_falsifiers_checked` true. [`s3star_intake.py`](s3star_intake.py) routes a separately verified material S3* `FINDING` as an **UNADMITTED** source candidate only; it must pass the normal current-control qualification and D1-A grant before any decision. [Source criteria and limitations](GITHUB_AND_S3STAR.md).
+
 ## 1. Observe the real inside-and-now organization
 
 Read current Index/Skills/Awesome sources and the two existing [shared obligations](../../contracts/s3/standing-current-commitments.md). Obtain source-pinned **admitted** present S1 work; distinguish actual commitments, data from GitHub, current nonlocal exception and S1/S2/S5 rights. A source link with no fact/actor verification does not pass. A local assessment correction or curated-list update stays S1. If no material whole-system regulatory choice exists: **NON_ADMITTED / no decision**. Do not manufacture a disturbance.
