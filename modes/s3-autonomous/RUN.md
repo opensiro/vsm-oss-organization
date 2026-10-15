@@ -24,6 +24,10 @@ Read current Index/Skills/Awesome sources and the two existing [shared obligatio
 
 Use [`scripts/s3_current_regulation.py`](../../scripts/s3_current_regulation.py) and the real S1 admission records as support (its candidate packet has `chosen_option=null` intentionally). Freeze source refs, affected original S1 work item, exact present shared right, risks, expiry/rollback and allowable classes. Ensure that the current S3 right truly exceeds S1/S2 but is not S5 ultimate policy; return may target one S1. A missing material fact escalates, not guessed into existence.
 
+## One standard entry for the existing mode
+
+The [composed D1-A v1 runtime](runtime_entry.py) wires the previously separate source checks, source-admission reader, model-owned decision, S1 transport, and later S1 feedback. It reads the **current checked-in** grant and rejects the existing `PENDING_S5_PUBLIC_ATTESTATION` state before touching credentials or tools. It has **no default trusted S5 parent-authorship source** and cannot manufacture the still-needed actual S3 case qualification. A compatible, authorized runtime must supply those two *independently grounded* attestations and its concrete actor/model/transport credentials; arbitrary booleans or mocked adapters cannot establish real S3 autonomy.
+
 ## First-party executable agent/transport boundary
 
 [`decision_loop.py`](decision_loop.py) composes the **actual agent choice**, independent live authority/admission verification and a bounded S1 delivery. [`DECISION_LOOP.md`](DECISION_LOOP.md) defines mandatory adapters. No default trusted adapters are shipped, and the current `PENDING_S5_PUBLIC_ATTESTATION` grant makes the loop fail **before model invocation or S1 writes**. Callback-shaped mocked tests are engineering regression evidence, never source-first proof that a production model already owns S3.
