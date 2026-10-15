@@ -15,5 +15,4 @@ See [`docs/CONTROL_PLANE.md`](docs/CONTROL_PLANE.md) for the work-lifecycle owne
 ## NEXT
 
 ## BLOCKED
-- https://github.com/opensiro/vsm-oss-organization/issues/39
 - https://github.com/opensiro/vsm-oss-organization/issues/167
