@@ -12,6 +12,10 @@
 
 [`github_s1_receipts.py`](github_s1_receipts.py) verifies facts about the **real** owning S1 issue, separately attributable admission comment and later S1 PR/acknowledgement, failing closed when source/permissions are inaccessible. It deliberately cannot mark `nonlocal_right_verified` or `s1_s2_s5_falsifiers_checked` true. [`s3star_intake.py`](s3star_intake.py) routes a separately verified material S3* `FINDING` as an **UNADMITTED** source candidate only; it must pass the normal current-control qualification and D1-A grant before any decision. [Source criteria and limitations](GITHUB_AND_S3STAR.md).
 
+## Optional first-party live S5-source and bounded S1 write support
+
+[`github_s5_authority.py`](github_s5_authority.py) checks public D1-A grant content on current `main`, attributed parent issue decision, revocation pages and time. It also requires **separate trusted parent authorship attestation**: an issue comment posted using delegated credentials cannot prove the human S5 personally authorized autonomy. [`github_s1_delivery.py`](github_s1_delivery.py) has bounded, idempotent S1 issue-comment delivery after independently verified grant/admission; [`github_rest.py`](github_rest.py) allowlists actual GitHub REST routes. This is *not* a standalone operative host; [see publication and authority limits](GITHUB_D1A_ACTIVATION_AND_DELIVERY.md). Never pass fixture callbacks into a live host.
+
 ## 1. Observe the real inside-and-now organization
 
 Read current Index/Skills/Awesome sources and the two existing [shared obligations](../../contracts/s3/standing-current-commitments.md). Obtain source-pinned **admitted** present S1 work; distinguish actual commitments, data from GitHub, current nonlocal exception and S1/S2/S5 rights. A source link with no fact/actor verification does not pass. A local assessment correction or curated-list update stays S1. If no material whole-system regulatory choice exists: **NON_ADMITTED / no decision**. Do not manufacture a disturbance.
