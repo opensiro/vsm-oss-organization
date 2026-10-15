@@ -110,12 +110,33 @@ class StandingRegulationTests(unittest.TestCase):
         self.assertEqual("ROUTE_S5_POLICY", obj["disposition"])
         self.assertNotIn("options", obj)
 
-    def test_no_fabricated_single_domain_case(self):
+    def test_one_affected_s1_can_receive_truly_nonlocal_regulation(self):
         with TemporaryDirectory() as temp:
             view = mod.observe(*temp_inputs(Path(temp)))
         case = sample_case()
-        case["active_s1_work"] = case["active_s1_work"][:1]
-        with self.assertRaisesRegex(mod.RegulationError, "at least two"):
+        case["active_s1_work"] = case["active_s1_work"][1:]
+        packet = mod.candidate_packet(view, case)
+        self.assertEqual("UNADMITTED_G1_HUMAN_OPTION_PACKET", packet["disposition"])
+        self.assertEqual(1, len(packet["candidate_current_view"]))
+
+    def test_no_named_current_s1_work_cannot_qualify(self):
+        with TemporaryDirectory() as temp:
+            view = mod.observe(*temp_inputs(Path(temp)))
+        case = sample_case()
+        case["active_s1_work"] = []
+        with self.assertRaisesRegex(mod.RegulationError, "at least one"):
+            mod.candidate_packet(view, case)
+
+    def test_nonlocal_authority_requires_distinct_s1_source_evidence(self):
+        with TemporaryDirectory() as temp:
+            view = mod.observe(*temp_inputs(Path(temp)))
+        case = sample_case()
+        case["active_s1_work"] = case["active_s1_work"][1:]
+        case["nonlocal_evidence_refs"] = [
+            "https://github.com/opensiro/awesome-vsm-harness/issues/7",
+            "https://github.com/opensiro/awesome-vsm-harness/issues/5",
+        ]
+        with self.assertRaisesRegex(mod.RegulationError, "across two S1 domains"):
             mod.candidate_packet(view, case)
 
     def test_no_unapproved_owner_packet(self):

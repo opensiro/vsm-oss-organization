@@ -115,7 +115,7 @@ def candidate_packet(view: dict, case: dict) -> dict:
     need(len(match) == 1, "case: current shared commitment unknown")
     commitment = match[0]
     work = case.get("active_s1_work")
-    need(isinstance(work, list) and len(work) >= 2, "case: require at least two current S1 work records")
+    need(isinstance(work, list) and len(work) >= 1, "case: require at least one current S1 work record")
     domains = set()
     refs = set()
     for i, item in enumerate(work):
@@ -133,12 +133,19 @@ def candidate_packet(view: dict, case: dict) -> dict:
         refs.add(ref)
         source(item["admission_ref"], "admission_ref")
         text(item["commitment"], "work commitment")
-    need(len(domains) >= 2, "case: nonlocal authority requires at least two S1 domains")
     evidence = case.get("nonlocal_evidence_refs")
     need(isinstance(evidence, list) and len(evidence) >= 2,
          "case: material whole-system decision must have multiple source refs")
+    source_domains = set()
     for i, ref in enumerate(evidence):
-        source(ref, f"nonlocal_evidence_refs[{i}]")
+        url = source(ref, f"nonlocal_evidence_refs[{i}]")
+        for domain, name in DOMAINS.items():
+            if f"/opensiro/{name}/" in url:
+                source_domains.add(domain)
+    need(len(source_domains.intersection(commitment["affected_s1"])) >= 2,
+         "case: evidence must identify the current shared obligation across two S1 domains")
+    need(domains.issubset(source_domains),
+         "case: primary evidence must cover each named affected S1")
     text(case.get("shared_current_constraint"), "shared_current_constraint")
     text(case.get("why_s1_s2_cannot_decide"), "why_s1_s2_cannot_decide")
     target = text(case.get("return_target"), "return_target")
