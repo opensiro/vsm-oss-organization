@@ -6,7 +6,7 @@ separate live owner/publication/revocation checks and a real S3 case.
 """
 from __future__ import annotations
 import argparse
-from datetime import datetime, timezone
+from datetime import datetime, timedelta, timezone
 import json
 from pathlib import Path
 import re
@@ -55,9 +55,9 @@ def check(data: dict, *, agent_id: str, now: datetime | None = None) -> str:
     now = now or datetime.now(timezone.utc)
     if any(dt.utcoffset() is None for dt in (start, until, now)):
         raise GateError("timezone-aware grant term required")
-    if not (start <= now < until) or not (start < until <= start.replace(year=start.year+1)):
+    if not (start <= now < until) or not (start < until):
         raise GateError("expired, future or invalid grant term")
-    if (until - start).total_seconds() > 30 * 86400:
+    if until - start > timedelta(days=30):
         raise GateError("D1-A term exceeds 30 days")
     if data.get("requires_live_authority_checks") is not True:
         raise GateError("live authority checks must not be disabled")

@@ -73,6 +73,16 @@ class D1AGate(unittest.TestCase):
             gate.check(g, agent_id=ACTOR, now=datetime(2026, 11, 13, 12, tzinfo=timezone.utc))
         self.assertTrue(g["requires_live_authority_checks"])
 
+    def test_leap_day_grant_start_is_bounded_correctly(self):
+        g = activated()
+        g["effective_from_utc"] = "2028-02-29T13:00:00Z"
+        g["expires_at_utc"] = "2028-03-29T12:00:00Z"
+        self.assertEqual(
+            "STRUCTURAL_READY_LIVE_AUTHORITY_STILL_REQUIRED",
+            gate.check(g, agent_id=ACTOR,
+                       now=datetime(2028, 3, 1, 13, tzinfo=timezone.utc))
+        )
+
     def test_local_s3_mode_is_separate_from_human_g1(self):
         mode = (ROOT / "modes" / "s3-autonomous" / "RUN.md").read_text(encoding="utf-8")
         self.assertIn("decision.owner_class = agent", mode)
