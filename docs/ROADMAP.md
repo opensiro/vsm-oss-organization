@@ -26,8 +26,8 @@ The tracker issue defines the milestone's construction/exit contract. Neither th
 ```text
 M0  complete
 M1  S3*=C established; S3=C positive source-first constructor qualification (#39)
-M2  S5=P established; separate formal closure revalidation remains
-M3  blocked on M2
+M2  complete: S5=P revalidated against current main and inherited M1
+M3  next planned: autonomous S3=A not yet established or admitted
 M4  blocked on M3
 M5  blocked on M4
 ```
@@ -214,7 +214,7 @@ Do not manufacture a current-control disturbance solely to complete M1. Ordinary
 
 Target: `A — C C — P`
 
-**Current evidence status:** the M2-specific `S5=P` function is established through #81 / PR #84 and `records/s5/2026-09-18-routing-scope-correction.md` (`S5-P-001`). Formal M2 completion remains sequenced after M1 because the target inherits `S3=C` and `S3*=C`.
+**Current evidence and milestone status:** M2 source-first closure **SUPPORTED**, now that inherited M1 (#3, #39) is formally complete. The original `S5=P` witness [`S5-P-001`](../records/s5/2026-09-18-routing-scope-correction.md) from #81/PR #84, together with [S5 authority](../contracts/s5/parent-authority.md), was freshly checked against actual current Organization policy/routing sources and [the M1 `S3=C` functional qualification](reviews/2026-10-15-s3-c-standing-commitment-qualification.md). Full [bounded 2026-10-15 M2 source-first revalidation](reviews/2026-10-15-m2-s5-parent-source-revalidation.md). **No second S5 policy event is claimed or required.** This is the Organization's milestone-level assessment, not a new canonical general Index classification.
 
 Introduce parent-governed S5 before increasing metasystem autonomy further. The purpose is to make the legitimate identity/policy boundary explicit.
 
@@ -243,7 +243,7 @@ agent organization
 
 Exit criteria:
 
-- [ ] M1 is formally complete;
+- [x] M1 is formally complete — #3 and #39 closed after source-first #254–#256.
 - [x] the delegated local autonomy envelope distinguishes ordinary operational choices from identity/ultimate-policy questions;
 - [x] a genuine identity/policy exception can reach the legitimate parent authority;
 - [x] the parent decision returns into the running organization;
@@ -251,7 +251,7 @@ Exit criteria:
 - [x] consequential external capabilities have explicit parent authorization/scope/intervention/revocation boundaries where needed;
 - [x] ordinary PR approval, permission prompts, or task-level confirmations are not misclassified as S5.
 
-After M1 closes, perform a bounded current-main revalidation of inherited M1 evidence and `S5-P-001`. If they remain valid, M2 can close without manufacturing a second S5 event solely for sequencing.
+Bounded current-main revalidation of inherited M1 evidence and `S5-P-001` is recorded in [M2 closure assessment](reviews/2026-10-15-m2-s5-parent-source-revalidation.md). Under governing [M2 #4](https://github.com/opensiro/vsm-oss-organization/issues/4), the completed M1 inheritance plus retained genuine S5 parent-governed decision and returned organizational effect permit M2 formal closure **without any new S5 intervention**. Later M3 must establish an autonomous S3 decision owner on its own evidence; M2 does not confer or prove it.
 
 ## M3 — Autonomous current control
 
