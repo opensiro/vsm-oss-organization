@@ -6,6 +6,8 @@
 
 `START_HERE.md` → `docs/ECOSYSTEM.md` → current Organization `main` and M3 [#5](https://github.com/opensiro/vsm-oss-organization/issues/5) → [S5 authority](../../contracts/s5/parent-authority.md) → [D1-A machine grant](../../contracts/s3/autonomous-d1a.json) → [RUN](RUN.md). Read the operating sources and current issue each time. If any governing source is inaccessible, stop autonomous action.
 
+The [first-party decision/return orchestrator](decision_loop.py) and its [bounded adapter contract](DECISION_LOOP.md) wire an **actual model-owned choice** to S1 delivery only after externally verified authority and admission. No model/transport/identity adapter is provided implicitly, and the shipped pending grant prevents any actor from choosing.
+
 This mode uses real first-party current-regulation [standing commitments](../../contracts/s3/standing-current-commitments.md), [observation/option constructor](../../scripts/s3_current_regulation.py), [control transaction](../../control/s3-current-control-v1.template.json) and [return to S1](../../prompts/apply-s3-control.md). The script and validators are **support only**: an eligible agent runtime **itself** evaluates evidence, makes a bounded decision and records an attributable chosen response **without a per-case human choice**, or escalates when it lacks permission/evidence. GitHub merges and S1 technical adjudication remain separately owned.
 
 **Authorized classes after activation:** only `CONTINUE` and `REQUIRE_REPAIR`. Neither `SET_CONSTRAINT`, `STOP`, grade override, global pause, S5 policy, Skills Methodology selection nor grant extension is allowed. Not even a real contract mismatch is automatically an S3 matter: ordinary S1/S2 repairs remain theirs.
