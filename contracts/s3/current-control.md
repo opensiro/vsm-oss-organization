@@ -110,6 +110,10 @@ The S1-side adapter is [`../../roles/S1.md`](../../roles/S1.md). Arbitrary comme
 
 A material S3* finding may trigger this contract, but audit and current-control ownership remain distinct. The complementary-audit contract is [`../s3star/audit.md`](../s3star/audit.md).
 
+## Standing regulation of existing shared current commitments
+
+The [first-party standing current-commitment function](standing-current-commitments.md) explicitly identifies **existing shared S1 operational obligations** and the restricted G1-regulated *current* nonlocal reconciliation right, instead of requiring a manufactured incident. [`scripts/s3_current_regulation.py`](../../scripts/s3_current_regulation.py) observes the actual selected/consumed contract state and constructs **unselected, source-required** G1 current-regulation options; it routes local S1 repair and S5 contract selection away from S3. Its conditional packet is **not** a case admission or an owner instruction, and the command cannot alter S1, override grades, reselect Methodology, or impose blanket gates. The decisive G1 owner and existing S3→S1 return procedures remain separately required for any real operating case. A source-first Methodology `C` assessment can consider this **specialized standing regulatory function/path** without demanding a live decision; the resulting grade is a separate evidence decision.
+
 ## Current evidence boundary
 
 The constructor is implemented, but a *qualifying whole-system S3 function at this boundary* is not yet positively established by the available source-linked evidence. The approved **Organization M1 exit gate** in #39 permits either genuinely evidenced real-use current control and S1 return or positive source-first function/constructor qualification. Neither has yet positively established the function in the available source-linked record, and no present grade changes. A future review must distinguish established whole-system regulation from the ability to compose a decision actor, avoiding any fabricated operational receipt.

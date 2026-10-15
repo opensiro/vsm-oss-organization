@@ -65,6 +65,31 @@ jobs:
           ref: ${{ steps.upstream.outputs.index_ref }}
           path: index
 
+      - name: Check out downstream Awesome S1 source
+        uses: actions/checkout@v4
+        with:
+          repository: opensiro/awesome-vsm-harness
+          path: awesome
+
+      - name: Exercise current S3 standing-regulation source path (read-only)
+        run: |
+          python organization/scripts/s3_current_regulation.py \
+            --root organization --index-root index \
+            --skills-root methodology --awesome-root awesome \
+            --output /tmp/s3-standing-current-view.json
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          view = json.loads(Path("/tmp/s3-standing-current-view.json").read_text())
+          assert view["system_in_focus"] == "Index / Skills / Awesome"
+          assert len(view["standing_commitments"]) == 2
+          assert view["assessment_boundary"] == "CURRENT_RULES_AND_SUPPORT_NOT_S3_C_GRADE_OR_S3_TRANSACTION"
+          assert view["current_contract_state"] in {
+              "CURRENT_SHARED_CONTRACT_ALIGNED", "CURRENT_SHARED_CONTRACT_DRIFT"
+          }
+          print("PASS: source-linked standing S3 regulation subject inspected; no human choice or case admitted")
+          PY
+
       - name: Validate local and upstream contract consistency
         run: >-
           python organization/scripts/validate_contract.py
