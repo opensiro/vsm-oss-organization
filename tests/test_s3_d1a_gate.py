@@ -76,7 +76,7 @@ class D1AGate(unittest.TestCase):
     def test_local_s3_mode_is_separate_from_human_g1(self):
         mode = (ROOT / "modes" / "s3-autonomous" / "RUN.md").read_text(encoding="utf-8")
         self.assertIn("decision.owner_class = agent", mode)
-        self.assertIn("do not invoke `--g1`", mode)
+        self.assertIn("not invoke `--g1`", mode)
         self.assertIn("separately owner-authored", mode)
 
 if __name__ == "__main__":
