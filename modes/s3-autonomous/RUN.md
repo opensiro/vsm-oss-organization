@@ -20,6 +20,12 @@ Use [`scripts/s3_current_regulation.py`](../../scripts/s3_current_regulation.py)
 
 [`decision_loop.py`](decision_loop.py) composes the **actual agent choice**, independent live authority/admission verification and a bounded S1 delivery. [`DECISION_LOOP.md`](DECISION_LOOP.md) defines mandatory adapters. No default trusted adapters are shipped, and the current `PENDING_S5_PUBLIC_ATTESTATION` grant makes the loop fail **before model invocation or S1 writes**. Callback-shaped mocked tests are engineering regression evidence, never source-first proof that a production model already owns S3.
 
+## Optional first-party model and subsequent S1 feedback path
+
+The [model-owned decision adapter](model_owner.py) issues a bounded OpenAI Responses API Structured Outputs request only when the enclosing D1-A decision-loop explicitly invokes it **after** independent S5 authority and current S1 admission checks. It is not a deterministic decision selector. The [S1 feedback reconciler](s1_feedback.py) can close a returned effect **only** on externally verified current owning-S1 acknowledgement and observed effect, rather than on the model's own assertion. [Integration contract and limitations](MODEL_AND_FEEDBACK.md).
+
+Neither adapter supplies credentials, owner-attested S5 grant, independent GitHub read checks, or S1 write permission. They cannot run a real S3 decision or establish `A` from the shipped pending grant.
+
 ## 3. Own the decision autonomously (only after grant activation)
 
 The **model-owned S3 actor** chooses `CONTINUE` (considered preservation of current work) or `REQUIRE_REPAIR` (bounded demand for an **existing** S1 work item), without asking the G1 human to choose the class. Record actual agent identity, authorized separate grant, source-linked basis, selected class, precise instruction and immutable transaction/decision evidence; **do not record hidden chain-of-thought**. If choice would require a forbidden class/altered grade or policy, escalate to S5 or the appropriate S1 owner.
