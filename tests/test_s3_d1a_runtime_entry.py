@@ -109,7 +109,7 @@ class TestD1AV1Runtime(TestCase):
 
     def test_rejected_nonlocal_claim_blocks_model_and_s1_transport(self):
         with patch.object(m,"GRANT_PATH") as source, \
-             patch.object(m.github_rest,"GitHubREST",return_value=object()), \
+             patch.object(m.github_rest,"GitHubREST",return_value=type("DummyGithub", (), {"get": lambda self, path: {}})()), \
              patch.object(m.github_s1_receipts,"GitHubS1Reader") as reader, \
              patch.object(m.github_s5_authority,"verify_active_grant") as authority, \
              patch.object(m.model_owner,"model_decider") as model:
