@@ -23,6 +23,7 @@ REPOSITORIES = (
 )
 API = "https://api.github.com"
 ISSUE_LIMIT = 100
+MAX_PAGES = 20
 BOUNDARY = "CANDIDATES_ONLY_NOT_ACTIVE_S1_OR_S3_EVIDENCE"
 
 
@@ -55,6 +56,21 @@ def required_text(obj: dict, key: str) -> str:
     return value
 
 
+def open_items(fetch: Callable[[str], object], repo: str, kind: str) -> list[dict]:
+    """Read all pages; do not silently turn a partial inventory into a whole view."""
+    result: list[dict] = []
+    for page in range(1, MAX_PAGES + 1):
+        path = (f"/repos/{repo}/{kind}?state=open&per_page={ISSUE_LIMIT}"
+                f"&sort=updated&direction=desc&page={page}")
+        items = fetch(path)
+        if not isinstance(items, list) or any(not isinstance(item, dict) for item in items):
+            raise CurrentViewError(f"{repo}: unavailable or malformed {kind} page {page}")
+        result.extend(items)
+        if len(items) < ISSUE_LIMIT:
+            return result
+    raise CurrentViewError(f"{repo}: exceeded pagination limit for {kind}")
+
+
 def collect(fetch: Callable[[str], object] = github_get, *, observed_at: str | None = None) -> dict:
     observed_at = observed_at or datetime.now(timezone.utc).isoformat(timespec="seconds")
     output: dict = {
@@ -79,12 +95,8 @@ def collect(fetch: Callable[[str], object] = github_get, *, observed_at: str | N
         sha = required_text(b["commit"], "sha")
         if len(sha) != 40 or any(ch not in "0123456789abcdef" for ch in sha.lower()):
             raise CurrentViewError(f"{repo}: invalid default-branch commit")
-        issues = fetch(f"/repos/{repo}/issues?state=open&per_page={ISSUE_LIMIT}&sort=updated&direction=desc")
-        pulls = fetch(f"/repos/{repo}/pulls?state=open&per_page={ISSUE_LIMIT}&sort=updated&direction=desc")
-        if not isinstance(issues, list) or not isinstance(pulls, list):
-            raise CurrentViewError(f"{repo}: open issue or PR inventory unavailable")
-        if len(issues) >= ISSUE_LIMIT or len(pulls) >= ISSUE_LIMIT:
-            raise CurrentViewError(f"{repo}: result is paginated; incomplete source inventory")
+        issues = open_items(fetch, repo, "issues")
+        pulls = open_items(fetch, repo, "pulls")
         open_issues = []
         for issue in issues:
             if not isinstance(issue, dict):
