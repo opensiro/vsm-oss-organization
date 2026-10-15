@@ -20,6 +20,10 @@ This mode uses real first-party current-regulation [standing commitments](../../
 
 [Live public S5 source checker](github_s5_authority.py), [bounded GitHub REST client](github_rest.py), and [S1 comment delivery adapter](github_s1_delivery.py) implement **source and transport checks**, not a new delegated right. [Activation format and verification limits](GITHUB_D1A_ACTIVATION_AND_DELIVERY.md) require a separately authenticated parent decision, actual grant publication and revocation verification. The grant remains pending; its absence blocks every autonomous S3 choice.
 
+## One first-party runtime entry (existing D1-A v1)
+
+[`runtime_entry.py`](runtime_entry.py) **composes the existing** authority checker, GitHub S1 evidence reader, model choice, bounded delivery and later S1 feedback. It reuses `autonomous-d1a.json` **without changing the policy**. A pending grant blocks *before* opening GitHub transport or invoking any model. A compatible runtime still must supply independently authenticated S5 holder intent, real S3 semantic qualification, a concrete model ID and separate GitHub transport identity. No test-fixture boolean is production authority. There is no autonomous decision until those conditions genuinely hold.
+
 ## Runtime / feedback boundary
 
 A compatible assistant/agent enters [RUN.md](RUN.md) directly and can use its available read/write transport within separately granted credentials; no private orchestration code is necessary to *interpret* the first-party decision process. Before each actual case, check live grant attribution/publication, identity, non-revocation and time; then verify separately admitted S1 work and the whole-system regulatory right. Distinguish an agent's **choice** from a deterministic script's validation and S1's subsequent **acknowledgement/effect**. The actor can only close an S1-returned case upon authentic downstream evidence, not its own assertion.
