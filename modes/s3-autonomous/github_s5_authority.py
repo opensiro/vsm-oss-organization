@@ -9,9 +9,16 @@ No owner decision is created here. Never silently use the human G1 grant.
 from __future__ import annotations
 import base64
 from datetime import datetime, timezone
+import importlib.util
+from pathlib import Path
 import json
 import re
 from typing import Callable
+
+SPEC=importlib.util.spec_from_file_location("s3_d1a_checked_grant", Path(__file__).resolve().parents[2] / "scripts" / "check_s3_d1a_gate.py")
+assert SPEC and SPEC.loader
+_gate=importlib.util.module_from_spec(SPEC)
+SPEC.loader.exec_module(_gate)
 
 SOURCE = "opensiro/vsm-oss-organization"
 GRANT_PATH = "contracts/s3/autonomous-d1a.json"
@@ -81,6 +88,10 @@ def verify_active_grant(grant: dict, actor_id: str, github_get: Callable[[str], 
     """
     require(type(grant) is dict and grant.get("status") == "ACTIVE",
             "D1-A is not active")
+    try:
+        _gate.check(grant,agent_id=actor_id,now=now or datetime.now(timezone.utc))
+    except _gate.GateError as exc:
+        raise S5AuthorizationError("Invalid bounded D1-A grant: " + str(exc)) from exc
     require(type(actor_id) is str and actor_id == grant.get("recipient_execution_identity") and len(actor_id) >= 12,
             "wrong active agent runtime")
     ref = grant.get("owner_attestation_url")

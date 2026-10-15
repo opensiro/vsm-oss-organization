@@ -16,6 +16,10 @@ This mode uses real first-party current-regulation [standing commitments](../../
 
 [GitHub S1 source verification](github_s1_receipts.py) can verify real owning issue/comment/permission facts, S1 admission and independently attributable merged S1 effect metadata. Its [limitations](GITHUB_AND_S3STAR.md) are explicit: primary-source existence **does not itself prove whole-system S3 discretion**, and account permissions are not cryptographic proof of independent authorship. [S3* finding intake](s3star_intake.py) constructs only an **UNADMITTED** S3 candidate, never a selected decision. All remain behind actual separately effective D1-A authority.
 
+## Public S5 authorization and S1 outbound transport
+
+[Live public S5 source checker](github_s5_authority.py), [bounded GitHub REST client](github_rest.py), and [S1 comment delivery adapter](github_s1_delivery.py) implement **source and transport checks**, not a new delegated right. [Activation format and verification limits](GITHUB_D1A_ACTIVATION_AND_DELIVERY.md) require a separately authenticated parent decision, actual grant publication and revocation verification. The grant remains pending; its absence blocks every autonomous S3 choice.
+
 ## Runtime / feedback boundary
 
 A compatible assistant/agent enters [RUN.md](RUN.md) directly and can use its available read/write transport within separately granted credentials; no private orchestration code is necessary to *interpret* the first-party decision process. Before each actual case, check live grant attribution/publication, identity, non-revocation and time; then verify separately admitted S1 work and the whole-system regulatory right. Distinguish an agent's **choice** from a deterministic script's validation and S1's subsequent **acknowledgement/effect**. The actor can only close an S1-returned case upon authentic downstream evidence, not its own assertion.
