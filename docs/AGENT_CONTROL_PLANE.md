@@ -72,6 +72,10 @@ If a command does not name a work item, do **not** promote every open issue or P
 
 The [standing shared-commitment contract](../contracts/s3/standing-current-commitments.md) owns the already-binding selected-Methodology and canonical Index→Awesome continuity subjects; `python scripts/s3_current_regulation.py --help` exposes a read-only whole-current-contract observation and bounded **unselected** G1 current-regulation options. It does **not** convert automatic compatibility checks into an S3 choice or turn an open Issue into admitted work. S3 functional assessment remains separate from individual case admission, and actual application always follows the existing G1 and S1 return contracts.
 
+## M3 D1-A autonomous S3 (source-prepared, not active)
+
+The operator selected the narrow **D1-A design** for implementation. The first-party [autonomous S3 mode](../modes/s3-autonomous/README.md) and [RUN protocol](../modes/s3-autonomous/RUN.md) specify an **agent-owned** decision/return path, but its separate [D1-A grant](../contracts/s3/autonomous-d1a.json) is deliberately `PENDING_S5_PUBLIC_ATTESTATION`; it does **not** inherit human G1. The [operator-selection handoff](../records/s5/2026-10-15-m3-d1a-selection-handoff.md) is recorded by an assistant, not authenticated public S5 authorship. No agent may run a current-control decision until a separately attributable owner act, concrete runtime identity, bounded published grant and live revocation checks are established. Run `python scripts/check_s3_d1a_gate.py contracts/s3/autonomous-d1a.json --agent-id <attested-agent-execution-id>` only as a **negative/readiness check**; even its hypothetical structural success is never live authority. Keep M3 `S3=A` assessment separate, and do not alter Index/Skills/Awesome S1 decisions.
+
 ## M1 S3 source-first assessment vs live case intake
 
 **Two independent evidence questions:**
