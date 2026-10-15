@@ -54,13 +54,15 @@ Planning, work contracts, and current scheduling are separate:
 - [`docs/ROADMAP.md`](docs/ROADMAP.md) is the readable construction/evidence projection;
 - [`TODO.md`](TODO.md) is the **Git-native scheduler** for selected `NOW` / `NEXT` / `BLOCKED` issues only.
 
-**M0–M2 have completed their Organization-local construction/assessment milestones.** M2 closure is supported by the [source-first parent-return revalidation](docs/reviews/2026-10-15-m2-s5-parent-source-revalidation.md). **M3** is the next planned milestone, but no M3 task is automatically admitted to `TODO.md` or executed by listing the target.
+**M0–M2 completed their Organization-local construction/assessment milestones.** M2 closure is evidenced in the [source-first parent-return revalidation](docs/reviews/2026-10-15-m2-s5-parent-source-revalidation.md). The `A — C C — P` M2 vector is a local milestone target/outcome, not a new canonical Index general assessment.
 
-Current established **construction milestone target (M2)**:
+Active formal work is M3 — **planning milestone only**; no new M3 work item is selected by this label or automatically admitted into `TODO.md`. Its `S3=A` target is **not yet demonstrated**.
+
+Current milestone target:
 
 ```text
 S1  S2  S3  S3* S4  S5
-A   —   C   C   —   P
+A   —   A   C   —   P
 ```
 
 Long-term reference target:
