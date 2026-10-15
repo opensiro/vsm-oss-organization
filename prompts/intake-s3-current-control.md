@@ -11,6 +11,10 @@ S3: consider <present Organization-wide choice / existing S1 work refs>
 
 The first command inventories current operations **read-only**; the second inspects a specific proposed choice. Both can be used while the roadmap deliberately develops M1 before contributor overload. Merely typing a prefix, or the generic `continue` command, does not grant S3 authority or establish that a qualifying choice exists.
 
+## Read-only current S1 source view
+
+For a repeatable initial inspection, run `python scripts/collect_s3_current_view.py --output /tmp/opensiro-s3-s1-sources.json` from an up-to-date Organization checkout with public GitHub API access. It fetches the live default-branch SHA and current open issues/PRs for **Index, Skills and Awesome only**. Each result remains **candidate source evidence**, explicitly marked `work_admitted: UNKNOWN`: an open issue/PR does **not** imply active execution, a cross-S1 obligation, shared capacity, conflict, or S3 decision authority. The command is read-only; its JSON file is a local observation, not the canonical work scheduler, a live state oracle, G1 preflight, transaction admission or `S3=C` evidence. Fail closed when an API result is incomplete; manually inspect actual S1 commitment/owner/current constraints and each cited source before proposing a case.
+
 ## Source-first intake
 
 1. Bootstrap from [START_HERE](../START_HERE.md) to [ECOSYSTEM](../docs/ECOSYSTEM.md), the **current** Organization default branch, `TODO.md`, the exact owning issue and in-scope S1 repositories. Read the selected Profile and Methodology, [S1 decision envelopes](../contracts/s1/domain-contracts.md), and the existing S3 contract. Keep source refs and inspection time.
