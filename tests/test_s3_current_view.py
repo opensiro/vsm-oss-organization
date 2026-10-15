@@ -76,6 +76,17 @@ class TestS3ReadOnlyView(unittest.TestCase):
             with self.assertRaisesRegex(s.CurrentViewError, "pagination limit"):
                 s.collect(fake_api(issue_count=250))
 
+    def test_live_smoke_workflow_is_manual_read_only_and_bounded(self):
+        workflow = (PATH.parents[1] / ".github" / "workflows"
+                    / "s3-current-view.yml").read_text(encoding="utf-8")
+        self.assertIn("workflow_dispatch:", workflow)
+        self.assertIn("pull_request:", workflow)
+        self.assertNotIn("schedule:", workflow)
+        self.assertIn("contents: read", workflow)
+        self.assertIn("collect_s3_current_view.py --output", workflow)
+        self.assertIn("s3-current-view-sources", workflow)
+        self.assertIn("NOT_ASSESSED", workflow)
+
     def test_unexpected_api_paths_rejected(self):
         with self.assertRaisesRegex(s.CurrentViewError, "refusing"):
             s.github_get("/users/test")

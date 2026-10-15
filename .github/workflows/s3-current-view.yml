@@ -1,0 +1,65 @@
+name: S3 current view (read-only)
+
+on:
+  workflow_dispatch:
+  pull_request:
+    paths:
+      - .github/workflows/s3-current-view.yml
+      - scripts/collect_s3_current_view.py
+      - tests/test_s3_current_view.py
+      - prompts/intake-s3-current-control.md
+
+permissions:
+  contents: read
+
+jobs:
+  observe-s1-sources:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - name: Check out Organization
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Unit-test source collection boundaries
+        run: python -m unittest discover -s tests -p "test_s3_current_view.py" -v
+
+      - name: Collect live public S1 source references
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
+        run: python scripts/collect_s3_current_view.py --output s3-current-view.json
+
+      - name: Assert bounded read-only output
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          report = json.loads(Path("s3-current-view.json").read_text(encoding="utf-8"))
+          expected = {
+              "opensiro/vsm-harness-index",
+              "opensiro/vsm-harness-skills",
+              "opensiro/awesome-vsm-harness",
+          }
+          assert report["classification"] == "CANDIDATES_ONLY_NOT_ACTIVE_S1_OR_S3_EVIDENCE"
+          assert report["s3_admission"] == "NOT_ASSESSED"
+          assert {d["repo"] for d in report["domains"]} == expected
+          for domain in report["domains"]:
+              assert len(domain["main_sha"]) == 40
+              assert domain["source_main"].endswith(domain["main_sha"])
+              assert all(item["work_admitted"] == "UNKNOWN"
+                         for kind in ("open_issues", "open_pulls")
+                         for item in domain[kind])
+          print("PASS: three domain sources, not S3 authority or actual S1 admission")
+          PY
+
+      - name: Save source inventory for human case screening
+        uses: actions/upload-artifact@v4
+        with:
+          name: s3-current-view-sources
+          path: s3-current-view.json
+          retention-days: 7
+          if-no-files-found: error
