@@ -18,3 +18,7 @@ Real subsequent S1 acknowledgement, effects and closure remain governed by [S3 c
 ## Concrete model and verified-feedback adapters
 
 [model_owner.py](model_owner.py) can be passed as `agent_decide` through `functools.partial(..., model="<explicit model id>")` after D1-A gates; it makes a **real model-produced** bounded choice, with refusal/escalation fail closed and no tools. After independent S1 owner/effect verification, [s1_feedback.py](s1_feedback.py) can reconcile an exact named S1 work item's acknowledgement and effect. See [MODEL_AND_FEEDBACK.md](MODEL_AND_FEEDBACK.md). Neither new adapter proves active S5 grant, live admitted work, automatic S1 authority, or a current autonomy grade.
+
+## First-party GitHub primary factual checks and S3* candidate routing
+
+See [GitHub source and S3* bridge contract](GITHUB_AND_S3STAR.md). [`github_s1_receipts.py`](github_s1_receipts.py) performs real allowlisted S1 source/permissions checks through a token-backed GitHub REST reader; no token or source access means fail closed. [`s3star_intake.py`](s3star_intake.py) can present a `FINDING` as an **unadmitted** candidate. These tools provide factual support, not the separately delegated S3 right, genuine functional S3 admission, current model invocation, or S1 result by themselves.
