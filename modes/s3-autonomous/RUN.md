@@ -16,6 +16,10 @@ Read current Index/Skills/Awesome sources and the two existing [shared obligatio
 
 Use [`scripts/s3_current_regulation.py`](../../scripts/s3_current_regulation.py) and the real S1 admission records as support (its candidate packet has `chosen_option=null` intentionally). Freeze source refs, affected original S1 work item, exact present shared right, risks, expiry/rollback and allowable classes. Ensure that the current S3 right truly exceeds S1/S2 but is not S5 ultimate policy; return may target one S1. A missing material fact escalates, not guessed into existence.
 
+## First-party executable agent/transport boundary
+
+[`decision_loop.py`](decision_loop.py) composes the **actual agent choice**, independent live authority/admission verification and a bounded S1 delivery. [`DECISION_LOOP.md`](DECISION_LOOP.md) defines mandatory adapters. No default trusted adapters are shipped, and the current `PENDING_S5_PUBLIC_ATTESTATION` grant makes the loop fail **before model invocation or S1 writes**. Callback-shaped mocked tests are engineering regression evidence, never source-first proof that a production model already owns S3.
+
 ## 3. Own the decision autonomously (only after grant activation)
 
 The **model-owned S3 actor** chooses `CONTINUE` (considered preservation of current work) or `REQUIRE_REPAIR` (bounded demand for an **existing** S1 work item), without asking the G1 human to choose the class. Record actual agent identity, authorized separate grant, source-linked basis, selected class, precise instruction and immutable transaction/decision evidence; **do not record hidden chain-of-thought**. If choice would require a forbidden class/altered grade or policy, escalate to S5 or the appropriate S1 owner.
