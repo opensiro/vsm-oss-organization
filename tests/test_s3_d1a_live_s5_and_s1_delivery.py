@@ -101,7 +101,7 @@ class S5Checks(unittest.TestCase):
                 self.verify(d,parent_authorship=lambda _:True)
 
 class S1Writes(unittest.TestCase):
-    def run(self, a=None, authcheck=authority, admcheck=admitted, login="d1a-bot", state="open", comments=None):
+    def execute(self, a=None, authcheck=authority, admcheck=admitted, login="d1a-bot", state="open", comments=None):
         calls=[]
         prefix="/repos/opensiro/awesome-vsm-harness"
         def api(method,path,body):
@@ -121,29 +121,29 @@ class S1Writes(unittest.TestCase):
         except Exception as e:e.calls=calls;raise
     def test_no_verified_grant_no_api_request(self):
         with self.assertRaises(send.S1DeliveryError) as e:
-            self.run(authcheck=lambda x:{"authorized":False})
+            self.execute(authcheck=lambda x:{"authorized":False})
         self.assertEqual([],e.exception.calls)
     def test_no_admitted_s3_no_api_request(self):
         with self.assertRaises(send.S1DeliveryError) as e:
-            self.run(admcheck=lambda x:{"admitted":False})
+            self.execute(admcheck=lambda x:{"admitted":False})
         self.assertEqual([],e.exception.calls)
     def test_post_once_and_idempotent_retry(self):
-        result,calls=self.run()
+        result,calls=self.execute()
         self.assertEqual("POSTED_S1_EFFECT_UNVERIFIED",result["delivery_status"])
         self.assertEqual(1,sum(m=="POST" for m,*_ in calls))
         body=next(x[2]["body"] for x in calls if x[0]=="POST")
         duplicate={"body":body,"html_url":result["transport_url"],
                    "user":{"login":"d1a-bot"}}
-        again,calls2=self.run(comments=[duplicate])
+        again,calls2=self.execute(comments=[duplicate])
         self.assertEqual("ALREADY_SENT",again["delivery_status"])
         self.assertEqual(0,sum(m=="POST" for m,*_ in calls2))
     def test_nonparent_account_and_open_s1_required(self):
         for kwargs in ({"login":"xLagerFeuer"},{"state":"closed"}):
             with self.assertRaises(send.S1DeliveryError):
-                self.run(**kwargs)
+                self.execute(**kwargs)
     def test_inadmissible_class_or_preclosed_effect_blocked(self):
         for x in ({"selected_class":"STOP"},{"closed":True},
                   {"S1_effect_refs":["https://github.com/opensiro/awesome-vsm-harness/pull/12"]}):
-            with self.assertRaises(send.S1DeliveryError):self.run(a={**action(),**x})
+            with self.assertRaises(send.S1DeliveryError):self.execute(a={**action(),**x})
 
 if __name__=="__main__":unittest.main()
