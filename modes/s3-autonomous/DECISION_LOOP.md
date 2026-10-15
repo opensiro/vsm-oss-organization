@@ -14,3 +14,7 @@ No default provider, model credentials, authority adapter or write transport is 
 [`tests/test_s3_d1a_decision_loop.py`](../../tests/test_s3_d1a_decision_loop.py) tests the callback wiring with explicitly **hypothetical** authority/admission/agent/transport fixtures: these are *not* first-party live S3 authorization, actual case admission, model-owned production operation or returned S1 effect. Green CI validates code boundaries only. A future real host must implement trusted adapters and present primary source receipts; arbitrary adapter booleans are not sufficient for a positive VSM `A` assessment.
 
 Real subsequent S1 acknowledgement, effects and closure remain governed by [S3 current-control contract](../../contracts/s3/current-control.md) and [apply-to-S1 protocol](../../prompts/apply-s3-control.md). No Index grade, S5 policy or delegated class extension is authorized by this module.
+
+## Concrete model and verified-feedback adapters
+
+[model_owner.py](model_owner.py) can be passed as `agent_decide` through `functools.partial(..., model="<explicit model id>")` after D1-A gates; it makes a **real model-produced** bounded choice, with refusal/escalation fail closed and no tools. After independent S1 owner/effect verification, [s1_feedback.py](s1_feedback.py) can reconcile an exact named S1 work item's acknowledgement and effect. See [MODEL_AND_FEEDBACK.md](MODEL_AND_FEEDBACK.md). Neither new adapter proves active S5 grant, live admitted work, automatic S1 authority, or a current autonomy grade.
