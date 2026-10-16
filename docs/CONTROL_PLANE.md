@@ -6,7 +6,7 @@ For the **maintainer-facing single-agent command interface**, see [`AGENT_CONTRO
 
 The in-scope repository set is maintained explicitly in `README.md`. Repository membership in the `opensiro` organization does not automatically place a project under this control plane. Contributor-local runtimes, schedulers, credentials, budgets, and sandboxes also remain outside this repository's authority.
 
-Contributors who want a minimal human-parent interface before the full M2 implementation may use [`prompts/parent-control-plane.md`](../prompts/parent-control-plane.md). That prompt is a demo interface pattern, not evidence that `S5=P` has already been achieved.
+Contributors who want a lightweight human-parent interface may use [`prompts/parent-control-plane.md`](../prompts/parent-control-plane.md). That prompt is a demo interface pattern, **not independent evidence of S5 authority or closure**. M2's established Organization-local `S5=P` evidence and current delegation boundaries are recorded separately in [the roadmap](ROADMAP.md#m2--parent-governed-identity-boundary) and [S5 parent authority](../contracts/s5/parent-authority.md).
 
 ## Authority chain
 
