@@ -1,0 +1,17 @@
+cff-version: 1.2.0
+message: "If you reuse or discuss the OpenSiro VSM OSS organizational implementation, cite this repository and identify the Git commit examined."
+title: "OpenSiro VSM OSS Organization"
+authors:
+  - name: "OpenSiro contributors"
+type: software
+abstract: >-
+  A bounded public organizational implementation coordinating OpenSiro VSM
+  Harness OSS operations and its control-plane construction. Repository
+  citation is not evidence that any target autonomy milestone has been met.
+repository-code: "https://github.com/opensiro/vsm-oss-organization"
+url: "https://github.com/opensiro/vsm-oss-organization"
+keywords:
+  - "Viable System Model"
+  - "organizational design"
+  - "AI agent harness"
+  - "control plane"
