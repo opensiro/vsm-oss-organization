@@ -27,7 +27,7 @@ The tracker issue defines the milestone's construction/exit contract. Neither th
 M0  complete
 M1  S3*=C established; S3=C positive source-first constructor qualification (#39)
 M2  complete: S5=P revalidated against current main and inherited M1
-M3  next planned: autonomous S3=A not yet established or admitted
+M3  next planned; D1-A v1 source-prepared/inactive, S5 agent grant pending; S3=A not established
 M4  blocked on M3
 M5  blocked on M4
 ```

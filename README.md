@@ -56,7 +56,19 @@ Planning, work contracts, and current scheduling are separate:
 
 **M0–M2 completed their Organization-local construction/assessment milestones.** M2 closure is evidenced in the [source-first parent-return revalidation](docs/reviews/2026-10-15-m2-s5-parent-source-revalidation.md). The `A — C C — P` M2 vector is a local milestone target/outcome, not a new canonical Index general assessment.
 
-Active formal work is M3 — **planning milestone only**; no new M3 work item is selected by this label or automatically admitted into `TODO.md`. Its `S3=A` target is **not yet demonstrated**.
+Active formal work is M3 — **the next formal construction milestone, not a completed autonomy claim**. First-party D1-A v1 reference code is **source-prepared but inactive**: the [agent-owned decision/return mode](modes/s3-autonomous/RUN.md) composes model selection, authority and S1-source checks, bounded delivery, and subsequent feedback, but its [machine-readable grant](contracts/s3/autonomous-d1a.json) remains `PENDING_S5_PUBLIC_ATTESTATION`. In particular, no independently attributable S5 issuance, concrete authorized agent execution identity, effective term, or positive first-party `S3=A` ownership/closure assessment has been established. **M3 [#5](https://github.com/opensiro/vsm-oss-organization/issues/5) remains open and `S3=A` remains unproven**; the previously supported Organization-local `S3=C` result is unchanged.
+
+**OSS runtime boundary:** OpenSiro provides open contracts, reference code and integration interfaces; an OpenSiro-hosted S3 worker, bot or persistent runtime is **not required** for M3 source-first assessment. Consumers may bring their own runtime. That removes a deployment prerequisite, **not** the need for an effective S5 grant, genuinely agent-owned decisions, and a source-supported S3-to-S1 return path. No synthetic S3 intervention or independent-reviewer deployment is required merely to upgrade a label. See [M3 scope clarification](docs/AGENT_CONTROL_PLANE.md#m3-d1-a-autonomous-s3-source-prepared-not-active) and [merged PR #270](https://github.com/opensiro/vsm-oss-organization/pull/270).
+
+This M3 roadmap selection does **not** add work automatically to `TODO.md`; the shared scheduler still admits only explicitly listed NOW/NEXT/BLOCKED items.
+
+Milestone/evidence distinction:
+
+| Phase | Current Organization-local evidence | Not implied |
+| --- | --- | --- |
+| M0–M2 | Local S1 autonomy, S3/S3* constructor qualification at `C`, and parent-governed S5 at `P` | A new canonical Index assessment |
+| M3 | D1-A code and tests prepared; agent grant remains pending | Effective autonomous S3 or `S3=A` |
+| M4–M5 | Planned S2/S4 construction | Demonstrated S2/S4 autonomy |
 
 Current milestone target:
 
