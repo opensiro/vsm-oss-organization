@@ -38,6 +38,15 @@ contribute to other harnesses
 
 It should follow [the agent control plane's external contribution command](docs/AGENT_CONTROL_PLANE.md#external-upstream-contributions), show a fresh shortlist of real upstream harness issues/product gaps with source links and contributor prerequisites, and let you choose. It will **also ask whether you want an optional scan of your public GitHub PR activity** (one time or ongoing, with an explicit username and further schedule approval). Tracking is **off by default** and declining does not block contribution discovery or an upstream PR. Other projects keep their own contribution/merge rules; an Index grade is never by itself a reason for an upstream change.
 
+For a selected concrete upstream candidate, use the **same Control Plane** command
+`prepare upstream contribution` to inspect a read-only, pinned one-stage
+preparation packet (existing fork, branch, test-file path and content SHA-256).
+This does not create a fork, grant GitHub access or publish an upstream PR.
+A separate exact authorization is required for any write, and the current
+[Upstream connected adapter](https://github.com/opensiro/upstream/blob/main/docs/CONTROL_PLANE_HANDOFF.md)
+is not attached to a trusted host approval source. See
+[Control Plane handoff](docs/AGENT_CONTROL_PLANE.md#control-plane--upstream-preparation-handoff-one-stage-read-only).
+
 ## I have an idea
 
 Give the agent your idea together with:
