@@ -112,6 +112,23 @@ stage scope, verified tool capability, tests and source-of-truth owner.
 Keep the candidate-function test distinct from canonical Skills/Index
 assessments and from any later S5 admission/application.
 
+### Read-only contribution preparation under the existing Control Plane
+
+The adjacent external-contribution interface also accepts
+`prepare upstream contribution` once a real candidate has been chosen.
+Its [operator-facing procedure](AGENT_CONTROL_PLANE.md#control-plane--upstream-preparation-handoff-one-stage-read-only)
+routes to [Upstream-owned `control_plane_handoff.py`](https://github.com/opensiro/upstream/blob/main/docs/CONTROL_PLANE_HANDOFF.md).
+The local command produces only `ACTION_PREPARED_NOT_AUTHORIZED`, binding
+one proposed `prepare_contribution` stage to a pinned branch, new test
+file and content digest; no Organization permission or active S1 domain
+is added. Any actual GitHub write still requires separately verified
+current-session exact-item authorization, a supported connected operation
+and stage enforcement. The current Upstream adapter is source-prepared but
+not connected to a trusted host. A generic `continue` is not write consent;
+missing host/rights/target evidence means **BLOCKED**. Upstream #6 owns
+activation and negative-case receipts; Organization #274 owns prospective
+S5 domain admission.
+
 ## Upstream contract selection
 
 [`UPSTREAM_CONTRACT.json`](../UPSTREAM_CONTRACT.json) is the **only local machine-readable selection surface** for the upstream Profile, Methodology, and Index contract inputs used by this organization.
