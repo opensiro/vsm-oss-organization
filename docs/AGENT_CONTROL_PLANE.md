@@ -39,6 +39,7 @@ Before offering live status, read the current Organization scope and `TODO.md` a
 | **PR Review** / **S3* Audit** | `check PR review status` / `check S3* audit status` | Separate read-only gate inspections; never fabricate independent review. |
 | **Current Control (S3)** | `S3: inspect current control` | Read-only source-first intake across actual S1 operations; **does not itself create an S3 decision or witness**. |
 | **Contribute Upstream** | `contribute to other harnesses` | Read-only opportunity discovery first; optional contributor-profile monitoring is a later **explicit opt-in**. |
+| **Prepare Upstream Change** | `prepare upstream contribution` | Prepare and display one exact **read-only** action packet from the Upstream-owned contract; no branch, fork, PR or human approval implied. |
 | **S1 Function Test (Upstream)** | `test S1 function: upstream contributions` | Source-first test of the **candidate** external-contribution S1 operational loop; **adjacent experiment, not admitted S1 work**. Read-only by default, no write or grade inference. |
 | **Open Issue or PR** | `continue <repo> #<issue>` / `continue PR #<n>` | Ask for an exact target when missing; do not dispatch a literal placeholder or guess across repositories. |
 | **Propose Change** / **S5 Matter** | `open a PR` / `S5: consider <matter>` | Require the actual scope/matter and all owner/parent permission gates. |
@@ -62,6 +63,7 @@ Before offering live status, read the current Organization scope and `TODO.md` a
 | `start a batch assessment` | Route to Index, check current method, discovery queue, frozen identities and competing locks; create/execute only a legitimately admitted batch under Index rules. |
 | `contribute to other harnesses` / `find upstream contribution opportunities` | Discover and present a fresh, actionable shortlist of **external** OSS harness contributions; ask whether the contributor wants optional public GitHub-profile tracking. Discovery is read-only and outside the bounded Organization S1 scheduler. See [External upstream contributions](#external-upstream-contributions). |
 | `test S1 function: upstream contributions` | Inspect the **candidate S1 operational function** represented by `opensiro/upstream`: proposal → operator selection/authority → permissible action → validation → return/closure. Route to [Upstream #6](https://github.com/opensiro/upstream/issues/6) for the implementation owner and [Organization #274](https://github.com/opensiro/vsm-oss-organization/issues/274) for the still-unmade fourth-domain S5 decision. Read-only assessment by default; no S1 admission, write grant or autonomy grade. |
+| `prepare upstream contribution` / `prepare upstream contribution <source/issue>` | After source-first discovery and one specific proposed candidate, route to the **Upstream-owned** [Control Plane handoff](https://github.com/opensiro/upstream/blob/main/docs/CONTROL_PLANE_HANDOFF.md). Read-only: present one pinned `prepare_contribution` action for **separate exact operator confirmation**; never infer authorization from this command. |
 | `check PR review status` / `check S3* audit status` | Identify the **specific** semantic/PR/audit gate and its owner; do not conflate a harness S3* classification with Organization complementary audit. |
 | `implement this change` / `open a PR` | Implement the scoped change through its owning repository, tests, an attributable PR and appropriate exact-head checks. |
 | `assess OpenSiro S3` / `reassess M1 #39` | Conduct a **source-first VSM assessment** of the Organization S3 function and its first-party decision/feedback constructor under [#39](https://github.com/opensiro/vsm-oss-organization/issues/39); live operation is optional for `C`, and case intake is **not** the grade gate. See [assessment proof rules](#m1-s3-source-first-assessment-vs-live-case-intake). |
@@ -170,6 +172,69 @@ After presenting the opportunities (or upon targeted contribution intake), **off
 - **Ongoing monitoring:** requires a separate affirmative choice **plus a stated schedule/monitoring mechanism** accepted by the contributor. Set up monitoring only if an actually authorized recurring capability exists; otherwise offer a reusable manual check without claiming a background watcher. Scope it to the stated public login and public PR information, not private repositories, connected-account secrets, email, browsing history, or everyone who collaborated on a PR.
 - **Storage and revocation:** distinguish permission to *look* from permission to *publish or store the monitored username or monitoring preferences* in a public repository. Do not commit a tracking roster or consent record publicly without a separate explicit publication decision. Allow the contributor to withdraw future monitoring permission; stop further scheduled scans where the environment permits. Do not promise retroactive deletion of independently public upstream GitHub evidence.
 - **Anti-attribution shortcut:** a matching username, OpenSiro mention, or merged PR is not itself evidence of an OpenSiro-shaped intervention, human identity, equal participant credit, or `product_native_fit=pass`. The [ledger contract](../experiments/upstream-intervention-fit/README.md) governs inclusion, replacement-chain deduplication, participants and four evidence gates.
+
+### Control Plane → Upstream preparation handoff (one stage, read-only)
+
+**Command:** `prepare upstream contribution` (or `prepare upstream contribution <source/issue>`).
+This is the **existing conversation Control Plane**, not a second interface, a
+new Organization S1 domain, a deployment or a new GitHub credential pathway.
+Resolve this command only after the user chooses one real external source and
+candidate; discovery, `prepare`, `approve`, `execute` and `close` are
+separate decisions/states. The implementation owner is
+[`opensiro/upstream` → `CONTROL_PLANE_HANDOFF.md`](https://github.com/opensiro/upstream/blob/main/docs/CONTROL_PLANE_HANDOFF.md),
+not Organization's `TODO.md` queue.
+
+1. **Refresh:** start at the canonical bootstrap and current default branches,
+   refresh [Upstream #6](https://github.com/opensiro/upstream/issues/6),
+   the real target's issue/source/CLA/contribution instructions, the owner
+   of the *existing* writable fork and any overlapping PR. Resolve ambiguity
+   before presenting a plausible executable action.
+2. **Proposal and selection:** use Upstream-owned
+   [`batch_proposals.py`](https://github.com/opensiro/upstream/blob/main/scripts/batch_proposals.py)
+   with `--draft`, selected ID and `--scope`. No `selection_scope_sha256`,
+   `PROPOSAL_PREVIEW` or claimed `approved_by` proves permission. Reject
+   blocked candidates and missing `prepare_contribution` from its proposed
+   stages.
+3. **Exact action:** use the Upstream-owned **read-only**
+   [`control_plane_handoff.py`](https://github.com/opensiro/upstream/blob/main/scripts/control_plane_handoff.py)
+   to bind exactly **one** candidate and `prepare_contribution` to the
+   existing working fork, pinned 40-hex base SHA, new `opensiro/...` branch,
+   new `tests/` file and proposed UTF-8 content SHA-256. Display the packet
+   and meaningful test plan in chat; `ACTION_PREPARED_NOT_AUTHORIZED` is
+   always **no-write**, not a grant.
+4. **Ask for an exact decision:** the operator must explicitly approve or
+   decline **this candidate, stage, existing working repo, pinned base SHA,
+   new branch, path and content digest**, after seeing the specific change.
+   Generic `продолжай`, `подтверждаю`, approval of implementing Control
+   Plane itself, a prior chat or a menu click does **not** authorize the
+   particular external write. A draft packet, hash or model-authored text
+   cannot authenticate the human; only a trusted current-session host can
+   establish the actor and applicable instruction. If unavailable: **BLOCKED**.
+5. **Execute only if separately allowed:** the host must supply an actual
+   trusted current-session `authorize(intent)` and a connected GitHub API
+   port to Upstream's
+   [`connected_stage_adapter.py`](https://github.com/opensiro/upstream/blob/main/scripts/connected_stage_adapter.py).
+   The current published code is **source-prepared, not host-connected**.
+   Recheck consent envelope, content bytes/digest, target's rules/license,
+   public matching fork and push rights, pinned branch SHA, and absence
+   of a colliding branch/file **before any write**. The adapter must never
+   be bypassed by directly calling a writer just because ChatGPT can
+   access GitHub. If the necessary host binding cannot actually be
+   enforced, report the missing capability and **do not write**.
+6. **Return real receipts:** `BLOCKED`, `FAILED`, `PARTIAL`,
+   `PENDING_VERIFICATION` or `CREATED_VERIFIED`, backed by exact refs.
+   Branch creation does not imply test validation, an upstream PR, merged
+   upstream outcome or S1 autonomy. Source-first evidence and negative
+   outcomes return to Upstream #6 when relevant.
+
+**Hard stops:** this stage does not implement `create_public_fork`,
+`submit_external_pr`, archiving, a token/runner or public tracking of user
+identity. No staged permission carries into another stage, another project
+or a future session. No fallback to `UPSTREAM_FORK_TOKEN`, legacy
+`create_fork.py --execute` or workflow dispatch. The only current
+Organization S1 domains remain Index, Skills, Awesome; **#274 is not admitted**.
+Do not display this feature as an active write-capable button or claim a
+successful operator-confirmed external pilot without exact evidence.
 
 ### Selected contribution execution and outcome
 
