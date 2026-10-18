@@ -80,6 +80,38 @@ For S1 work, the existing S1 contract already owns the transition from ordinary 
 
 If the reusable semantics need clarification, route that change to `vsm-harness-profile`; do not create an Organization-local competing definition. Organization consumes accepted Profile releases through the compatibility gate below.
 
+## Adjacent S1 function test — upstream contribution operations
+
+The [maintainer-facing Control Plane](AGENT_CONTROL_PLANE.md#s1-function-test--upstream-contributions-candidate-not-admitted)
+supports an explicit `test S1 function: upstream contributions` request.
+It is **observational testing of a candidate S1 operational loop** —
+discover an upstream-native need, propose an improvement, select precisely
+scoped actions, exercise an authorized action if one separately exists,
+validate, preserve feedback and identify actual closure/escalation.
+
+**This test does not add a fourth operational S1 domain.** The current
+bounded system and its S1 actor contract remain **Index, Skills, Awesome**.
+[Organization #274](https://github.com/opensiro/vsm-oss-organization/issues/274)
+still reserves the separate S5 choice about formally admitting
+`opensiro/upstream`; that issue is `PROPOSED / NOT ADMITTED`.
+The owning implementation contract for external contributions and
+batch authorization is [Upstream #6](https://github.com/opensiro/upstream/issues/6),
+not an Organization-controlled GitHub credential. The already-merged
+[read-only batch proposal preview](https://github.com/opensiro/upstream/blob/main/docs/BATCH_PROPOSALS.md)
+can establish that a contribution is *proposed* and stages can be
+*selected for preview*, but it cannot demonstrate actual authorized
+fork/patch/PR execution or autonomous operational closure.
+
+The Control Plane reports **witnesses and missing evidence** at each
+function step without assigning an autonomy grade, asserting parent
+approval, generating simulated transactions, modifying `TODO.md`, or
+routing external writes through the bounded Organization S1 actor.
+This is a testing/control-plane *interface*, not the missing executor.
+Any attempted real GitHub write still requires its own authorization,
+stage scope, verified tool capability, tests and source-of-truth owner.
+Keep the candidate-function test distinct from canonical Skills/Index
+assessments and from any later S5 admission/application.
+
 ## Upstream contract selection
 
 [`UPSTREAM_CONTRACT.json`](../UPSTREAM_CONTRACT.json) is the **only local machine-readable selection surface** for the upstream Profile, Methodology, and Index contract inputs used by this organization.
