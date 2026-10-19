@@ -29,10 +29,10 @@ class AssessmentDrivenS1RouteTests(unittest.TestCase):
 
     def test_test_originates_in_index_not_arbitrary_upstream_issue(self):
         for phrase in (
-            "assessment corpus",
+            "Its starting point is the assessment", 
             "canonical OpenSiro Index assessments",
             "Index commit SHA",
-            "assessment path/URL",
+            "assessment path at exact Index commit SHA", 
             "assessed system identity",
             "Index assessment → harness/finding → evidence → proposed change → tests",
             "NO_ELIGIBLE_ASSESSMENT_CANDIDATE",
@@ -45,10 +45,10 @@ class AssessmentDrivenS1RouteTests(unittest.TestCase):
 
     def test_low_grade_and_non_native_fit_cannot_pass(self):
         for phrase in (
-            "not an upstream need",
+            "does not prove a software bug", 
             "counterfactual",
-            "independently verified upstream-native",
-            "A VSM grade gap alone",
+            "source-backed upstream need", 
+            "a low VSM grade", 
             "generic issue hunting",
         ):
             with self.subTest(phrase=phrase):
@@ -62,7 +62,7 @@ class AssessmentDrivenS1RouteTests(unittest.TestCase):
             "Organization #274",
             "old fork does not prove",
             "stage",
-            "operator",
+            "consent", 
             "No `S1=A`",
         ):
             with self.subTest(phrase=phrase):
