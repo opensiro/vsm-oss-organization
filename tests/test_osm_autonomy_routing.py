@@ -32,7 +32,7 @@ class OSMRoutingTests(unittest.TestCase):
 
     def test_owner_first_with_local_discretion_and_residual_escalation(self):
         for phrase in ("function-first", "Local variety/outcome",
-                       "Decisive right and owner", "Parent-held delegation",
+                       "Decisive right and owner", "Decide at the correct recursion",
                        "Bounded execution", "Feedback and autonomy evidence",
                        "effective", "current owner"):
             with self.subTest(phrase=phrase):
