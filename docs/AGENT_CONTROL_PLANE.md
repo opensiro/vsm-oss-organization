@@ -56,7 +56,7 @@ Before offering live status, read the current Organization scope and `TODO.md` a
 | **Current Control (S3)** | `S3: inspect current control` | Read-only source-first intake across actual S1 operations; **does not itself create an S3 decision or witness**. |
 | **Contribute Upstream** | `contribute to other harnesses` | Read-only opportunity discovery first; optional contributor-profile monitoring is a later **explicit opt-in**. |
 | **Prepare Upstream Change** | `prepare upstream contribution` | Prepare and display one exact **read-only** action packet from the Upstream-owned contract; no branch, fork, PR or human approval implied. |
-| **S1 Function Test (Upstream)** | `test S1 function: upstream contributions` | Source-first test of the **candidate** external-contribution S1 operational loop; **adjacent experiment, not admitted S1 work**. Read-only by default, no write or grade inference. |
+| **S1 Function Test (Upstream)** | `test S1 function: upstream contributions` | **Assessment-driven** candidate S1 test: start from a pinned Index harness assessment, qualify a useful upstream-native change, then inspect preparation/execution/return. Adjacent and read-only by default; no write, admission or grade inference. |
 | **Open Issue or PR** | `continue <repo> #<issue>` / `continue PR #<n>` | Ask for an exact target when missing; do not dispatch a literal placeholder or guess across repositories. |
 | **Propose Change** / **S5 Matter** | `open a PR` / `S5: consider <matter>` | Require the actual scope/matter and all owner/parent permission gates. |
 
@@ -78,7 +78,7 @@ Before offering live status, read the current Organization scope and `TODO.md` a
 | `continue <repo> #<issue>` / `continue PR #<n>` | Resume that exact owner/issue/PR, subject to its independent/frozen/permission constraints. Do not silently switch to other batches or repos. |
 | `start a batch assessment` | Route to Index, check current method, discovery queue, frozen identities and competing locks; create/execute only a legitimately admitted batch under Index rules. |
 | `contribute to other harnesses` / `find upstream contribution opportunities` | Discover and present a fresh, actionable shortlist of **external** OSS harness contributions; ask whether the contributor wants optional public GitHub-profile tracking. Discovery is read-only and outside the bounded Organization S1 scheduler. See [External upstream contributions](#external-upstream-contributions). |
-| `test S1 function: upstream contributions` | Inspect the **candidate S1 operational function** represented by `opensiro/upstream`: proposal → operator selection/authority → permissible action → validation → return/closure. Route to [Upstream #6](https://github.com/opensiro/upstream/issues/6) for the implementation owner and [Organization #274](https://github.com/opensiro/vsm-oss-organization/issues/274) for the still-unmade fourth-domain S5 decision. Read-only assessment by default; no S1 admission, write grant or autonomy grade. |
+| `test S1 function: upstream contributions` | Inspect the **assessment-driven** candidate S1 loop: pinned canonical Index assessment → eligible harness finding → independently verified upstream-native need/fit → proposal → bounded authorized action → validation/feedback. Follow [Upstream test contract](https://github.com/opensiro/upstream/blob/main/docs/ASSESSMENT_DRIVEN_S1_TEST.md), [Upstream #6](https://github.com/opensiro/upstream/issues/6) and proposed [Organization #274](https://github.com/opensiro/vsm-oss-organization/issues/274). No write, S1 admission, S5 decision or autonomy grade is implied. |
 | `prepare upstream contribution` / `prepare upstream contribution <source/issue>` | After source-first discovery and one specific proposed candidate, route to the **Upstream-owned** [Control Plane handoff](https://github.com/opensiro/upstream/blob/main/docs/CONTROL_PLANE_HANDOFF.md). Read-only: present one pinned `prepare_contribution` action for **separate exact operator confirmation**; never infer authorization from this command. |
 | `check PR review status` / `check S3* audit status` | Identify the **specific** semantic/PR/audit gate and its owner; do not conflate a harness S3* classification with Organization complementary audit. |
 | `implement this change` / `open a PR` | Implement the scoped change through its owning repository, tests, an attributable PR and appropriate exact-head checks. |
@@ -125,47 +125,59 @@ If the current evidence does not establish a genuine present S3 matter or legiti
 
 **Command:** `test S1 function: upstream contributions`.
 
-The operator can use the **existing Organization Control Plane interface** to
-test the S1-like **operational function** of building real upstream-native
-contributions. This is an **adjacent, bounded construction/evidence test**,
-not a fourth admitted S1 domain. Current Organization S1 domains remain
-**Index, Skills and Awesome**. [Organization #274](https://github.com/opensiro/vsm-oss-organization/issues/274)
-alone tracks the reserved S5 admission decision, presently
-`PROPOSED / NOT ADMITTED`; do not apply the proposed domain contract
-without that separately attributable decision.
+This command tests **automation of contributions to AI agent harnesses originating
+from canonical OpenSiro Index assessments**. Its starting point is the assessment
+corpus, **not** a familiar project, a random GitHub issue, or the current Upstream
+registry. Use the current Index default branch and its exact assessment source
+and revision, then rediscover the assessed upstream repository and compare its
+**current** source, policies and review state. Do not preselect Cognee or any
+other historical example as the test target. The standalone
+`contribute to other harnesses` command still provides general OSS discovery;
+it does **not** substitute for this assessment-driven test.
 
-Use the existing [S1 operational loop](../roles/S1.md) **as a test rubric,
-not as a new permission envelope**:
+This is an adjacent, read-only-by-default **S1 construction/evidence test**, not
+a fourth admitted S1 domain or a new permission envelope. Existing Organization
+S1 domains remain Index, Skills and Awesome. [Organization #274](https://github.com/opensiro/vsm-oss-organization/issues/274)
+still reserves the formal S5 domain/envelope decision as `PROPOSED / NOT ADMITTED`.
+The Upstream owner defines the [assessment-driven S1 test contract](https://github.com/opensiro/upstream/blob/main/docs/ASSESSMENT_DRIVEN_S1_TEST.md);
+[Upstream #6](https://github.com/opensiro/upstream/issues/6) owns implementation
+and actual stage capability.
 
-| Test point | Evidence to observe | Boundary |
+Follow these gates **in order**; do not promote a later GitHub opportunity over a
+failed earlier Index-evidence gate:
+
+| Test point | Required evidence | Fail-closed boundary |
 | --- | --- | --- |
-| Observe the environment | Target upstream repo, issue, source revision, contribution policy, concrete need | A VSM grade gap alone is not an upstream need |
-| Propose local S1 outcome | Bounded patch or outcome proposal with problem, planned change, expected (unverified) improvement and tests | The [Upstream proposal preview](https://github.com/opensiro/upstream/blob/main/docs/BATCH_PROPOSALS.md) is no-write |
-| Select decisions and rights | Exact candidate IDs and separately selected stages, actor/authority owner | `selection_scope_sha256` is **not** user authorization |
-| Execute if independently allowed | Actual fork, preparation or external PR action and actor/source/destination rights | [Upstream #6](https://github.com/opensiro/upstream/issues/6) still lacks a trusted write executor; **no write from the test command** |
-| Validate, recover, close | Tests and pinned GitHub receipts, ordinary failure handling, observed outcome or evidence-backed blocker | External maintainer acceptance/merge is a separate right; no fake closure |
-| Return evidence | Per-stage `SOURCE_PREPARED / OBSERVED / EXERCISED / CLOSED / BLOCKED / UNKNOWN` as descriptive **test observations** | These are **not** canonical assessment/autonomy states |
+| 1. Assessment discovery | Canonical Index assessment path at exact Index commit SHA; assessed system identity/upstream URL, actual function/ownership findings and source evidence | An issue URL alone, a low VSM grade, or an unpinned remembered result is **not** an assessment-driven candidate |
+| 2. Candidate qualification | Derive a falsifiable engineering hypothesis from that assessment; refresh the harness upstream default branch, current code, contributor policy and overlapping PRs | The assessment does not prove a software bug, right to change code, or need for a higher VSM grade |
+| 3. Product-native fit | Separately check source-backed upstream need, native implementation mechanism, useful counterfactual **without any VSM branding**, and fit with current upstream scope | If need/fit is not supported, report `NO_ELIGIBLE_ASSESSMENT_CANDIDATE` / `BLOCKED_EVIDENCE`; do not fall back to generic issue hunting or manufacture work |
+| 4. Propose and select | Trace `Index assessment → harness/finding → evidence → proposed change → tests`; present Upstream `proposal_only` candidate IDs and independently selected stages | Preview selection/hash is not authorization; no silent project substitution |
+| 5. Execute only if separately authorized | Actual GitHub actor/grant, destination, stage, tested diff/branch and verified provider rights | Existing [Upstream #6](https://github.com/opensiro/upstream/issues/6) live gates prevail; an old fork does not prove `create_public_fork`, and a test command is not permission to write |
+| 6. Validate, recover and return | Tested artifact and real receipts or precise blocker, human interventions, upstream review disposition when available and what feedback changes later work | A green mock CI or internal PR does not prove an upstream contribution, acceptance, full S1 closure or autonomy |
 
-On invocation: refresh [Upstream #6](https://github.com/opensiro/upstream/issues/6),
-the current `opensiro/upstream` `main`, [Organization #274](https://github.com/opensiro/vsm-oss-organization/issues/274)
-and the present S1 contracts. Report an action-by-action **witness/missing-
-evidence matrix**: who owns each decisive choice, which supporting code
-is prepared, what was actually exercised, any human intervention, how
-feedback returned, and which gate blocked closure. Do not equate a local
-preview, green CI, merged control-plane docs or a GitHub token with an
-agent-owned S1 decision loop. Report `INSUFFICIENT` where decisive-owner
-or closure evidence is absent.
+On each invocation: refresh [Index](https://github.com/opensiro/vsm-harness-index)
+and discover candidate harness assessments **before** selecting one; inspect
+the owning assessment, [Upstream #6](https://github.com/opensiro/upstream/issues/6),
+current Upstream `main`, [Organization #274](https://github.com/opensiro/vsm-oss-organization/issues/274)
+and present S1 rights. Preserve assessment provenance (including historical
+source pin) without rewriting Index grades. For an eligible candidate report
+an evidence/decision/feedback matrix including assessed function, hypothesized
+patch, independent native-fit evidence, available stage, who really decides,
+what was exercised, and observed or missing closure. If no assessment yields a
+source-backed candidate, finish the **discovery test** honestly with no
+contribution selected; do not switch to a convenience upstream issue.
 
-The command itself is **read-only** and never changes `TODO.md`, grants
-permissions, installs a token, creates a fork, submits an external PR,
-archives a repository, or activates a headless runner. If a separate
-specific operational action is requested, follow its owner, tool scope,
-and explicit authorization gates; do not reinterpret this command as
-blanket execution consent. Keep the organizational **S1 functional test**
-separate from [Skills-owned autonomy methodology](https://github.com/opensiro/vsm-harness-skills)
-and from [Organization #276](https://github.com/opensiro/vsm-oss-organization/issues/276)
-(which tracks a deferred, broader S1 autonomy-vector investigation).
-No `S1=A`, `S1=C` or `S1=C(P)` follows automatically.
+Return stage observations as `SOURCE_PREPARED / OBSERVED / EXERCISED / CLOSED /
+BLOCKED / UNKNOWN`, and say `PARTIAL` or `INSUFFICIENT` for unproven end-to-end
+closure. These are descriptive test findings, **not** canonical VSM grades.
+The command itself is **read-only**: it cannot create forks/branches, push
+patches, open external PRs, change `TODO.md`, activate credentials or issue a
+standing agent mandate. A separately named operational action must pass its
+own current actor, consent, policy, tool, per-stage and readback gates.
+Preserve the [Skills-owned assessment methodology](https://github.com/opensiro/vsm-harness-skills),
+the deferred [Organization #276](https://github.com/opensiro/vsm-oss-organization/issues/276)
+autonomy investigation and all S5 rights. No `S1=A`, `S1=C` or `S1=C(P)`
+follows from this contract or a successful technical test.
 
 ### Discovery and the offered list
 
@@ -352,7 +364,7 @@ Explain **what was actually executed**, and distinguish `proposed`, `reviewed`, 
 - Bare `START_HERE.md` URL / `show control plane` with no specific task produces a source-linked bounded Control Plane summary and **real clickable actions where supported**, with no GitHub write before a selection.
 - A text-only client sees a readable numbered menu exposing the same commands; a user can type `status` or provide a named issue instead of clicking a button.
 - Selecting **Current Control (S3)** calls `S3: inspect current control` as an independent new user request; it performs only source-first inventory and does not invent a `REQUESTED` transaction or a decisive owner. A targeted `S3: consider <present choice>` must obey the same gate.
-- Selecting **S1 Function Test (Upstream)** invokes `test S1 function: upstream contributions`: it compares actual proposal, selected stage/authority, execution, validation and closure evidence from Upstream #6 to a *candidate* S1-function test matrix, labels missing evidence, and never admits a fourth domain, issues a GitHub write, claims `S1=A/C`, or schedules work.
+- Selecting **S1 Function Test (Upstream)** invokes `test S1 function: upstream contributions`: it **begins from a live, pinned Index assessment of a harness**, then checks native upstream need/fit before evaluating proposal, action rights, execution, validation and closure evidence from Upstream #6. A GitHub issue alone, a Cognee example chosen for convenience, or a low VSM grade alone **does not qualify**. It labels missing evidence and never admits a fourth domain, issues a GitHub write, claims `S1=A/C`, or schedules work.
 - A `PROPOSAL_PREVIEW` with a narrowed stage-scope hash is **not** approval or executed S1 closure; if the connected GitHub client cannot fork, the test reports that limitation without installing a broad token or inventing a runner.
 - **S3 intake** is not **S3* Audit**, S1 local repair, S2 coordination or S5 policy. A menu item, issue status or CI result is never `S3=C` evidence.
 - A concrete named PR/issue command executes the ordinary gated task path directly; the introduction does not block it, and a button does not confer review, merge, scheduling, or S5 authority.
