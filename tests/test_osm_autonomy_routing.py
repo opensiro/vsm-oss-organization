@@ -48,6 +48,13 @@ class OSMRoutingTests(unittest.TestCase):
             self.assertIn(phrase, self.control_section)
         self.assertIn("into an S5 grant", self.bootstrap_section)
 
+    def test_adjacent_upstream_local_mandate_does_not_imply_s5_admission(self):
+        self.assertIn("adjacent", self.control_section.lower())
+        self.assertIn("repository/fork owner's", self.control_section)
+        self.assertIn("different rights", self.control_section)
+        self.assertIn("Organization #274", self.control_section)
+
+
 
 if __name__ == "__main__":
     unittest.main()
