@@ -24,6 +24,16 @@ Cross-repository architecture and ownership routing live in [`docs/ECOSYSTEM.md`
 
 For already tracked current work, consult [`TODO.md`](TODO.md) and then return to the linked owning repository/issue. For new, unclassified, or authority-sensitive work, use [`CONTRIBUTOR_START.md`](CONTRIBUTOR_START.md).
 
+## OSM-aware autonomy and delegation routing
+
+For requests about **transferring decisions from a human to an agent**, expanding an agent's authority, replacing repeated approvals with a standing mandate, or explaining why a supposedly operational S1 task needs human permission, apply the normal source-first bootstrap **and additionally** inspect:
+
+1. [OSM Roadmap](docs/ROADMAP.md) for the **construction sequence and the function-first rule**; this is not a new VSM semantic or autonomy-grade source.
+2. [S1 domain contracts](contracts/s1/domain-contracts.md), [S1 admission/recovery](contracts/s1/task-admission-recovery.md), and [S5 parent authority](contracts/s5/parent-authority.md) for the **current** delegated vs reserved decisions.
+3. [Agent Control Plane's OSM delegation route](docs/AGENT_CONTROL_PLANE.md#osm-aware-delegation-and-authority-transfer), then the exact owning issue/PR and runtime capability for the **proposed** new envelope.
+
+Determine the function and decisive decision owner **before** asking for task-level approvals or inventing a new agent, gate, scheduler, or infrastructure. Keep (a) existing operative permission, (b) proposed future delegation, and (c) evidence for an autonomy assessment strictly separate. **Do not** turn this routing into an S5 grant, a fourth S1 domain, a GitHub write, or a waiver of any currently effective exact-action gate.
+
 ## First-contact control plane
 
 When a user supplies this bootstrap URL, asks to `start`, `help`, or `show control plane`, or otherwise requests an **open-ended OpenSiro entry point** without a concrete task, the agent should **present the operator interface**, not stop after listing documentation links or silently begin an execution lane.
