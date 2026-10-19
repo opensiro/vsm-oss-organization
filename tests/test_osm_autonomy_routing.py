@@ -46,7 +46,7 @@ class OSMRoutingTests(unittest.TestCase):
                 self.assertIn(phrase.lower(), self.control_section.lower())
         for phrase in ("authorize=True", "GitHub login", "proposal digest"):
             self.assertIn(phrase, self.control_section)
-        self.assertIn("not an S5 grant", self.bootstrap_section)
+        self.assertIn("into an S5 grant", self.bootstrap_section)
 
 
 if __name__ == "__main__":
