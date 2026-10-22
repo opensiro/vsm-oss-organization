@@ -54,14 +54,14 @@ class AssessmentUpstreamReplayTests(unittest.TestCase):
                        "Upstream #6", "generic `продолжай`", "no write"):
             with self.subTest(phrase=phrase):
                 self.assertIn(phrase.lower(), self.protocol.lower())
-        self.assertIn("not a fourth admitted S1", self.protocol.lower())
+        self.assertIn("not an admitted Organization S1 domain".lower(), self.protocol.lower())
 
     def test_replay_and_case_history_separate(self):
         self.assertIn("only in explicit", self.receipt)
         self.assertIn("CONTINUE_PINNED_CASE", self.receipt)
         self.assertIn("FRESH_INDEX_FIRST", self.receipt)
-        self.assertIn("Upstream #61", self.receipt)
-        self.assertIn("Upstream #56", self.receipt)
+        self.assertIn("Upstream case #61", self.receipt)
+        self.assertIn("Upstream experiment #56", self.receipt)
 
 
 if __name__ == "__main__":
