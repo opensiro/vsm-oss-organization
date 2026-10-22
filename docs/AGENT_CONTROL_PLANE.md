@@ -189,7 +189,7 @@ Upstream work log, prior ChatGPT output or linked target/PR. Merely opening
 a known case is a **continuation**, not independent discovery. Use
 `CONTINUE_PINNED_CASE` only when the user explicitly names the case or
 asks to resume the existing implementation; this may read the existing
-[dated case receipt](reviews/2026-10-22-agentbox-control-plane-case-receipt.md)
+[dated case receipt](reviews/2026-10-22-assessment-upstream-prior-case.md)
 **after** acknowledging the prior selection and must not score independent
 re-discovery. One fresh replay need not choose the same harness; a qualified
 different target, no eligible candidate, or an explicit native-fit block is

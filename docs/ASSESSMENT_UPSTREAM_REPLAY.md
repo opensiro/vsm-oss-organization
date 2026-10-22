@@ -34,7 +34,7 @@ Report a concise, source-linked matrix with `origin_class` (`ASSESSMENT_DERIVED`
 
 ## CONTINUE_PINNED_CASE — non-blind operational continuation
 
-Use only when the operator explicitly supplies an existing issue/PR or says to resume that named case. Read current [Upstream #56](https://github.com/opensiro/upstream/issues/56), the exact [case-owning issue](https://github.com/opensiro/upstream/issues/61), its implementation PR and [dated case receipt](reviews/2026-10-22-agentbox-control-plane-case-receipt.md). Re-fetch actual Index / target `main` / source SHA / live CI / PR threads before action; frozen case refs are historical evidence, never current assumptions. Reuse executed baselines rather than running them again to inflate progress. Work until the next **real technical or authority stop**, including a measured `NO_BENEFIT` or first-party design mismatch, then return the boundary. No false independent selection claim.
+Use only when the operator explicitly supplies an existing issue/PR or says to resume that named case. Read current [Upstream #56](https://github.com/opensiro/upstream/issues/56), the exact [case-owning issue](https://github.com/opensiro/upstream/issues/61), its implementation PR and [dated case receipt](reviews/2026-10-22-assessment-upstream-prior-case.md). Re-fetch actual Index / target `main` / source SHA / live CI / PR threads before action; frozen case refs are historical evidence, never current assumptions. Reuse executed baselines rather than running them again to inflate progress. Work until the next **real technical or authority stop**, including a measured `NO_BENEFIT` or first-party design mismatch, then return the boundary. No false independent selection claim.
 
 ## Organizational and consent boundaries
 

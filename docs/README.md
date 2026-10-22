@@ -9,7 +9,7 @@ Long-form repository documentation lives under `docs/`. Root-level files are res
 - [`CONTROL_PLANE.md`](CONTROL_PLANE.md) — operational authority, compatibility gates, and work lifecycle.
 - [`AGENT_CONTROL_PLANE.md`](AGENT_CONTROL_PLANE.md) — maintainer-facing single-agent command interface that consumes those authority rules.
 - [`ASSESSMENT_UPSTREAM_REPLAY.md`](ASSESSMENT_UPSTREAM_REPLAY.md) — source-first, fresh Control Plane replay of assessment-derived external improvement; separates blind discovery from named-case continuation.
-- [`reviews/2026-10-22-agentbox-control-plane-case-receipt.md`](reviews/2026-10-22-agentbox-control-plane-case-receipt.md) — dated AgentBox S2 experiment receipt, read only after the fresh selection is locked or in explicit continuation mode.
+- [`reviews/2026-10-22-assessment-upstream-prior-case.md`](reviews/2026-10-22-assessment-upstream-prior-case.md) — dated AgentBox S2 experiment receipt, read only after the fresh selection is locked or in explicit continuation mode.
 - [`../prompts/intake-s3-current-control.md`](../prompts/intake-s3-current-control.md) — bounded S3 current-decision intake for the existing constructor; does not grant authority or establish a witness.
 - [`ROADMAP.md`](ROADMAP.md) — OSM construction sequence and evidence narrative.
 - [`METRICS.md`](METRICS.md) — public outcome/observability contract.

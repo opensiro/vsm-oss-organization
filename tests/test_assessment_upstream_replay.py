@@ -9,7 +9,7 @@ import unittest
 ROOT = Path(__file__).resolve().parents[1]
 CONTROL = ROOT / "docs" / "AGENT_CONTROL_PLANE.md"
 PROTOCOL = ROOT / "docs" / "ASSESSMENT_UPSTREAM_REPLAY.md"
-RECEIPT = ROOT / "docs" / "reviews" / "2026-10-22-agentbox-control-plane-case-receipt.md"
+RECEIPT = ROOT / "docs" / "reviews" / "2026-10-22-assessment-upstream-prior-case.md"
 DOCS_INDEX = ROOT / "docs" / "README.md"
 
 
