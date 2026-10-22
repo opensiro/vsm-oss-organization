@@ -11,6 +11,7 @@ CONTROL = ROOT / "docs" / "AGENT_CONTROL_PLANE.md"
 PROTOCOL = ROOT / "docs" / "ASSESSMENT_UPSTREAM_REPLAY.md"
 RECEIPT = ROOT / "docs" / "reviews" / "2026-10-22-assessment-upstream-prior-case.md"
 DOCS_INDEX = ROOT / "docs" / "README.md"
+PROMPT = ROOT / "prompts" / "assessment-upstream-fresh-replay.md"
 
 
 class AssessmentUpstreamReplayTests(unittest.TestCase):
@@ -20,6 +21,7 @@ class AssessmentUpstreamReplayTests(unittest.TestCase):
         cls.protocol = PROTOCOL.read_text(encoding="utf-8")
         cls.receipt = RECEIPT.read_text(encoding="utf-8")
         cls.docs = DOCS_INDEX.read_text(encoding="utf-8")
+        cls.prompt = PROMPT.read_text(encoding="utf-8")
 
     def test_fresh_control_plane_command_and_routing(self):
         self.assertIn("test S1 function: upstream contributions", self.control)
@@ -38,6 +40,17 @@ class AssessmentUpstreamReplayTests(unittest.TestCase):
                          "Index", "need", "mechanism", "counterfactual_value", "scope"):
             with self.subTest(required=required):
                 self.assertIn(required, fresh)
+
+    def test_new_chat_prompt_and_generic_route_hide_prior_case_target(self):
+        self.assertIn("FRESH_INDEX_FIRST", self.prompt)
+        self.assertIn("test S1 function: upstream contributions", self.prompt)
+        self.assertIn("selection", self.protocol.lower())
+        for text in (self.protocol, self.prompt, self.docs):
+            with self.subTest(area=text[:40]):
+                self.assertNotIn("Agent" + "Box", text)
+                self.assertNotIn("Harness" + "Desk", text)
+                self.assertNotIn("PR #72", text)
+        self.assertIn("Agent" + "Box", self.receipt)
 
     def test_replay_is_not_fake_finished_native_intervention(self):
         for required in ("BENEFIT_NOT_MEASURED", "NOT_TESTED", "NO_ELIGIBLE_ASSESSMENT_CANDIDATE",
