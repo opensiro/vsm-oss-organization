@@ -2,6 +2,8 @@
 
 Copy the following request into a **new ChatGPT conversation** with the OpenSiro OSS Control Plane. This prompt deliberately names **no past harness, issue or PR**. The control documents point to the bounded public ecosystem; historical case outcomes must not be consulted before first selection. It is a prompt, not an automation, delegated decision right, permission grant or guarantee of an independent runtime.
 
+**Until the Organization handoff PR is merged:** if the generic protocol does not yet exist on `main`, read the [neutral protocol on its prepared branch](https://github.com/opensiro/vsm-oss-organization/blob/docs/assessment-upstream-control-plane-replay-20261022/docs/ASSESSMENT_UPSTREAM_REPLAY.md) directly. Do **not** open the PR description or neighboring case-history files before the independent selection lock. After merge, the canonical `main` protocol is preferred.
+
 ---
 
 Проведи **новый независимый тест** `test S1 function: upstream contributions` в режиме `FRESH_INDEX_FIRST`.
