@@ -24,6 +24,8 @@ Cross-repository architecture and ownership routing live in [`docs/ECOSYSTEM.md`
 
 For already tracked current work, consult [`TODO.md`](TODO.md) and then return to the linked owning repository/issue. For new, unclassified, or authority-sensitive work, use [`CONTRIBUTOR_START.md`](CONTRIBUTOR_START.md).
 
+For **changes to organizational code** (roles, authority, contracts, modes, control-plane routing, cross-repository coordination), apply the [organizational-code change protocol](docs/ORGANIZATIONAL_CODE_CHANGE_PROTOCOL.md) to identify the actual decision owner, earliest automatic gate, reviewable implementation and returned effect. It creates no additional permissions or VSM functions.
+
 ## OSM-aware autonomy and delegation routing
 
 For requests about **transferring decisions from a human to an agent**, expanding an agent's authority, replacing repeated approvals with a standing mandate, or explaining why a supposedly operational S1 task needs human permission, apply the normal source-first bootstrap **and additionally** inspect:
