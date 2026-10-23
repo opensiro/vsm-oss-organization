@@ -12,6 +12,8 @@ The work-lifecycle ownership map is [`docs/CONTROL_PLANE.md`](docs/CONTROL_PLANE
 
 Use `opensiro/vsm-oss-organization` for organization-wide contributor roles, authority boundaries, escalation, cross-repository coordination, shared current-work selection, milestone sequencing, or evolution of the shared contribution control plane.
 
+When the request is to **change organizational code or its governing procedure**, follow [the organizational-code change protocol](docs/ORGANIZATIONAL_CODE_CHANGE_PROTOCOL.md) before editing. Classify the decisive right and source owner; routine local S1 repair does not become S5 just because an Organization-level document is involved.
+
 Public repositories outside the declared scope are not governed by this routing contract merely because they live under `opensiro`.
 
 ## Supported autonomous S1 entry
