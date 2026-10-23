@@ -183,6 +183,30 @@ the deferred [Organization #276](https://github.com/opensiro/vsm-oss-organizatio
 autonomy investigation and all S5 rights. No `S1=A`, `S1=C` or `S1=C(P)`
 follows from this contract or a successful technical test.
 
+### Fresh replay vs named continuation — reproducibility route
+
+For a new-session request to repeat the assessment-to-upstream *method*, use the
+[Control Plane assessment-upstream replay protocol](ASSESSMENT_UPSTREAM_REPLAY.md)
+in its `FRESH_INDEX_FIRST` mode. That route starts from current canonical Index
+evidence and records the chosen target **before** inspecting any case-specific
+Upstream work log, prior ChatGPT output or linked target/PR. Merely opening
+a known case is a **continuation**, not independent discovery. Use
+`CONTINUE_PINNED_CASE` only when the user explicitly names the case or
+asks to resume the existing implementation; this may read the existing
+[dated case receipt](reviews/2026-10-22-assessment-upstream-prior-case.md)
+**after** acknowledging the prior selection and must not score independent
+re-discovery. One fresh replay need not choose the same harness; a qualified
+different target, no eligible candidate, or an explicit native-fit block is
+a valid reproducibility result. Test route conformance separately from
+actual code quality, real-agent benefit and external PR/merge outcome.
+
+The route is **adjacent and read-only by default**. The research pilot,
+Upstream source/contract, and any authorized fork/test implementation stay
+with their respective owners. Organization #274 remains
+`PROPOSED / NOT ADMITTED`; neither this command nor a replay receipt
+creates a fourth S1 domain, delegated write authority, external issue,
+reviewer independence, S5 grant or Index grade revision.
+
 ### Discovery and the offered list
 
 On a discovery invocation, without requiring a GitHub username or permission to track it:
