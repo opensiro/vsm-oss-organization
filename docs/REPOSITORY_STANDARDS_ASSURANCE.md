@@ -30,7 +30,7 @@ python3 scripts/check_repository_standards.py \
   --compare-adjacent opensiro/upstream --format json
 ```
 
-The scope is read from the canonical `Current in-scope public repositories:` block in `README.md`, using the same parser as [`check_public_routing.py`](../scripts/check_public_routing.py). Explicit `--compare-adjacent` repos **remain out of scope**. Every result has its GitHub REST source; successful default-branch inspection captures the current head SHA. The probe never writes to GitHub, changes settings, submits PRs, or invokes LLM/agent sessions.
+The scope is read from the canonical `Current in-scope public repositories:` block in `README.md`, using the same parser as [`check_public_routing.py`](../scripts/check_public_routing.py). Explicit `--compare-adjacent` repos **remain out of scope**. Every result has its GitHub REST source; successful default-branch inspection captures the current head SHA, and README/source artifacts are then fetched at that **immutable SHA**. If it is unavailable, source checks are `UNKNOWN` rather than silently performed against moving `main`. GitHub repository settings and rulesets are live point-in-time observations, not Git-commit-pinnable data. The probe never writes to GitHub, changes settings, submits PRs, or invokes LLM/agent sessions.
 
 Classification is intentionally conservative:
 
