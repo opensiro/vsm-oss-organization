@@ -116,6 +116,10 @@ def inspect_repository(
         record("branch_protected", "PASS" if protected else "DRIFT", "ADVISORY",
                f"GitHub branch protected={protected}; check actual rules separately", url)
 
+    # Mutable settings are a point-in-time observation. Root source artifacts,
+    # by contrast, must be fetched at one immutable commit or marked unknown.
+    pinned = isinstance(head_sha, str) and len(head_sha) == 40
+
     rulesets, error, url = _read(repo, "/rulesets", api_base=api_base, token=token, get_json=get_json)
     if error or not isinstance(rulesets, list):
         record("protect_main_ruleset", "UNKNOWN", "ADVISORY", error or "rulesets not a list", url)
@@ -125,8 +129,21 @@ def inspect_repository(
         record("protect_main_ruleset", "PASS" if found else "DRIFT", "ADVISORY",
                f"active rulesets={active!r}; a protected branch can use legacy protection", url)
 
+    if not pinned:
+        pin_url = _endpoint(repo, f"/branches/{quote(branch, safe='')}", api_base)
+        record("pinned_head", "UNKNOWN", "REQUIRED" if in_scope else "ADVISORY",
+               "immutable default-branch head unavailable; source checks not attempted", pin_url)
+        for dimension in ("common_start_here", "organization_route", "shared_todo"):
+            record(dimension, "UNKNOWN", "REQUIRED" if in_scope else "ADVISORY",
+                   "no immutable revision for README", pin_url)
+        for dimension in ("root_license", "workflow_files"):
+            record(dimension, "UNKNOWN", "ADVISORY", "no immutable source revision", pin_url)
+        return None, findings
+
+    ref = quote(head_sha, safe="")
+
     readme_payload, error, url = _read(
-        repo, f"/readme?ref={quote(branch, safe='')}", api_base=api_base, token=token, get_json=get_json
+        repo, f"/readme?ref={ref}", api_base=api_base, token=token, get_json=get_json
     )
     try:
         readme = decode_readme_payload(readme_payload) if not error else None
@@ -148,7 +165,7 @@ def inspect_repository(
                    "README entry present" if found else "README entry missing; adjacent comparison is non-binding" if not in_scope else "required README entry missing", url)
 
     root, error, url = _read(
-        repo, f"/contents?ref={quote(branch, safe='')}", api_base=api_base, token=token, get_json=get_json
+        repo, f"/contents?ref={ref}", api_base=api_base, token=token, get_json=get_json
     )
     if error or not isinstance(root, list):
         record("root_license", "UNKNOWN", "ADVISORY", error or "root listing unavailable", url)
@@ -159,7 +176,7 @@ def inspect_repository(
                "root LICENSE present" if found else "no root LICENSE file in directory listing", url)
 
     workflows, error, url = _read(
-        repo, f"/contents/.github/workflows?ref={quote(branch, safe='')}",
+        repo, f"/contents/.github/workflows?ref={ref}",
         api_base=api_base, token=token, get_json=get_json,
     )
     if error or not isinstance(workflows, list):
@@ -170,9 +187,6 @@ def inspect_repository(
         record("workflow_files", "PASS" if found else "DRIFT", "ADVISORY",
                "GitHub Actions workflow file present" if found else "no YAML workflow file listed", url)
 
-    if not isinstance(head_sha, str) or len(head_sha) != 40:
-        record("pinned_head", "UNKNOWN", "ADVISORY", "exact default branch head unavailable", _endpoint(repo, f"/branches/{quote(branch, safe='')}", api_base))
-        return None, findings
     return head_sha, findings
 
 
