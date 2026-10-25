@@ -118,6 +118,29 @@ class RepositoryStandardsProbeTests(unittest.TestCase):
         self.assertEqual(by_dimension(found)["shared_todo"].status, "UNKNOWN")
         self.assertIn("immutable", by_dimension(found)["shared_todo"].detail)
 
+    def test_missing_default_branch_cannot_skip_required_routing(self) -> None:
+        responses = source_fixture()
+        del responses[f"{BASE}/vsm-harness-index"]["default_branch"]
+        sha, found = inspect_repository("opensiro/vsm-harness-index", in_scope=True,
+                                        get_json=loader(responses))
+        self.assertIsNone(sha)
+        dimensions = by_dimension(found)
+        self.assertEqual(dimensions["default_branch"].status, "UNKNOWN")
+        for dimension in ("pinned_head", "common_start_here",
+                          "organization_route", "shared_todo"):
+            with self.subTest(dimension=dimension):
+                self.assertEqual(dimensions[dimension].status, "UNKNOWN")
+                self.assertEqual(dimensions[dimension].rule, "REQUIRED")
+
+    def test_malformed_commit_payload_is_unknown_instead_of_crash(self) -> None:
+        responses = source_fixture()
+        responses[f"{BASE}/vsm-harness-index/branches/main"]["commit"] = None
+        sha, found = inspect_repository("opensiro/vsm-harness-index", in_scope=True,
+                                        get_json=loader(responses))
+        self.assertIsNone(sha)
+        self.assertEqual(by_dimension(found)["pinned_head"].status, "UNKNOWN")
+        self.assertEqual(by_dimension(found)["common_start_here"].status, "UNKNOWN")
+
     def test_report_scope_cannot_admit_adjacent_repository(self) -> None:
         scope_text = "Current in-scope public repositories:\n\n- `opensiro/vsm-harness-index`\n"
         all_responses = {**source_fixture(), **source_fixture("opensiro/upstream", complete=False)}
