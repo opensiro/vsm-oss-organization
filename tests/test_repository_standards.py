@@ -4,6 +4,7 @@ from __future__ import annotations
 
 import base64
 import unittest
+from pathlib import Path
 
 from scripts.check_public_routing import RoutingError
 from scripts.check_repository_standards import build_report, inspect_repository
@@ -49,6 +50,13 @@ def by_dimension(findings):
 
 
 class RepositoryStandardsProbeTests(unittest.TestCase):
+    def test_existing_control_plane_routes_to_read_only_probe(self) -> None:
+        control = (Path(__file__).resolve().parents[1] / "docs" /
+                   "AGENT_CONTROL_PLANE.md").read_text(encoding="utf-8")
+        self.assertIn("| **Repository Standards** | `check repository standards` |", control)
+        self.assertIn("REPOSITORY_STANDARDS_ASSURANCE.md", control)
+        self.assertIn("Any `opensiro/upstream` comparison is adjacent-only", control)
+
     def test_complete_in_scope_repository_is_pinned_and_passes(self) -> None:
         sha, found = inspect_repository(
             "opensiro/vsm-harness-index", in_scope=True,
