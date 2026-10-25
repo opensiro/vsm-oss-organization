@@ -35,8 +35,9 @@ Reference head SHAs from successful public CLI readback:
 
 ## Verification and limitations
 
-- Native mock-based probe tests: **7/7 PASS** (scope isolation, routing, anonymous-field uncertainty, `403`, legacy protection distinction, source pin).
+- Native mock-based probe tests: **9/9 PASS** (scope isolation, routing, anonymous-field uncertainty, `403` on both rulesets and pinned README, legacy protection distinction, immutable source pin and fail-closed missing SHA).
 - First public-API run: **exit 0**, **15/15 required root routing checks PASS** across the five in-scope repos; all six `delete_branch_on_merge` fields were `UNKNOWN` through the anonymous runtime. This is **not** an all-checks PASS.
+- A subsequent public-API run after switching README/file requests from mutable `main` to the frozen commit SHA encountered **HTTP 403** during the request batch and exited **2** with `UNKNOWN` for affected required checks; the tool did **not** relabel those as successful or non-compliant. An unauthenticated rate-limit condition is plausible but was **not independently confirmed**. An authenticated GitHub connector separately read the immutable Upstream README and root listing successfully; no all-six CLI PASS is claimed for that second run.
 - GitHub's branch-protection detail endpoint reported integration access restrictions during authenticated connector inspection. The public branch summary still returned `protected=true` for Upstream, so the absence of a ruleset cannot be construed as no protection.
 - No determination that all observed 5/5 conventions are compulsory. No independent S3* audit claim, no exercised S3 decision, no S1 correction, no Upstream admission, no settings mutation, no permanent monitoring deployment.
 
