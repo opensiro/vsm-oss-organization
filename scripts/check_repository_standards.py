@@ -86,6 +86,17 @@ def inspect_repository(
     def record(dimension: str, status: str, rule: str, detail: str, source: str) -> None:
         findings.append(Finding(repo, dimension, status, rule, detail, source))
 
+    def record_unavailable_source(reason: str, source: str) -> None:
+        """An unavailable immutable ref cannot silently skip mandatory routing."""
+        route_rule = "REQUIRED" if in_scope else "ADVISORY"
+        record("pinned_head", "UNKNOWN", route_rule, reason, source)
+        for dimension in ("common_start_here", "organization_route", "shared_todo"):
+            record(dimension, "UNKNOWN", route_rule,
+                   f"source checks not attempted: {reason}", source)
+        for dimension in ("root_license", "workflow_files"):
+            record(dimension, "UNKNOWN", "ADVISORY",
+                   f"source checks not attempted: {reason}", source)
+
     metadata, error, url = _read(repo, "", api_base=api_base, token=token, get_json=get_json)
     if not isinstance(metadata, dict) or error:
         record("repository_metadata", "UNKNOWN", "REQUIRED" if in_scope else "ADVISORY",
@@ -98,6 +109,7 @@ def inspect_repository(
     branch = metadata.get("default_branch")
     if not isinstance(branch, str) or not branch:
         record("default_branch", "UNKNOWN", "ADVISORY", "no default branch in metadata", url)
+        record_unavailable_source("immutable default-branch head unavailable", url)
         return None, findings
     record("default_branch", "PASS" if branch == "main" else "DRIFT", "ADVISORY",
            f"default branch is {branch}; comparison baseline is main", url)
@@ -108,7 +120,8 @@ def inspect_repository(
     branch_payload, error, url = _read(
         repo, f"/branches/{quote(branch, safe='')}", api_base=api_base, token=token, get_json=get_json
     )
-    head_sha = branch_payload.get("commit", {}).get("sha") if isinstance(branch_payload, dict) else None
+    commit = branch_payload.get("commit") if isinstance(branch_payload, dict) else None
+    head_sha = commit.get("sha") if isinstance(commit, dict) else None
     protected = branch_payload.get("protected") if isinstance(branch_payload, dict) else None
     if error or not isinstance(protected, bool):
         record("branch_protected", "UNKNOWN", "ADVISORY", error or "protected not a boolean", url)
@@ -118,7 +131,8 @@ def inspect_repository(
 
     # Mutable settings are a point-in-time observation. Root source artifacts,
     # by contrast, must be fetched at one immutable commit or marked unknown.
-    pinned = isinstance(head_sha, str) and len(head_sha) == 40
+    pinned = (isinstance(head_sha, str) and len(head_sha) == 40
+              and all(char in "0123456789abcdefABCDEF" for char in head_sha))
 
     rulesets, error, url = _read(repo, "/rulesets", api_base=api_base, token=token, get_json=get_json)
     if error or not isinstance(rulesets, list):
@@ -131,13 +145,7 @@ def inspect_repository(
 
     if not pinned:
         pin_url = _endpoint(repo, f"/branches/{quote(branch, safe='')}", api_base)
-        record("pinned_head", "UNKNOWN", "REQUIRED" if in_scope else "ADVISORY",
-               "immutable default-branch head unavailable; source checks not attempted", pin_url)
-        for dimension in ("common_start_here", "organization_route", "shared_todo"):
-            record(dimension, "UNKNOWN", "REQUIRED" if in_scope else "ADVISORY",
-                   "no immutable revision for README", pin_url)
-        for dimension in ("root_license", "workflow_files"):
-            record(dimension, "UNKNOWN", "ADVISORY", "no immutable source revision", pin_url)
+        record_unavailable_source("immutable default-branch head unavailable", pin_url)
         return None, findings
 
     ref = quote(head_sha, safe="")
