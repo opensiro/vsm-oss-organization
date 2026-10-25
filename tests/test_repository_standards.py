@@ -24,11 +24,11 @@ def source_fixture(repo: str = "opensiro/vsm-harness-index", *, complete: bool =
                "delete_branch_on_merge": True},
         base + "/branches/main": {"protected": True, "commit": {"sha": SHA}},
         base + "/rulesets": [{"name": "Protect main", "enforcement": "active"}],
-        base + "/readme?ref=main": {
+        base + f"/readme?ref={SHA}": {
             "encoding": "base64", "content": base64.b64encode(readme.encode()).decode()
         },
-        base + "/contents?ref=main": [{"name": "LICENSE", "type": "file"}],
-        base + "/contents/.github/workflows?ref=main": [{"name": "verify.yml", "type": "file"}],
+        base + f"/contents?ref={SHA}": [{"name": "LICENSE", "type": "file"}],
+        base + f"/contents/.github/workflows?ref={SHA}": [{"name": "verify.yml", "type": "file"}],
     }
 
 
@@ -73,7 +73,7 @@ class RepositoryStandardsProbeTests(unittest.TestCase):
         base = f"{BASE}/upstream"
         responses[base]["delete_branch_on_merge"] = False
         responses[base + "/rulesets"] = []
-        responses[base + "/contents?ref=main"] = [{"name": "README.md", "type": "file"}]
+        responses[base + f"/contents?ref={SHA}"] = [{"name": "README.md", "type": "file"}]
         sha, found = inspect_repository("opensiro/upstream", in_scope=False,
                                         get_json=loader(responses))
         self.assertEqual(sha, SHA)
@@ -93,12 +93,30 @@ class RepositoryStandardsProbeTests(unittest.TestCase):
         self.assertEqual(dimension.status, "UNKNOWN")
         self.assertIn("403", dimension.detail)
 
+    def test_pinned_readme_403_is_unknown_not_routing_violation(self) -> None:
+        responses = source_fixture()
+        responses.pop(f"{BASE}/vsm-harness-index/readme?ref={SHA}")
+        sha, found = inspect_repository("opensiro/vsm-harness-index", in_scope=True,
+                                        get_json=loader(responses))
+        self.assertEqual(sha, SHA)
+        self.assertEqual(by_dimension(found)["common_start_here"].status, "UNKNOWN")
+        self.assertEqual(by_dimension(found)["shared_todo"].status, "UNKNOWN")
+
     def test_missing_metadata_is_unknown_and_does_not_claim_success(self) -> None:
         _, found = inspect_repository("opensiro/vsm-harness-index", in_scope=True,
                                       get_json=loader({}))
         self.assertEqual(len(found), 1)
         self.assertEqual(found[0].status, "UNKNOWN")
         self.assertEqual(found[0].rule, "REQUIRED")
+
+    def test_missing_sha_prevents_unpinned_source_checks(self) -> None:
+        responses = source_fixture()
+        responses[f"{BASE}/vsm-harness-index/branches/main"]["commit"]["sha"] = "invalid"
+        sha, found = inspect_repository("opensiro/vsm-harness-index", in_scope=True,
+                                        get_json=loader(responses))
+        self.assertIsNone(sha)
+        self.assertEqual(by_dimension(found)["shared_todo"].status, "UNKNOWN")
+        self.assertIn("immutable", by_dimension(found)["shared_todo"].detail)
 
     def test_report_scope_cannot_admit_adjacent_repository(self) -> None:
         scope_text = "Current in-scope public repositories:\n\n- `opensiro/vsm-harness-index`\n"
