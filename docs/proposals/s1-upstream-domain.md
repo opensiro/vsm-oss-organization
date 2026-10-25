@@ -108,3 +108,15 @@ If **A** is selected, stage reviewable cross-repository implementation:
 7. Preserve historical milestone/assessment provenance; do not automatically change M0–M5 closure/targets or select `TODO.md` work.
 
 No third-party submission, unsolicited maintainer contact, external code change, fork archive or new authority grant is initiated by this proposal.
+
+## 7. Operational-readiness evidence checkpoint — 2026-10-25
+
+This is a **dated evidence update**, not an S5 admission decision or a change to the proposed S1 authority envelope. The owning [Upstream operational-readiness review](https://github.com/opensiro/upstream/blob/corrective/reef-19-register-watch/reports/2026-10-25-upstream-operational-readiness.md) is included in the reviewable [Upstream PR #129](https://github.com/opensiro/upstream/pull/129); it must not be mistaken for merged `main` state.
+
+- The fixed 34-case Corrective cohort is **13 externally SUBMITTED / 21 BLOCKED / 0 QUEUED** on PR #129. The 21 blocked records are **not** published external PRs; this finite mandate must not be broadened implicitly. At the checkpoint, the Upstream default branch still had the older **8 SUBMITTED / 26 QUEUED** ledger.
+- [PR maintenance #125](https://github.com/opensiro/upstream/issues/125) has a deployed **read-only hourly monitor for 13 PRs**; PR #129 proposes a watchlist of **18**. An 18-target active/default-branch monitor and a completed maintainer-request repair loop are **not yet evidenced**.
+- The 18 proposed external targets were directly checked: **16 OPEN / 1 MERGED / 1 CLOSED**; the 13 Corrective PRs were **OPEN / Ready**, with no observed `CHANGES_REQUESTED` review. These are dated observations, not a perpetual count or an autonomous-contribution metric.
+- The connected generic executor in [Upstream #6](https://github.com/opensiro/upstream/issues/6) is **inactive**. The strict Index-first [functional-improvement experiment #56](https://github.com/opensiro/upstream/issues/56) lacks a complete externally validated assessment → native before/after → upstream-outcome witness. Corrective submission volume does not supply that missing evidence.
+- Consequently, the current evidence supports a sustained **adjacent** operating workstream and prospective S1 proposal, **not** a fourth admitted S1, an `S1=A` declaration, or a new standing external-publishing mandate. Reviewers should use [Organization #274](https://github.com/opensiro/vsm-oss-organization/issues/274) for the explicit S5 choice and apply the separate validation/migration gate in §6 if `ADMIT_WITH_ENVELOPE` is selected.
+
+**Synchronization rule:** Upstream remains the source of truth for publication and watcher facts; this proposal links a dated bounded snapshot and must not duplicate it as a live Organization ledger. Before applying any admission decision, re-read current default-branch Upstream state and any unmerged follow-up PRs.
