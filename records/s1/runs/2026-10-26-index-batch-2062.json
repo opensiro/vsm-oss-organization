@@ -1,0 +1,121 @@
+{
+  "schema_version": "1",
+  "mode": "s1-autonomous",
+  "domain": "Index",
+  "work_item": "https://github.com/opensiro/vsm-harness-index/issues/2062",
+  "starting_revision": "opensiro/vsm-harness-index@f73dbb3d1779142b6c572cde0b6f330855e731b8",
+  "governing_artifacts": [
+    "https://github.com/opensiro/vsm-harness-index/issues/2059",
+    "https://github.com/opensiro/vsm-harness-index/issues/2062",
+    "https://github.com/opensiro/vsm-oss-organization/tree/089837e3bc119b0c8b0b7b8224916a6a3a92b0a9/modes/s1-autonomous",
+    "https://github.com/opensiro/vsm-oss-organization/blob/089837e3bc119b0c8b0b7b8224916a6a3a92b0a9/contracts/s1/domain-contracts.md",
+    "https://github.com/opensiro/vsm-harness-skills/tree/v0.3.7/skills/assess-vsm-harness",
+    "https://github.com/opensiro/vsm-harness-profile/blob/v0.2.4/PROFILE.md"
+  ],
+  "boundary": "One explicitly requested three-row strictly serial Index batch: frozen RustCode, ar27111994 agent-harness asset utility, and integrated learn-claude-code-rs sfull. Each row required separate proposed review and canonical included/excluded PRs, exact-head CI and verified main. No global TODO selection, upstream modification, live provider experiment or new batch.",
+  "boundary_reachability": {
+    "reachable": true,
+    "custom_composition_required": false,
+    "statement": "Entered from current public START_HERE -> ECOSYSTEM -> Index contribution contracts and supported S1 mode. The session directly performed admission, source assessment, local recovery, PR publication, exact-head CI and authorized integration using exposed tools; no custom organizational actor/authority wiring or separate agent was instantiated. Issue #2062 held the admission/serial state during execution; this JSON is the closure record, not a contemporaneous opening timestamp or independent assessment."
+  },
+  "runtime_support": [
+    "ChatGPT/Codex session was the discretionary assessment actor; no separately executing reviewer or subagent.",
+    "GitHub connector supplied authenticated public source/write/PR/merge transport; account identity alone does not prove autonomous ownership.",
+    "Local git clones, shell/Python, released Skills structural checker, Index generators/validators and GitHub Actions CI supplied execution/integrity support.",
+    "Local git push had no authenticated credentials; API publication was used without credential expansion or bypassing any rejected approval."
+  ],
+  "admission": {
+    "result": "ADMIT",
+    "outcome": "Three canonical dispositions: RustCode included #774; asset utility excluded #775; integrated tutorial included #776. All six review/admission PRs merged. Final verified Index main 9a2e46d2ad2a574c2af216d90a791d791ffcfdd7.",
+    "delegated_decisions": [
+      "Select source-backed candidates after live identity/queue/catalog/branch/PR dedupe.",
+      "Freeze source identities, declare standard-distribution boundaries and apply selected Methodology.",
+      "Choose evidence strategy and included/excluded classifications; construct absence scopes and signatures.",
+      "Repair proposal completeness/generated drift, preserve byte identity and perform native validation."
+    ],
+    "forbidden_decisions": [
+      "Change Profile/Methodology semantics or active-contract selection.",
+      "Repin/skip frozen rows, overwrite another lane, import external or adjacent ownership, invent independent review.",
+      "Expand S3/S5 authority, global scheduling, credentials, external upstream writes or live model tests."
+    ],
+    "completion_evidence": [
+      "https://github.com/opensiro/vsm-harness-index/pull/2063",
+      "https://github.com/opensiro/vsm-harness-index/pull/2064",
+      "https://github.com/opensiro/vsm-harness-index/pull/2067",
+      "https://github.com/opensiro/vsm-harness-index/pull/2068",
+      "https://github.com/opensiro/vsm-harness-index/pull/2069",
+      "https://github.com/opensiro/vsm-harness-index/pull/2070"
+    ],
+    "escalation_conditions": [
+      "Occupied frozen identity, inaccessible required source, unresolved actual integration protection or a semantic/permission decision outside Index."
+    ],
+    "integration_boundary": "Reviewable local work and protected integration were distinguished. User requested execution and had standing merge authorization; live Protect main required PRs with zero required approving reviews. Each merge used actual connector rights, an expected exact head and successful validate CI. No independent approval was claimed."
+  },
+  "agent_owned_decisions": [
+    {
+      "decision": "Use a compact independent three-candidate lane; keep #2050 and other frozen queues separate.",
+      "evidence": "Index #2059 and #2062."
+    },
+    {
+      "decision": "RustCode has source-supported native coding operation but no credited differentiated metasystem in the declared session.",
+      "evidence": "Index #2063/#2064; immutable assessment at final main."
+    },
+    {
+      "decision": "Exclude ar27111994 agent-harness as adjacent asset lifecycle tooling after checking optional AI enrichment/reranking rather than borrowing external host agents.",
+      "evidence": "Index #2067/#2068."
+    },
+    {
+      "decision": "Assess documented integrated sfull separately from independent tutorial chapter workers/evaluator; named teammate and schedule records cannot donate execution.",
+      "evidence": "Index #2069/#2070."
+    }
+  ],
+  "human_interventions": [
+    {
+      "intervention": "Owner requested a new batch and execution, then said continue; no case-specific grade, repair or merge choice was supplied.",
+      "affected_decision": "Mission/outcome boundary and continuation.",
+      "ownership_effect": "Owner-selected mission; ordinary candidate/evidence/classification/recovery decisions stayed with this session. No additional operational human intervention observed."
+    }
+  ],
+  "disturbances_and_recovery": [
+    {
+      "disturbance": "RustCode proposal omitted generated model-era proposal counts.",
+      "response": "Regenerated analytics, revalidated and pushed follow-up before green exact-head integration.",
+      "boundary_preserved": true
+    },
+    {
+      "disturbance": "Proposed exclusion passed exclusion-normalized local structure, while CI normalizes every proposal as included and required all function sections.",
+      "response": "Expanded source-backed S2-S5 absence sections; ran the actual included-normalized proposal checker, obtained green CI and retained the exclusion disposition.",
+      "boundary_preserved": true
+    },
+    {
+      "disturbance": "Local git push lacked authentication and a full-file shell transport exceeded output limits.",
+      "response": "Published through the authorized GitHub connector; reconstructed changed files from source plus patches, with uploaded blob hashes matched to local Git hashes.",
+      "boundary_preserved": true
+    },
+    {
+      "disturbance": "API patch reconstruction initially changed README's missing final newline.",
+      "response": "Hash mismatch stopped tree publication; preserved the actual newline convention and verified every blob before creating the canonical transaction.",
+      "boundary_preserved": true
+    },
+    {
+      "disturbance": "The actual newly created control issue number differed from a preliminary numeric placeholder.",
+      "response": "Corrected the control issue command and ran preflight for #2062 before source classification/writes; the preliminary preflight was read-only.",
+      "boundary_preserved": true
+    }
+  ],
+  "validation": [
+    "Released Skills v0.3.7 structural checks passed for all three terminal artifacts on fetched Index main 9a2e46d2ad2a574c2af216d90a791d791ffcfdd7.",
+    "check_index.py, render_tldr/full_a/analytics/metrics checks, github_stars check, README metrics sync and 80/80 deterministic Index unit tests passed; working tree clean.",
+    "Successful exact review/admission validate runs: 40345759020, 40346357870, 40347507819, 40347987532, 40348777977, 40349127809; exact heads/merge refs recorded in Index #2062.",
+    "Upstream Rust/Cargo toolchain absent: no upstream compilation or live model/provider/agent-quality experiment claimed.",
+    "Organization validate_contract.py passed with Profile 0.2.4, released Methodology 0.3.7 and verified current Index."
+  ],
+  "terminal_state": "CLOSED_CHANGE",
+  "artifacts": [
+    "https://github.com/opensiro/vsm-harness-index/issues/2062",
+    "https://github.com/opensiro/vsm-harness-index/commit/9a2e46d2ad2a574c2af216d90a791d791ffcfdd7",
+    "https://github.com/opensiro/vsm-harness-index/blob/9a2e46d2ad2a574c2af216d90a791d791ffcfdd7/assessments/ru/rustcode.md",
+    "https://github.com/opensiro/vsm-harness-index/blob/9a2e46d2ad2a574c2af216d90a791d791ffcfdd7/assessments/ag/agent-harness-ar27111994.md",
+    "https://github.com/opensiro/vsm-harness-index/blob/9a2e46d2ad2a574c2af216d90a791d791ffcfdd7/assessments/le/learn-claude-code-rs.md"
+  ]
+}
