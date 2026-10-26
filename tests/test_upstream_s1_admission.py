@@ -18,8 +18,10 @@ class UpstreamS1AdmissionTests(unittest.TestCase):
     def test_legitimate_s5_return_and_four_explicit_s1_contracts(self):
         decision = read("records/s5/2026-10-26-upstream-domain-admission.md")
         contracts = read("contracts/s1/domain-contracts.md")
-        for marker in (PARENT_COMMENT, "ADMIT_WITH_ENVELOPE", "PARENT_DECIDED / APPLICATION_PROPOSED"):
+        for marker in (PARENT_COMMENT, "ADMIT_WITH_ENVELOPE", "PARENT_DECIDED / BOUNDARY_APPLIED / S1_WITNESS_PENDING"):
             self.assertIn(marker, decision)
+        self.assertIn("upstream/pull/134", decision)
+        self.assertIn("vsm-oss-organization/pull/292", decision)
         self.assertIn("## Upstream Contributions domain", contracts)
         domain_heads = [line for line in contracts.splitlines() if line.startswith("## ") and line.endswith(" domain")]
         self.assertEqual(4, len(domain_heads))
