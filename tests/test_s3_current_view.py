@@ -88,6 +88,8 @@ class TestS3ReadOnlyView(unittest.TestCase):
         self.assertIn("collect_s3_current_view.py --output", workflow)
         self.assertIn("s3-current-view-sources", workflow)
         self.assertIn("NOT_ASSESSED", workflow)
+        self.assertIn('"opensiro/upstream",', workflow)
+        self.assertIn("four domain source inventories", workflow)
 
     def test_unexpected_api_paths_rejected(self):
         with self.assertRaisesRegex(s.CurrentViewError, "refusing"):

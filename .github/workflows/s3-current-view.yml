@@ -43,6 +43,7 @@ jobs:
               "opensiro/vsm-harness-index",
               "opensiro/vsm-harness-skills",
               "opensiro/awesome-vsm-harness",
+              "opensiro/upstream",
           }
           assert report["classification"] == "CANDIDATES_ONLY_NOT_ACTIVE_S1_OR_S3_EVIDENCE"
           assert report["s3_admission"] == "NOT_ASSESSED"
@@ -53,7 +54,7 @@ jobs:
               assert all(item["work_admitted"] == "UNKNOWN"
                          for kind in ("open_issues", "open_pulls")
                          for item in domain[kind])
-          print("PASS: three domain sources, not S3 authority or actual S1 admission")
+          print("PASS: four domain source inventories, not S3 authority or actual S1 work admission")
           PY
 
       - name: Save source inventory for human case screening
