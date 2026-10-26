@@ -119,7 +119,7 @@ awesome-vsm-harness
 
 This chain separates semantics, procedure, canonical assessment instances and curation.
 
-The current bounded `vsm-oss-organization` system remains the one declared in [`README.md`](README.md) and [`ORGANIZATION.md`](ORGANIZATION.md). In particular, the current operational S1 domains remain Index, Skills and Awesome. The experimental Capability repository described below exists outside that bounded system unless and until a separate organizational-boundary change admits it.
+The current bounded `vsm-oss-organization` system remains the one declared in [`README.md`](README.md) and [`ORGANIZATION.md`](ORGANIZATION.md). Its four current operational S1 domains are **Index, Skills, Awesome and Upstream Contributions** following the [parent S5 decision #274](https://github.com/opensiro/vsm-oss-organization/issues/274#issuecomment-6420871211). `opensiro/upstream` retains ownership of external OSS intervention/maintenance records and does not inherit canonical assessment or third-party maintainer authority. The experimental Capability repository described below remains outside the bounded system unless a separate organizational-boundary change admits it.
 
 ## Profile versions and downstream assessments
 
@@ -205,7 +205,7 @@ opensiro/vsm-harness-capability
 
 Its intended scope is **general functional capability**. The word `general` is intentionally a scope property rather than part of the repository name.
 
-The repository is currently **experimental**. Its existence does not make it a current S1 domain and does not expand the canonical five-repository `vsm-oss-organization` boundary.
+The repository is currently **experimental**. Its existence does not make it a current S1 domain and does not expand the canonical six-repository `vsm-oss-organization` boundary.
 
 Its intended durable responsibilities are:
 
@@ -376,6 +376,7 @@ plain-language public presentation
 Examples:
 
 - capability observation schema → `vsm-harness-capability`;
+- external OSS PR publication/feedback ledger → `upstream`;
 - why Capability is separate from Index → this document;
 - definition of S3* → `vsm-harness-profile`;
 - procedure for canonical general S3* assessment → `vsm-harness-skills`;

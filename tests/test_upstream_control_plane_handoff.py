@@ -1,4 +1,4 @@
-"""The existing Control Plane's adjacent Upstream handoff stays non-operational."""
+"""Upstream admission never activates the exact-stage write handoff."""
 from pathlib import Path
 import unittest
 
@@ -52,12 +52,12 @@ class UpstreamControlPlaneHandoffTests(unittest.TestCase):
                      "matching fork and push rights", "40-hex base SHA"):
             with self.subTest(term=term):
                 self.assertIn(term, self.handoff)
-        self.assertIn("only current", self.handoff)
-        self.assertIn("not admitted", self.handoff)
+        self.assertIn("current", self.handoff)
+        self.assertIn("does not activate this live write stage", self.handoff)
         self.assertNotIn("active writer", self.boundary.lower())
 
     def test_source_of_truth_not_duplicated_as_local_executor(self):
-        self.assertIn("no Organization permission", self.boundary)
+        self.assertIn("no external execution permission", self.boundary)
         self.assertIn("Upstream #6 owns", self.boundary)
         self.assertIn("Organization #274", self.boundary)
         self.assertIn("not a second interface", self.handoff.lower())

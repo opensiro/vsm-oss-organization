@@ -7,6 +7,7 @@ scope:
     - opensiro/vsm-harness-skills
     - opensiro/vsm-harness-index
     - opensiro/awesome-vsm-harness
+    - opensiro/upstream
     - opensiro/vsm-oss-organization
 
 principles:
@@ -183,6 +184,26 @@ repositories:
       - commits
       - pull_request_count
       - issue_count
+
+  opensiro/upstream:
+    organizational_role: operational_s1
+    durable_outcome: source-backed external OSS interventions and attributable fork/PR feedback and maintenance outcomes
+    primary_metric: verified_external_outcomes
+    metrics:
+      verified_external_outcomes:
+        kind: stock
+        source:
+          mode: semantic_evidence
+          paths:
+            - registry.yaml
+            - data/corrective-publication/2026-10-23-01.json
+            - data/improvement-publication/2026-10-24-01.json
+        completion_gate: first-party external disposition plus attributable contribution identity and source-pinned evidence; no inferred deployed benefit
+    non_kpis:
+      - external_pr_count
+      - acceptance_rate_inferred_from_small_cohort
+      - merged_as_productivity
+      - vsm_autonomy_grade
 
   opensiro/vsm-harness-profile:
     organizational_role: normative_semantic_authority

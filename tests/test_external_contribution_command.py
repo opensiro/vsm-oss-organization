@@ -35,7 +35,7 @@ class ExternalContributionCommandTests(unittest.TestCase):
         self.assertIn("The contributor may provide PR links voluntarily", self.command)
 
     def test_external_owner_and_experimental_ledger_boundary(self):
-        for clause in ("outside the bounded Organization S1 scheduler",
+        for clause in ("outside** the six-repository Organization",
                        "upstream as the **system-in-focus**",
                        "product_native_fit=pass", "observations.json", "snapshot.json",
                        "not an upstream need", "**not required**"):

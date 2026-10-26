@@ -19,7 +19,7 @@ The presence of a contract or role does **not** establish that the corresponding
 
 ## Current layout
 
-- `s1/domain-contracts.md` — local operational envelopes for Index, Skills, and Awesome.
+- `s1/domain-contracts.md` — local operational envelopes for Index, Skills, Awesome, and Upstream Contributions.
 - `s1/task-admission-recovery.md` — S1 admission, recovery, intervention, escalation, and terminal-state contract.
 - `s3/current-control.md` — S3-specific current-control request/decision/return constructor.
 - `s3star/audit.md` — complementary-audit constructor contract.

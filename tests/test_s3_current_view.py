@@ -49,6 +49,8 @@ def fake_api(*, issue_count=1, missing=False):
 class TestS3ReadOnlyView(unittest.TestCase):
     def test_domains_and_pinned_main_refs_without_s3_assertions(self):
         obj = s.collect(fake_api(), observed_at="2026-10-15T00:00:00+00:00")
+        self.assertEqual(4, len(s.REPOSITORIES))
+        self.assertIn("opensiro/upstream", s.REPOSITORIES)
         self.assertEqual(s.BOUNDARY, obj["classification"])
         self.assertEqual("NOT_ASSESSED", obj["s3_admission"])
         self.assertEqual(len(s.REPOSITORIES), len(obj["domains"]))
@@ -86,6 +88,8 @@ class TestS3ReadOnlyView(unittest.TestCase):
         self.assertIn("collect_s3_current_view.py --output", workflow)
         self.assertIn("s3-current-view-sources", workflow)
         self.assertIn("NOT_ASSESSED", workflow)
+        self.assertIn('"opensiro/upstream",', workflow)
+        self.assertIn("four domain source inventories", workflow)
 
     def test_unexpected_api_paths_rejected(self):
         with self.assertRaisesRegex(s.CurrentViewError, "refusing"):

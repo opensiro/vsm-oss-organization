@@ -14,6 +14,7 @@ Only these current public repositories are in scope:
 - `opensiro/vsm-harness-skills`
 - `opensiro/vsm-harness-index`
 - `opensiro/awesome-vsm-harness`
+- `opensiro/upstream`
 - `opensiro/vsm-oss-organization`
 
 Repositories outside this set are excluded even if they belong to OpenSiro or consume these artifacts.
@@ -32,6 +33,7 @@ The public scoreboard measures **durable repository-owned state** and qualified 
 | reassessment event accepted into canonical history | yes |
 | released Profile/Methodology state validated under its repository contract | yes |
 | Awesome entry admitted and canonical-Index consistency validated | yes |
+| external OSS PR submitted or merged without independent outcome/fit evidence | lifecycle observation, not verified improvement KPI |
 | organization control/audit transaction completed with the required semantic evidence | yes |
 
 Commits, merged PRs, workflow runs, and similar quantities may be exposed as **secondary engineering telemetry**. They must never be presented as productivity, quality, or verified-output metrics.
@@ -147,6 +149,12 @@ A change in the stock over 24h/7d/30d is net curation-state change; a negative v
 
 Not KPIs: link count, section count, candidate count, README LOC, commits, PR count, issue count.
 
+### `opensiro/upstream`
+
+**Role:** operational S1 for source-backed external OSS contributions, attributed lifecycle and maintenance outcomes.
+
+Primary candidate: **Verified external outcomes** (`stock`, `semantic_evidence`): currently **unclaimed** by Organization's generic collector until Upstream-owned contribution identity, native effect/feedback and completion semantics can be evaluated reproducibly. A GitHub PR count does not establish deployed improvement or productivity; blocked, closed-unmerged and duplicate/replacement chains must remain distinct. Upstream owns its receipts and portfolio; Organization retains the experimental product-native fit ledger without moving it or turning it into a KPI.
+
 ### `opensiro/vsm-harness-profile`
 
 **Role:** normative semantic authority.
@@ -220,7 +228,7 @@ A large commit count may demonstrate the amount of auditable Git activity behind
 
 ## Secondary PR lifecycle observability (Organization #208)
 
-A separate, GitHub-owned telemetry surface records the **five public in-scope repositories** as explicitly *non-KPI* PR lifecycle activity. It must not be added to canonical assessment counts, primary repository outcomes, productivity scores, contributor rankings, or the experimental external-upstream intervention cohort.
+A separate, GitHub-owned telemetry surface records the **six public in-scope repositories** as explicitly *non-KPI* PR lifecycle activity. It must not be added to canonical assessment counts, primary repository outcomes, productivity scores, contributor rankings, or the experimental external-upstream intervention cohort.
 
 The source is GitHub's PR/review REST records, not website HTML. The collector `scripts/collect_pr_activity.py` produces a machine-readable snapshot with each repository, UTC `collected_at`, API provenance, data completeness and the half-open event windows **(cutoff, collected_at]** for **24h, 7d, 30d**. For each window:
 

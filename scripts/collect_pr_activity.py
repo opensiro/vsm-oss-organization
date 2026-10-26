@@ -24,6 +24,7 @@ REPOSITORIES = (
     "opensiro/vsm-harness-skills",
     "opensiro/vsm-harness-index",
     "opensiro/awesome-vsm-harness",
+    "opensiro/upstream",
     "opensiro/vsm-oss-organization",
 )
 WINDOWS = {"24h": timedelta(hours=24), "7d": timedelta(days=7), "30d": timedelta(days=30)}
@@ -276,7 +277,7 @@ def main() -> int:
     result = collect(GitHubAPI(token=os.getenv(args.token_env), max_pages=args.max_pages), now)
     args.output.parent.mkdir(parents=True, exist_ok=True)
     args.output.write_text(json.dumps(result, indent=2, sort_keys=True)+"\n", encoding="utf-8")
-    print(f"PR telemetry: {result['complete_repositories']}/5 complete; source snapshot {args.output}")
+    print(f"PR telemetry: {result['complete_repositories']}/{len(REPOSITORIES)} complete; source snapshot {args.output}")
     return 0 if result["complete_repositories"] == len(REPOSITORIES) else 2
 
 

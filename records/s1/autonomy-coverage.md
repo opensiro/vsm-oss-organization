@@ -6,6 +6,8 @@ M0 constructed three declared operational S1 domains:
 - **Skills** — `opensiro/vsm-harness-skills`;
 - **Awesome** — `opensiro/awesome-vsm-harness`.
 
+On 2026-10-26 the legitimate S5 parent selected `ADMIT_WITH_ENVELOPE` for the **fourth current domain**, **Upstream Contributions** — `opensiro/upstream`; see [Organization #274](https://github.com/opensiro/vsm-oss-organization/issues/274#issuecomment-6420871211) and [the parent return](../s5/2026-10-26-upstream-domain-admission.md). The decision is a scope/delegation act, not a new operational autonomy assessment. Historical M0 observations below remain unchanged.
+
 `opensiro/vsm-harness-profile` and `opensiro/vsm-oss-organization` are not current operational S1 domains. Profile supplies normative semantics; Organization is the metasystem/control-construction surface.
 
 The executable actor adapter is [`../../roles/S1.md`](../../roles/S1.md). Canonical local envelopes are in [`../../contracts/s1/domain-contracts.md`](../../contracts/s1/domain-contracts.md). Admission/recovery is governed by [`../../contracts/s1/task-admission-recovery.md`](../../contracts/s1/task-admission-recovery.md).
@@ -57,8 +59,9 @@ Representative evidence: `opensiro/awesome-vsm-harness#2`, `#3`, and `#4` perfor
 | Index | yes | yes | yes | yes | yes |
 | Skills | yes | yes | yes | yes | yes |
 | Awesome | yes | yes | yes | yes | yes |
+| Upstream Contributions | S5-selected envelope | separate bounded execution/rights verification required | externally attributed disposition evidence required | demonstrate with real maintenance/recovery receipts | yes, including maintainer/policy/permission boundaries |
 
-These are **construction and operational-path claims**. They do not by themselves establish `S1=A`.
+The first three rows summarize historical M0 construction evidence; the fourth states the newly selected **contract and evidence requirements**, not a completed operational witness. None establishes `S1=A` by itself.
 
 The organization intentionally allows contributor-owned runtimes, schedulers, model choice, credentials, budgets, and sandboxes. Whether a concrete deployed mode therefore qualifies as `A`, `C`, another ownership arrangement, or insufficient evidence is a separate Methodology question. See [`../assessment-snapshots/2026-09-30-general-preassessment.md`](../assessment-snapshots/2026-09-30-general-preassessment.md) for one bounded independent pre-assessment.
 

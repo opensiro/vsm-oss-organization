@@ -136,6 +136,6 @@ A batch result is empirical reliability evidence only. It must not be reported a
 
 ## Current scope
 
-The routing invariant applies to the five repositories declared in the Organization README: Profile, Skills, Index, Awesome, and Organization itself.
+The routing invariant now applies to the **six repositories** declared in the Organization README: Profile, Skills, Index, Awesome, Upstream, and Organization itself. The later S5 decision [#274](https://github.com/opensiro/vsm-oss-organization/issues/274#issuecomment-6420871211) changed the current membership; earlier frozen five-repository trial results remain historical and must not be silently relabelled as six-repository coverage. The admitted Upstream README must directly expose the shared bootstrap, Organization contributor route and TODO while preserving its separate upstream-native task ownership.
 
 `vsm-harness-capability` is an experimental adjacent research repository and is not currently part of this bounded routing-conformance set. `arctic-0`, `terminal-bench-vsm`, `opensiro.com`, and other out-of-scope OpenSiro repositories are likewise not subjects of this invariant unless the canonical Organization scope is explicitly changed.
