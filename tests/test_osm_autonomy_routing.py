@@ -39,9 +39,14 @@ class OSMRoutingTests(unittest.TestCase):
                 self.assertIn(phrase, self.control_section)
 
     def test_no_silent_upstream_admission_or_live_authorization(self):
+        # Check the operative authority boundary, not obsolete wording from an
+        # earlier draft of the adjacent Upstream delegation route.
         for phrase in ("Organization #274", "PROPOSED / NOT ADMITTED",
                        "Upstream #6", "external PR publication decision",
-                       "no code/doc change", "stage-specific live authorization"):
+                       "neither an S5 admission nor a local grant is implied",
+                       "before** exercising new rights",
+                       "outside separately authorized cases",
+                       "This general design grants neither a standing fork-creation port"):
             with self.subTest(phrase=phrase):
                 self.assertIn(phrase.lower(), self.control_section.lower())
         for phrase in ("authorize=True", "GitHub login", "proposal digest"):
