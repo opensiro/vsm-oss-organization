@@ -60,6 +60,14 @@ jobs:
           path: awesome
           fetch-depth: 0
 
+      - name: Check out Upstream Contributions
+        uses: actions/checkout@v4
+        with:
+          repository: opensiro/upstream
+          ref: main
+          path: upstream
+          fetch-depth: 0
+
       - name: Set up Python
         uses: actions/setup-python@v5
         with:
@@ -83,6 +91,7 @@ jobs:
           --skills-root skills
           --index-root index
           --awesome-root awesome
+          --upstream-root upstream
           --organization-root organization
           --output vsm-oss-metrics.json
 

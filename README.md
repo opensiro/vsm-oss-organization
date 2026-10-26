@@ -28,9 +28,12 @@ Current in-scope public repositories:
 - `opensiro/vsm-harness-skills`
 - `opensiro/vsm-harness-index`
 - `opensiro/awesome-vsm-harness`
+- `opensiro/upstream`
 - `opensiro/vsm-oss-organization`
 
-The operational S1 domains are Index, Skills, and Awesome. Profile is the normative semantic authority consumed by the organization. Organization is the metasystem/control-construction surface.
+The operational S1 domains are **Index, Skills, Awesome, and Upstream Contributions**. Profile is the normative semantic authority consumed by the organization. Organization is the metasystem/control-construction surface.
+
+**S5 boundary return (2026-10-26):** the legitimate parent selected `ADMIT_WITH_ENVELOPE` in [Organization #274](https://github.com/opensiro/vsm-oss-organization/issues/274#issuecomment-6420871211). The fourth S1 domain owns bounded third-party OSS contribution and maintenance outcomes; it does **not** inherit permission to publish or merge external PRs, alter licensing, or change canonical VSM assessments. See the [decision and application record](records/s5/2026-10-26-upstream-domain-admission.md). Admission is an organizational boundary, **not** proof of `S1=A` or a new M0–M5 result.
 
 See [`docs/ORGANIZATION.md`](docs/ORGANIZATION.md) for the system boundary and viability criterion.
 
@@ -54,7 +57,7 @@ Planning, work contracts, and current scheduling are separate:
 - [`docs/ROADMAP.md`](docs/ROADMAP.md) is the readable construction/evidence projection;
 - [`TODO.md`](TODO.md) is the **Git-native scheduler** for selected `NOW` / `NEXT` / `BLOCKED` issues only.
 
-**M0–M2 completed their Organization-local construction/assessment milestones.** M2 closure is evidenced in the [source-first parent-return revalidation](docs/reviews/2026-10-15-m2-s5-parent-source-revalidation.md). The `A — C C — P` M2 vector is a local milestone target/outcome, not a new canonical Index general assessment.
+**M0–M2 completed their Organization-local construction/assessment milestones under the then-current three-S1 scope.** M2 closure is evidenced in the [source-first parent-return revalidation](docs/reviews/2026-10-15-m2-s5-parent-source-revalidation.md). The later S5 admission of Upstream does not retroactively rewrite those historical assessments. The `A — C C — P` M2 vector is a local milestone target/outcome, not a new canonical Index general assessment.
 
 Active formal work is M3 — **the next formal construction milestone, not a completed autonomy claim**. First-party D1-A v1 reference code is **source-prepared but inactive**: the [agent-owned decision/return mode](modes/s3-autonomous/RUN.md) composes model selection, authority and S1-source checks, bounded delivery, and subsequent feedback, but its [machine-readable grant](contracts/s3/autonomous-d1a.json) remains `PENDING_S5_PUBLIC_ATTESTATION`. In particular, no independently attributable S5 issuance, concrete authorized agent execution identity, effective term, or positive first-party `S3=A` ownership/closure assessment has been established. **M3 [#5](https://github.com/opensiro/vsm-oss-organization/issues/5) remains open and `S3=A` remains unproven**; the previously supported Organization-local `S3=C` result is unchanged.
 

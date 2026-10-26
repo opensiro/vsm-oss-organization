@@ -23,6 +23,7 @@ scope:
     - opensiro/vsm-harness-skills
     - opensiro/vsm-harness-index
     - opensiro/awesome-vsm-harness
+    - opensiro/upstream
     - opensiro/vsm-oss-organization
 repositories:
   opensiro/vsm-harness-profile:
@@ -41,6 +42,15 @@ repositories:
     organizational_role: operational_s1
     primary_metric: curated_representative_entries
     metrics: {}
+  opensiro/upstream:
+    organizational_role: operational_s1
+    primary_metric: verified_external_outcomes
+    metrics:
+      verified_external_outcomes:
+        kind: stock
+        source:
+          mode: semantic_evidence
+          paths: [registry.yaml]
   opensiro/vsm-oss-organization:
     organizational_role: metasystem_control_construction
     primary_metric: current_formal_construction_milestone
@@ -91,6 +101,9 @@ class CollectorTests(unittest.TestCase):
 
         (self.roots["organization"] / "metrics.yaml").write_text(CONTRACT, encoding="utf-8")
         commit_all(self.roots["organization"], "2026-08-01T12:00:00Z", "contract")
+
+        (self.roots["upstream"] / "registry.yaml").write_text("projects: []\n", encoding="utf-8")
+        commit_all(self.roots["upstream"], "2026-08-01T12:00:00Z", "upstream fixture")
 
         (self.roots["profile"] / "VERSION").write_text("0.2.3\n", encoding="utf-8")
         commit_all(self.roots["profile"], "2026-08-01T12:00:00Z", "profile 0.2.3")
@@ -217,6 +230,18 @@ class CollectorTests(unittest.TestCase):
         self.assertIsNone(org["value"])
         for label in ("24h", "7d", "30d"):
             self.assertEqual(org["window_change"][label]["status"], "unclaimed_semantic_evidence")
+
+    def test_upstream_domain_does_not_fabricate_external_outcome_count(self):
+        snapshot = self.snapshot()
+        upstream = snapshot["repositories"]["opensiro/upstream"]
+        self.assertEqual("operational_s1", upstream["organizational_role"])
+        outcomes = upstream["metrics"]["verified_external_outcomes"]
+        self.assertIsNone(outcomes["value"])
+        self.assertEqual("unclaimed_semantic_evidence", outcomes["claim_status"])
+        self.assertFalse(outcomes["completion_gate_evaluated"])
+        self.assertEqual(["registry.yaml"], outcomes["evidence_paths"])
+        for label in ("24h", "7d", "30d"):
+            self.assertEqual("unclaimed_semantic_evidence", outcomes["window_change"][label]["status"])
 
     def test_activity_is_separate_non_kpi_telemetry(self):
         snapshot = self.snapshot()

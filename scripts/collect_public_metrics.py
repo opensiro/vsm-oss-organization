@@ -31,6 +31,7 @@ REPOSITORIES = {
     "skills": "opensiro/vsm-harness-skills",
     "index": "opensiro/vsm-harness-index",
     "awesome": "opensiro/awesome-vsm-harness",
+    "upstream": "opensiro/upstream",
     "organization": "opensiro/vsm-oss-organization",
 }
 
@@ -436,6 +437,14 @@ def collect_snapshot(
         ),
     )
     repositories[awesome_repo] = awesome
+
+    # Do not manufacture an outcome count from external GitHub PR events.
+    # Upstream's general completed-outcome metric stays unclaimed until its
+    # own provenance/completion contract is mechanically consumable.
+    upstream_repo = REPOSITORIES["upstream"]
+    upstream = base(upstream_repo)
+    upstream["metrics"].update(semantic_metrics_unclaimed(repo_contracts[upstream_repo]))
+    repositories[upstream_repo] = upstream
 
     organization_repo = REPOSITORIES["organization"]
     organization = base(organization_repo)

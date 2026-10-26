@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Read-only source inventory of the three in-scope OpenSiro S1 domains.
+"""Read-only source inventory of the four in-scope OpenSiro S1 domains.
 
 This is an S3 *support* view, not S3 authority, active S1 admission, an S3
 current-control decision, a transaction, or evidence for a VSM grade.
@@ -20,6 +20,7 @@ REPOSITORIES = (
     "opensiro/vsm-harness-index",
     "opensiro/vsm-harness-skills",
     "opensiro/awesome-vsm-harness",
+    "opensiro/upstream",
 )
 API = "https://api.github.com"
 ISSUE_LIMIT = 100
@@ -75,7 +76,7 @@ def collect(fetch: Callable[[str], object] = github_get, *, observed_at: str | N
     observed_at = observed_at or datetime.now(timezone.utc).isoformat(timespec="seconds")
     output: dict = {
         "observed_at_utc": observed_at,
-        "system_in_focus": "OpenSiro VSM Harness OSS: Index/Skills/Awesome S1",
+        "system_in_focus": "OpenSiro VSM Harness OSS: Index/Skills/Awesome/Upstream S1",
         "classification": BOUNDARY,
         "s3_admission": "NOT_ASSESSED",
         "warning": "Open issues/PRs are candidate sources, never proof of executing S1 work, shared constraint, G1 authority or S3 function.",

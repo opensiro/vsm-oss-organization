@@ -1,6 +1,6 @@
 # S1 domain contracts
 
-This file defines the current operational envelopes for the three declared S1 domains of the Opensiro VSM Harness OSS organization.
+This file defines the current operational envelopes for the four declared S1 domains of the Opensiro VSM Harness OSS organization.
 
 It applies the selected VSM Harness Profile but does not redefine S1. Repository location alone is insufficient: qualifying work must contribute directly to the declared local operational outcome and remain inside the local authority envelope.
 
@@ -9,6 +9,7 @@ Declared operational S1 domains:
 - **Index** — `opensiro/vsm-harness-index`
 - **Skills** — `opensiro/vsm-harness-skills`
 - **Awesome** — `opensiro/awesome-vsm-harness`
+- **Upstream Contributions** — `opensiro/upstream`
 
 `opensiro/vsm-harness-profile` is the normative semantic source. `opensiro/vsm-oss-organization` is the metasystem/control-construction surface. Neither is an operational S1 domain at this recursion.
 
@@ -81,6 +82,28 @@ Use current Index relationships, representative-form evidence, formatting/lint c
 ### Escalate out of Awesome S1
 
 Escalate changes to Index canonical assessment state, Profile/Methodology semantics, organization identity/policy, cross-S1 authority, security/permissions, licensing policy, or separately owned integration rights.
+
+## Upstream Contributions domain
+
+### Durable outcome
+
+Produce, maintain and truthfully report attributable upstream-native interventions to external OSS harnesses: source-backed opportunity selection, native-tested changes, reviewable public contributor-fork/PR packages when authorized, feedback/maintenance, accepted/rejected/blocked outcomes, and provenance-preserving registry/portfolio updates. An intervention may close as evidence-backed `CLOSED_NO_CHANGE` or escalation; external acceptance is not guaranteed.
+
+### Local environment
+
+Third-party OSS repositories and maintainers, current upstream source and contribution rules, issue/PR/review/CI signals, legal/security/CLA/DCO requirements, public OpenSiro contributor forks, optional canonical Index findings, and the Upstream-owned experimental procedures/ledgers.
+
+### Local decision rights
+
+Within an admitted Upstream task, S1 may research and select an opportunity, test product-native fit, prepare scoped source changes using native deterministic script/CLI checks, maintain OpenSiro's own evidence/registry, triage external feedback and perform ordinary locally authorized correction/recovery. GitHub writes to forks or external PRs require a **separate effective actor, provider permission, exact-stage grant and applicable third-party rules**. The historic finite Corrective cohort is not a standing permission for future unrelated work.
+
+### Completion evidence
+
+Use pinned first-party source/issue/PR refs, before/after native behavior when relevant, exact source/branch/test/provenance receipts, authenticated external lifecycle readback, preserved negative outcomes, attributable decisions, policy gates, and escalation/maintenance evidence. A merged third-party PR proves that disposition, not deployed-user benefit, causal VSM effect or autonomous S1 ownership.
+
+### Escalate out of Upstream S1
+
+Escalate external maintainer acceptance/merge/assignment, permissions or unreached grant, CLA/DCO/legal/security decisions, third-party policy exceptions, cross-domain authority, normative Profile/Skills/Index interpretation, experimental fit-metric policy migration, system boundary/identity changes and generalized publication mandates. Never issue third-party comments/PRs, merge or alter repository settings from S1 designation alone.
 
 ## Evidence boundary
 

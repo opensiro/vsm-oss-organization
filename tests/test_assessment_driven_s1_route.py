@@ -13,7 +13,7 @@ class AssessmentDrivenS1RouteTests(unittest.TestCase):
     def setUpClass(cls):
         cls.document = CONTROL.read_text(encoding="utf-8")
         cls.test_route = cls.document.split(
-            "### S1 function test — Upstream Contributions (candidate, not admitted)", 1
+            "### S1 function test — Upstream Contributions", 1
         )[1].split("### Discovery and the offered list", 1)[0]
         cls.generic = cls.document.split(
             "## External upstream contributions", 1
@@ -54,9 +54,9 @@ class AssessmentDrivenS1RouteTests(unittest.TestCase):
             with self.subTest(phrase=phrase):
                 self.assertIn(phrase.lower(), self.test_route.lower())
 
-    def test_test_is_not_live_permission_or_formal_s1_admission(self):
+    def test_admitted_domain_test_does_not_grant_live_permission_or_autonomy(self):
         for phrase in (
-            "PROPOSED / NOT ADMITTED",
+            "fourth admitted domain",
             "read-only",
             "Upstream #6",
             "Organization #274",
@@ -70,8 +70,8 @@ class AssessmentDrivenS1RouteTests(unittest.TestCase):
 
     def test_generic_discovery_is_preserved_as_distinct_command(self):
         self.assertIn("`contribute to other harnesses`", self.generic)
-        self.assertIn("opt-in contribution-discovery", self.generic)
-        self.assertIn("candidate-discovery inputs **only**", self.generic)
+        self.assertIn("opt-in Upstream S1 discovery", self.generic)
+        self.assertIn("candidate-discovery inputs only", self.generic)
         self.assertIn("still provides general OSS discovery", self.test_route)
 
 

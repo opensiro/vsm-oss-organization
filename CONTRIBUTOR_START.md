@@ -16,7 +16,7 @@ Public repositories outside the declared scope are not governed by this routing 
 
 ## Supported autonomous S1 entry
 
-When the resolved work is one ordinary bounded operational contribution in exactly one S1 domain — Index, Skills, or Awesome — use [`modes/s1-autonomous/README.md`](modes/s1-autonomous/README.md).
+When the resolved work is one ordinary bounded operational contribution in exactly one S1 domain — Index, Skills, Awesome, or Upstream Contributions — use [`modes/s1-autonomous/README.md`](modes/s1-autonomous/README.md). Upstream's separate exact-stage external-write gates remain controlling.
 
 ```text
 CONTRIBUTOR_START.md
@@ -84,6 +84,7 @@ Direct discoverability of the shared bootstrap/current-work/Organization route i
 | `opensiro/vsm-harness-skills` | assessment methodology, skills, validation tooling |
 | `opensiro/vsm-harness-index` | evidence-backed assessments, catalog/provenance, generated views |
 | `opensiro/awesome-vsm-harness` | curated downstream organizational examples |
+| `opensiro/upstream` | third-party OSS improvements, authorized contributor-fork work, external PR lifecycle/maintenance and native functional evidence |
 | `opensiro/vsm-oss-organization` | contributor roles, authority, escalation, cross-repository control, work selection, organizational evolution |
 
 ## Agent decision procedure
@@ -91,7 +92,7 @@ Direct discoverability of the shared bootstrap/current-work/Organization route i
 1. Existing tracked work → [`TODO.md`](TODO.md) → linked owner.
 2. Otherwise identify the starting repository's local source-of-truth responsibility.
 3. Local change → stay with that repository.
-4. Ordinary bounded Index/Skills/Awesome S1 contribution → [`modes/s1-autonomous/README.md`](modes/s1-autonomous/README.md).
+4. Ordinary bounded Index/Skills/Awesome/Upstream S1 contribution → [`modes/s1-autonomous/README.md`](modes/s1-autonomous/README.md), then its owning repository/issue and exact action gate.
 5. Cross-repository authority/escalation/current-work/milestone/control-plane change → Organization.
 6. Identity/ultimate-policy/system-boundary matter → parent-governed S5 admission above.
 

@@ -1,6 +1,6 @@
 # Public OSS PR lifecycle snapshots (secondary, non-KPI)
 
-**Owner:** `opensiro/vsm-oss-organization` (#208). This document owns the archive/collection mechanics, while `docs/METRICS.md` owns public metric interpretation. The bounded five-repository scope comes from the current Organization README.
+**Owner:** `opensiro/vsm-oss-organization` (#208). This document owns the archive/collection mechanics, while `docs/METRICS.md` owns public metric interpretation. The bounded six-repository scope comes from the current Organization README after S5 decision #274. Historical five-repository snapshots retain their original scope.
 
 The source of truth for PR lifecycle events and reviews is the **public GitHub REST API**; no browser or website parsing is involved. Unlike repository-owned *canonical outcome* metrics, this is gross engineering activity, not productivity/quality/verified-output evidence.
 
@@ -25,7 +25,7 @@ refs/heads/telemetry/pr-lifecycle
 
 This is a Git-backed **append-only observational archive**, so old snapshots remain reviewable by commit SHA. The action never pushes generated data or changes to `main` and does not publish a website. Archive branch updates are serialized. Even a partial/unavailable snapshot is archived with honest status and the run fails visibly afterwards. If the branch or write permissions are unavailable, the workflow reports failure; the PR/review source remains in GitHub but there is **no claim that a snapshot was archived**.
 
-Do not sum repository median hours or extrapolate review latencies from partial histories. Human identity and co-authorship of multi-actor upstream interventions belong to the separate experimental provenance ledger, not to this five-repo PR-event count.
+Do not sum repository median hours or extrapolate review latencies from partial histories. Human identity and co-authorship of multi-actor external interventions belong to the separate experimental provenance ledger, not to this six-repo first-party PR-event count.
 
 ## Validation
 

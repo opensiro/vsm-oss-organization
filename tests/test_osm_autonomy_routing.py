@@ -38,24 +38,23 @@ class OSMRoutingTests(unittest.TestCase):
             with self.subTest(phrase=phrase):
                 self.assertIn(phrase, self.control_section)
 
-    def test_no_silent_upstream_admission_or_live_authorization(self):
-        # Check the operative authority boundary, not obsolete wording from an
-        # earlier draft of the adjacent Upstream delegation route.
-        for phrase in ("Organization #274", "PROPOSED / NOT ADMITTED",
-                       "Upstream #6", "external PR publication decision",
-                       "neither an S5 admission nor a local grant is implied",
+    def test_s5_admission_does_not_grant_external_writes_or_autonomy(self):
+        # The S5 scope decision is now recorded; keep provider and stage rights
+        # independent rather than retaining stale NOT_ADMITTED wording.
+        for phrase in ("Organization #274", "Upstream #6",
+                       "external PR publication decision",
                        "before** exercising new rights",
-                       "outside separately authorized cases",
-                       "This general design grants neither a standing fork-creation port"):
+                       "Outside separately authorized cases",
+                       "stage-specific live authorization",
+                       "not** a standing fork-creation port or autonomy grade"):
             with self.subTest(phrase=phrase):
                 self.assertIn(phrase.lower(), self.control_section.lower())
         for phrase in ("authorize=True", "GitHub login", "proposal digest"):
             self.assertIn(phrase, self.control_section)
         self.assertIn("into an S5 grant", self.bootstrap_section)
 
-    def test_adjacent_upstream_local_mandate_does_not_imply_s5_admission(self):
-        self.assertIn("adjacent", self.control_section.lower())
-        self.assertIn("repository/fork owner's", self.control_section)
+    def test_upstream_local_grant_is_distinct_from_s5_domain(self):
+        self.assertIn("repository/fork owner", self.control_section)
         self.assertIn("different rights", self.control_section)
         self.assertIn("Organization #274", self.control_section)
 

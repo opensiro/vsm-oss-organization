@@ -35,6 +35,7 @@ This mode is only for one bounded operational contribution in exactly one declar
 - **Index** — `opensiro/vsm-harness-index`;
 - **Skills** — `opensiro/vsm-harness-skills`;
 - **Awesome** — `opensiro/awesome-vsm-harness`.
+- **Upstream Contributions** — `opensiro/upstream` (native evidence, fork/PR lifecycle and feedback within already effective permissions only).
 
 The work must fit the canonical S1 contracts:
 
@@ -91,6 +92,9 @@ The initial evidence plan is intentionally narrow:
 2. exercise one real bounded run in **Index**;
 3. exercise one real bounded run in **Skills**;
 4. exercise one real bounded run in **Awesome**;
-5. freeze the resulting evidence and run a fresh independent general assessment.
+5. exercise an Upstream run separately under its actual contributor and external-rights gates, with honest blocked/no-change results admitted;
+6. freeze the resulting evidence and run a fresh independent general assessment.
+
+This later fourth domain does not retroactively change the frozen three-domain M0 evidence, and a successful Upstream PR or GitHub operation by itself proves neither `S1=A` nor the full strict assessment-derived effect.
 
 No file in this directory may declare `S1=A` merely because the mode exists or because one run succeeded.

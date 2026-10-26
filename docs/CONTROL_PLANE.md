@@ -29,6 +29,7 @@ Source-of-truth rules:
 - `opensiro/vsm-harness-skills` owns the Methodology used to apply the Profile, including `A/C/P/—/?`, evidence procedure, synthesis, and deterministic ranking projection rules.
 - `opensiro/vsm-harness-index` owns the evidence-backed corpus and its active assessment contract. The exact Index Git revision identifies one corpus/output state.
 - `opensiro/awesome-vsm-harness` owns its curated representative downstream view; it does not redefine Profile or Index facts.
+- `opensiro/upstream` owns externally attributable OSS contribution proposals, native improvement evidence, public fork/PR lifecycle and maintenance/negative outcomes; third-party maintainers own external acceptance and merges.
 - this repository owns only the bounded VSM Harness OSS contribution organization, its OSM construction sequence, and which upstream contract it elects to consume.
 - `opensiro/terminal-bench-vsm`, `opensiro/arctic-0`, and `opensiro/opensiro.com` are outside this organizational scope even when they consume, demonstrate, experiment with, or present related artifacts.
 
@@ -80,20 +81,16 @@ For S1 work, the existing S1 contract already owns the transition from ordinary 
 
 If the reusable semantics need clarification, route that change to `vsm-harness-profile`; do not create an Organization-local competing definition. Organization consumes accepted Profile releases through the compatibility gate below.
 
-## Adjacent S1 function test — upstream contribution operations
+## Upstream S1 domain and assessment-driven function test
 
-The [maintainer-facing Control Plane](AGENT_CONTROL_PLANE.md#s1-function-test--upstream-contributions-candidate-not-admitted)
+The [maintainer-facing Control Plane](AGENT_CONTROL_PLANE.md#s1-function-test--upstream-contributions)
 supports an explicit `test S1 function: upstream contributions` request.
 It is **observational testing of a candidate S1 operational loop** —
 discover an upstream-native need, propose an improvement, select precisely
 scoped actions, exercise an authorized action if one separately exists,
 validate, preserve feedback and identify actual closure/escalation.
 
-**This test does not add a fourth operational S1 domain.** The current
-bounded system and its S1 actor contract remain **Index, Skills, Awesome**.
-[Organization #274](https://github.com/opensiro/vsm-oss-organization/issues/274)
-still reserves the separate S5 choice about formally admitting
-`opensiro/upstream`; that issue is `PROPOSED / NOT ADMITTED`.
+The S5 parent explicitly selected [Organization #274 `ADMIT_WITH_ENVELOPE`](https://github.com/opensiro/vsm-oss-organization/issues/274#issuecomment-6420871211) on 2026-10-26. Upstream Contributions is the **fourth declared S1 domain**, separate from Index, Skills and Awesome, under the [bounded Upstream envelope](../contracts/s1/domain-contracts.md#upstream-contributions-domain). That organizational act did **not** prove `S1=A`, complete this assessment-driven experiment, or authorize any new external write.
 The owning implementation contract for external contributions and
 batch authorization is [Upstream #6](https://github.com/opensiro/upstream/issues/6),
 not an Organization-controlled GitHub credential. The already-merged
@@ -103,31 +100,29 @@ can establish that a contribution is *proposed* and stages can be
 fork/patch/PR execution or autonomous operational closure.
 
 The Control Plane reports **witnesses and missing evidence** at each
-function step without assigning an autonomy grade, asserting parent
-approval, generating simulated transactions, modifying `TODO.md`, or
-routing external writes through the bounded Organization S1 actor.
+function step without assigning an autonomy grade, generating simulated transactions, modifying `TODO.md`, or
+routing unauthorized external writes through the Organization S1 actor.
 This is a testing/control-plane *interface*, not the missing executor.
 Any attempted real GitHub write still requires its own authorization,
 stage scope, verified tool capability, tests and source-of-truth owner.
-Keep the candidate-function test distinct from canonical Skills/Index
-assessments and from any later S5 admission/application.
+Keep this strict Index-first function test distinct from canonical Skills/Index
+assessments and the already recorded S5 membership decision.
 
 ### Read-only contribution preparation under the existing Control Plane
 
-The adjacent external-contribution interface also accepts
+The Upstream-owned external-contribution interface also accepts
 `prepare upstream contribution` once a real candidate has been chosen.
 Its [operator-facing procedure](AGENT_CONTROL_PLANE.md#control-plane--upstream-preparation-handoff-one-stage-read-only)
 routes to [Upstream-owned `control_plane_handoff.py`](https://github.com/opensiro/upstream/blob/main/docs/CONTROL_PLANE_HANDOFF.md).
 The local command produces only `ACTION_PREPARED_NOT_AUTHORIZED`, binding
 one proposed `prepare_contribution` stage to a pinned branch, new test
-file and content digest; no Organization permission or active S1 domain
+file and content digest; no external execution permission
 is added. Any actual GitHub write still requires separately verified
 current-session exact-item authorization, a supported connected operation
 and stage enforcement. The current Upstream adapter is source-prepared but
 not connected to a trusted host. A generic `continue` is not write consent;
 missing host/rights/target evidence means **BLOCKED**. Upstream #6 owns
-activation and negative-case receipts; Organization #274 owns prospective
-S5 domain admission.
+activation and negative-case receipts; Organization #274 owns the parent boundary decision and its separate applied return.
 
 ## Upstream contract selection
 

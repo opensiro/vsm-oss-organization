@@ -118,7 +118,7 @@ class PRActivityTests(unittest.TestCase):
             def list_prs(self,*args,**kwargs):
                 raise mod.PRActivityError("HTTP 403")
         result=mod.collect(Failing(),NOW)
-        self.assertEqual(len(result["repositories"]),5)
+        self.assertEqual(len(result["repositories"]),6)
         self.assertEqual(result["complete_repositories"],0)
         for row in result["repositories"].values():
             self.assertEqual(row["status"],"unavailable")

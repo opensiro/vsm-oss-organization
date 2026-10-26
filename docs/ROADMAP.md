@@ -2,7 +2,7 @@
 
 This roadmap grows contributor autonomy bottom-up across the public OpenSiro OSS scope defined in [README.md](README.md). It follows the VSM Harness Profile rule: map the organizational function first, then identify the decisive decision/feedback right, its owner, supporting enforcement, and closure.
 
-The current system-in-focus starts with three declared operational S1 domains — Index, Skills, and Awesome — while Profile remains the normative semantic source and `vsm-oss-organization` is the metasystem/control-construction surface.
+The historical M0 construction started with three operational S1 domains — Index, Skills, and Awesome. The current system-in-focus additionally includes **Upstream Contributions**, constituted by the [2026-10-26 S5 decision #274](https://github.com/opensiro/vsm-oss-organization/issues/274#issuecomment-6420871211). Profile remains the normative semantic source and `vsm-oss-organization` the metasystem/control-construction surface. Frozen M0–M2 milestone evidence retains its original three-domain boundary; Upstream admission does not independently regrade or complete any milestone.
 
 The vectors below are milestone construction targets, not automatic grades or published assessment states.
 
@@ -273,7 +273,7 @@ Exit criteria:
 
 Target: `A A A C — P`
 
-The organization already has three operational S1 domains from M0. M4 therefore does **not** create multi-S1 operation. It introduces autonomous S2 only when concrete interference among those existing S1 domains requires an explicit coordination function.
+The organization already had three operational S1 domains from M0 and gained a fourth via later S5 admission. M4 therefore does **not** create multi-S1 operation. It introduces autonomous S2 only when concrete interference among actually admitted S1 domains requires an explicit coordination function.
 
 Examples that can justify S2:
 
