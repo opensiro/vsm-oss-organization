@@ -1,0 +1,107 @@
+{
+  "schema_version": "1",
+  "mode": "s1-autonomous",
+  "domain": "Index",
+  "work_item": "https://github.com/opensiro/vsm-harness-index/issues/2194",
+  "starting_revision": "opensiro/vsm-harness-index@81f31493390b597441cf2729e6167f6138178ff1",
+  "governing_artifacts": [
+    "https://github.com/opensiro/vsm-harness-index/issues/2193",
+    "https://github.com/opensiro/vsm-harness-index/issues/2194",
+    "https://github.com/opensiro/vsm-oss-organization/tree/e2a2c5f58766b4b1482acdc36fbdd4819f203559/modes/s1-autonomous",
+    "https://github.com/opensiro/vsm-oss-organization/blob/e2a2c5f58766b4b1482acdc36fbdd4819f203559/contracts/s1/domain-contracts.md",
+    "https://github.com/opensiro/vsm-harness-skills/tree/v0.3.7/skills/assess-vsm-harness",
+    "https://github.com/opensiro/vsm-harness-profile/blob/v0.2.4/PROFILE.md"
+  ],
+  "boundary": "Complete the existing five-row frozen Index batch by assessing and canonically publishing sole NEXT rows 4 Feather and 5 Zleap-Agent in order, then verify all five original refs and close controller/intake. Prior rows 1-3 were already canonical and were not reassessed. No new intake, repin, external write, live provider experiment or normative change.",
+  "boundary_reachability": {
+    "reachable": true,
+    "custom_composition_required": false,
+    "statement": "Current public bootstrap and supported S1 mode directly supplied the bounded actor, admission/recovery and closure procedure. Existing controller held admission and serial state during work. This is a closure record, not a claim of a separately timestamped opening artifact or independent autonomy assessment. SSH/git/GitHub were support, without custom organizational actor composition."
+  },
+  "runtime_support": [
+    "ChatGPT/Codex session owned ordinary assessment decisions; no helper agent or independent semantic reviewer was used.",
+    "GitHub connector, authenticated gh and dev-alpha shell/SSH transported source and task-scoped writes; account identity is not autonomy evidence.",
+    "Released Skills structural checker, Index generators, 80 unit tests and GitHub Actions CI were deterministic support."
+  ],
+  "admission": {
+    "result": "ADMIT",
+    "outcome": "Feather included #895 and Zleap-Agent included #897 at original frozen refs. All five batch candidates verified canonical; #2194 and #2193 closed. Final clean verified Index main 6c38673690cb1caa507b40ca23bc8e4fda8bb152.",
+    "delegated_decisions": [
+      "Select the existing incomplete controller from the requested candidate work; preserve its five-row identity/order/ref map.",
+      "Inspect supported modes and boundary provenance; classify functions/owners, select canonical disposition and synthesize source-backed signatures.",
+      "Choose validation strategy and recover from stale local origin, transport limitations and unrelated main advancement."
+    ],
+    "forbidden_decisions": [
+      "Change Profile/Methodology, active versions, organization authority or global scheduler.",
+      "Repin/reorder/resize/skip frozen rows, mutate upstream repositories, run live provider agents or fabricate audit independence.",
+      "Bypass actual GitHub rules, CI, permission gates or platform approval."
+    ],
+    "completion_evidence": [
+      "https://github.com/opensiro/vsm-harness-index/pull/2368",
+      "https://github.com/opensiro/vsm-harness-index/pull/2370",
+      "https://github.com/opensiro/vsm-harness-index/pull/2372",
+      "https://github.com/opensiro/vsm-harness-index/pull/2373"
+    ],
+    "escalation_conditions": [
+      "Competing identity/row lock, inaccessible material source, unresolved semantic/authority boundary or actual integration gate."
+    ],
+    "integration_boundary": "Local S1 decisions and default-branch integration were kept separate. User requested completion and had standing task-scoped merge authorization. Live main rules required PRs with zero approving reviews. Each merge used expected head SHA after successful push/PR validation; no rule or approval was bypassed."
+  },
+  "agent_owned_decisions": [
+    {
+      "decision": "Credit Feather's optional production parent/child coordination and current-team intervention; exclude independent Train/Eval ownership from the Harness boundary.",
+      "evidence": "Index #2368/#2370 and assessments/fe/feather.md at final main."
+    },
+    {
+      "decision": "Zleap fixed stale-history/replay coordination is constructor-owned; current-task control exposes constructor plus human portfolio supervision, not preconfigured autonomous S3.",
+      "evidence": "Index #2372/#2373; assessments/zl/zleap-agent.md documents C(P) modes separately."
+    },
+    {
+      "decision": "Verify all original batch identities and frozen refs before closure; no second intake or new independent review.",
+      "evidence": "Index #2194 final receipt and #2193 closure."
+    }
+  ],
+  "human_interventions": [
+    {
+      "intervention": "Owner requested candidate batch completion; no per-row classification, recovery or integration instruction followed.",
+      "affected_decision": "Mission/outcome selection and existing standing integration authority.",
+      "ownership_effect": "Owner selected mission. Evidence/classification/disposition/validation/recovery choices remained with this session."
+    }
+  ],
+  "disturbances_and_recovery": [
+    {
+      "disturbance": "A shared local clone initially inherited an outdated local origin.",
+      "response": "Restored the public GitHub origin and fetched current main before assessment mutation.",
+      "boundary_preserved": true
+    },
+    {
+      "disturbance": "SSH transport rejected multiline commands before execution.",
+      "response": "Used quoted single-line Python commands and bounded sequential file chunks.",
+      "boundary_preserved": true
+    },
+    {
+      "disturbance": "Feather native dependency-environment setup failed to complete; Node/npm/pnpm were unavailable.",
+      "response": "Recorded native-test limitations honestly; Feather source compileall passed. No live provider or unrun pytest/TS PASS was claimed.",
+      "boundary_preserved": true
+    },
+    {
+      "disturbance": "An unrelated lane admitted catalog position #896 between row transactions.",
+      "response": "Fetched current main and regenerated projections before Zleap publication; used next free #897 without changing other lanes.",
+      "boundary_preserved": true
+    }
+  ],
+  "validation": [
+    "Both new artifacts passed released Skills v0.3.7 structural checking; original Profile 0.2.4/Methodology 0.3.7 provenance retained.",
+    "Final clean Index main 6c38673690cb1caa507b40ca23bc8e4fda8bb152 passed check_index, validate_tldr, all TLDR/FULL_A/analytics/metrics/README/stars checks and 80/80 unit tests.",
+    "42 source citations checked against exact pinned source file paths and line bounds. All five original candidates matched canonical catalog refs.",
+    "Feather source compileall PASS. Native pytest/TypeScript tests not run due setup/toolchain limitations; no live model/database/gateway task or independent semantic review.",
+    "Exact push/PR CI runs and merge commits recorded in Index #2194. Organization record passed its JSON Schema and contract-consistency checks."
+  ],
+  "terminal_state": "CLOSED_CHANGE",
+  "artifacts": [
+    "https://github.com/opensiro/vsm-harness-index/issues/2194",
+    "https://github.com/opensiro/vsm-harness-index/commit/6c38673690cb1caa507b40ca23bc8e4fda8bb152",
+    "https://github.com/opensiro/vsm-harness-index/blob/6c38673690cb1caa507b40ca23bc8e4fda8bb152/assessments/fe/feather.md",
+    "https://github.com/opensiro/vsm-harness-index/blob/6c38673690cb1caa507b40ca23bc8e4fda8bb152/assessments/zl/zleap-agent.md"
+  ]
+}
