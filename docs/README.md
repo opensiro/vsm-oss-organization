@@ -13,6 +13,7 @@ Long-form repository documentation lives under `docs/`. Root-level files are res
 - [`METRICS.md`](METRICS.md) — public outcome/observability contract.
 - [`AUTONOMOUS_WORK_REPORTING.md`](AUTONOMOUS_WORK_REPORTING.md) — autonomous-run reporting contract.
 - [`ROUTING_CONFORMANCE.md`](ROUTING_CONFORMANCE.md) — bootstrap/routing conformance protocol.
+- [`REPOSITORY_STANDARDS_ASSURANCE.md`](REPOSITORY_STANDARDS_ASSURANCE.md) — bounded read-only repository-standards probe and S3*/S3/S1 handoff boundaries (Organization #288; advisory drift is not new policy).
 - [`CONTRIBUTOR_CONFORMANCE.md`](CONTRIBUTOR_CONFORMANCE.md) — fresh-contributor behavioral conformance.
 
 ## Root entry surfaces
