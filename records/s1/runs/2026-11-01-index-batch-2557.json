@@ -1,0 +1,128 @@
+{
+  "schema_version": "1",
+  "mode": "s1-autonomous",
+  "domain": "Index",
+  "work_item": "https://github.com/opensiro/vsm-harness-index/issues/2557",
+  "starting_revision": "opensiro/vsm-harness-index@6855685af60e624ee1ce41d664ef6c8f9fecafaa",
+  "governing_artifacts": [
+    "https://github.com/opensiro/vsm-harness-index/issues/2556",
+    "https://github.com/opensiro/vsm-harness-index/issues/2557",
+    "START_HERE.md",
+    "modes/s1-autonomous/RUN.md",
+    "roles/S1.md",
+    "contracts/s1/domain-contracts.md",
+    "contracts/s1/task-admission-recovery.md",
+    "https://github.com/opensiro/vsm-harness-index/blob/main/AGENTS.md",
+    "https://github.com/opensiro/vsm-harness-index/blob/main/INDEXING.md",
+    "Profile 0.2.4 / Index-active released Skills Methodology 0.3.7; current Skills main 0.3.8 informative calibration inspected"
+  ],
+  "boundary": "One disjoint five-row source-pinned Index assessment batch, including proposal/admission integration and batch-local evidence-link repair. No other controller, normative contract, external repository, private research or live LLM-agent E2E.",
+  "boundary_reachability": {
+    "reachable": true,
+    "statement": "Entered through public bootstrap and the supported S1 mode. First-party contracts supplied admission, delegated local discretion, routine recovery and closure. Task-local staging/transport scripts only moved and validated artifacts; no custom organizational authority wiring or external reviewer was added.",
+    "custom_composition_required": false
+  },
+  "runtime_support": [
+    "ChatGPT Work / Codex runtime; no per-run model identity inferred from corpus date analytics",
+    "GitHub connector for issue/ref/blob/tree/commit/PR operations",
+    "dev-alpha-2 shell for isolated public checkouts and deterministic source inspection/validation",
+    "Released Skills structural checker; Index generators/validators; 80 Index tests; exact-head GitHub CI",
+    "Task-local staging and incremental file transport scripts are support machinery, not semantic owners"
+  ],
+  "admission": {
+    "result": "ADMIT",
+    "outcome": "Five source-verified independent OSS candidate assessments canonically included at frozen refs, catalog 975–979; controller and intake closed.",
+    "delegated_decisions": [
+      "Select and freeze five collision-free eligible identities after live catalog/issue checks",
+      "Collect primary evidence, map function before owner, apply current Index-active methodology and synthesize evidence-supported signatures",
+      "Package separate proposal and canonical transactions, regenerate affected views and recover stale-base/transport/validation disturbances"
+    ],
+    "forbidden_decisions": [
+      "Do not take another batch or change frozen refs/count",
+      "No normative Profile/Methodology or organization-authority changes",
+      "No external repository writes, permission expansion or private-source import",
+      "No live paid provider/LLM-agent E2E and no invented independent review/autonomy grade"
+    ],
+    "completion_evidence": [
+      "Final accepted Index main 03eaebcf3adf63649edd76f0f844074ab7172fa2",
+      "Five included artifacts match authored proposals with canonical lifecycle status and frozen refs; unique catalog identities 975–979",
+      "Ten exact-head proposal/admission CI receipts and merged PRs; final clean-main structural/Index/render/source-link verification"
+    ],
+    "escalation_conditions": [
+      "Unrecoverable source identity/ref/license/evidence gap",
+      "A required integration/review/permission gate not already authorized",
+      "Boundary-changing or normative repair"
+    ],
+    "integration_boundary": "PR/CI integration remained a separate right from S1 classification. Exercised within the maintainer's task and standing GitHub authorization, through actual exact-head CI and provider gates; no extra human review or platform approval rejection occurred."
+  },
+  "agent_owned_decisions": [
+    {
+      "decision": "Preserve already occupied historical candidate controllers; select a disjoint fresh five from registered topic source #247, verify explicit OSS grants and stable IDs, and freeze exact refs.",
+      "evidence": "https://github.com/opensiro/vsm-harness-index/issues/2556"
+    },
+    {
+      "decision": "Apply source-first function/owner/boundary/closure analysis to each NEXT row; publish all five included assessments without borrowing provider or adjacent test/eval owners.",
+      "evidence": "https://github.com/opensiro/vsm-harness-index/issues/2557"
+    },
+    {
+      "decision": "Use sequential proposal then distinct canonical admission, refreshing current main/catalog before allocating each actual position and regenerating views.",
+      "evidence": "https://github.com/opensiro/vsm-harness-index/pull/2559, https://github.com/opensiro/vsm-harness-index/pull/2561, https://github.com/opensiro/vsm-harness-index/pull/2563, https://github.com/opensiro/vsm-harness-index/pull/2565, https://github.com/opensiro/vsm-harness-index/pull/2567, https://github.com/opensiro/vsm-harness-index/pull/2569, https://github.com/opensiro/vsm-harness-index/pull/2570, https://github.com/opensiro/vsm-harness-index/pull/2572, https://github.com/opensiro/vsm-harness-index/pull/2573, https://github.com/opensiro/vsm-harness-index/pull/2574"
+    },
+    {
+      "decision": "Repair stale proposal projections and one batch-local evidence-link typo, revalidate exact pushed heads and verify accepted main before board advance.",
+      "evidence": "https://github.com/opensiro/vsm-harness-index/pull/2570"
+    }
+  ],
+  "human_interventions": [
+    {
+      "intervention": "Original maintainer request to complete one batch while equivalent work runs in parallel; standing task-related GitHub integration authorization.",
+      "affected_decision": "Task boundary and integration consent, not VSM state judgments or ordinary step selection.",
+      "ownership_effect": "Human selected/constrained the bounded task and authorized integration; agent retained candidate, evidence, classification, recovery and packaging discretion. No later intervention."
+    }
+  ],
+  "disturbances_and_recovery": [
+    {
+      "disturbance": "Parallel main changes made proposal count/materialized analytics stale or conflicted.",
+      "response": "Rebuilt owned branches from fresh main, regenerated views, reran checks and integrated only the exact green head.",
+      "boundary_preserved": true
+    },
+    {
+      "disturbance": "Direct shell GitHub push lacked configured credentials; CLI gh was unavailable.",
+      "response": "Used the connected GitHub app for authorized writes. No credential was requested/exposed and no approval rejection was bypassed.",
+      "boundary_preserved": true
+    },
+    {
+      "disturbance": "Remote stdout size cap and local PSV newline escaping affected task-local staging/transport.",
+      "response": "Used bounded/incremental content transfer and corrected line terminators before publication; repository validators and CI checked exact artifacts.",
+      "boundary_preserved": true
+    },
+    {
+      "disturbance": "Post-admission link QA found the row-3 DreamRecords.kt path typo.",
+      "response": "Corrected the source link in #2570 and rechecked all frozen-source links; states, refs and immutable generation provenance unchanged.",
+      "boundary_preserved": true
+    }
+  ],
+  "validation": [
+    "Released v0.3.7 check_assessment_contract.py on each prospective/canonical artifact",
+    "check_index.py and validate_tldr.py; render_tldr/full_a/analytics/metrics/readme consistency; github_stars check; diff whitespace",
+    "80/80 Index unit tests on staged transactions and exact-head CI before all ten merges",
+    "Final main 03eaebcf3adf63649edd76f0f844074ab7172fa2: five artifacts, unique catalog rows/frozen refs, source-link existence, released structural checks, generated --check gates and clean git status",
+    "CI receipts: proposal1 fb87e305144b1e870d59adbc61cc3353fe8ef71b run 41307219710 success; admission1 cbc64ccbaf2132f9bc69dadfb2b1c74066ead221 run 41307575801 success; proposal2 81f0fcbf557cc5fa1699b34eb7f431281f27dd35 run 41307935438 success; admission2 7949a7caccbed64fc6769ebe7227f879c74f6e95 run 41308033067 success; proposal3 49fa6c43927f4c3c407f981579d441790646e0e3 run 41308278623 success; admission3 9aa3f7c68837fec97416c6a712fb2908022ff577 run 41308370381 success; proposal4 8a8825375bbaf55304c6bb7e18e807a1759dc56b run 41308725106 success; admission4 baf61608144bd886fe0aee02bd64ad10917b1625 run 41308815881 success; proposal5 c8f5da9c09fb6f8b44e00da1a85330776921abab run 41309143264 success; admission5 ceb8ab88c6f8cf7b8d6ba4ff4246bac976598891 run 41309253264 success"
+  ],
+  "terminal_state": "CLOSED_CHANGE",
+  "artifacts": [
+    "https://github.com/opensiro/vsm-harness-index/issues/2556",
+    "https://github.com/opensiro/vsm-harness-index/issues/2557",
+    "https://github.com/opensiro/vsm-harness-index/pull/2559",
+    "https://github.com/opensiro/vsm-harness-index/pull/2561",
+    "https://github.com/opensiro/vsm-harness-index/pull/2563",
+    "https://github.com/opensiro/vsm-harness-index/pull/2565",
+    "https://github.com/opensiro/vsm-harness-index/pull/2567",
+    "https://github.com/opensiro/vsm-harness-index/pull/2569",
+    "https://github.com/opensiro/vsm-harness-index/pull/2570",
+    "https://github.com/opensiro/vsm-harness-index/pull/2572",
+    "https://github.com/opensiro/vsm-harness-index/pull/2573",
+    "https://github.com/opensiro/vsm-harness-index/pull/2574",
+    "https://github.com/opensiro/vsm-harness-index/tree/03eaebcf3adf63649edd76f0f844074ab7172fa2"
+  ]
+}
