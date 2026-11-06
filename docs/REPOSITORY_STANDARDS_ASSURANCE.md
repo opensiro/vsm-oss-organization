@@ -29,6 +29,34 @@ This is a classification of **already effective** obligations versus observed pr
 
 If a current shared operational constraint genuinely requires an S3 decision, use [the S3 admission contract](../contracts/s3/current-control.md) and its legitimate decision holder. A new ultimate-policy or boundary decision belongs to the parent S5 process. Repository-local admin settings and rights remain at their actual owner; neither advisory drift nor a passed linter grants authority.
 
+
+## Approved staged PR-CI policy — rollout pending
+
+The legitimate OpenSiro organization owner approved the **staged CI-only baseline** in [#305](https://github.com/opensiro/vsm-oss-organization/issues/305#issuecomment-6692512494) on 2026-11-06. This is an **approved target for repository-admin rollout**, not proof that GitHub has applied the corresponding settings. The historical [2026-11-06 baseline](reviews/2026-11-06-repository-standards-baseline.md) remains a pinned observation and must not be rewritten retroactively.
+
+After a successful exact-head PR check and negative/positive merge-gate trials, these are the intended required GitHub Actions **job contexts** on default-branch PRs:
+
+| Repository | Intended required PR job context(s) |
+| --- | --- |
+| Organization | `validate` (`contract-consistency.yml`) |
+| Profile | `profile-repository` (`validate.yml`) |
+| Skills | `skills-and-profile` (`validate.yml`) |
+| Index | `index` (`validate.yml`) |
+| Awesome | `lint` (`awesome-lint.yml`) and `validate` (`index-consistency.yml`) |
+| Upstream | `repository-integrity` (`repository-integrity.yml`) — **after** all-PR/unrelated-path trials |
+
+The approved policy **does not require an additional GitHub approving reviewer** at this stage. It does not waive ordinary human decisions, local repository authority, any existing effective review gate, or complementary independent S3* audit; a green CI check does not certify semantic correctness or autonomy. Upstream's pilot-specific/path-filtered jobs stay optional, because globally requiring a skipped check can leave unrelated PRs pending. The high-throughput Index should use a low-friction up-to-date-status setting; other repositories may select stricter freshness only after measuring real concurrency and CI rerun impact.
+
+**Safe rollout and classification:**
+
+1. Inspect effective repository branch protections and legacy rulesets through authorized administrator access. A `403` read is `UNKNOWN`, not absence.
+2. Resolve CI trigger duplication in Profile, Skills, Index with their owning PRs, and check full PR and `main` execution. Verify Upstream's unfiltered `repository-integrity` on an unrelated-document PR before making it required.
+3. For each exact job context, verify GitHub Actions app attribution, successful and failing PR outcomes, skip behavior and current SHA. Configure required checks **one repository at a time** under the local admin, without adding required approving reviews or bypassing existing protections.
+4. Read back effective settings and prove fail-closed behavior without starvation of ordinary agent assessment and upstream contribution PRs. Record links and explicit bypass/exception treatment in [#305](https://github.com/opensiro/vsm-oss-organization/issues/305).
+5. Until step 4 completes, report a repository as `ROLLOUT_PENDING` (descriptive, not a new machine-generated probe grade). Do not call a pre-enforcement gap `NON_COMPLIANT` or silently reinterpret the read-only probe's current advisory classifications.
+
+The general Organization contract/routing and existing all-PR workflows remain unchanged by this document. Repository GitHub settings cannot be changed by merging prose; actual enforcement needs separate authorized GitHub administration and post-change evidence.
+
 ## Read-only probe
 
 ```bash
