@@ -108,6 +108,16 @@ stage scope, verified tool capability, tests and source-of-truth owner.
 Keep this strict Index-first function test distinct from canonical Skills/Index
 assessments and the already recorded S5 membership decision.
 
+The optional [`batch upgrade` intake route](BATCH_UPGRADE.md) is a separate
+**read-only** Control Plane entry for evaluating whether a source-evidenced
+VSM function's decisive owner or feedback closure could be usefully changed
+in the external product. It is not a maturity-score improvement target:
+`C` and `A` denote ownership arrangements under Skills, and a possible
+`C → A` outcome requires new first-party autonomy evidence and subsequent
+independent Index reassessment. The Organization only routes this proposal;
+Upstream must separately admit any executable technical batch contract, and
+external publication/maintainer acceptance rights do not change.
+
 ### Read-only contribution preparation under the existing Control Plane
 
 The Upstream-owned external-contribution interface also accepts
