@@ -18,7 +18,7 @@ class UpstreamS1AdmissionTests(unittest.TestCase):
     def test_legitimate_s5_return_and_four_explicit_s1_contracts(self):
         decision = read("records/s5/2026-10-26-upstream-domain-admission.md")
         contracts = read("contracts/s1/domain-contracts.md")
-        for marker in (PARENT_COMMENT, "ADMIT_WITH_ENVELOPE", "PARENT_DECIDED / BOUNDARY_APPLIED / S1_WITNESS_PENDING"):
+        for marker in (PARENT_COMMENT, "ADMIT_WITH_ENVELOPE", "PARENT_DECIDED / BOUNDARY_APPLIED / S1_WITNESS_ACCEPTED"):
             self.assertIn(marker, decision)
         self.assertIn("upstream/pull/134", decision)
         self.assertIn("vsm-oss-organization/pull/292", decision)
@@ -26,6 +26,21 @@ class UpstreamS1AdmissionTests(unittest.TestCase):
         domain_heads = [line for line in contracts.splitlines() if line.startswith("## ") and line.endswith(" domain")]
         self.assertEqual(4, len(domain_heads))
         self.assertIn("GitHub writes to forks or external PRs require a **separate effective", contracts)
+
+    def test_later_gate_six_witness_is_attributable_and_not_a_grade(self):
+        decision = read("records/s5/2026-10-26-upstream-domain-admission.md")
+        coverage = read("records/s1/autonomy-coverage.md")
+        self.assertIn("## Gate #6 operational S1 witness", decision)
+        for marker in (
+            "opensiro/upstream/issues/139",
+            "opensiro/upstream/pull/140",
+            "42086558693",
+            "closed/completed",
+            "does not entail `S1=A`",
+        ):
+            self.assertIn(marker, decision)
+        self.assertIn("S1_WITNESS_ACCEPTED", coverage)
+        self.assertIn("third-party rights still separate", coverage)
 
     def test_scope_is_six_and_upstream_is_operational_s1_not_metasytem(self):
         README = read("README.md")
