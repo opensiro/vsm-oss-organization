@@ -31,6 +31,24 @@ Use [`../../templates/s3star-audit-record.md`](../../templates/s3star-audit-reco
 
 A material downstream current-control matter may enter [`../s3/current-control.md`](../s3/current-control.md). S3* does not inherit S3 authority merely because its finding initiated control.
 
+## Prospective Index-batch audit reporting dimensions (additive, not a verdict)
+
+**Applies only to audits prospectively admitted under a contract that includes this section.** For Index assessment-batch S3* audits, record the following separately, when evidence exists. For other audit scopes, mark these fields `not_applicable`. These dimensions are *reporting metadata*, never replacements for the one local `PASS`, `FINDING`, or `INSUFFICIENT` judgment above.
+
+| Dimension | Admissible reporting and evidence boundary |
+| --- | --- |
+| `s1_readiness` | `TERMINAL` / `PENDING` / `NOT_READY`, referring only to the original Index batch's actual serial board. Nonterminal source claims do not become failed audits. Include observed cutoff and owner issue. |
+| `process_scope` | `RECONCILED` / `PARTIAL` / `NO_TERMINAL` plus an exact numerator and denominator for original source identity, accepted/rejected terminal rows, review/admission PRs, exact-head checks and canonical entries. Separate technical source-unavailable terminals from accepted or excluded assessments. `RECONCILED` may refer only to existing terminal rows in an unfinished batch; it cannot silently imply whole-batch completion. |
+| `semantic_scope` | Exact frozen source SHA and applicable Profile/Methodology, preselected row positions, reviewed/eligible counts, claim-specific bounded source judgments and named counterevidence. A spot check is **not** an exhaustive six-function or ten-row semantic verification; do not refill precommitted unavailable sample slots. |
+| `historical_reviewer_provenance` | `ESTABLISHED` / `UNVERIFIED` / `NOT_ADJUDICATED`, with reviewed PR/event references. `ESTABLISHED` requires an attributable, actually independent historical semantic reviewer for the stated claim; green CI, another model invocation, or separate GitHub login by itself is not enough. `UNVERIFIED` is not an assertion of absence or a retroactive rule violation. Distinguish this from the present auditor and the current publication-review gate. |
+| `finding_disposition` | For a `FINDING`: `ROUTED_OPEN` → `ADJUDICATED` → `VERIFIED`, with destination, Index decision owner, dated exact-ref decision and an independently checked closure/effect reference. An owner may accept, reject with reasons, or declare evidence insufficient. A routing comment alone is never closure; approval, regression check and canonical mutation remain owner-authorized. Other local verdicts use `not_applicable`. |
+
+**Aggregation rule:** publish each numerator/denominator and claim scope separately. Do not aggregate unlike `PASS`/`INSUFFICIENT` judgments into Index accuracy, treat `PENDING` as semantic failure, or infer reviewer attribution from CI. Distinguish `FINDING` (immutable local judgment) from its subsequently evolving downstream *disposition*. Update disposition with linked append-only evidence, not by rewriting historical local results.
+
+**Independence/authority rule:** complementary evidence and its discretionary judgment are distinct from support tools, historical Index PR approval, current Organization publication review and downstream S3 control. Nothing here mandates a human auditor, grants S3* merge/grade authority, or proves Organization `S3*=A`.
+
+**Non-retroactivity:** frozen W001/W002 source refs, manifests, sample positions, original audit verdicts and Index owner locks remain as published. A later comparative display may be marked **derived/read-only** and cite them; it is not a retroactive migration or fresh verdict. The reusable agent-executable Index reviewer/PR-gate design stays separately owned by [Organization #189](https://github.com/opensiro/vsm-oss-organization/issues/189). Reporting provenance/closure improvement is tracked in [Organization #196](https://github.com/opensiro/vsm-oss-organization/issues/196).
+
 ## Existing witness
 
 Issue #44 / PR #45 exercised this topology on real repository work. The auditor reconstructed the bounded claim from materially complementary raw/canonical evidence and returned `PASS` without manufacturing a finding. This establishes the current `S3*=C` constructor evidence; it does not establish `S3*=A`.
