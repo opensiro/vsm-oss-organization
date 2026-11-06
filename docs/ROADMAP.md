@@ -294,6 +294,12 @@ Generic mailboxes, queues, routing, shared task state, dependency fields, or tas
 
 For `S2=A`, the decisive coordination discretion must be agent-owned. Deterministic locks, schedulers, reservations, merge queues, or branch rules may support/enforce the coordination result without owning that discretion.
 
+### Prospective M4 candidate — Cross-S1 Consistency Coordinator
+
+The [Cross-S1 Consistency Coordinator design](S2_CROSS_S1_CONSISTENCY_COORDINATOR.md) proposes agent-owned coordination of **actual inter-S1 interference** around assessments, initially Index ↔ Awesome. Index continues to own assessments, Skills the Methodology and Awesome curation; coordinating assessment workers *inside Index* is not Organization S2. Existing consistency CI detects some invalidity but does not own a coordination decision.
+
+This is a **non-deployed observation candidate**, not new current scheduling, agent runtime, mandatory independent review, S2 witness, `S2=A`, or authority to skip M3. Its [prospective record template](../templates/s2-cross-s1-collision.md) requires exact S1 source refs, qualified cross-S1 collision, delegated decision owner, two-sided return and observed attenuation before any positive claim.
+
 ## M5 — External adaptation
 
 Target: `A A A C A P`
