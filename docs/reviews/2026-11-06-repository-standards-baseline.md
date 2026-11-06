@@ -57,3 +57,19 @@ The five named rulesets contain deletion/non-fast-forward/update and pull-reques
 5. **Awesome owner:** check why GitHub reports `NOASSERTION` for a root CC0 1.0 license file. Do not replace its legal text merely to make a badge green.
 
 **Functional separation:** this is a read-only tool-supported baseline, not an independent S3* judgment, admitted S3 case, S5 policy selection, executed settings repair or VSM grade claim. No repository settings, licensing or external PRs were modified to obtain the observations. Independent review, human policy decisions and owner-local repairs must retain distinct attributable receipts.
+
+## Follow-up — README navigation resolution (2026-11-06)
+
+The initial comparison checked only the first path component of relative README links. A later source-pinned follow-up compared the **complete relative path** of every simple Markdown inline link from each root README against the full Git tree at the same Git commit. GitHub reported `truncated=false` for all six trees. Results:
+
+| Repository | Pinned commit for README/tree | Distinct relative paths | Missing paths | Same-README anchors |
+| --- | --- | ---: | ---: | ---: |
+| Organization | [`bf325928`](https://github.com/opensiro/vsm-oss-organization/tree/bf325928deef051e6de5d8eeb56f52b88fe39ae8) | 29 | 0 | 0 |
+| Profile | [`527fe01c`](https://github.com/opensiro/vsm-harness-profile/tree/527fe01ccf1ee22e54bd9525285a89a93179c1e7) | 13 | 0 | 0 |
+| Skills | [`a7ef0c1a`](https://github.com/opensiro/vsm-harness-skills/tree/a7ef0c1a27b606bb73d57cec3a2f5e4a8ae2e087) | 11 | 0 | 0 |
+| Index | [`49ba876c`](https://github.com/opensiro/vsm-harness-index/tree/49ba876ceb80e84fe996e83dc41e7df3161aa011) | 10 | 0 | 0 |
+| Awesome | [`5a7b8ada`](https://github.com/opensiro/awesome-vsm-harness/tree/5a7b8ada7c2a3739633b9c2b4f3c21425fc6a07c) | 1 | 0 | 8 |
+| Upstream | [`f25f70c7`](https://github.com/opensiro/upstream/tree/f25f70c7da36a81c8084d645d649b1e9a036f0f6) | 43 | 0 | 0 |
+| **Total** | Six pinned pairs | **107** | **0** | **8** |
+
+The eight Awesome table-of-contents anchors correspond to its README headings. Two cross-file fragments were inspected separately against the named target headings: Organization `docs/AGENT_CONTROL_PLANE.md#m3-d1-a-autonomous-s3-source-prepared-not-active` and Upstream `docs/ASSESSMENT_TO_IMPROVEMENT.md#mandatory-validation-boundary--native-scripted-tests-only`. Neither full Markdown syntax, remote HTTP links nor every cross-file fragment is certified. The resulting advisory `readme_local_links` probe adds regression detection without changing the existing mandatory routing policy or replacing human readability review.
