@@ -16,6 +16,19 @@ The governing [Profile](https://github.com/opensiro/vsm-harness-profile/blob/mai
 
 The Organization currently has **four** operational S1 domains across **six** in-scope repositories. [S5 #274](https://github.com/opensiro/vsm-oss-organization/issues/274#issuecomment-6420871211) admitted Upstream Contributions with a bounded envelope, and its construction gate has subsequently been accepted. `opensiro/upstream` is therefore subject to the same **already-adopted root README routing invariant** as the other five repositories. Its external publication, licensing, and repository-admin choices remain with their own legitimate owners; domain admission did not transfer those rights. Experimental Capability and other public OpenSiro repositories remain adjacent unless separately admitted.
 
+## Existing standards inventory — policy owner and scope
+
+This is a classification of **already effective** obligations versus observed practices, **not** a new standard adopted by this document. The probe's machine-readable `rule=ADVISORY` includes both preferred and informational checks; the following table preserves that distinction for human disposition.
+
+| Class | Current checks / evidence | Owning authority and consequence |
+| --- | --- | --- |
+| **REQUIRED** | Root README directly links shared START_HERE, Organization contributor route, and TODO | [Organization routing conformance](ROUTING_CONFORMANCE.md), all **six** currently in-scope repositories; a proven missing link is `NON_COMPLIANT`. |
+| **PREFERRED** | Readable public description, discoverability topics, root contribution guidance or a clear shared substitute, navigable README/structure; conventionally protected `main`, automatic branch cleanup and CI workflows | Repository owner plus Organization's comparative assurance; a difference is `DRIFT` or an improvement candidate, **not** a binding-policy violation. |
+| **INFORMATIONAL** | Exact README size/section count, repo layout, GitHub SPDX detection versus actual license text, named ruleset approvals/status-check rules, legacy protection and metadata readback | Each repository's source, GitHub administrators and actual copyright owners; fields can be `UNKNOWN`, especially at a 403 boundary. No license choice or new CI/review mandate is inferred. |
+| **NOT_APPLICABLE** | Cross-repository **mandatory** routing compliance for experimental Capability, other OpenSiro projects outside the declared boundary, and third-party targets | Organization [scope](../README.md) and [ECOSYSTEM](ECOSYSTEM.md); adjacent comparison, when explicitly requested, is non-binding and does not admit those repositories. |
+
+If a current shared operational constraint genuinely requires an S3 decision, use [the S3 admission contract](../contracts/s3/current-control.md) and its legitimate decision holder. A new ultimate-policy or boundary decision belongs to the parent S5 process. Repository-local admin settings and rights remain at their actual owner; neither advisory drift nor a passed linter grants authority.
+
 ## Read-only probe
 
 ```bash
