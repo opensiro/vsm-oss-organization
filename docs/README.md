@@ -28,3 +28,7 @@ The following intentionally remain at repository root:
 - [`../UPSTREAM_CONTRACT.json`](../UPSTREAM_CONTRACT.json) — machine-readable upstream selection.
 
 Root files with the same names as long-form documents are compatibility pointers only. Canonical edits belong under `docs/`.
+
+## Archived / deprecated experiments
+
+- [`../deprecated/independent-reviewer/README.md`](../deprecated/independent-reviewer/README.md) — inactive Independent Reviewer / Reviewer Batch proposals, exact-head snapshots and reinstatement boundary. Not a live PR or audit gate.

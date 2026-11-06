@@ -4,6 +4,14 @@
 
 **Status:** interface/contributor operating instructions, **not** an autonomous agent deployment, a new scheduler, a source of canonical facts, a grant of repository permissions, or evidence of S1/S2/S3/S3*/S4/S5 autonomy. It does not promise background execution or the ability to create independent agent sessions when no authorized runtime exists.
 
+## Deprecated Independent Reviewer experiment
+
+**Status: DEPRECATED / ARCHIVED (2026-10-13), not deployed.** The proposed agent-executable **Independent Reviewer** handoff (Organization #189 / draft PR #198), blindness-provenance follow-up (#207), and **Independent Reviewer Batch** hypothesis (draft PR #215) are paused. Their exact-head proposal snapshots and reactivation criteria are preserved in [the archive](../deprecated/independent-reviewer/README.md). Do not load or dispatch the archived scripts, tests, or contracts as active control-plane machinery; do not create new reviewer assignment/wait states on their authority.
+
+**Normal PR workflow remains available:** execute applicable repository-owned source/code review and exact-head validation, then use the actual repository publication/merge permissions. **No second GitHub account, separate agent, or Organization S3* audit is a default requirement for ordinary PRs.** If a *specific existing issue/PR* explicitly imposes an independent review, preserve that gate unless its owning authority prospectively changes it; deprecation does not invent a successful review or bypass a task-specific condition.
+
+The distinct first-party [S3* complementary audit](../contracts/s3star/audit.md) and its existing records/findings are **not deprecated** by this change. Nor are any assessed harness's S3* grades or Index-owned semantic/admission rules.
+
 ## Start and authority
 
 On **every substantial invocation**, follow [START_HERE.md](../START_HERE.md) → [ECOSYSTEM.md](ECOSYSTEM.md) → the owning repository's **current default branch** → its exact issue/PR/release/frozen artifact. The authoritative organizational boundary is the `Current in-scope public repositories` list in [README.md](../README.md). Other public OpenSiro repositories, including experimental Capability, are **adjacent**, not silently admitted to this bounded control plane.
