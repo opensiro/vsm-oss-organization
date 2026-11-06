@@ -11,6 +11,7 @@ On **every substantial invocation**, follow [START_HERE.md](../START_HERE.md) â†
 Use these existing contracts rather than replacing them:
 
 - [docs/CONTROL_PLANE.md](CONTROL_PLANE.md): organizational authority, work lifecycle, upstream compatibility, and merge boundaries.
+- [organizational-code change protocol](ORGANIZATIONAL_CODE_CHANGE_PROTOCOL.md): change classification, early machine-checkable gates, reviewable owner decisions and durable return for shared organizational code.
 - [TODO.md](../TODO.md): only the selected cross-repository `NOW` / `NEXT` / `BLOCKED` schedule.
 - [CONTRIBUTOR_START.md](../CONTRIBUTOR_START.md): intake/routing for new, unclassified, cross-repository, or authority-sensitive work.
 - [AUTONOMOUS_WORK_REPORTING.md](AUTONOMOUS_WORK_REPORTING.md): the `DONE / NOW / BLOCKED / NEXT / NEED YOU` owner-facing status shape.

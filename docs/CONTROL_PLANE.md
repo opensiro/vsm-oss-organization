@@ -4,6 +4,8 @@ This document is the operational control plane for the bounded **OpenSiro VSM Ha
 
 For the **maintainer-facing single-agent command interface**, see [`AGENT_CONTROL_PLANE.md`](AGENT_CONTROL_PLANE.md). That interface consumes these rules; it does not duplicate organizational or repository-owned authority.
 
+Changes to roles, decision rights, routing, organizational contracts and cross-repository control follow the [source-first organizational-code change protocol](ORGANIZATIONAL_CODE_CHANGE_PROTOCOL.md). It separates automatable preflight from human-reserved decisions and requires reviewable owner/return evidence; it does not widen this Control Plane.
+
 The in-scope repository set is maintained explicitly in `README.md`. Repository membership in the `opensiro` organization does not automatically place a project under this control plane. Contributor-local runtimes, schedulers, credentials, budgets, and sandboxes also remain outside this repository's authority.
 
 Contributors who want a lightweight human-parent interface may use [`prompts/parent-control-plane.md`](../prompts/parent-control-plane.md). That prompt is a demo interface pattern, **not independent evidence of S5 authority or closure**. M2's established Organization-local `S5=P` evidence and current delegation boundaries are recorded separately in [the roadmap](ROADMAP.md#m2--parent-governed-identity-boundary) and [S5 parent authority](../contracts/s5/parent-authority.md).
