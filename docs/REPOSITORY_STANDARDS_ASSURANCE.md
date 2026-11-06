@@ -44,6 +44,8 @@ python3 scripts/check_repository_standards.py \
 
 The scope is read from the canonical `Current in-scope public repositories:` block in `README.md`, using the same parser as [`check_public_routing.py`](../scripts/check_public_routing.py). Explicit `--compare-adjacent` repos **remain out of scope**. Every result has its GitHub REST source; successful default-branch inspection captures the current head SHA, and README/source artifacts are then fetched at that **immutable SHA**. If it is unavailable, source checks are `UNKNOWN` rather than silently performed against moving `main`. GitHub repository settings and rulesets are live point-in-time observations, not Git-commit-pinnable data. The probe never writes to GitHub, changes settings, submits PRs, or invokes LLM/agent sessions.
 
+The advisory `readme_local_links` dimension compares simple relative Markdown links in each root README against a **complete Git tree at the same pinned SHA**, and checks anchors pointing to headings in that README. A missing target is `DRIFT`; an inaccessible or truncated tree produces `UNKNOWN`, never a false missing-link claim. This is a focused navigation smoke check, not a full Markdown parser: external links, reference-style links, cross-file anchors, and live URL availability are not certified. A `PASS` is not proof that the README is understandable to a newcomer.
+
 Classification is intentionally conservative:
 
 - `NON_COMPLIANT` — a missing **already adopted mandatory** START_HERE, Organization route or TODO root-README link **inside the current six-repository boundary**, per [`ROUTING_CONFORMANCE.md`](ROUTING_CONFORMANCE.md).

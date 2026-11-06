@@ -10,13 +10,15 @@ from __future__ import annotations
 import argparse
 import json
 import os
+import posixpath
+import re
 import sys
 from concurrent.futures import ThreadPoolExecutor
 from dataclasses import asdict, dataclass
 from datetime import datetime, timezone
 from pathlib import Path
 from typing import Callable
-from urllib.parse import quote
+from urllib.parse import quote, unquote, urlsplit
 
 try:
     from scripts.check_public_routing import (
@@ -50,6 +52,51 @@ class Finding:
     rule: str  # REQUIRED / ADVISORY (a comparison is not a policy mandate)
     detail: str
     source: str
+
+
+_INLINE_MARKDOWN_LINK = re.compile(r"\]\(([^)\s]+)(?:\s+[^)]*)?\)")
+_FENCED_CODE = re.compile(r"(?ms)^\s*```[^\n]*\n.*?^\s*```[^\n]*$")
+
+
+def _readme_local_targets(readme: str) -> tuple[set[str], set[str]]:
+    """Extract simple relative Markdown links from a root README.
+
+    This intentionally excludes external URLs, reference-style links and
+    cross-file fragments; it is a conservative navigation check, not a full
+    Markdown renderer or a GitHub Pages link crawler.
+    """
+    without_code = _FENCED_CODE.sub("", readme)
+    paths: set[str] = set()
+    local_fragments: set[str] = set()
+    for raw in _INLINE_MARKDOWN_LINK.findall(without_code):
+        parsed = urlsplit(raw)
+        if parsed.scheme or parsed.netloc or raw.startswith("//"):
+            continue
+        if not parsed.path and parsed.fragment:
+            local_fragments.add(unquote(parsed.fragment).lower())
+        elif parsed.path:
+            path = posixpath.normpath(unquote(parsed.path))
+            if path != ".":
+                paths.add(path)
+    return paths, local_fragments
+
+
+def _readme_heading_anchors(readme: str) -> set[str]:
+    """GitHub-like slugs for ordinary ATX headings (including duplicates)."""
+    without_code = _FENCED_CODE.sub("", readme)
+    seen: dict[str, int] = {}
+    anchors: set[str] = set()
+    for line in without_code.splitlines():
+        match = re.match(r"^\s{0,3}#{1,6}\s+(.+)$", line)
+        if not match:
+            continue
+        title = re.sub(r"\s+#+\s*$", "", match.group(1)).strip()
+        slug = re.sub(r"[^\w\- ]", "", title.lower()).replace(" ", "-")
+        if slug:
+            suffix = seen.get(slug, 0)
+            anchors.add(f"{slug}-{suffix}" if suffix else slug)
+            seen[slug] = suffix + 1
+    return anchors
 
 
 def _endpoint(repo: str, suffix: str, api_base: str) -> str:
@@ -97,6 +144,8 @@ def inspect_repository(
         for dimension in ("root_license", "root_contributing", "workflow_files"):
             record(dimension, "UNKNOWN", "ADVISORY",
                    f"source checks not attempted: {reason}", source)
+        record("readme_local_links", "UNKNOWN", "ADVISORY",
+               f"source checks not attempted: {reason}", source)
 
     metadata, error, url = _read(repo, "", api_base=api_base, token=token, get_json=get_json)
     if not isinstance(metadata, dict) or error:
@@ -215,12 +264,37 @@ def inspect_repository(
                    "README entry present" if found else "README entry missing; adjacent comparison is non-binding" if not in_scope else "required README entry missing", url)
     if readme is None:
         record("readme_overview", "UNKNOWN", "ADVISORY", error or "no readable README", url)
+        record("readme_local_links", "UNKNOWN", "ADVISORY", error or "no readable README", url)
     else:
         lines = readme.splitlines()
         headings = [line.strip() for line in lines if line.startswith("#")]
         record("readme_overview", "PASS" if any(line.startswith("# ") for line in lines) else "DRIFT",
                "ADVISORY",
                f"readable README: {len(lines)} lines, {len(headings)} headings; human clarity review still required", url)
+
+        relative_paths, self_fragments = _readme_local_targets(readme)
+        tree, tree_error, tree_url = _read(
+            repo, f"/git/trees/{ref}?recursive=1",
+            api_base=api_base, token=token, get_json=get_json,
+        )
+        entries = tree.get("tree") if isinstance(tree, dict) else None
+        if tree_error or not isinstance(entries, list) or tree.get("truncated") is not False:
+            record("readme_local_links", "UNKNOWN", "ADVISORY",
+                   tree_error or "complete pinned Git tree unavailable; cannot establish missing links",
+                   tree_url)
+        else:
+            tree_paths = {entry.get("path") for entry in entries
+                          if isinstance(entry, dict) and isinstance(entry.get("path"), str)}
+            missing_paths = sorted(path for path in relative_paths if path not in tree_paths)
+            heading_anchors = _readme_heading_anchors(readme)
+            missing_fragments = sorted(anchor for anchor in self_fragments if anchor not in heading_anchors)
+            problems = [f"missing paths={missing_paths!r}" if missing_paths else "",
+                        f"missing README anchors={missing_fragments!r}" if missing_fragments else ""]
+            problems = [problem for problem in problems if problem]
+            detail = (f"{len(relative_paths)} relative paths and {len(self_fragments)} README anchors inspected; "
+                      + ("; ".join(problems) if problems else "all observed targets exist"))
+            record("readme_local_links", "DRIFT" if problems else "PASS", "ADVISORY",
+                   detail + "; external and cross-file anchors not checked", tree_url)
 
     root, error, url = _read(
         repo, f"/contents?ref={ref}", api_base=api_base, token=token, get_json=get_json

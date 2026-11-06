@@ -7,7 +7,12 @@ import unittest
 from pathlib import Path
 
 from scripts.check_public_routing import RoutingError
-from scripts.check_repository_standards import build_report, inspect_repository
+from scripts.check_repository_standards import (
+    _readme_heading_anchors,
+    _readme_local_targets,
+    build_report,
+    inspect_repository,
+)
 
 
 BASE = "https://api.github.com/repos/opensiro"
@@ -31,6 +36,11 @@ def source_fixture(repo: str = "opensiro/vsm-harness-index", *, complete: bool =
         base + f"/readme?ref={SHA}": {
             "encoding": "base64", "content": base64.b64encode(readme.encode()).decode()
         },
+        base + f"/git/trees/{SHA}?recursive=1": {"truncated": False, "tree": [
+            {"path": "README.md", "type": "blob"},
+            {"path": "docs", "type": "tree"},
+            {"path": "docs/guide.md", "type": "blob"},
+        ]},
         base + f"/contents?ref={SHA}": [{"name": "LICENSE", "type": "file"},
                                          {"name": "CONTRIBUTING.md", "type": "file"}],
         base + f"/contents/.github/workflows?ref={SHA}": [{"name": "verify.yml", "type": "file"}],
@@ -54,6 +64,61 @@ def by_dimension(findings):
 
 
 class RepositoryStandardsProbeTests(unittest.TestCase):
+    def test_readme_local_links_are_source_pinned_and_advisory(self) -> None:
+        responses = source_fixture()
+        base = f"{BASE}/vsm-harness-index"
+        readme = (f"# Intro\n{START}\n{TODO}\n{ROUTE}\n"
+                  "[Guide](./docs/guide.md#usage) [Intro](#intro) "
+                  "[Missing](docs/missing.md) [External](https://example.com/x.md)\n")
+        responses[base + f"/readme?ref={SHA}"]["content"] = base64.b64encode(readme.encode()).decode()
+        _, findings = inspect_repository("opensiro/vsm-harness-index", in_scope=True,
+                                          get_json=loader(responses))
+        finding = by_dimension(findings)["readme_local_links"]
+        self.assertEqual(finding.status, "DRIFT")
+        self.assertEqual(finding.rule, "ADVISORY")
+        self.assertEqual(finding.source, base + f"/git/trees/{SHA}?recursive=1")
+        self.assertIn("docs/missing.md", finding.detail)
+        self.assertNotIn("example.com", finding.detail)
+
+    def test_readme_local_links_ignore_code_and_check_self_anchors(self) -> None:
+        readme = ("# I'm human\n## Same\n## Same\n"
+                  "[Human](#im-human) [Second](#same-1) [Guide](docs/guide.md)\n"
+                  "```md\n[Fake](missing-in-code.md)\n```\n")
+        paths, anchors = _readme_local_targets(readme)
+        self.assertEqual(paths, {"docs/guide.md"})
+        self.assertEqual(anchors, {"im-human", "same-1"})
+        self.assertTrue(anchors.issubset(_readme_heading_anchors(readme)))
+
+    def test_missing_readme_self_anchor_is_advisory_drift(self) -> None:
+        responses = source_fixture()
+        base = f"{BASE}/vsm-harness-index"
+        readme = f"# Intro\n{START}\n{TODO}\n{ROUTE}\n[Bad anchor](#missing-heading)\n"
+        responses[base + f"/readme?ref={SHA}"]["content"] = base64.b64encode(readme.encode()).decode()
+        _, findings = inspect_repository("opensiro/vsm-harness-index", in_scope=True,
+                                          get_json=loader(responses))
+        finding = by_dimension(findings)["readme_local_links"]
+        self.assertEqual(finding.status, "DRIFT")
+        self.assertEqual(finding.rule, "ADVISORY")
+        self.assertIn("missing-heading", finding.detail)
+
+    def test_inaccessible_tree_does_not_report_missing_readme_links(self) -> None:
+        responses = source_fixture()
+        base = f"{BASE}/vsm-harness-index"
+        responses.pop(base + f"/git/trees/{SHA}?recursive=1")
+        _, findings = inspect_repository("opensiro/vsm-harness-index", in_scope=True,
+                                          get_json=loader(responses))
+        finding = by_dimension(findings)["readme_local_links"]
+        self.assertEqual(finding.status, "UNKNOWN")
+        self.assertIn("403", finding.detail)
+
+    def test_truncated_tree_is_unknown_not_a_false_positive(self) -> None:
+        responses = source_fixture()
+        base = f"{BASE}/vsm-harness-index"
+        responses[base + f"/git/trees/{SHA}?recursive=1"]["truncated"] = True
+        _, findings = inspect_repository("opensiro/vsm-harness-index", in_scope=True,
+                                          get_json=loader(responses))
+        self.assertEqual(by_dimension(findings)["readme_local_links"].status, "UNKNOWN")
+
     def test_existing_control_plane_routes_to_read_only_probe(self) -> None:
         control = (Path(__file__).resolve().parents[1] / "docs" /
                    "AGENT_CONTROL_PLANE.md").read_text(encoding="utf-8")
@@ -146,6 +211,7 @@ class RepositoryStandardsProbeTests(unittest.TestCase):
         self.assertEqual(sha, SHA)
         self.assertEqual(by_dimension(found)["common_start_here"].status, "UNKNOWN")
         self.assertEqual(by_dimension(found)["shared_todo"].status, "UNKNOWN")
+        self.assertEqual(by_dimension(found)["readme_local_links"].status, "UNKNOWN")
 
     def test_missing_metadata_is_unknown_and_does_not_claim_success(self) -> None:
         _, found = inspect_repository("opensiro/vsm-harness-index", in_scope=True,
@@ -161,6 +227,7 @@ class RepositoryStandardsProbeTests(unittest.TestCase):
                                         get_json=loader(responses))
         self.assertIsNone(sha)
         self.assertEqual(by_dimension(found)["shared_todo"].status, "UNKNOWN")
+        self.assertEqual(by_dimension(found)["readme_local_links"].status, "UNKNOWN")
         self.assertIn("immutable", by_dimension(found)["shared_todo"].detail)
 
     def test_missing_default_branch_cannot_skip_required_routing(self) -> None:
