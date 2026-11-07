@@ -21,7 +21,7 @@ class AssessmentDrivenS1RouteTests(unittest.TestCase):
 
     def test_menu_keeps_command_mapped_to_assessment_first_route(self):
         self.assertIn(
-            "| **S1 Function Test (Upstream)** | `test S1 function: upstream contributions` |",
+            "| **Upstream S1 Test** | `upstream s1 test` |",
             self.document,
         )
         self.assertIn("**Assessment-driven**", self.document)

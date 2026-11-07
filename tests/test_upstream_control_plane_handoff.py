@@ -19,8 +19,8 @@ class UpstreamControlPlaneHandoffTests(unittest.TestCase):
         )[1].split("### Selected contribution execution and outcome", 1)[0]
 
     def test_menu_and_command_route_to_existing_control_plane(self):
-        self.assertIn("| **Prepare Upstream Change** | `prepare upstream contribution` |", self.control)
-        self.assertIn("| `prepare upstream contribution` / `prepare upstream contribution <source/issue>` |",
+        self.assertIn("| **Upstream Prepare** | `upstream prepare` |", self.control)
+        self.assertIn("| `upstream prepare` / `prepare upstream contribution` / `prepare upstream contribution <source/issue>` |",
                       self.control)
         self.assertIn("## External upstream contributions", self.control)
         self.assertIn("prepare upstream contribution", self.guide)
