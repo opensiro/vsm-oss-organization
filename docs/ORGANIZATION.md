@@ -61,7 +61,7 @@ independent external OSS needs / selected evidence
               Upstream S1 → attributable interventions, maintenance and dispositions
 ```
 
-Upstream S1 applies selected research or assessment findings when product-native fit exists, but never treats a VSM grade as permission or proof of external product benefit. The four S1 domains contribute different durable outputs to the same public OpenSiro OSS purpose. They may each contain multiple tasks, tools, helper agents, or subprocesses; those are not additional S1 units merely because they are separate processes.
+Upstream S1 applies selected research or assessment findings only when an independently supported upstream-native need, mechanism and compatible scope exist; the deprecated experimental fit-rate metric is no longer part of active reporting. A VSM grade is never permission or proof of external product benefit. The four S1 domains contribute different durable outputs to the same public OpenSiro OSS purpose. They may each contain multiple tasks, tools, helper agents, or subprocesses; those are not additional S1 units merely because they are separate processes.
 
 ## Local variety and residual variety
 

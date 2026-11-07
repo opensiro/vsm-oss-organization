@@ -95,7 +95,7 @@ Third-party OSS repositories and maintainers, current upstream source and contri
 
 ### Local decision rights
 
-Within an admitted Upstream task, S1 may research and select an opportunity, test product-native fit, prepare scoped source changes using native deterministic script/CLI checks, maintain OpenSiro's own evidence/registry, triage external feedback and perform ordinary locally authorized correction/recovery. GitHub writes to forks or external PRs require a **separate effective actor, provider permission, exact-stage grant and applicable third-party rules**. The historic finite Corrective cohort is not a standing permission for future unrelated work.
+Within an admitted Upstream task, S1 may research and select an opportunity, verify upstream-native need and scope with independent source evidence (without issuing the deprecated Product-native fit score), prepare scoped source changes using native deterministic script/CLI checks, maintain OpenSiro's own evidence/registry, triage external feedback and perform ordinary locally authorized correction/recovery. GitHub writes to forks or external PRs require a **separate effective actor, provider permission, exact-stage grant and applicable third-party rules**. The historic finite Corrective cohort is not a standing permission for future unrelated work.
 
 ### Completion evidence
 

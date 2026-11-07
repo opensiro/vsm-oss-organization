@@ -14,4 +14,4 @@ Each experiment must be self-contained, state its evidence and anti-gaming rules
 
 Current experiments:
 
-- [`upstream-intervention-fit/`](upstream-intervention-fit/) — tests whether OpenSiro-motivated upstream interventions have standalone product-native value for the upstream project.
+- [`upstream-intervention-fit/`](upstream-intervention-fit/) — **deprecated historical experiment** (frozen observations and reproducible 2026-10-12 snapshot); no new fit-rate scoring.

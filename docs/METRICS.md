@@ -153,7 +153,7 @@ Not KPIs: link count, section count, candidate count, README LOC, commits, PR co
 
 **Role:** operational S1 for source-backed external OSS contributions, attributed lifecycle and maintenance outcomes.
 
-Primary candidate: **Verified external outcomes** (`stock`, `semantic_evidence`): currently **unclaimed** by Organization's generic collector until Upstream-owned contribution identity, native effect/feedback and completion semantics can be evaluated reproducibly. A GitHub PR count does not establish deployed improvement or productivity; blocked, closed-unmerged and duplicate/replacement chains must remain distinct. Upstream owns its receipts and portfolio; Organization retains the experimental product-native fit ledger without moving it or turning it into a KPI.
+Primary candidate: **Verified external outcomes** (`stock`, `semantic_evidence`): currently **unclaimed** by Organization's generic collector until Upstream-owned contribution identity, native effect/feedback and completion semantics can be evaluated reproducibly. A GitHub PR count does not establish deployed improvement or productivity; blocked, closed-unmerged and duplicate/replacement chains must remain distinct. Upstream owns its receipts and portfolio. Organization preserves the [deprecated product-native fit experiment](../experiments/upstream-intervention-fit/README.md) strictly as historical evidence; its 60% ratio is **not an active metric** and is not a substitute for verified outcomes or PR acceptance.
 
 ### `opensiro/vsm-harness-profile`
 
