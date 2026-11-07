@@ -1,10 +1,14 @@
 # Upstream Intervention Fit
 
-Status: **experimental**
+Status: **DEPRECATED (2026-11-07)** — historical evidence only; no active metric or new fit scoring.
 
 Issue: #165
 
-This experiment asks whether upstream changes motivated by OpenSiro assessment/research remain independently useful to the upstream project when OpenSiro/VSM/grade pressure is removed from the rationale.
+This **retired historical experiment** asked whether upstream changes motivated by OpenSiro assessment/research remained independently useful to the upstream project when OpenSiro/VSM/grade pressure was removed from the rationale.
+
+**Deprecation decision:** the maintainer retired the aggregate `product_native_fit_rate` as an active/public outcome metric. Preserve `observations.json`, `metric.json`, `compute.py` and the pinned `snapshot.json` for audit and reproducibility; **do not add new observations, change historic gate outcomes, publish refreshed percentages or use this ratio as a current performance indicator**. Subsequent external PR lifecycle, attribution and intervention records belong to [Upstream Contributions](https://github.com/opensiro/upstream), while the Organization-wide [Verified external outcomes](../../docs/METRICS.md#opensiroupstream) candidate and Upstream's independent [Resolved PR Acceptance](https://github.com/opensiro/upstream/blob/main/docs/RESOLVED_PR_ACCEPTANCE.md) retain their separate contracts. Neither is an automatic numerical replacement for this retired experiment.
+
+Source-native engineering diligence—checking an actual upstream need, compatible mechanisms, independent test evidence and project scope—remains necessary when preparing contributions, **without issuing a four-gate fit grade**.
 
 It is intentionally outside the canonical organization metrics contract. Nothing here changes `METRICS.md`, `metrics.yaml`, VSM semantics, assessment methodology, canonical grades, or organizational authority.
 
@@ -24,11 +28,11 @@ Optional `participants` records each public GitHub account once per intervention
 
 `as_of` is the date the **ledger was updated**, not proof that every historical PR was rechecked on that day. `last_verified_at` may specify a case actually refreshed. Unverified participant identity and contributions stay unknown; avoid inventing roles or assigning credit by association.
 
-All this remains experimental and **outside** public canonical productivity/outcome metrics. The prospective five-repository internal PR lifecycle collector is independently tracked under [Organization #208](https://github.com/opensiro/vsm-oss-organization/issues/208); the site display is deferred, not the source ledger.
+This material remains **deprecated historical research outside** public canonical productivity/outcome metrics. The independent PR lifecycle collector is tracked under [Organization #208](https://github.com/opensiro/vsm-oss-organization/issues/208); it does not activate or refresh the retired ratio.
 
-Every intervention materially initiated or shaped by OpenSiro assessment/research belongs in the log, including rejected, withdrawn, closed-unmerged, and unsuccessful work.
+Historically, every intervention materially initiated or shaped by OpenSiro assessment/research belonged in this log, including rejected, withdrawn, closed-unmerged, and unsuccessful work. New intervention evidence must not be written into this frozen experiment.
 
-## Primary metric
+## Deprecated primary metric — reproducibility only
 
 `product_native_fit_rate`
 
@@ -39,7 +43,7 @@ product_native_fit_rate = pass / completed fit reviews
 
 `pending` interventions are reported but excluded from the denominator until the fit review is complete.
 
-This is not an upstream acceptance rate and not a VSM-grade-improvement rate.
+The frozen `2026-10-12` result was 3/5 (60%). **It is not a current KPI**, upstream acceptance rate, or VSM-grade-improvement rate.
 
 ## Fit gates
 
@@ -92,12 +96,11 @@ OpenSiro's own assessment or desired grade cannot satisfy any gate.
 - `metric.json` — machine-readable metric and gate contract;
 - `observations.json` — intervention log and evidence summaries;
 - `compute.py` — deterministic stdlib-only validator/renderer;
-- `snapshot.json` — generated current metric projection.
+- `snapshot.json` — frozen historical projection, reproducible from the original observations.
 
-Run:
+For archival verification only (no new data collection or publication):
 
 ```bash
-python experiments/upstream-intervention-fit/compute.py
 python experiments/upstream-intervention-fit/compute.py --check
 python experiments/upstream-intervention-fit/compute.py --stdout
 ```

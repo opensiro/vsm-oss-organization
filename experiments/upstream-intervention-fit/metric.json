@@ -44,5 +44,7 @@
     "numerator": "interventions whose derived fit state is pass"
   },
   "schema_version": 1,
-  "status": "experimental"
+  "status": "deprecated",
+  "deprecated_at": "2026-11-07",
+  "replacement_metric": null
 }
