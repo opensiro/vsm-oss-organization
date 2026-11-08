@@ -38,7 +38,7 @@ class UpstreamOutcomesCommandTests(unittest.TestCase):
         self.assertIn("not an accepted fact, formal S3* audit", self.template)
         self.assertIn("not the deployment of a persistent agent", self.menu)
 
-    def test_machine_status_is_not_automatically_promoted(self):
+    def test_verified_source_acceptance_does_not_claim_organization_metric(self):
         for status in (
             "VERIFIED",
             "PENDING_REVIEW",
@@ -48,9 +48,11 @@ class UpstreamOutcomesCommandTests(unittest.TestCase):
             with self.subTest(status=status):
                 self.assertIn(status, self.contract)
                 self.assertIn(status, self.template)
-        self.assertIn("unclaimed_semantic_evidence", self.contract)
-        self.assertIn("accepted outcome ledger", self.contract)
-        self.assertIn("Organization collector", self.contract)
+        self.assertIn("ACCEPTED_MERGED_CHANGE_ONLY", self.contract)
+        self.assertIn("DETERMINISTIC_VERIFIED_MERGE", self.contract)
+        self.assertIn("UPSTREAM_ACCEPTED_SOURCE_ONLY", self.contract)
+        self.assertIn("organization_metric_claimed=false", self.contract)
+        self.assertIn("Organization metric claim", self.contract)
         self.assertIn("Product-native fit is deprecated", self.contract)
 
     def test_semantic_attribution_and_no_duplicate_interventions(self):
@@ -63,11 +65,11 @@ class UpstreamOutcomesCommandTests(unittest.TestCase):
         self.assertIn("Replacement-chain intervention deduplication", self.template)
 
     def test_submission_requires_real_owner_and_authority(self):
-        self.assertIn("reviewable **internal\n   Upstream PR**", self.contract)
-        self.assertIn("not create a\n   parallel Organization-owned factual ledger", self.contract)
+        self.assertIn("propose an **internal\n   Upstream PR**", self.contract)
+        self.assertIn("Do not create\n   a parallel Organization factual ledger", self.contract)
         self.assertIn("does **not** automatically publish external PRs", self.contract)
-        self.assertIn("approved accepted ledger", self.contract)
-        self.assertIn("source SHA256", self.contract)
+        self.assertIn("Do not append an owner-decision row for every new", self.contract)
+        self.assertIn("source/cohort digests", self.contract)
         self.assertIn("Live observation URL", self.template)
 
 
