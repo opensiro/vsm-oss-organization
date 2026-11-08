@@ -51,7 +51,7 @@ The authoritative current Upstream specification is
    `python3 scripts/verified_external_outcomes.py --validate-only` on
    current Upstream source. With authorized read-only GitHub API access, run
    `--report --output-json <path>`, then
-   `scripts/accepted_external_outcomes.py --observation-json <path>`
+   `python3 scripts/accepted_external_outcomes.py --observation-json <path>`
    (or read both JSON files in the latest successful live workflow artifact).
    Verify source/cohort digests, timestamp, exact external evidence and
    live-revalidated accepted-source output. No complete live readback means
