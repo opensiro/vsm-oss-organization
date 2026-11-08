@@ -60,7 +60,7 @@ Before offering live status, read the current Organization scope and `TODO.md` a
 | **Upstream Batch** | `upstream batch` | **Upstream S1** five-source technical batch: search Index-based VSM hypotheses, qualify native needs and prepare useful patches, including honest `ASSESSMENT_INFORMED` results. External publication separately authorized. |
 | **Upstream Upgrade Batch** | `upstream upgrade batch` | **Upstream S1** five-source batch prioritizing *prospective* `ASSESSMENT_DERIVED` VSM functional hypotheses, independent native fit and CI/runner validation. No automatic `C → A`, external PR rights or new queue. |
 | **Upstream Status** | `upstream status` | Read-only joined inventory: harness → independently tracked intervention → external PR(s), with batch provenance, technical/publication states and next action. Upstream owns the data. |
-| **Upstream Outcomes** | `upstream outcomes` | Route an agent-assisted, evidence-first review of Upstream's verified **external outcome candidates** under [Upstream #159](https://github.com/opensiro/upstream/issues/159). Deterministic verification first; ambiguous attribution is a reviewable Upstream S1 proposal, not an automatic Organization KPI or an external write. |
+| **Upstream Outcomes** | `upstream outcomes` | Read Upstream's automatic accepted-source export for strict `VERIFIED` merges under [#159](https://github.com/opensiro/upstream/issues/159); agent review only for ambiguous attribution. No per-case owner approval, S3* gate or Organization KPI claim. |
 | **Upstream Auto** | `upstream auto` | **One bounded Upstream S1 action per invocation**, using [Upstream #161](https://github.com/opensiro/upstream/issues/161)'s source-backed selection and opt-in task CAS. Requires a fresh admitted work item, live owner evidence and an effective task-claim transport; otherwise stops with a specific blocker. `upstream auto status` is the read-only preview. No background scheduler or Organization S2 claim. |
 | **Upstream Auto Batch** | `upstream auto batch` | **Up to five independent admitted Upstream S1 tasks per invocation** (configurable 1–10). Uses #161's common resource/WIP-aware planner, atomic multi-task Git CAS and attributable worker handoffs. A selected claim is not task execution; owner-specific action/receipt/release remain required. No background agent spawning or expanded grant. |
 | **Batch Status** | `batch status` | Read-only Index inventory of open assessment controllers/intakes, cross-checked against current canonical artifacts and PR/CI evidence. No changes or new intake. |
@@ -215,13 +215,16 @@ If the current evidence does not establish a genuine present S3 matter or legiti
 
 Follow the complete [Upstream Outcomes command contract](UPSTREAM_OUTCOMES.md).
 The command first runs or reads Upstream's **deterministic, read-only**
-`scripts/verified_external_outcomes.py` observation, then uses the active
-agent's semantic review **only for evidence gaps and attribution ambiguity**.
-The agent records a source-linked verdict and may propose an Upstream-owned
-accepted-ledger correction in a reviewable **internal PR** within actual
-repository permissions and user authorization. It cannot treat an unreviewed
-agent verdict as an independent audit, skip source-pinning or merge gates, or
-populate Organization's primary metric from a raw PR merge count.
+`scripts/verified_external_outcomes.py` observation and the
+`scripts/accepted_external_outcomes.py` live-revalidated accepted-source
+export. Strict `VERIFIED` external merges automatically become
+`ACCEPTED_MERGED_CHANGE_ONLY`; no new owner-decision PR, GitHub `APPROVED`
+review or S3* audit is required for each such record. The agent reviews
+**only evidence gaps and attribution ambiguity** (`PENDING_REVIEW`) and
+may propose a source-linked **internal Upstream PR** when a genuine
+correction is warranted. This command cannot self-certify ambiguity, bypass
+source/CI gates, infer deployed benefit, or populate Organization's primary
+metric from Upstream source acceptance or raw PR counts.
 
 Invoking the command is not the deployment of a persistent agent, scheduler,
 external publication mandate, or permission to merge. If the runtime cannot
@@ -475,7 +478,7 @@ Explain **what was actually executed**, and distinguish `proposed`, `reviewed`, 
 - Selecting **Batch Upstream** dispatches `batch upstream` and independently verifies the current Upstream #56 source/ref, a complete five-row Index-derived frozen cohort and other active batch reservations before local intervention; it does **not** dispatch Index `start a batch assessment` or the general read-only `contribute to other harnesses` shortlist. The five rows may legitimately end `AWAITING_EXTERNAL`, `BLOCKED_EVIDENCE` or `CLOSED_NO_CHANGE` without five manufactured external PRs, and external publication always has its own grant.
 - Selecting **Upstream Upgrade Batch** dispatches `upstream upgrade batch` to Upstream #56's shared five-row source-disjoint batch controls. It pre-registers prospective VSM hypotheses before current-code/issue inspection, uses independent native CI/runner receipts for qualified derived work, and honestly preserves blocked/negative or informed-only rows. It does not spawn a second scheduler, create a third-party PR without separate rights, or claim `C → A`.
 - Selecting **Upstream Status** dispatches `upstream status` to its current Upstream owner view; several fixes for one harness remain separate, dated evidence dimensions are not conflated, and no work is scheduled or published by rendering it.
-- Selecting **Upstream Outcomes** dispatches `upstream outcomes` to Upstream #159 and its live evidence verifier; unresolved replacement chains, mutable native receipts and independently implemented ideas remain agent-reviewed proposals, never an automatic Organization KPI, an S3* audit, an external PR write or another `batch upstream` task.
+- Selecting **Upstream Outcomes** dispatches `upstream outcomes` to Upstream #159's live verifier and automatic accepted-source export; strict `VERIFIED` merges are accepted as merged changes without repeated owner decisions, while unresolved replacements, mutable receipts and independently implemented ideas remain pending, never an automatic Organization KPI, S3* audit or external write.
 - Selecting **Upstream Auto** dispatches one bounded agent-coupled task under Upstream #161: source-first worklist, actual availability and live head revalidation, task-specific S1 admission, opt-in atomic CAS reservation, one owner-lane action and an attributable release/return. When no eligible task or no effective reservation/authentication mechanism exists, it stops at a reasoned preview/blocker without reserving, guessing or declaring `DONE`. It neither converts arbitrary open issues into Organization scheduling nor establishes Organization `S2=A`. `upstream auto status` remains read-only.
 - Selecting **Upstream Auto Batch** follows the same #161 gates, fills at most five independent eligible slots and atomically reserves them before named workers act; each claim needs its **own** task execution evidence and release. `PARTIAL` is a valid outcome if caps/conflicts leave fewer slots. A batch receipt is never proof of performed contributions, five-source cohort completion or autonomous S2.
 - Selecting **Batch Status** dispatches `batch status`, which inspects current Index controller/intake and canonical/PR/CI evidence without any writes, new five-candidate intake, or TODO selection; a stale board is reported as a discrepancy, not as a verified canonical outcome.
