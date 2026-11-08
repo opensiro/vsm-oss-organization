@@ -108,15 +108,7 @@ stage scope, verified tool capability, tests and source-of-truth owner.
 Keep this strict Index-first function test distinct from canonical Skills/Index
 assessments and the already recorded S5 membership decision.
 
-The optional [`batch upgrade` intake route](BATCH_UPGRADE.md) is a separate
-**read-only** Control Plane entry for evaluating whether a source-evidenced
-VSM function's decisive owner or feedback closure could be usefully changed
-in the external product. It is not a maturity-score improvement target:
-`C` and `A` denote ownership arrangements under Skills, and a possible
-`C → A` outcome requires new first-party autonomy evidence and subsequent
-independent Index reassessment. The Organization only routes this proposal;
-Upstream must separately admit any executable technical batch contract, and
-external publication/maintainer acceptance rights do not change.
+The Control Plane offers **two Upstream technical batch commands**: [`upstream batch`](AGENT_CONTROL_PLANE.md#batch-upstream--assessment-first-technical-contribution) and [`upstream upgrade batch`](AGENT_CONTROL_PLANE.md#upstream-upgrade-batch--strict-assessment-derived-improvement). Both search source-backed VSM function/ownership/feedback hypotheses; the latter requires pre-registered `ASSESSMENT_DERIVED` origin and separate deterministic CI/runner evidence. The earlier [`batch upgrade` concept](BATCH_UPGRADE.md) is retained as historical rationale, not a third command. A product function may improve while remaining `C`; any `C → A` claim still requires independently observed owner/closure evidence and a new Index/Skills assessment. External publication and maintainer acceptance rights do not change.
 
 ### Read-only contribution preparation under the existing Control Plane
 
