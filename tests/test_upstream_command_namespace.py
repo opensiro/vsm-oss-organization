@@ -43,7 +43,7 @@ class UpstreamCommandNamespaceTests(unittest.TestCase):
 
     def test_no_external_publication_right_or_automatic_kpi(self):
         self.assertIn("External publication separately authorized", self.control)
-        self.assertIn("not an automatic Organization KPI", self.control)
+        self.assertIn("No per-case owner approval, S3* gate or Organization KPI claim", self.control)
         self.assertIn("no branch, fork, PR or human approval implied", self.control)
         self.assertIn("Tracking is **off by default**", self.guide)
 
