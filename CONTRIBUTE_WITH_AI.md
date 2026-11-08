@@ -48,12 +48,15 @@ A separate exact authorization is required for any write, and the current
 is not attached to a trusted host approval source. See
 [Control Plane handoff](docs/AGENT_CONTROL_PLANE.md#control-plane--upstream-preparation-handoff-one-stage-read-only).
 
-For other Upstream S1 work, use `upstream batch` for the native technical
-contribution cohort, `upstream status` for the joined PR lifecycle,
-`upstream outcomes` for evidence review, and `upstream s1 test` for the
-assessment-driven function test. These are **not** Index batch commands.
-The related `batch upgrade` command is an Organization-owned read-only intake,
-not an Upstream S1 implementation permission. The full routing and legacy
+For Upstream S1 technical work, use **`upstream batch`** for useful native
+contributions and **`upstream upgrade batch`** for five-source, prospectively
+`ASSESSMENT_DERIVED` improvement hypotheses. **Both** modes search relevant VSM
+functional/ownership weaknesses in canonical Index evidence and use the same
+Upstream batch controls; the strict mode requires independent CI/runner validation.
+Use `upstream status` for PR lifecycle, `upstream outcomes` for outcome-evidence
+review and `upstream s1 test` for the function test. These are **not** Index
+assessment batch commands. The old `batch upgrade` intake is [historical](docs/BATCH_UPGRADE.md),
+not a third active command or an external publication permission. The full routing and legacy
 aliases live in [the Upstream command namespace](docs/AGENT_CONTROL_PLANE.md#first-contact-action-menu-client-adaptive-presentation).
 
 ## I have an idea
