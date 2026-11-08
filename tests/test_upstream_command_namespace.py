@@ -42,7 +42,7 @@ class UpstreamCommandNamespaceTests(unittest.TestCase):
         self.assertNotIn("| **Batch Upgrade** | `batch upgrade` |", self.control)
 
     def test_no_external_publication_right_or_automatic_kpi(self):
-        self.assertIn("External publication remains separately authorized", self.control)
+        self.assertIn("External publication separately authorized", self.control)
         self.assertIn("not an automatic Organization KPI", self.control)
         self.assertIn("no branch, fork, PR or human approval implied", self.control)
         self.assertIn("Tracking is **off by default**", self.guide)
