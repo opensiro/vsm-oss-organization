@@ -53,14 +53,14 @@ class BatchUpgradeCommandTests(unittest.TestCase):
             "NO_ELIGIBLE_ASSESSMENT_CANDIDATE",
             "CLOSED_NO_CHANGE",
             "external publication grants",
-            "Do not",
+            "No Organization",
             "No Organization `TODO.md` scheduler entry",
             "C` function need not become `A`",
         ):
             with self.subTest(phrase=phrase):
                 self.assertIn(phrase.lower(), self.dispatch.lower())
         self.assertIn("original intake rationale", self.history.lower())
-        self.assertIn("external publication", self.control)
+        self.assertIn("External publication", self.control)
 
 
 if __name__ == "__main__":
