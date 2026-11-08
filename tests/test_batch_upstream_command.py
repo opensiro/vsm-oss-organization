@@ -47,6 +47,12 @@ class BatchUpstreamCommandTests(unittest.TestCase):
             with self.subTest(contract=contract):
                 self.assertIn(contract, self.batch)
 
+    def test_standard_mode_also_searches_vsm_hypotheses(self):
+        self.assertIn("Select the actual cohort and search VSM hypotheses", self.batch)
+        self.assertIn("VSM-grounded potential product hypothesis", self.batch)
+        self.assertIn("### Upstream Upgrade Batch — strict assessment-derived improvement", self.batch)
+        self.assertIn("ASSESSMENT_INFORMED", self.batch)
+
     def test_external_decision_rights_remain_unchanged(self):
         for boundary in (
             "AWAITING_EXTERNAL",

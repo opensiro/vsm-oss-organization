@@ -1,3 +1,9 @@
+# Historical Batch Upgrade proposal — absorbed into Upstream batch modes
+
+**Superseded on 2026-11-08 by the operator's two-command decision.** The live Control Plane now dispatches only `upstream batch` and `upstream upgrade batch` for technical Upstream batches. Both search possible VSM functional hypotheses; the latter has a prospective `ASSESSMENT_DERIVED` priority and separate deterministic CI/runner validation. See [Control Plane](AGENT_CONTROL_PLANE.md#upstream-upgrade-batch--strict-assessment-derived-improvement) and [Upstream's owning contract](https://github.com/opensiro/upstream/blob/main/docs/ASSESSMENT_CANDIDATE_BATCHES.md). **`batch upgrade` is not an active third command or an alias.** The original intake rationale below is retained for audit/history; its former read-only dispatch and future-stage proposals are not live operational instructions.
+
+## Original proposal (historical)
+
 # Batch Upgrade — VSM function/ownership improvement intake
 
 **Status:** Organization Control Plane **read-only intake route** proposed under [Organization #307](https://github.com/opensiro/vsm-oss-organization/issues/307). A merged Control Plane entry makes the command discoverable; it does **not** activate an Upstream technical batch executor, select five sources, create a third-party fork/PR, transfer an external harness decision right, or change a canonical assessment.

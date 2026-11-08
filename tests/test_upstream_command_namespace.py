@@ -34,13 +34,15 @@ class UpstreamCommandNamespaceTests(unittest.TestCase):
     def test_namespace_does_not_reassign_organization_or_index_work(self):
         self.assertIn("**Upstream S1 command namespace.**", self.control)
         self.assertIn("not new technical authority or a new", self.control)
-        self.assertIn("**Adjacent, not Upstream S1 execution:** `batch upgrade`", self.control)
+        self.assertIn("**Two technical Upstream batch commands:**", self.control)
+        self.assertIn("| `upstream upgrade batch` | — |", self.control)
         self.assertIn("Index `batch status`/`batch reconcile`", self.control)
         self.assertIn("`upstream outcomes`", self.control)
-        self.assertIn("`batch upgrade` command is an Organization-owned", self.guide)
+        self.assertIn("**`upstream upgrade batch`**", self.guide)
+        self.assertNotIn("| **Batch Upgrade** | `batch upgrade` |", self.control)
 
     def test_no_external_publication_right_or_automatic_kpi(self):
-        self.assertIn("External publication remains separately authorized", self.control)
+        self.assertIn("External publication separately authorized", self.control)
         self.assertIn("not an automatic Organization KPI", self.control)
         self.assertIn("no branch, fork, PR or human approval implied", self.control)
         self.assertIn("Tracking is **off by default**", self.guide)

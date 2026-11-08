@@ -1,88 +1,66 @@
-"""Guard the read-only VSM ownership-improvement intake route."""
+"""Guard two Upstream technical batch commands and the retired Organization intake."""
 
 from pathlib import Path
 import unittest
 
-
 ROOT = Path(__file__).resolve().parents[1]
 MENU = ROOT / "docs" / "AGENT_CONTROL_PLANE.md"
-ROUTE = ROOT / "docs" / "BATCH_UPGRADE.md"
+HISTORY = ROOT / "docs" / "BATCH_UPGRADE.md"
 CONTROL = ROOT / "docs" / "CONTROL_PLANE.md"
+GUIDE = ROOT / "CONTRIBUTE_WITH_AI.md"
 
 
 class BatchUpgradeCommandTests(unittest.TestCase):
     @classmethod
     def setUpClass(cls):
         cls.menu = MENU.read_text(encoding="utf-8")
-        cls.route = ROUTE.read_text(encoding="utf-8")
+        cls.history = HISTORY.read_text(encoding="utf-8")
         cls.control = CONTROL.read_text(encoding="utf-8")
+        cls.guide = GUIDE.read_text(encoding="utf-8")
         cls.dispatch = cls.menu.split(
-            "### Batch Upgrade — function and ownership improvement intake", 1
-        )[1].split("### S1 function test — Upstream Contributions", 1)[0]
+            "### Upstream Upgrade Batch — strict assessment-derived improvement", 1
+        )[1].split("### Upstream status —", 1)[0]
 
-    def test_command_is_discoverable_and_distinct(self):
-        self.assertIn("| **Batch Upgrade** | `batch upgrade` |", self.menu)
-        self.assertIn("| `batch upgrade` |", self.menu)
-        self.assertIn("**Command:** `batch upgrade`", self.dispatch)
-        self.assertIn("BATCH_UPGRADE.md", self.menu)
-        self.assertIn("BATCH_UPGRADE.md", self.control)
-        self.assertIn("`batch upstream`", self.dispatch)
-        self.assertIn("`start a batch assessment`", self.route)
+    def test_exactly_two_technical_batch_routes_not_old_third_command(self):
+        self.assertIn("| **Upstream Batch** | `upstream batch` |", self.menu)
+        self.assertIn("| **Upstream Upgrade Batch** | `upstream upgrade batch` |", self.menu)
+        self.assertNotIn("| **Batch Upgrade** | `batch upgrade` |", self.menu)
+        self.assertNotIn("| `batch upgrade` |", self.menu)
+        self.assertIn("**Command:** `upstream upgrade batch`", self.dispatch)
+        self.assertIn("historical rationale", self.control)
+        self.assertIn("not a third active command", self.guide)
+        self.assertIn("not an active third command", self.history)
 
-    def test_intake_is_not_an_implicit_executor(self):
+    def test_both_modes_find_vsm_hypotheses_but_derived_origin_is_strict(self):
         for phrase in (
-            "read-only",
-            "separately reviewed Upstream-owned contract",
-            "does not implement, allocate or publish",
-            "parallel operators",
-            "a scheduler item",
-            "TODO.md",
+            "Both this mode and `upstream batch` search possible",
+            "pre-register",
+            "before fresh first-party code/issue inspection",
+            "ASSESSMENT_DERIVED",
+            "ASSESSMENT_INFORMED",
+            "need / mechanism / counterfactual / scope",
+            "distinct deterministic CI/runner",
+            "BLOCKED_INDEPENDENT_EXECUTION",
+            "five distinct",
         ):
             with self.subTest(phrase=phrase):
-                self.assertIn(phrase, self.route)
+                self.assertIn(phrase.lower(), self.dispatch.lower())
 
-    def test_grade_remains_an_independent_ownership_observation(self):
-        for phrase in (
-            "Neither state is a maturity rank or performance score",
-            "first-party decision owner",
-            "feedback closure",
-            "decisive function-specific right",
-            "C → A",
-            "A` is not presumed",
-            "new source ref",
-            "edit historical frozen vectors",
-        ):
-            with self.subTest(phrase=phrase):
-                self.assertIn(phrase, self.route)
-
-    def test_sources_and_negative_outcomes_are_explicit(self):
-        for phrase in (
-            "exact Index SHA",
-            "review_ref",
-            "need",
-            "mechanism",
-            "counterfactual",
-            "scope",
-            "UPGRADE_PROPOSAL",
-            "NOT_PRODUCT_FIT",
-            "BLOCKED_EVIDENCE",
-            "NO_ELIGIBLE_ASSESSMENT_CANDIDATE",
-        ):
-            with self.subTest(phrase=phrase):
-                self.assertIn(phrase, self.route)
-
-    def test_rights_native_validation_and_ownership_boundaries(self):
+    def test_no_new_queue_grade_or_publication_authority(self):
         for phrase in (
             "Upstream #56",
-            "Skills autonomy states",
-            "Index",
-            "native-only",
-            "deterministic tests",
-            "external publication mandate",
-            "external repository's maintainer",
+            "source-disjoint",
+            "NO_ELIGIBLE_ASSESSMENT_CANDIDATE",
+            "CLOSED_NO_CHANGE",
+            "external publication grants",
+            "No Organization",
+            "No Organization `TODO.md` scheduler entry",
+            "C` function need not become `A`",
         ):
             with self.subTest(phrase=phrase):
-                self.assertIn(phrase, self.route)
+                self.assertIn(phrase.lower(), self.dispatch.lower())
+        self.assertIn("original intake rationale", self.history.lower())
+        self.assertIn("External publication", self.control)
 
 
 if __name__ == "__main__":
