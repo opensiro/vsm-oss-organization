@@ -17,6 +17,9 @@ class UpstreamAutoCommandTests(unittest.TestCase):
             "https://github.com/opensiro/upstream/issues/161",
             "docs/UPSTREAM_AUTO.md",
             "scripts/upstream_auto.py",
+            "| **Upstream Auto Batch** | `upstream auto batch` |",
+            "| `upstream auto batch` | — |",
+            "| `upstream auto batch` | Apply the **same** live Upstream #161",
         ):
             with self.subTest(phrase=phrase):
                 self.assertIn(phrase, MENU)
@@ -30,6 +33,9 @@ class UpstreamAutoCommandTests(unittest.TestCase):
             "read-only preview",
             "effective reservation/authentication mechanism",
             "task-specific S1 admission",
+            "`PARTIAL` is a valid outcome",
+            "atomic multi-task Git CAS",
+            "each actor's own claim",
         ):
             with self.subTest(phrase=phrase):
                 self.assertIn(phrase, MENU)
