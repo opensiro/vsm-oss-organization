@@ -28,12 +28,12 @@ current Organization selection + current Index/Skills/Awesome consumed contract
   -> S1 owns repair/application; feedback/effects recorded for the real case
 ```
 
-**Usable example (read-only, no real S3 case):** from an Organization checkout plus checked-out **selected** Skills release and current Index/Awesome sources:
+**Usable example (read-only, no real S3 case):** from an Organization checkout plus checked-out **selected** Skills release and current Index/Awesome sources. The local `vsm-harness-skills-selected` directory must point to the exact published Methodology tag in [`UPSTREAM_CONTRACT.json`](../../UPSTREAM_CONTRACT.json), not a floating `main`/`latest` checkout:
 
 ```bash
 python scripts/s3_current_regulation.py \
   --root . --index-root ../vsm-harness-index \
-  --skills-root ../vsm-harness-skills-v0.3.7 \
+  --skills-root ../vsm-harness-skills-selected \
   --awesome-root ../awesome-vsm-harness
 ```
 
