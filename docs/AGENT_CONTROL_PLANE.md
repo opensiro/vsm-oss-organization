@@ -53,6 +53,7 @@ Before offering live status, read the current Organization scope and `TODO.md` a
 | Visible action | Command dispatched on selection | Initial behavior |
 | --- | --- | --- |
 | **OSS Status** | `status` | Read-only live status and gates. |
+| **OSS Snapshot** | `snapshot` | On-demand, read-only [six-repository reproducibility manifest](OSS_SNAPSHOT.md): exact Git SHAs, selected Profile/Methodology/Index refs and deterministic compatibility checks. No global SemVer, automatic publication or schedule. |
 | **Roadmap** | `show OSS roadmap` | Read-only milestone/roadmap view; check live tracker issues and distinguish goals from demonstrated evidence. |
 | **Continue Work** | `continue` | Re-evaluate `TODO.md` `NOW`/`NEXT`, current conversation target, locks and admission; report `no current scheduled item` if none. |
 | **Batch Assessment** | `start a batch assessment` | Route to Index for **exactly five** distinct source-verified candidates in each new standard batch; a different count requires an explicit maintainer number. Apply Index discovery/admission/serial-lock rules. |
@@ -107,6 +108,7 @@ separate owners.
 | Say to the agent | Intended operation |
 | --- | --- |
 | `status` / `show OSS status` | Refresh canonical sources, summarize active milestone, scheduled work, relevant open issues/PRs, CI/gates and observed blockers; distinguish unscheduled issues from `TODO.md` selections. No write is implied. |
+| `snapshot` / `OSS snapshot` | Capture a [source-pinned ecosystem snapshot](OSS_SNAPSHOT.md) through `python3 scripts/oss_snapshot.py` or equivalent GitHub read tools. Emit verified JSON only after all six current heads and selected dependency/Index compatibility are resolved and rechecked; otherwise report a precise blocker. No GitHub write, tag, scheduled release, version bump or `TODO.md` selection. |
 | `show OSS roadmap` | Show current milestones and next admissible milestone work, using live Organization milestone tracker issues/owner evidence alongside `docs/ROADMAP.md`; distinguish planned target vectors from established construction/evidence state. Read-only. |
 | `continue` | Continue a clearly identified already-admitted current work item from the conversation, otherwise follow `TODO.md` `NOW` then `NEXT`; re-check ownership/locks and do only the next legitimately admitted action. |
 | `continue <repo> #<issue>` / `continue PR #<n>` | Resume that exact owner/issue/PR, subject to its independent/frozen/permission constraints. Do not silently switch to other batches or repos. |
@@ -466,6 +468,7 @@ Explain **what was actually executed**, and distinguish `proposed`, `reviewed`, 
 
 - Bare `START_HERE.md` URL / `show control plane` with no specific task produces a source-linked bounded Control Plane summary and **real clickable actions where supported**, with no GitHub write before a selection.
 - A text-only client sees a readable numbered menu exposing the same commands; a user can type `status` or provide a named issue instead of clicking a button.
+- Selecting **OSS Snapshot** dispatches `snapshot` as a read-only, on-demand capture of the six bounded repository heads and selected immutable dependencies. Missing/changed heads or failed compatibility checks block a verified snapshot; menu selection never publishes a GitHub artifact or creates an ecosystem SemVer.
 - Selecting **Current Control (S3)** calls `S3: inspect current control` as an independent new user request; it performs only source-first inventory and does not invent a `REQUESTED` transaction or a decisive owner. A targeted `S3: consider <present choice>` must obey the same gate.
 - Selecting **S1 Function Test (Upstream)** invokes `test S1 function: upstream contributions`: it **begins from a live, pinned Index assessment of a harness**, then checks native upstream need/fit before evaluating proposal, action rights, execution, validation and closure evidence from Upstream #6. A GitHub issue alone, a convenient Cognee example or low VSM grade **does not qualify**. It never issues a GitHub write, claims `S1=A/C`, or schedules work merely because the domain is now admitted.
 - Selecting **Batch Upstream** dispatches `batch upstream` and independently verifies the current Upstream #56 source/ref, a complete five-row Index-derived frozen cohort and other active batch reservations before local intervention; it does **not** dispatch Index `start a batch assessment` or the general read-only `contribute to other harnesses` shortlist. The five rows may legitimately end `AWAITING_EXTERNAL`, `BLOCKED_EVIDENCE` or `CLOSED_NO_CHANGE` without five manufactured external PRs, and external publication always has its own grant.
