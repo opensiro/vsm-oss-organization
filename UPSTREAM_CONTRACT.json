@@ -11,8 +11,8 @@
   "methodology": {
     "repository": "opensiro/vsm-harness-skills",
     "source_kind": "release",
-    "ref": "v0.3.7",
-    "version": "0.3.7",
+    "ref": "v0.3.8",
+    "version": "0.3.8",
     "version_path": "skills/assess-vsm-harness/VERSION"
   },
   "index": {
