@@ -7,7 +7,7 @@ on:
   pull_request:
     paths:
       - "metrics.yaml"
-      - "METRICS.md"
+      - "docs/METRICS.md"
       - "scripts/collect_public_metrics.py"
       - "scripts/finalize_public_metrics_windows.py"
       - "tests/test_public_metrics_collector.py"
@@ -84,16 +84,39 @@ jobs:
           tests.test_finalize_public_metrics_windows
           -v
 
+      - name: Observe and accept external changes with Upstream's owning verifier
+        shell: bash
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
+        run: |
+          # This is a live read-only API observation. If unavailable, the
+          # Organization collector preserves UNCLAIMED, never a guessed zero.
+          set -u
+          if python upstream/scripts/verified_external_outcomes.py --report --output-json upstream-observed.json &&
+             python upstream/scripts/accepted_external_outcomes.py --observation-json upstream-observed.json --output-json upstream-accepted.json >/dev/null; then
+            echo "Upstream source-native first-party evidence verified."
+          else
+            rm -f upstream-accepted.json upstream-observed.json
+            echo "::warning::Upstream live verification unavailable; metric remains unclaimed."
+          fi
+
       - name: Collect pinned public snapshot
-        run: >-
-          python organization/scripts/collect_public_metrics.py
-          --profile-root profile
-          --skills-root skills
-          --index-root index
-          --awesome-root awesome
-          --upstream-root upstream
-          --organization-root organization
-          --output vsm-oss-metrics.json
+        shell: bash
+        run: |
+          set -euo pipefail
+          accepted=()
+          if [ -f upstream-accepted.json ]; then
+            accepted=(--upstream-accepted upstream-accepted.json)
+          fi
+          python organization/scripts/collect_public_metrics.py \
+            --profile-root profile \
+            --skills-root skills \
+            --index-root index \
+            --awesome-root awesome \
+            --upstream-root upstream \
+            --organization-root organization \
+            --output vsm-oss-metrics.json \
+            "${accepted[@]}"
 
       - name: Finalize historical windows through repository-owned renderers
         run: >-
