@@ -38,15 +38,13 @@ class OSMRoutingTests(unittest.TestCase):
             with self.subTest(phrase=phrase):
                 self.assertIn(phrase, self.control_section)
 
-    def test_s5_admission_does_not_grant_external_writes_or_autonomy(self):
-        # The S5 scope decision is now recorded; keep provider and stage rights
-        # independent rather than retaining stale NOT_ADMITTED wording.
-        for phrase in ("Organization #274", "Upstream #6",
-                       "external PR publication decision",
-                       "before** exercising new rights",
-                       "Outside separately authorized cases",
-                       "stage-specific live authorization",
-                       "not** a standing fork-creation port or autonomy grade"):
+    def test_new_standing_publication_still_requires_effective_source_gates(self):
+        # Distinct parent decisions: S1 admission did not grant writes; the
+        # later publication mandate did, but is not an executor or grade.
+        for phrase in ("separately delegated standing external-PR publication",
+                       "current Upstream policy", "per-PR owner conversation",
+                       "before** exercising new rights", "provider capabilities",
+                       "No permission override or autonomy grade"):
             with self.subTest(phrase=phrase):
                 self.assertIn(phrase.lower(), self.control_section.lower())
         for phrase in ("authorize=True", "GitHub login", "proposal digest"):
@@ -56,7 +54,8 @@ class OSMRoutingTests(unittest.TestCase):
     def test_upstream_local_grant_is_distinct_from_s5_domain(self):
         self.assertIn("repository/fork owner", self.control_section)
         self.assertIn("different rights", self.control_section)
-        self.assertIn("Organization #274", self.control_section)
+        self.assertIn("#274", self.control_section)
+        self.assertIn("S1 admission alone", self.control_section)
 
 
 

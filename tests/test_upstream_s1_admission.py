@@ -60,8 +60,9 @@ class UpstreamS1AdmissionTests(unittest.TestCase):
         control = read("docs/AGENT_CONTROL_PLANE.md")
         contract = read("contracts/s1/domain-contracts.md")
         self.assertIn("No new credential, external fork/branch/PR publication", decision)
-        self.assertIn("not** a standing fork-creation port or autonomy grade", control)
-        self.assertIn("finite Corrective cohort is not a standing permission", contract)
+        self.assertIn("S1 admission alone still does not establish external-write rights", control)
+        self.assertIn("no permission override or autonomy grade follows from S1 admission", control)
+        self.assertIn("historic finite Corrective cohort is not itself a standing permission", contract)
         self.assertIn("does **not** by itself establish `S1=A`", contract)
 
     def test_four_domain_read_only_s3_inventory_without_new_s3_grant(self):
