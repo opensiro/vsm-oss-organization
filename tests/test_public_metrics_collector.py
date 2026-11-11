@@ -243,6 +243,112 @@ class CollectorTests(unittest.TestCase):
         for label in ("24h", "7d", "30d"):
             self.assertEqual("unclaimed_semantic_evidence", outcomes["window_change"][label]["status"])
 
+
+    def outcome_export(self, *, count=1, status="UPSTREAM_ACCEPTED_SOURCE_ONLY"):
+        """The live owner API is tested by Upstream; Organization tests consumption."""
+        owner_script = self.roots["upstream"] / "scripts" / "verified_external_outcomes.py"
+        owner_script.parent.mkdir(exist_ok=True)
+        owner_script.write_text(
+            "class Portfolio:\n"
+            "    def cohort(self): return []\n"
+            "    def cohort_fingerprint(self, value): return 'b' * 64\n"
+            "portfolio_reconcile = Portfolio()\n"
+            "def digest_sources(): return 'a' * 64\n",
+            encoding="utf-8",
+        )
+        cases = [{
+            "intervention_id": "improvement:agent-fleet",
+            "external_pr_url": "https://github.com/chankov/agent-fleet/pull/43",
+            "merge_commit_sha": "c" * 40,
+            "native_receipt": "https://github.com/opensiro/upstream/actions/runs/40093167700",
+            "decision": "ACCEPTED_MERGED_CHANGE_ONLY",
+            "acceptance_basis": "DETERMINISTIC_VERIFIED_MERGE",
+            "benefit_claim": "NOT_MEASURED",
+        }] if count else []
+        data = {
+            "schema_version": 1,
+            "source": "opensiro/upstream",
+            "metric_status": status,
+            "observed_at": self.now.isoformat(),
+            "source_sha256": "a" * 64,
+            "portfolio_cohort_sha256": "b" * 64,
+            "accepted_count": count,
+            "accepted": cases,
+            "organization_metric_claimed": False,
+        }
+        path = Path(self.temp.name) / "upstream-export.json"
+        write_json(path, data)
+        return path, data
+
+    def test_owner_verified_merged_change_can_be_claimed_without_benefit_claim(self):
+        path, _ = self.outcome_export()
+        result = collector.collect_snapshot(
+            self.roots, collected_at=self.now, activity=self.activity,
+            upstream_accepted=path,
+        )
+        claim = result["repositories"]["opensiro/upstream"]["metrics"]["verified_external_outcomes"]
+        self.assertEqual(claim["value"], 1)
+        self.assertTrue(claim["completion_gate_evaluated"])
+        self.assertEqual(claim["claim_status"],
+                         "verified_merged_changes_only_not_deployed_benefit")
+        self.assertEqual(claim["accepted"][0]["benefit_claim"], "NOT_MEASURED")
+        for window in collector.WINDOWS:
+            self.assertIsNone(claim["window_change"][window]["value"])
+            self.assertEqual(claim["window_change"][window]["status"],
+                             "source_unavailable_at_baseline")
+
+    def test_empty_verified_export_stays_unclaimed(self):
+        path, _ = self.outcome_export(
+            count=0, status="UNCLAIMED_SEMANTIC_EVIDENCE")
+        data = collector.collect_snapshot(
+            self.roots, collected_at=self.now, activity=self.activity,
+            upstream_accepted=path)
+        metric = data["repositories"]["opensiro/upstream"]["metrics"]["verified_external_outcomes"]
+        self.assertIsNone(metric["value"])
+        self.assertEqual(metric["claim_status"], "unclaimed_semantic_evidence")
+
+    def test_stale_or_drifted_owner_export_fails_closed(self):
+        path, data = self.outcome_export()
+        bad = [
+            {"source_sha256": "0" * 64},
+            {"portfolio_cohort_sha256": "f" * 64},
+            {"accepted_count": 2},
+            {"observed_at": "2026-09-20T12:00:00Z"},
+            {"organization_metric_claimed": True},
+            {"metric_status": "CANDIDATE_ONLY_NOT_ORGANIZATION_CLAIMED"},
+        ]
+        for edit in bad:
+            with self.subTest(edit=edit):
+                write_json(path, dict(data, **edit))
+                with self.assertRaises(collector.CollectorError):
+                    collector.collect_snapshot(
+                        self.roots, collected_at=self.now, activity=self.activity,
+                        upstream_accepted=path)
+
+    def test_duplicate_and_unpinned_or_false_benefit_fail_closed(self):
+        path, data = self.outcome_export()
+        for key, value in [
+            ("benefit_claim", "DEPLOYED"),
+            ("native_receipt", "https://github.com/opensiro/upstream/blob/main/test"),
+            ("acceptance_basis", "RAW_MERGE_COUNT"),
+        ]:
+            with self.subTest(field=key):
+                edited = json.loads(json.dumps(data))
+                edited["accepted"][0][key] = value
+                write_json(path, edited)
+                with self.assertRaises(collector.CollectorError):
+                    collector.collect_snapshot(
+                        self.roots, collected_at=self.now, activity=self.activity,
+                        upstream_accepted=path)
+        duplicate = json.loads(json.dumps(data))
+        duplicate["accepted"].append(dict(duplicate["accepted"][0]))
+        duplicate["accepted_count"] = 2
+        write_json(path, duplicate)
+        with self.assertRaises(collector.CollectorError):
+            collector.collect_snapshot(
+                self.roots, collected_at=self.now, activity=self.activity,
+                upstream_accepted=path)
+
     def test_activity_is_separate_non_kpi_telemetry(self):
         snapshot = self.snapshot()
         repo = snapshot["repositories"]["opensiro/vsm-harness-index"]
