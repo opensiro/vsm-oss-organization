@@ -14,7 +14,9 @@ from __future__ import annotations
 
 import argparse
 import json
+import re
 import subprocess
+import sys
 from datetime import datetime, timedelta, timezone
 from pathlib import Path
 from typing import Any, Callable, Mapping
@@ -284,12 +286,89 @@ def semantic_metrics_unclaimed(repo_contract: Mapping[str, Any]) -> dict[str, An
     return result
 
 
+def verified_upstream_export(upstream: Path, path: Path, collected_at: datetime) -> dict[str, Any] | None:
+    """Consume the freshly live-verified Upstream owner export, not raw PR counts."""
+    try:
+        data = json.loads(path.read_text(encoding="utf-8"))
+        observed = datetime.fromisoformat(data["observed_at"].replace("Z", "+00:00"))
+    except (OSError, ValueError, KeyError, TypeError) as exc:
+        raise CollectorError("Missing or malformed Upstream outcome export") from exc
+    if (not isinstance(data, dict) or data.get("schema_version") != 1
+            or data.get("source") != "opensiro/upstream"
+            or data.get("organization_metric_claimed") is not False
+            or not observed.tzinfo
+            or observed > collected_at + timedelta(seconds=1)
+            or collected_at - observed > timedelta(hours=1)
+            or type(data.get("accepted_count")) is not int
+            or data["accepted_count"] < 0
+            or not isinstance(data.get("accepted"), list)
+            or len(data["accepted"]) != data["accepted_count"]):
+        raise CollectorError("Invalid or stale Upstream accepted-source export")
+    # Compute both digests using the actual owner implementation in the pinned
+    # Upstream checkout; never duplicate the owning cohort/dedup logic here.
+    code = ("import json,sys;sys.path.insert(0,'scripts');"
+            "import verified_external_outcomes as o;"
+            "print(json.dumps([o.digest_sources(),"
+            "o.portfolio_reconcile.cohort_fingerprint(o.portfolio_reconcile.cohort())]))")
+    try:
+        run = subprocess.run([sys.executable, "-c", code], cwd=upstream,
+                             capture_output=True, check=True, text=True, timeout=60)
+        source, cohort = json.loads(run.stdout)
+    except (subprocess.CalledProcessError, subprocess.TimeoutExpired,
+            OSError, ValueError, TypeError) as exc:
+        raise CollectorError("Unable to verify Upstream source digests") from exc
+    if (data.get("source_sha256") != source
+            or data.get("portfolio_cohort_sha256") != cohort):
+        raise CollectorError("Accepted export differs from pinned owner sources")
+    identities = set()
+    for item in data["accepted"]:
+        if (not isinstance(item, dict)
+                or not isinstance(item.get("intervention_id"), str)
+                or not item["intervention_id"]
+                or not isinstance(item.get("external_pr_url"), str)
+                or not re.fullmatch(r"https://github\.com/[^/\s]+/[^/\s]+/pull/[1-9]\d*",
+                                    item["external_pr_url"])
+                or not isinstance(item.get("merge_commit_sha"), str)
+                or not re.fullmatch(r"[a-f0-9]{40}", item["merge_commit_sha"])
+                or item.get("decision") != "ACCEPTED_MERGED_CHANGE_ONLY"
+                or item.get("acceptance_basis") != "DETERMINISTIC_VERIFIED_MERGE"
+                or item.get("benefit_claim") != "NOT_MEASURED"
+                or not isinstance(item.get("native_receipt"), str)
+                or not re.fullmatch(r"https://github\.com/opensiro/upstream/(?:actions/runs/[1-9]\d*|blob/[a-f0-9]{40}/[^?#]+)",
+                                    item["native_receipt"])):
+            raise CollectorError("Accepted entry lacks pinned native merge evidence")
+        ident = (item["intervention_id"], item["external_pr_url"].lower())
+        if any(x in identities for x in ident):
+            raise CollectorError("Duplicate accepted intervention / PR")
+        identities.update(ident)
+    if data["accepted_count"] == 0:
+        if data.get("metric_status") != "UNCLAIMED_SEMANTIC_EVIDENCE":
+            raise CollectorError("Empty Upstream outcome export has wrong state")
+        return None
+    if data.get("metric_status") != "UPSTREAM_ACCEPTED_SOURCE_ONLY":
+        raise CollectorError("Nonempty Upstream export lacks accepted status")
+    # Historical cutoffs require their own historically generated owner export.
+    windows = {k: {"status": "source_unavailable_at_baseline",
+                   "baseline": None, "value": None} for k in WINDOWS}
+    result = metric(
+        "stock", data["accepted_count"],
+        "opensiro/upstream:scripts/accepted_external_outcomes.py",
+        claim_status="verified_merged_changes_only_not_deployed_benefit",
+        completion_gate_evaluated=True, window_change=windows)
+    result["observed_at"] = data["observed_at"]
+    result["owner_source_sha256"] = source
+    result["portfolio_cohort_sha256"] = cohort
+    result["accepted"] = data["accepted"]
+    return result
+
+
 def collect_snapshot(
     roots: Mapping[str, Path],
     *,
     collected_at: datetime,
     revisions: Mapping[str, str] | None = None,
     activity: Mapping[str, Mapping[str, Any]] | None = None,
+    upstream_accepted: Path | None = None,
 ) -> dict[str, Any]:
     missing = set(REPOSITORIES) - set(roots)
     if missing:
@@ -438,12 +517,14 @@ def collect_snapshot(
     )
     repositories[awesome_repo] = awesome
 
-    # Do not manufacture an outcome count from external GitHub PR events.
-    # Upstream's general completed-outcome metric stays unclaimed until its
-    # own provenance/completion contract is mechanically consumable.
+    # Accept only a fresh live owner export; missing evidence remains unclaimed.
     upstream_repo = REPOSITORIES["upstream"]
     upstream = base(upstream_repo)
     upstream["metrics"].update(semantic_metrics_unclaimed(repo_contracts[upstream_repo]))
+    if upstream_accepted is not None:
+        accepted = verified_upstream_export(roots["upstream"], upstream_accepted, collected_at)
+        if accepted is not None:
+            upstream["metrics"]["verified_external_outcomes"] = accepted
     repositories[upstream_repo] = upstream
 
     organization_repo = REPOSITORIES["organization"]
@@ -478,6 +559,8 @@ def parse_args() -> argparse.Namespace:
     for key in REPOSITORIES:
         parser.add_argument(f"--{key}-root", type=Path, required=True)
     parser.add_argument("--output", type=Path, required=True)
+    parser.add_argument("--upstream-accepted", type=Path,
+                        help="Fresh live Upstream owner export; omit to stay unclaimed")
     parser.add_argument("--collected-at", help="ISO-8601 timestamp; defaults to current UTC time")
     return parser.parse_args()
 
@@ -486,7 +569,9 @@ def main() -> int:
     args = parse_args()
     roots = {key: getattr(args, f"{key}_root") for key in REPOSITORIES}
     try:
-        snapshot = collect_snapshot(roots, collected_at=parse_instant(args.collected_at))
+        snapshot = collect_snapshot(
+            roots, collected_at=parse_instant(args.collected_at),
+            upstream_accepted=args.upstream_accepted)
     except (CollectorError, KeyError, TypeError, ValueError) as exc:
         raise SystemExit(f"metrics collector error: {exc}") from exc
     args.output.parent.mkdir(parents=True, exist_ok=True)
