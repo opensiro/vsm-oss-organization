@@ -4,6 +4,7 @@ This `README.md` is the common entry point for people and AI runtimes into the b
 
 ## I'm human
 
+- **I don't understand any of this:** [Show me the visual map](https://opensiro.com/vsm.html) — a direct, illustrated introduction to the VSM approach.
 - **Web overview:** [opensiro.com](https://opensiro.com)
 - **Public outcome metrics:** [`docs/METRICS.md`](docs/METRICS.md)
 - **Contribute with AI:** [`CONTRIBUTE_WITH_AI.md`](CONTRIBUTE_WITH_AI.md)
