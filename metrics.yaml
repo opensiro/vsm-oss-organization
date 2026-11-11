@@ -194,6 +194,8 @@ repositories:
         kind: stock
         source:
           mode: semantic_evidence
+          accepted_export_producer: scripts/accepted_external_outcomes.py
+          accepted_export_gate: live_first_party_revalidation_and_pinned_owner_digests
           paths:
             - registry.yaml
             - data/corrective-publication/2026-10-23-01.json
