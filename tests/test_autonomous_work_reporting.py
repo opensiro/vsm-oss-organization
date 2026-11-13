@@ -22,6 +22,28 @@ class AutonomousWorkReportingTests(unittest.TestCase):
         self.assertIn("Scheduler reconciliation", contract)
         self.assertIn("not by itself an algedonic signal", contract)
 
+    def test_status_command_uses_existing_compact_reporting_without_extra_queue(self) -> None:
+        control = self.read("docs/AGENT_CONTROL_PLANE.md")
+        reporting = self.read("docs/AUTONOMOUS_WORK_REPORTING.md")
+        section = control.split("## Default `status` answer (compact, read-only)", 1)[1].split(
+            "## Maintainer commands", 1
+        )[0]
+        for marker in (
+            "NOW / BLOCKED / NEXT",
+            "AUTONOMOUS_WORK_REPORTING.md",
+            "no current scheduled item",
+            "TODO.md",
+            "unverified",
+            "NEED YOU",
+            "DONE",
+            "suggestion",
+            "no new scheduler",
+        ):
+            self.assertIn(marker, section)
+        for marker in ("DONE", "NOW", "BLOCKED", "NEXT", "NEED YOU"):
+            self.assertIn(marker, reporting)
+        self.assertIn("#default-status-answer-compact-read-only", control)
+
     def test_common_entry_exposes_reporting_contract(self) -> None:
         entry = self.read("CONTRIBUTOR_START.md")
         self.assertIn("## Autonomous work reporting", entry)

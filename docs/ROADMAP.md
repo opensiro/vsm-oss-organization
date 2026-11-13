@@ -1,6 +1,6 @@
 # OSM Roadmap
 
-This roadmap grows contributor autonomy bottom-up across the public OpenSiro OSS scope defined in [README.md](README.md). It follows the VSM Harness Profile rule: map the organizational function first, then identify the decisive decision/feedback right, its owner, supporting enforcement, and closure.
+This roadmap grows contributor autonomy bottom-up across the public OpenSiro OSS scope defined in [README.md](../README.md). It follows the VSM Harness Profile rule: map the organizational function first, then identify the decisive decision/feedback right, its owner, supporting enforcement, and closure.
 
 The historical M0 construction started with three operational S1 domains — Index, Skills, and Awesome. The current system-in-focus additionally includes **Upstream Contributions**, constituted by the [2026-10-26 S5 decision #274](https://github.com/opensiro/vsm-oss-organization/issues/274#issuecomment-6420871211). Profile remains the normative semantic source and `vsm-oss-organization` the metasystem/control-construction surface. Frozen M0–M2 milestone evidence retains its original three-domain boundary; Upstream admission does not independently regrade or complete any milestone.
 
