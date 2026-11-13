@@ -969,6 +969,48 @@ For this case the S5 matter is the identity/system-scope decision, not the PR, G
 
 Prefer reconstructing a real earlier event over manufacturing a new one when the primary evidence can establish the missing functional and ownership links. Preserve the chronology of recognition: later formalization may make an earlier event classifiable, but it must not be written as if the later governance contract already existed at the time.
 
+## 2026-11-13 — Bound autonomous CLA acceptance to organization-specific, approved templates
+
+**Status:** `provisional — owner direction recorded; effect and external acceptance unmeasured`
+
+### Context
+
+Upstream Contributions became the fourth S1 operational domain after the 2026-10-26 parent decision. Its external environment includes separately governed OSS repositories, each with its own legal contributor requirements. A 2026-11-11 standing policy permitted qualifying external PR publication but did not authorize fabricated personal CLA/DCO attestations.
+
+### Observed problem
+
+Technical contributions were already prepared while legal contribution rules were heterogeneous: Revka's CLA treats submitting a PR as assent; Microsoft's Fara CLA bot requests an explicit first-person `agree` comment; VOLY requires a DCO attestation on each commit. Treating all three as identical GitHub workflow steps risks confusing execution credentials with genuine legal capacity.
+
+### Alternatives considered
+
+- keep every CLA acceptance as a repeated manual action;
+- authorize blanket automatic acceptance of unknown future contracts;
+- permit automation only for exact, source-pinned templates approved by the real signatory, with a fail-closed exception route.
+
+### Decision / experiment
+
+On 2026-11-13, the parent authorized agents to handle CLA acceptance on the owner's behalf using specific templates for specific organizations. The governance application separates the owner-level delegation category from individual exact-term template enrolment and live acceptance evidence. Upstream built an initial deny-by-default static preflight; no actual third-party CLA agreement was submitted as part of this work. DCO remains outside the CLA scope.
+
+### Evidence
+
+- [S5 authorization/transcription #323](https://github.com/opensiro/vsm-oss-organization/issues/323)
+- [Governance application PR #324](https://github.com/opensiro/vsm-oss-organization/pull/324) and [dated S5 decision record](../records/s5/2026-11-13-cla-template-delegation-decision.md)
+- [Upstream implementation issue #274](https://github.com/opensiro/upstream/issues/274), [merged preflight PR #275](https://github.com/opensiro/upstream/pull/275)
+- First-party [Revka CLA](https://github.com/KumihoIO/Revka/blob/main/docs/contributing/cla.md), [Microsoft Fara CLA-bot comment](https://github.com/microsoft/fara/pull/96#issuecomment-6810190721) and [VOLY DCO](https://github.com/voly-codes/voly/blob/main/CONTRIBUTING.md)
+- [Research note](2026-11-13-cla-template-delegation-in-oss-vsm.md) with hypotheses, metrics and falsification conditions
+
+### Result
+
+The bounded governance direction was recorded and a technical registry/static block-first gate was implemented and tested. No independently confirmed third-party CLA acceptance, avoided-work metric, acceleration, legal-validity finding, or VSM autonomy-grade improvement has been demonstrated. The proposed exact-term template signatory gate remains unresolved for real external submission.
+
+### VSM interpretation
+
+The legitimate parent's S5 decision concerns whether a class of legally consequential acts may be delegated and under what limits. Subsequent source-native checks and permitted actions may be Upstream S1 work, but neither a GitHub token nor a policy marked active proves legal consent or operational closure. One must distinguish parent authority, delegated exercise, target-side result and assessment evidence.
+
+### Reusable lesson
+
+Preserve the difference between reducing procedural human interruption and making an unsupported legal representation. Future comparisons should count blocked cases and terms-drift incidents, not only accepted PRs, and should allow the hypothesis of improved autonomy to be falsified.
+
 ## Backfill policy
 
 Important decisions that predate this log may be added later only when primary evidence supports their date, context, and interpretation. Do not infer a historical sequence solely from the current contents of `design-reasoning.md`.
