@@ -102,11 +102,21 @@ S1 domain. Each route rechecks its owning Upstream source and exact task gate.
 - Do not initiate `continue`, batch execution, a GitHub write, S5 escalation, a reviewer session or profile monitoring merely because the panel was displayed. An affirmative menu selection still passes through the [per-command operating loop](#per-command-operating-loop) and the owning authorization/independence gates. A blocked `continue` must not silently select some unrelated open issue.
 - Do not turn this presentation into a global scheduler, S2 coordination owner, S3 controller, S3* reviewer, or S5 policy authority. The panel is a view/control **interface** over existing GitHub-backed contracts, never their replacement.
 
+## Default `status` answer (compact, read-only)
+
+For a bare `status` / `show OSS status`, **answer briefly by default**, not with the full command menu, issue inventory or roadmap. Reuse the existing [`DONE / NOW / BLOCKED / NEXT / NEED YOU` reporting contract](AUTONOMOUS_WORK_REPORTING.md), but show only its **`NOW / BLOCKED / NEXT`** subset unless completed work or a specific owner decision materially changes the answer. Each item should normally fit on one line and point to the owning source:
+
+- **NOW:** verified current construction milestone and **separately** the `TODO.md` selected work. If `TODO.md` has no `NOW` / `NEXT` entries, explicitly say **`no current scheduled item`**; an open milestone, issue or unscheduled PR is *not* a selected task.
+- **BLOCKED:** the one decisive verified blocker, with its responsible decision owner, or `none`. If the source is unavailable, say `unverified`, not `none`.
+- **NEXT:** the next **actually permitted** step from the selected issue, or a clearly labeled *suggestion* if nothing is scheduled. Do not auto-select work or imply authority to act.
+
+Include `NEED YOU` only for a concrete un-delegated owner decision; include `DONE` only for material new completion or when explicitly requested. Link to the exact owner issue/PR for detail; expand into source evidence, other workstreams and full five-field autonomous-run reporting **on request or after substantial execution**. The status command only reads existing GitHub sources: **no new scheduler, dashboard, stored status file, JSON projection, workflow, metric or S3/S5 authority**. Keep the first-contact menu for `start`/`help` requests, not for the status-only request.
+
 ## Maintainer commands
 
 | Say to the agent | Intended operation |
 | --- | --- |
-| `status` / `show OSS status` | Refresh canonical sources, summarize active milestone, scheduled work, relevant open issues/PRs, CI/gates and observed blockers; distinguish unscheduled issues from `TODO.md` selections. No write is implied. |
+| `status` / `show OSS status` | Refresh canonical sources and return the [compact `NOW / BLOCKED / NEXT` view](#default-status-answer-compact-read-only), with owner links and clear `TODO.md` empty-queue semantics. Expand open issues/PRs, CI and gates only as needed or on request. No write is implied. |
 | `snapshot` / `OSS snapshot` | Capture a [source-pinned ecosystem snapshot](OSS_SNAPSHOT.md) through `python3 scripts/oss_snapshot.py` or equivalent GitHub read tools. Emit verified JSON only after all six current heads and selected dependency/Index compatibility are resolved and rechecked; otherwise report a precise blocker. No GitHub write, tag, scheduled release, version bump or `TODO.md` selection. |
 | `show OSS roadmap` | Show current milestones and next admissible milestone work, using live Organization milestone tracker issues/owner evidence alongside `docs/ROADMAP.md`; distinguish planned target vectors from established construction/evidence state. Read-only. |
 | `continue` | Continue a clearly identified already-admitted current work item from the conversation, otherwise follow `TODO.md` `NOW` then `NEXT`; re-check ownership/locks and do only the next legitimately admitted action. |
