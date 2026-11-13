@@ -25,4 +25,4 @@ The standing [Upstream external-PR mandate](https://github.com/opensiro/upstream
 
 ## Evidence and closure boundary
 
-This records a **decision**, not its successful application. A real template-specific mandate, current exact terms, source-native compliance, provider-recorded acceptance and downstream organizational consequences each require separately attributable evidence. The [historiographic note](../../docs/historiography/2026-11-13-cla-template-delegation-in-oss-vsm.md) preserves an interpretive research account, not a positive autonomy assessment.
+This records a **decision**, not its successful application. A real template-specific mandate, current exact terms, source-native compliance, provider-recorded acceptance and downstream organizational consequences each require separately attributable evidence. The [historiographic note](../../supplementary/2026-11-13-cla-template-delegation-in-oss-vsm.md) preserves an interpretive research account, not a positive autonomy assessment.

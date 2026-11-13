@@ -25,7 +25,7 @@ Lifecycle: `DISCOVERED -> PROPOSED -> APPROVED_EXACT_TERMS -> VERIFIED -> SUBMIT
 
 ## Application and evidence
 
-- [S5 decision record](../../records/s5/2026-11-13-cla-template-delegation-decision.md) and [historiographic analysis](../../docs/historiography/2026-11-13-cla-template-delegation-in-oss-vsm.md).
+- [S5 decision record](../../records/s5/2026-11-13-cla-template-delegation-decision.md) and [historiographic analysis](../../supplementary/2026-11-13-cla-template-delegation-in-oss-vsm.md).
 - [Upstream #274](https://github.com/opensiro/upstream/issues/274) owns a version-pinned deny-by-default registry and tests; existing [standing publication policy](https://github.com/opensiro/upstream/blob/main/docs/STANDING_EXTERNAL_PR_PUBLICATION.md) continues to forbid fabricated legal attestations for unenrolled cases.
 
 No named template is activated by this policy alone. The decision is a prospective S5 envelope, not proof that a CLA was signed or that any VSM autonomy grade improved.
