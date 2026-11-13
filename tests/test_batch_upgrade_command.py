@@ -63,5 +63,20 @@ class BatchUpgradeCommandTests(unittest.TestCase):
         self.assertIn("External publication", self.control)
 
 
+    def test_every_upgrade_source_requires_six_function_dispositions(self):
+        for phrase in (
+            "S1, S2, S3, S3*, S4 and S5",
+            "six-row-per-source HYPOTHESES.md matrix",
+            "NO_SUPPORTED_HYPOTHESIS",
+            "Only **after** the whole sweep choose a primary intervention function",
+            "six function-level dispositions per source",
+            "60 for a ten-source batch",
+            "do **not** mark a source complete with fewer than six dispositions",
+            "ten on explicit",
+        ):
+            with self.subTest(phrase=phrase):
+                self.assertIn(phrase.lower(), self.menu.lower())
+
+
 if __name__ == "__main__":
     unittest.main()
