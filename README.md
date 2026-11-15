@@ -23,7 +23,7 @@ Repository-local facts remain authoritative in their owning repository. This rep
 
 ## Upstream Contributions
 
-[New Upstream v0.12.0](https://github.com/opensiro/upstream) is the operational **case-first S1 contribution domain**; [opensiro-contributions](https://github.com/opensiro-contributions) holds source-specific working forks and native tests. The former [upstream-old](https://github.com/opensiro/upstream-old) is the authoritative historical owner of frozen batches, original PRs and evidence through v0.11.0. [Architecture and the responsibility matrix](https://github.com/opensiro/upstream/blob/main/docs/ARCHITECTURE.md). No parallel VSM control plane or second organization-wide scheduler is created.
+[New Upstream v0.13.0](https://github.com/opensiro/upstream) is the operational **aggregate-and-routing S1 domain**; verified [opensiro-contributions](https://github.com/opensiro-contributions) working forks own source-specific code, native tests and OpenSiro `.opensiro/` attention/contribution/event history **only on separate `opensiro/meta` branches**. Upstream is a lean human-facing projection, not a duplicate mutable event ledger. See [migration #2](https://github.com/opensiro/upstream/issues/2). The former [upstream-old](https://github.com/opensiro/upstream-old) is the authoritative historical owner of frozen batches, original PRs and evidence through v0.11.0. [Architecture and the responsibility matrix](https://github.com/opensiro/upstream/blob/main/docs/ARCHITECTURE.md). No parallel VSM control plane or second organization-wide scheduler is created.
 
 ## Scope
 
