@@ -15,8 +15,8 @@ class UpstreamStatusCommandTests(unittest.TestCase):
 
     def test_first_contact_menu_and_typed_route(self):
         self.assertIn("| **Upstream Status** | `upstream status` |", self.content)
-        self.assertIn("| **Upstream Continue** | `upstream continue <issue URL>` |", self.content)
-        self.assertIn("## Current Upstream v0.12.0", self.content)
+        self.assertIn("| **Upstream Continue** | `upstream continue <harness>` |", self.content)
+        self.assertIn("## Current Upstream v0.13.0", self.content)
         self.assertIn("### Upstream status — joined harness/intervention/PR inventory", self.content)
 
     def test_owner_and_non_authorizing_boundary(self):
