@@ -20,7 +20,7 @@ class AssessmentDrivenS1RouteTests(unittest.TestCase):
         )[1].split("### S1 function test", 1)[0]
 
     def test_menu_keeps_command_mapped_to_assessment_first_route(self):
-        self.assertIn("## Current Upstream v0.12.0", self.document)
+        self.assertIn("## Current Upstream v0.13.0", self.document)
         self.assertNotIn("| **Upstream S1 Test** | `upstream s1 test` |", self.document)
         self.assertIn("### S1 function test — Upstream Contributions", self.document)
         self.assertIn("Predecessor-only documentation", self.document)
