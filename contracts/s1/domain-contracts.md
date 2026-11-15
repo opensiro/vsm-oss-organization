@@ -85,6 +85,10 @@ Escalate changes to Index canonical assessment state, Profile/Methodology semant
 
 ## Upstream Contributions domain
 
+**Current execution route:** [opensiro/upstream v0.12.0](https://github.com/opensiro/upstream/blob/main/PROTOCOL.md) owns one source-backed improvement issue over multiple sessions, with code and native tests in [opensiro-contributions](https://github.com/opensiro-contributions). The previous [upstream-old](https://github.com/opensiro/upstream-old) remains authoritative for its original case/batch records, external PR evidence and 0.1.0–0.11.0 protocol history. This is an organizational S1 continuation, **not** another S2–S5 implementation or new scheduler. The former standing no-prompt external-publication mode was superseded by the [2026-11-15 exact current-conversation consent restriction](https://github.com/opensiro/upstream/blob/main/PROTOCOL.md#external-publication-consent).
+
+
+
 ### Durable outcome
 
 Produce, maintain and truthfully report attributable upstream-native interventions to external OSS harnesses: source-backed opportunity selection, native-tested changes, reviewable public contributor-fork/PR packages when authorized, feedback/maintenance, accepted/rejected/blocked outcomes, and provenance-preserving registry/portfolio updates. An intervention may close as evidence-backed `CLOSED_NO_CHANGE` or escalation; external acceptance is not guaranteed.
