@@ -1,10 +1,13 @@
 # `upstream outcomes` — agent-assisted external outcome reconciliation
 
+> **Repository split (2026-11-15):** This is the historical [upstream-old](https://github.com/opensiro/upstream-old) accepted-outcome observer route, not a working export in [new upstream](https://github.com/opensiro/upstream). For current work use the [case-first protocol](https://github.com/opensiro/upstream/blob/main/PROTOCOL.md). No current new-repository KPI is claimed without independently validated source migration.
+
+
 **Command:** `upstream outcomes` (alias `verify upstream outcomes`).
 
 **Command owner:** the [Organization agent Control Plane](AGENT_CONTROL_PLANE.md).
 **Evidence and case owner:** [`opensiro/upstream`](https://github.com/opensiro/upstream),
-S1 Upstream Contributions. **Work owner:** [Upstream #159](https://github.com/opensiro/upstream/issues/159).
+S1 Upstream Contributions. **Work owner:** [Upstream #159](https://github.com/opensiro/upstream-old/issues/159).
 **Metric contract owner:** Organization's [metrics contract](METRICS.md) and
 [`metrics.yaml`](../metrics.yaml). No further S1 domain, S3/S3* role or S5
 delegation is created by this command.
@@ -21,11 +24,11 @@ read-only sensing between agent invocations.
 The operation has three distinct stages:
 
 1. **Deterministic GitHub readback** — Upstream's
-   [`scripts/verified_external_outcomes.py`](https://github.com/opensiro/upstream/blob/main/scripts/verified_external_outcomes.py)
+   [`scripts/verified_external_outcomes.py`](https://github.com/opensiro/upstream-old/blob/main/scripts/verified_external_outcomes.py)
    validates the finite source cohort, external PR/fork/merge identity, landed
    source delta and pinned native CI evidence.
 2. **Automatic accepted-source export** — Upstream's
-   [`scripts/accepted_external_outcomes.py`](https://github.com/opensiro/upstream/blob/main/scripts/accepted_external_outcomes.py)
+   [`scripts/accepted_external_outcomes.py`](https://github.com/opensiro/upstream-old/blob/main/scripts/accepted_external_outcomes.py)
    independently rechecks live GitHub evidence and exports strict
    `VERIFIED` cases as `ACCEPTED_MERGED_CHANGE_ONLY`, with
    `acceptance_basis=DETERMINISTIC_VERIFIED_MERGE`. No per-case owner
@@ -36,13 +39,13 @@ The operation has three distinct stages:
    examination and a reviewable dossier, not automatic acceptance.
 
 The authoritative current Upstream specification is
-[`docs/VERIFIED_EXTERNAL_OUTCOMES.md`](https://github.com/opensiro/upstream/blob/main/docs/VERIFIED_EXTERNAL_OUTCOMES.md).
+[`docs/VERIFIED_EXTERNAL_OUTCOMES.md`](https://github.com/opensiro/upstream-old/blob/main/docs/VERIFIED_EXTERNAL_OUTCOMES.md).
 
 ## Invocation protocol
 
 1. **Bootstrap and admission.** Read the current Organization
    [`START_HERE.md`](../START_HERE.md), owner map and S1 admission contract;
-   then current Upstream `main`, its [#159](https://github.com/opensiro/upstream/issues/159),
+   then current Upstream `main`, its [#159](https://github.com/opensiro/upstream-old/issues/159),
    `UPSTREAMING.md`, `docs/VERIFIED_EXTERNAL_OUTCOMES.md` and the exact
    source ledgers. Check for concurrent operators/PRs for a candidate before
    proposing a write. A closed #159 or changed cohort is not permission to
