@@ -17,8 +17,10 @@ class BatchUpstreamCommandTests(unittest.TestCase):
         )[1].split("### S1 function test — Upstream Contributions", 1)[0]
 
     def test_menu_and_dispatch_have_distinct_execution_route(self):
-        self.assertIn("| **Upstream Batch** | `upstream batch` |", self.document)
-        self.assertIn("| `upstream batch` / `batch upstream` / `start an upstream batch`", self.document)
+        self.assertNotIn("| **Upstream Batch** | `upstream batch` |", self.document)
+        self.assertIn("**Legacy:** `upstream batch`", self.document)
+        self.assertIn("Predecessor-only documentation", self.batch)
+        self.assertIn("https://github.com/opensiro/upstream-old/issues/56", self.batch)
         self.assertIn("**Command:** `upstream batch` (compatible aliases: `batch upstream`", self.batch)
         for distinct in (
             "contribute to other harnesses",
