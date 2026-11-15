@@ -20,7 +20,7 @@ class UpstreamAutoCommandTests(unittest.TestCase):
         self.assertIn("No new autonomous runtime or S1 grade is implied", MENU)
         self.assertIn("current-conversation exact owner consent", MENU)
         self.assertIn("No Organization", MENU)
-        self.assertIn("not a daemon", MENU.lower())
+        self.assertIn("not an installed CLI or background executor", MENU)
 
 if __name__ == "__main__":
     unittest.main()
