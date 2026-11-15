@@ -7,7 +7,7 @@ MENU = (ROOT / "docs" / "AGENT_CONTROL_PLANE.md").read_text(encoding="utf-8")
 
 class UpstreamAutoCommandTests(unittest.TestCase):
     def test_legacy_auto_retains_correct_predecessor_owner(self):
-        self.assertIn("## Current Upstream v0.12.0", MENU)
+        self.assertIn("## Current Upstream v0.13.0", MENU)
         self.assertIn("upstream-old/issues/161", MENU)
         self.assertIn("docs/UPSTREAM_AUTO.md", MENU)
         self.assertIn("scripts/upstream_auto.py", MENU)
