@@ -88,7 +88,7 @@ Before offering live status, read the current Organization scope and `TODO.md` a
 | `upstream continue <issue URL>` | Resume the specific new Upstream case; reuse existing Organization selection when unambiguous. |
 | `upstream status` | Current case-centric read-only state from verified issue/source links; no unsupported metric claims. |
 
-**Legacy:** `upstream batch`, `upstream upgrade batch`, `upstream auto`, `upstream outcomes` and `upstream prepare` described in older sections belong to the predecessor's original contracts. They are not new default intake commands and do not override exact publication consent.
+**Legacy:** `upstream batch`, `upstream upgrade batch`, `upstream auto`, `upstream outcomes` and `upstream prepare` described in older sections belong to the predecessor's original contracts. Its historical task/auto controller is [upstream-old #161](https://github.com/opensiro/upstream-old/issues/161); historical source/owner evidence stays there. They are not new default intake commands and do not override exact publication consent.
 
 **Render rules:**
 
