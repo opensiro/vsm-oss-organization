@@ -92,9 +92,9 @@ validate, preserve feedback and identify actual closure/escalation.
 
 The S5 parent explicitly selected [Organization #274 `ADMIT_WITH_ENVELOPE`](https://github.com/opensiro/vsm-oss-organization/issues/274#issuecomment-6420871211) on 2026-10-26. Upstream Contributions is the **fourth declared S1 domain**, separate from Index, Skills and Awesome, under the [bounded Upstream envelope](../contracts/s1/domain-contracts.md#upstream-contributions-domain). That organizational act did **not** prove `S1=A`, complete this assessment-driven experiment, or authorize any new external write.
 The owning implementation contract for external contributions and
-batch authorization is [Upstream #6](https://github.com/opensiro/upstream/issues/6),
+batch authorization is [Upstream #6](https://github.com/opensiro/upstream-old/issues/6),
 not an Organization-controlled GitHub credential. The already-merged
-[read-only batch proposal preview](https://github.com/opensiro/upstream/blob/main/docs/BATCH_PROPOSALS.md)
+[read-only batch proposal preview](https://github.com/opensiro/upstream-old/blob/main/docs/BATCH_PROPOSALS.md)
 can establish that a contribution is *proposed* and stages can be
 *selected for preview*, but it cannot demonstrate actual authorized
 fork/patch/PR execution or autonomous operational closure.
@@ -108,14 +108,14 @@ stage scope, verified tool capability, tests and source-of-truth owner.
 Keep this strict Index-first function test distinct from canonical Skills/Index
 assessments and the already recorded S5 membership decision.
 
-The Control Plane offers **two Upstream technical batch commands**: [`upstream batch`](AGENT_CONTROL_PLANE.md#batch-upstream--assessment-first-technical-contribution) and [`upstream upgrade batch`](AGENT_CONTROL_PLANE.md#upstream-upgrade-batch--strict-assessment-derived-improvement). Both search source-backed VSM function/ownership/feedback hypotheses; the latter requires pre-registered `ASSESSMENT_DERIVED` origin and separate deterministic CI/runner evidence. The earlier [`batch upgrade` concept](BATCH_UPGRADE.md) is retained as historical rationale, not a third command. A product function may improve while remaining `C`; any `C → A` claim still requires independently observed owner/closure evidence and a new Index/Skills assessment. External publication and maintainer acceptance rights do not change.
+The **predecessor upstream-old historically offered two technical batch commands**: [`upstream batch`](AGENT_CONTROL_PLANE.md#batch-upstream--assessment-first-technical-contribution) and [`upstream upgrade batch`](AGENT_CONTROL_PLANE.md#upstream-upgrade-batch--strict-assessment-derived-improvement). Both search source-backed VSM function/ownership/feedback hypotheses; the latter requires pre-registered `ASSESSMENT_DERIVED` origin and separate deterministic CI/runner evidence. The earlier [`batch upgrade` concept](BATCH_UPGRADE.md) is retained as historical rationale, not a third command. A product function may improve while remaining `C`; any `C → A` claim still requires independently observed owner/closure evidence and a new Index/Skills assessment. External publication and maintainer acceptance rights do not change.
 
 ### Read-only contribution preparation under the existing Control Plane
 
 The Upstream-owned external-contribution interface also accepts
 `prepare upstream contribution` once a real candidate has been chosen.
 Its [operator-facing procedure](AGENT_CONTROL_PLANE.md#control-plane--upstream-preparation-handoff-one-stage-read-only)
-routes to [Upstream-owned `control_plane_handoff.py`](https://github.com/opensiro/upstream/blob/main/docs/CONTROL_PLANE_HANDOFF.md).
+routes to [Upstream-owned `control_plane_handoff.py`](https://github.com/opensiro/upstream-old/blob/main/docs/CONTROL_PLANE_HANDOFF.md).
 The local command produces only `ACTION_PREPARED_NOT_AUTHORIZED`, binding
 one proposed `prepare_contribution` stage to a pinned branch, new test
 file and content digest; no external execution permission
@@ -125,6 +125,12 @@ and stage enforcement. The current Upstream adapter is source-prepared but
 not connected to a trusted host. A generic `continue` is not write consent;
 missing host/rights/target evidence means **BLOCKED**. Upstream #6 owns
 activation and negative-case receipts; Organization #274 owns the parent boundary decision and its separate applied return.
+
+### Current Upstream v0.12.0 — case-first S1 operation
+
+[New Upstream](https://github.com/opensiro/upstream) now uses [one durable issue per concrete improvement](https://github.com/opensiro/upstream/blob/main/PROTOCOL.md). Real product code, native tests and branch revisions belong in correctly parented [opensiro-contributions](https://github.com/opensiro-contributions) forks; external maintainers own original-repository PR acceptance. The same Upstream issue stores source-backed research, optional VSM hypothesis, next action, verified evidence and the observed external outcome. Old frozen batches and related code/gates are still historically owned by [upstream-old](https://github.com/opensiro/upstream-old); they are **not** new Upstream work by default.
+
+The new operator routes are `upstream discover`, `upstream continue <new issue URL>` and `upstream status` under this **existing Organization control plane**. Its `TODO.md` remains the one shared current-work scheduler. Upstream does not independently establish S2–S5, a daemon, a new outcomes metric or permission for external-public writes. Third-party communication requires [exact current-conversation owner approval](https://github.com/opensiro/upstream/blob/main/PROTOCOL.md#external-publication-consent).
 
 ## Upstream contract selection
 
