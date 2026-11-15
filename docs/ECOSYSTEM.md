@@ -121,6 +121,12 @@ This chain separates semantics, procedure, canonical assessment instances and cu
 
 The current bounded `vsm-oss-organization` system remains the one declared in [`README.md`](../README.md) and [`ORGANIZATION.md`](ORGANIZATION.md). Its four current operational S1 domains are **Index, Skills, Awesome and Upstream Contributions** following the [parent S5 decision #274](https://github.com/opensiro/vsm-oss-organization/issues/274#issuecomment-6420871211). `opensiro/upstream` retains ownership of external OSS intervention/maintenance records and does not inherit canonical assessment or third-party maintainer authority. The experimental Capability repository described below remains outside the bounded system unless a separate organizational-boundary change admits it.
 
+## Upstream Contributions: new operating repository and predecessor
+
+The **current operational Upstream Contributions S1 owner** is [opensiro/upstream](https://github.com/opensiro/upstream), under its [case-first v0.12.0 protocol](https://github.com/opensiro/upstream/blob/main/PROTOCOL.md). One source-backed opportunity is one durable Upstream issue; the real target code, native tests and working branch belong in the matching [opensiro-contributions fork](https://github.com/opensiro-contributions), and the external original maintainer owns acceptance. The case returns verified outcomes to Upstream. This does **not** create another S2/S3/S3*/S4/S5 or assessment system: this Organization owns shared current-work selection, governance, control and metric collection.
+
+The predecessor [opensiro/upstream-old](https://github.com/opensiro/upstream-old) retains its original issues/PRs, frozen batches, historic versions through **0.11.0**, workflows, legacy source receipts and outcome exporter. **Old issue #56 is [upstream-old #56](https://github.com/opensiro/upstream-old/issues/56)**, not new Upstream issue #56. Migrating historical task ownership or verified-outcome source data needs independent source/readback validation, not a URL rename. [Public ownership matrix](https://github.com/opensiro/upstream/blob/main/docs/ARCHITECTURE.md) · [migration limits](https://github.com/opensiro/upstream/blob/main/docs/MIGRATION.md).
+
 ## Profile versions and downstream assessments
 
 Profile versions identify changes in the normative organizational model independently of any one assessment corpus. Implementations, assessment methodologies, derived profiles, and other consumers may pin or track those versions for their own compatibility purposes.
