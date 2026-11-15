@@ -20,16 +20,17 @@ class UpstreamOutcomesCommandTests(unittest.TestCase):
         cls.doc_index = DOC_INDEX.read_text(encoding="utf-8")
 
     def test_command_is_discoverable_in_both_control_plane_menus(self):
-        self.assertIn("| **Upstream Outcomes** | `upstream outcomes` |", self.menu)
-        self.assertIn("| `upstream outcomes` / `verify upstream outcomes` |", self.menu)
+        self.assertNotIn("| **Upstream Outcomes** | `upstream outcomes` |", self.menu)
+        self.assertIn("**Legacy:**", self.menu)
+        self.assertIn("Predecessor-only documentation", self.menu)
         self.assertIn("### Upstream outcomes — evidence-first agent review", self.menu)
         self.assertIn("UPSTREAM_OUTCOMES.md", self.menu)
         self.assertIn("UPSTREAM_OUTCOMES.md", self.doc_index)
         self.assertIn("upstream outcomes", self.contract)
 
-    def test_routes_to_live_s1_owner_without_s3_claim(self):
-        self.assertIn("opensiro/upstream/issues/159", self.menu)
-        self.assertIn("opensiro/upstream/issues/159", self.contract)
+    def test_historical_outcomes_route_preserves_owner_without_s3_claim(self):
+        self.assertIn("opensiro/upstream-old/issues/159", self.menu)
+        self.assertIn("opensiro/upstream-old/issues/159", self.contract)
         self.assertIn("scripts/verified_external_outcomes.py", self.contract)
         self.assertIn("docs/VERIFIED_EXTERNAL_OUTCOMES.md", self.contract)
         self.assertIn("--validate-only", self.contract)
