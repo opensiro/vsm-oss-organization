@@ -15,11 +15,14 @@ class UpstreamStatusCommandTests(unittest.TestCase):
 
     def test_first_contact_menu_and_typed_route(self):
         self.assertIn("| **Upstream Status** | `upstream status` |", self.content)
-        self.assertIn("| `upstream status` / `show harness contribution status` |", self.content)
+        self.assertIn("| **Upstream Continue** | `upstream continue <issue URL>` |", self.content)
+        self.assertIn("## Current Upstream v0.12.0", self.content)
         self.assertIn("### Upstream status — joined harness/intervention/PR inventory", self.content)
 
     def test_owner_and_non_authorizing_boundary(self):
-        self.assertIn("opensiro/upstream/blob/main/HARNESS_STATUS.md", self.content)
+        self.assertIn("opensiro/upstream-old/blob/main/HARNESS_STATUS.md", self.content)
+        self.assertIn("Do not call missing historical `harness_status.py`", self.content)
+        self.assertIn("Predecessor-only documentation", self.content)
         self.assertIn("python3 scripts/harness_status.py --check", self.content)
         self.assertIn("harness → independent intervention → external PR(s)", self.content)
         self.assertIn("does not publish third-party PRs", self.content)
