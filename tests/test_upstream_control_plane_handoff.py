@@ -19,9 +19,9 @@ class UpstreamControlPlaneHandoffTests(unittest.TestCase):
         )[1].split("### Selected contribution execution and outcome", 1)[0]
 
     def test_menu_and_command_route_to_existing_control_plane(self):
-        self.assertIn("| **Upstream Prepare** | `upstream prepare` |", self.control)
-        self.assertIn("| `upstream prepare` / `prepare upstream contribution` / `prepare upstream contribution <source/issue>` |",
-                      self.control)
+        self.assertNotIn("| **Upstream Prepare** | `upstream prepare` |", self.control)
+        self.assertIn("**Legacy:**", self.control)
+        self.assertIn("### Control Plane → Upstream preparation handoff (one stage, read-only)", self.control)
         self.assertIn("## External upstream contributions", self.control)
         self.assertIn("prepare upstream contribution", self.guide)
 
@@ -29,7 +29,7 @@ class UpstreamControlPlaneHandoffTests(unittest.TestCase):
         for path in ("docs/CONTROL_PLANE_HANDOFF.md", "scripts/control_plane_handoff.py",
                      "scripts/connected_stage_adapter.py", "scripts/batch_proposals.py"):
             with self.subTest(path=path):
-                self.assertIn("https://github.com/opensiro/upstream/blob/main/" + path,
+                self.assertIn("https://github.com/opensiro/upstream-old/blob/main/" + path,
                               self.handoff)
         self.assertIn("Upstream #6", self.handoff)
         self.assertIn("Organization #274", self.boundary)
