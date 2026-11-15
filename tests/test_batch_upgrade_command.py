@@ -22,8 +22,10 @@ class BatchUpgradeCommandTests(unittest.TestCase):
         )[1].split("### Upstream status —", 1)[0]
 
     def test_exactly_two_technical_batch_routes_not_old_third_command(self):
-        self.assertIn("| **Upstream Batch** | `upstream batch` |", self.menu)
-        self.assertIn("| **Upstream Upgrade Batch** | `upstream upgrade batch` |", self.menu)
+        self.assertNotIn("| **Upstream Batch** | `upstream batch` |", self.menu)
+        self.assertNotIn("| **Upstream Upgrade Batch** | `upstream upgrade batch` |", self.menu)
+        self.assertIn("**Legacy:** `upstream batch`, `upstream upgrade batch`", self.menu)
+        self.assertIn("## Current Upstream v0.12.0", self.menu)
         self.assertNotIn("| **Batch Upgrade** | `batch upgrade` |", self.menu)
         self.assertNotIn("| `batch upgrade` |", self.menu)
         self.assertIn("**Command:** `upstream upgrade batch`", self.dispatch)
@@ -72,7 +74,6 @@ class BatchUpgradeCommandTests(unittest.TestCase):
             "six function-level dispositions per source",
             "60 for a ten-source batch",
             "do **not** mark a source complete with fewer than six dispositions",
-            "ten on explicit",
         ):
             with self.subTest(phrase=phrase):
                 self.assertIn(phrase.lower(), self.menu.lower())
