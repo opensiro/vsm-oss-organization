@@ -34,6 +34,10 @@ For requests about **transferring decisions from a human to an agent**, expandin
 
 Determine the function and decisive decision owner **before** asking for task-level approvals or inventing a new agent, gate, scheduler, or infrastructure. Keep (a) existing operative permission, (b) proposed future delegation, and (c) evidence for an autonomy assessment strictly separate. **Do not** turn this routing into an S5 grant, a fourth S1 domain, a GitHub write, or a waiver of any currently effective exact-action gate.
 
+## External-public communication consent (current owner restriction)
+
+For Upstream work involving **any outward public interaction with a third-party maintainer/repository** (new issue, comment/reply, PR or review, public fork-local PR or design question), first follow the current [Upstream external-public consent gate](https://github.com/opensiro/upstream/blob/main/docs/EXTERNAL_PUBLIC_COMMUNICATION_GATE.md). The owner's **2026-11-15 instruction narrowed the earlier standing publication grant**: show the exact destination, action and public text/diff, and wait for explicit current-conversation approval **before sending**. `continue`, a successful native test, source-owner interest and an older broad mandate are not approval. Read-only research and internal OpenSiro changes retain their separate permissions; do not block them with repeated external-publication prompts.
+
 ## First-contact control plane
 
 When a user supplies this bootstrap URL, asks to `start`, `help`, or `show control plane`, or otherwise requests an **open-ended OpenSiro entry point** without a concrete task, the agent should **present the operator interface**, not stop after listing documentation links or silently begin an execution lane.

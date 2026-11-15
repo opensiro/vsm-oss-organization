@@ -42,7 +42,7 @@ class OSMRoutingTests(unittest.TestCase):
         # Distinct parent decisions: S1 admission did not grant writes; the
         # later publication mandate did, but is not an executor or grade.
         for phrase in ("separately delegated standing external-PR publication",
-                       "current Upstream policy", "per-PR owner conversation",
+                       "current Upstream policy", "exact current-conversation owner approval",
                        "before** exercising new rights", "provider capabilities",
                        "No permission override or autonomy grade"):
             with self.subTest(phrase=phrase):
