@@ -25,7 +25,7 @@ class BatchUpgradeCommandTests(unittest.TestCase):
         self.assertNotIn("| **Upstream Batch** | `upstream batch` |", self.menu)
         self.assertNotIn("| **Upstream Upgrade Batch** | `upstream upgrade batch` |", self.menu)
         self.assertIn("**Legacy:** `upstream batch`, `upstream upgrade batch`", self.menu)
-        self.assertIn("## Current Upstream v0.12.0", self.menu)
+        self.assertIn("## Current Upstream v0.13.0", self.menu)
         self.assertNotIn("| **Batch Upgrade** | `batch upgrade` |", self.menu)
         self.assertNotIn("| `batch upgrade` |", self.menu)
         self.assertIn("**Command:** `upstream upgrade batch`", self.dispatch)
