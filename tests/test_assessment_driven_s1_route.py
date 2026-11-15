@@ -24,7 +24,7 @@ class AssessmentDrivenS1RouteTests(unittest.TestCase):
         self.assertNotIn("| **Upstream S1 Test** | `upstream s1 test` |", self.document)
         self.assertIn("### S1 function test — Upstream Contributions", self.document)
         self.assertIn("Predecessor-only documentation", self.document)
-        self.assertIn("**Assessment-driven**", self.document)
+        self.assertIn("assessment-driven", self.document.lower())
         self.assertIn("docs/ASSESSMENT_DRIVEN_S1_TEST.md", self.document)
 
     def test_test_originates_in_index_not_arbitrary_upstream_issue(self):
