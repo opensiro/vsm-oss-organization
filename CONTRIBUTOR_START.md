@@ -14,6 +14,8 @@ Use `opensiro/vsm-oss-organization` for organization-wide contributor roles, aut
 
 Public repositories outside the declared scope are not governed by this routing contract merely because they live under `opensiro`.
 
+For **current Upstream Contributions**, route to [new Upstream v0.12.0](https://github.com/opensiro/upstream/blob/main/PROTOCOL.md), then its exact owning improvement issue; technical implementation goes to its matching [opensiro-contributions](https://github.com/opensiro-contributions) working fork. Use [upstream-old](https://github.com/opensiro/upstream-old) for historical batch/PR/issue evidence (for example [old #56](https://github.com/opensiro/upstream-old/issues/56)). This does not create another VSM organization or current-work queue; keep Organization `TODO.md` as selector.
+
 ## Supported autonomous S1 entry
 
 When the resolved work is one ordinary bounded operational contribution in exactly one S1 domain — Index, Skills, Awesome, or Upstream Contributions — use [`modes/s1-autonomous/README.md`](modes/s1-autonomous/README.md). Upstream's separate exact-stage external-write gates remain controlling.

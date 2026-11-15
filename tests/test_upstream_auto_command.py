@@ -1,45 +1,26 @@
-"""Upstream Auto must not be mistaken for the Organization S2 scheduler."""
-
+"""Legacy Upstream Auto remains historical; it cannot become a second S2 scheduler."""
 from pathlib import Path
 import unittest
-
 
 ROOT = Path(__file__).resolve().parents[1]
 MENU = (ROOT / "docs" / "AGENT_CONTROL_PLANE.md").read_text(encoding="utf-8")
 
-
 class UpstreamAutoCommandTests(unittest.TestCase):
-    def test_operator_namespace_and_owner(self):
-        for phrase in (
-            "| **Upstream Auto** | `upstream auto` |",
-            "| `upstream auto status` | — |",
-            "| `upstream auto` / `upstream auto resume` | — |",
-            "https://github.com/opensiro/upstream/issues/161",
-            "docs/UPSTREAM_AUTO.md",
-            "scripts/upstream_auto.py",
-            "| **Upstream Auto Batch** | `upstream auto batch` |",
-            "| `upstream auto batch` | — |",
-            "| `upstream auto batch` | Apply the **same** live Upstream #161",
-        ):
-            with self.subTest(phrase=phrase):
-                self.assertIn(phrase, MENU)
+    def test_legacy_auto_retains_correct_predecessor_owner(self):
+        self.assertIn("## Current Upstream v0.12.0", MENU)
+        self.assertIn("upstream-old/issues/161", MENU)
+        self.assertIn("docs/UPSTREAM_AUTO.md", MENU)
+        self.assertIn("scripts/upstream_auto.py", MENU)
+        self.assertIn("**Legacy:**", MENU)
+        self.assertNotIn("| **Upstream Auto** | `upstream auto` |", MENU)
+        self.assertNotIn("| **Upstream Auto Batch** | `upstream auto batch` |", MENU)
 
     def test_no_implicit_s2_or_executor_rights(self):
-        for phrase in (
-            "one bounded agent-coupled task",
-            "dedicated Upstream CAS ref",
-            "stale claims are not stolen",
-            "Organization M4 `S2=A`",
-            "read-only preview",
-            "effective reservation/authentication mechanism",
-            "task-specific S1 admission",
-            "`PARTIAL` is a valid outcome",
-            "atomic multi-task Git CAS",
-            "each actor's own claim",
-        ):
-            with self.subTest(phrase=phrase):
-                self.assertIn(phrase, MENU)
-
+        self.assertIn("The Organization continues to own the global work selection", MENU)
+        self.assertIn("No new autonomous runtime or S1 grade is implied", MENU)
+        self.assertIn("current-conversation exact owner consent", MENU)
+        self.assertIn("No Organization", MENU)
+        self.assertIn("not an installed CLI or background executor", MENU)
 
 if __name__ == "__main__":
     unittest.main()

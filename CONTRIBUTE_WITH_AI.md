@@ -1,5 +1,8 @@
 # Contribute to OpenSiro with AI
 
+> **Current Upstream route (2026-11-15):** [opensiro/upstream v0.12.0](https://github.com/opensiro/upstream/blob/main/PROTOCOL.md) uses one durable improvement issue across sessions, with code/native tests in [opensiro-contributions](https://github.com/opensiro-contributions). New-work commands: `upstream discover`, `upstream continue <issue URL>`, `upstream status`. Older batch/auto/prepare commands below are historical [upstream-old](https://github.com/opensiro/upstream-old) operations, not the default new process. Consult [Organization Control Plane](docs/AGENT_CONTROL_PLANE.md); third-party public action requires exact current-conversation owner consent.
+
+
 This is the human-facing contribution entry for the public OpenSiro VSM Harness ecosystem.
 
 You do not need to reconstruct the repository architecture or learn every VSM/OSM control document before making a contribution. Give your AI agent the repository or idea you want to work on. The repository `README.md` is the common entry surface: an AI should follow its **I'm AI** route into the current public bootstrap and then follow the owning repository's contracts.

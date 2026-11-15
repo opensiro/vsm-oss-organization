@@ -21,6 +21,10 @@ Start with [`START_HERE.md`](START_HERE.md). It is the canonical machine bootstr
 
 Repository-local facts remain authoritative in their owning repository. This repository owns only the bounded cross-repository organization/control construction.
 
+## Upstream Contributions
+
+[New Upstream v0.12.0](https://github.com/opensiro/upstream) is the operational **case-first S1 contribution domain**; [opensiro-contributions](https://github.com/opensiro-contributions) holds source-specific working forks and native tests. The former [upstream-old](https://github.com/opensiro/upstream-old) is the authoritative historical owner of frozen batches, original PRs and evidence through v0.11.0. [Architecture and the responsibility matrix](https://github.com/opensiro/upstream/blob/main/docs/ARCHITECTURE.md). No parallel VSM control plane or second organization-wide scheduler is created.
+
 ## Scope
 
 Current in-scope public repositories:
