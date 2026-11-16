@@ -26,7 +26,7 @@ class UpstreamCommandNamespaceTests(unittest.TestCase):
                 self.assertIn(phrase.lower(), CONTROL.lower())
         self.assertIn("upstream continue <harness>", CONTROL)
         self.assertIn("full engineering cycle", CONTROL)
-        self.assertIn("not a research-only shortlist", CONTROL)
+        self.assertIn("never a research-only shortlist", CONTROL)
         self.assertIn("ONE original harness", CONTROL)
         self.assertIn("review PR in `opensiro-contributions`", CONTROL)
         self.assertIn("do not move to another source", CONTROL)
