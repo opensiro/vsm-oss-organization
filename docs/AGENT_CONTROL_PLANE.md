@@ -18,7 +18,7 @@ Use these existing contracts rather than replacing them:
 
 The conversation is a **control surface**, not a second GitHub issue board, evidence database, reviewer identity, or organizational decision owner. Its remembered state is never authoritative over current owning repository records.
 
-## Current Upstream fork-local route (introduced v0.13.0; current v0.16.0)
+## Current Upstream v0.13.0 — fork-local route (current protocol v0.16.0)
 
 The current [opensiro/upstream](https://github.com/opensiro/upstream) is a **new repository** with a [fork-local metadata protocol](https://github.com/opensiro/upstream/blob/main/PROTOCOL.md) and [public ownership matrix](https://github.com/opensiro/upstream/blob/main/docs/ARCHITECTURE.md). Its predecessor [upstream-old](https://github.com/opensiro/upstream-old) owns historic batches, issues, PRs, scripts, receipts and 0.1.0–0.11.0 SemVer. **Do not mistake upstream-old #56 for an issue in new Upstream.** Old detailed batch and automatic-executor routes elsewhere in this long control-plane document are retained **only for explicitly identified historical upstream-old work**; they are no longer the default intake procedure for new Upstream cases.
 
