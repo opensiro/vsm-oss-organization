@@ -32,7 +32,7 @@ class UpstreamCommandNamespaceTests(unittest.TestCase):
         self.assertIn("do not move to another source", CONTROL)
         self.assertIn("separate exact current-conversation owner approval", CONTROL)
         self.assertIn("read-only draft", CONTROL)
-        self.assertIn("human approval without posting", CONTROL)
+        self.assertIn("The later third-party PR has its own consent gate", CONTROL)
         self.assertNotIn("| **Upstream Continue** | `upstream continue <issue URL>` |", CONTROL)
 
     def test_old_routes_keep_real_history_not_new_authority(self):
