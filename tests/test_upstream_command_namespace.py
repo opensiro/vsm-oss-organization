@@ -10,6 +10,7 @@ class UpstreamCommandNamespaceTests(unittest.TestCase):
     def test_current_operator_commands_are_fork_local(self):
         menu = CONTROL.split("| Visible action |", 1)[1].split("**Current Upstream S1 command namespace.**", 1)[0]
         for label, command in (
+            ("Upstream Upgrade", "upstream upgrade"),
             ("Upstream Discover", "upstream discover"),
             ("Upstream Continue", "upstream continue <harness>"),
             ("Upstream Status", "upstream status"),
@@ -24,6 +25,10 @@ class UpstreamCommandNamespaceTests(unittest.TestCase):
             with self.subTest(phrase=phrase):
                 self.assertIn(phrase.lower(), CONTROL.lower())
         self.assertIn("upstream continue <harness>", CONTROL)
+        self.assertIn("full engineering cycle", CONTROL)
+        self.assertIn("not a research-only shortlist", CONTROL)
+        self.assertIn("per-candidate blockers", CONTROL)
+        self.assertIn("human approval without posting", CONTROL)
         self.assertNotIn("| **Upstream Continue** | `upstream continue <issue URL>` |", CONTROL)
 
     def test_old_routes_keep_real_history_not_new_authority(self):
