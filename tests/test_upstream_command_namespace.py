@@ -27,7 +27,11 @@ class UpstreamCommandNamespaceTests(unittest.TestCase):
         self.assertIn("upstream continue <harness>", CONTROL)
         self.assertIn("full engineering cycle", CONTROL)
         self.assertIn("not a research-only shortlist", CONTROL)
-        self.assertIn("per-candidate blockers", CONTROL)
+        self.assertIn("ONE original harness", CONTROL)
+        self.assertIn("review PR in `opensiro-contributions`", CONTROL)
+        self.assertIn("do not move to another source", CONTROL)
+        self.assertIn("separate exact current-conversation owner approval", CONTROL)
+        self.assertIn("read-only draft", CONTROL)
         self.assertIn("human approval without posting", CONTROL)
         self.assertNotIn("| **Upstream Continue** | `upstream continue <issue URL>` |", CONTROL)
 
