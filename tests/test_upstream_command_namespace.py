@@ -35,6 +35,21 @@ class UpstreamCommandNamespaceTests(unittest.TestCase):
         self.assertIn("The later third-party PR has its own consent gate", CONTROL)
         self.assertNotIn("| **Upstream Continue** | `upstream continue <issue URL>` |", CONTROL)
 
+    def test_upgrade_disclosure_requires_five_contributions_links(self):
+        for phrase in (
+            "Mandatory Upstream Upgrade PR-link preflight",
+            "five real clickable links",
+            "working repository",
+            "product branch",
+            "exact implementation commit",
+            "existing fork-local review PR",
+            "pinned `.opensiro/contributions/<stable-id>.json`",
+            "proposed external PR body's AI-assisted disclosure",
+            "NOT_CREATED",
+            "do not publish a new external PR missing its real review link",
+        ):
+            self.assertIn(phrase, CONTROL)
+
     def test_old_routes_keep_real_history_not_new_authority(self):
         self.assertIn("upstream-old/issues/56", CONTROL)
         self.assertIn("upstream-old/issues/161", CONTROL)
