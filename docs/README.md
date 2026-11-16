@@ -16,6 +16,7 @@ Long-form repository documentation lives under `docs/`. Root-level files are res
 - [`AUTONOMOUS_WORK_REPORTING.md`](AUTONOMOUS_WORK_REPORTING.md) — autonomous-run reporting contract.
 - [`ROUTING_CONFORMANCE.md`](ROUTING_CONFORMANCE.md) — bootstrap/routing conformance protocol.
 - [`REPOSITORY_STANDARDS_ASSURANCE.md`](REPOSITORY_STANDARDS_ASSURANCE.md) — bounded read-only repository-standards probe and S3*/S3/S1 handoff boundaries (Organization #288; advisory drift is not new policy).
+- [`CODESCENE_PROJECT_AUDIT.md`](CODESCENE_PROJECT_AUDIT.md) — optional, read-only CodeScene project-level maintainability/technical-debt review using the vendored agent skill; not a VSM assessment.
 - [`reviews/2026-11-06-repository-standards-baseline.md`](reviews/2026-11-06-repository-standards-baseline.md) — dated six-repository README, structure and settings readback; preserves unknowns and owner decisions.
 - [`CONTRIBUTOR_CONFORMANCE.md`](CONTRIBUTOR_CONFORMANCE.md) — fresh-contributor behavioral conformance.
 
