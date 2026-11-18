@@ -33,14 +33,14 @@ class VsmFirstControlPlaneMenuTests(unittest.TestCase):
         self.assertEqual(sorted(positions), positions)
 
         domains = (
-            "**Index** (\`opensiro/vsm-harness-index\`)",
-            "**Skills** (\`opensiro/vsm-harness-skills\`)",
-            "**Awesome** (\`opensiro/awesome-vsm-harness\`)",
-            "**Upstream Contributions** (\`opensiro/upstream\`)",
+            "**Index** (`opensiro/vsm-harness-index`)",
+            "**Skills** (`opensiro/vsm-harness-skills`)",
+            "**Awesome** (`opensiro/awesome-vsm-harness`)",
+            "**Upstream Contributions** (`opensiro/upstream`)",
         )
         for domain in domains:
             with self.subTest(domain=domain):
-                self.assertIn(domain.replace("\\`", "`"), self.hierarchy)
+                self.assertIn(domain, self.hierarchy)
         self.assertLess(
             self.hierarchy.index("**Index**"), self.hierarchy.index("**Skills**")
         )
@@ -74,6 +74,7 @@ class VsmFirstControlPlaneMenuTests(unittest.TestCase):
         self.assertIn("exact-target entry hint", self.hierarchy)
 
     def test_function_and_authority_boundaries_not_overclaimed(self):
+        normalized = self.hierarchy.replace("**", "")
         for boundary in (
             "navigation taxonomy",
             "not new VSM evidence",
@@ -86,7 +87,7 @@ class VsmFirstControlPlaneMenuTests(unittest.TestCase):
             "not Organization S4",
         ):
             with self.subTest(boundary=boundary):
-                self.assertIn(boundary, self.hierarchy)
+                self.assertIn(boundary, normalized)
         self.assertIn("Never render literal", self.hierarchy)
         self.assertIn("not misleading buttons", self.hierarchy)
         self.assertIn("existing source-first admission", self.hierarchy.lower())
