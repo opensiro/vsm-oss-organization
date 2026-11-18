@@ -65,6 +65,36 @@ Do not interpret an `INSUFFICIENT` grade or missing live case as a veto over a l
 
 Before offering live status, read the current Organization scope and `TODO.md` and relevant owner records. Show a short, **source-linked, time-of-check** `NOW / BLOCKED / NEXT` snapshot only for facts actually verified. If GitHub or required tools cannot be reached, mark the snapshot `unverified / read-only`, explain the access limitation, and avoid inventing a current queue or enabled operations.
 
+### VSM-first action-menu hierarchy (presentation only)
+
+Present first-contact actions in **VSM-functional groups**, with **four explicit S1 subgroups**. The groups are a navigation taxonomy over existing command owners, **not** new VSM evidence, grades, runtimes, domains, permissions, or a reassignment of decision rights. Map the *organizational function and decisive owner* before claiming a command enacts a VSM function: a read-only status/probe can merely inspect it. The exact dispatch semantics remain in the command table below and in the owning repository.
+
+**System Overview — cross-cutting, not a VSM function**
+
+- **OSS Status** → `status`; **OSS Snapshot** → `snapshot`; **OSS Roadmap** → `show OSS roadmap`; **Continue Work** → `continue`.
+- **Open Issue/PR** → `continue <repo> #<issue>` or `continue PR #<n>`, but only when the target is actually supplied. **Propose Change** → `open a PR`, only after the change and owning repository are identified. These are generic entry/routing actions, not separate S1/S2/S3/S4/S5 decisions.
+
+**S1 · Operations — display each admitted operational domain as its own subgroup**
+
+1. **Index** (`opensiro/vsm-harness-index`) — **Batch Assessment** → `start a batch assessment`; **Batch Status** → `batch status`; **Batch Reconcile** → `batch reconcile`. All are Index-owned; status inspection does not itself execute an assessment.
+2. **Skills** (`opensiro/vsm-harness-skills`) — procedure/skill maintenance through `continue <repo> #<issue>` after an **exact Skills issue/PR** is provided. No standalone Skills first-contact command currently exists; show the subgroup with an exact-target entry hint, **not** an inert or fabricated one-click task.
+3. **Awesome** (`opensiro/awesome-vsm-harness`) — representative curation through `continue <repo> #<issue>` after an **exact Awesome issue/PR** is provided. No standalone Awesome first-contact command currently exists; show the subgroup with an exact-target entry hint, **not** an inert or fabricated one-click task.
+4. **Upstream Contributions** (`opensiro/upstream`) — **Upstream Upgrade** → `upstream upgrade`; **Discover** → `upstream discover`; **Continue** → `upstream continue <harness>` (only with a supplied harness/intake target); **Status** → `upstream status`. The Upstream-owned `upstream roadmap` may also be offered as a **source-first research/selection route** under this subgroup, applying the [current Upstream protocol](https://github.com/opensiro/upstream/blob/main/PROTOCOL.md) and its separate fork/external-publication gates. It is **not** Organization S4 merely because it is called a roadmap.
+
+**S2 · Coordination** — show a descriptive placeholder **without an executable S2 button** unless a current contract/command establishes a concrete inter-S1 interference and feedback path. `TODO.md`, batching, locks and `continue` are not automatically S2.
+
+**S3 · Current Control** — **Inspect Current Control** → `S3: inspect current control` (read-only intake). `S3: consider <present choice>` requires a named current whole-system matter and an actually authorized decisive owner; inspection does not activate D1-A or establish `S3=A`.
+
+**S3* · Complementary Audit** — **S3* Audit Status** → `check S3* audit status`; **PR Review Status** → `check PR review status`; **Repository Standards Probe** → `check repository standards` (read-only support, **not** a discretionary S3* judgment by itself).
+
+**S4 · Adaptation** — show a descriptive placeholder **without an executable S4 button** until an owned, external-and-prospective adaptation loop and corresponding valid command are established. `show OSS roadmap` is milestone planning in System Overview, not proof of S4.
+
+**S5 · Policy & Identity** — `S5: consider <matter>` is an **exact-matter** parent-governed intake (not a generic approval button). It does not delegate parent authority or auto-issue a grant.
+
+**Menu behavior:** preserve the group order **System Overview → S1 (Index, Skills, Awesome, Upstream Contributions) → S2 → S3 → S3* → S4 → S5** in native interactive menus **and** the numbered plain-text fallback. Group/subgroup headings are not actions. Keep Skills/Awesome and unconstructed S2/S4 visible rather than silently deleting them. Never render literal `<repo>`, `<issue>`, `<harness>`, `<matter>` or `<n>` placeholders as clickable dispatched arguments; obtain a real target first. Disabled/unsupported actions remain explanatory text, not misleading buttons. Existing source-first admission, independence, rights, consent, CI and stop gates apply unchanged.
+
+**Exact first-contact command map (unchanged unless the owning contract adds a supported route):**
+
 | Visible action | Command dispatched on selection | Initial behavior |
 | --- | --- | --- |
 | **OSS Status** | `status` | Read-only live status and gates. |
