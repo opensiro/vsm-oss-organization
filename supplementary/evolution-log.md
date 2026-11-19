@@ -1011,6 +1011,44 @@ The legitimate parent's S5 decision concerns whether a class of legally conseque
 
 Preserve the difference between reducing procedural human interruption and making an unsupported legal representation. Future comparisons should count blocked cases and terms-drift incidents, not only accepted PRs, and should allow the hypothesis of improved autonomy to be falsified.
 
+## 2026-11-19 — Move Upstream from centralized history to fork-local contribution ownership
+
+**Status:** `provisional` — the repository split and bounded migration are evidenced; development-cost effects are not measured.
+
+### Context
+
+After the [parent admitted Upstream Contributions as a fourth S1 domain](https://github.com/opensiro/vsm-oss-organization/issues/274), the original Upstream repository accumulated screening batches, native experiments, contribution handoffs, CI evidence and external-PR observations. Its [protocol history through v0.11.0](https://github.com/opensiro/upstream-old/blob/main/CHANGELOG.md) remains historical evidence, not proof that every retrospective version was released when the underlying work occurred.
+
+### Observed problem
+
+A central repository mixed long-lived historical receipts with per-harness operating state. The [2026-11-11 Actions audit](https://github.com/opensiro/upstream-old/blob/main/reports/2026-11-11-actions-run-volume.md) also found a duplicated full-suite workflow among 1,477 *cumulative* runs; that count alone established neither expense nor wasted engineering time. Historical candidate, fork, intervention and external-PR counts represented different units and could not safely be treated as one portfolio denominator.
+
+### Alternatives considered
+
+Retiring redundant central CI was a narrower repair but did not settle per-harness record ownership. A new permanent migration queue or parallel mutable ledger was explicitly rejected in the [one-time migration contract](https://github.com/opensiro/upstream/issues/2). The chosen boundary kept historical material intact and placed ongoing source-specific records with verified forks.
+
+### Decision / experiment
+
+On 2026-11-15, the predecessor became [`upstream-old`](https://github.com/opensiro/upstream-old); a new [`upstream`](https://github.com/opensiro/upstream) took the lean aggregate, intake and protocol role. Verified `opensiro-contributions` forks became owners of `.opensiro/` attention, intervention and event records on dedicated `opensiro/meta` branches. Original repositories still own product behavior and external PR decisions; Organization retains shared control and metrics. The [architecture contract](https://github.com/opensiro/upstream/blob/main/docs/ARCHITECTURE.md) prevents a second VSM control plane.
+
+### Evidence
+
+- [Old protocol history](https://github.com/opensiro/upstream-old/blob/main/CHANGELOG.md), [new migration boundaries](https://github.com/opensiro/upstream/blob/main/docs/MIGRATION.md) and [published v0.13.0](https://github.com/opensiro/upstream/releases/tag/v0.13.0).
+- [Final one-time migration reconciliation, 2026-11-16](https://github.com/opensiro/upstream/issues/2#issuecomment-6913613849) and [closed issue #2](https://github.com/opensiro/upstream/issues/2).
+- [Published v0.17.0, 2026-11-19](https://github.com/opensiro/upstream/releases/tag/v0.17.0), including [parallel contribution-on-top review](https://github.com/opensiro/upstream/pull/57).
+
+### Result
+
+The *bounded* migration classified 73 source-backed historical projects: 60 matching forks received 61 verified intervention records; eight had no verified destination, three were security-blocked, and two were screened out. Issue #2 closed for that declared cohort, **not** for every historical research lead. The subsequent v0.17.0 protocol requires an accepted Index assessment, source-native overlap research and a concrete GO/NO_GO/BLOCKED recommendation for a proposed change; it does not claim that missing VSM functions must be implemented.
+
+### VSM interpretation
+
+This makes the fourth S1 domain's operating boundary and source-of-truth handoffs more explicit; it does **not** construct another S2–S5 layer or change Index assessments. The split incurred migration/reconciliation work, and there is no controlled before/after evidence yet that it reduced coordination cost, improved maintainer acceptance or delivered user benefit. Ordinary repository modularization and CI hygiene are viable alternative explanations for any future gains.
+
+### Reusable lesson
+
+Separate historical evidence, fork-local work, original maintainer decisions and organization-level control before aggregating results. Treat source-native alternatives and unmeasured outcomes as constraints on an improvement claim, not as details to smooth over.
+
 ## Backfill policy
 
 Important decisions that predate this log may be added later only when primary evidence supports their date, context, and interpretation. Do not infer a historical sequence solely from the current contents of `design-reasoning.md`.
