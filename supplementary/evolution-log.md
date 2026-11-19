@@ -1013,7 +1013,7 @@ Preserve the difference between reducing procedural human interruption and makin
 
 ## 2026-11-19 — Move Upstream from centralized history to fork-local contribution ownership
 
-**Status:** \`provisional\` — the repository split and bounded migration are evidenced; development-cost effects are not measured.
+**Status:** `provisional` — the repository split and bounded migration are evidenced; development-cost effects are not measured.
 
 ### Context
 
@@ -1029,7 +1029,7 @@ Retiring redundant central CI was a narrower repair but did not settle per-harne
 
 ### Decision / experiment
 
-On 2026-11-15, the predecessor became [\`upstream-old\`](https://github.com/opensiro/upstream-old); a new [\`upstream\`](https://github.com/opensiro/upstream) took the lean aggregate, intake and protocol role. Verified \`opensiro-contributions\` forks became owners of \`.opensiro/\` attention, intervention and event records on dedicated \`opensiro/meta\` branches. Original repositories still own product behavior and external PR decisions; Organization retains shared control and metrics. The [architecture contract](https://github.com/opensiro/upstream/blob/main/docs/ARCHITECTURE.md) prevents a second VSM control plane.
+On 2026-11-15, the predecessor became [`upstream-old`](https://github.com/opensiro/upstream-old); a new [`upstream`](https://github.com/opensiro/upstream) took the lean aggregate, intake and protocol role. Verified `opensiro-contributions` forks became owners of `.opensiro/` attention, intervention and event records on dedicated `opensiro/meta` branches. Original repositories still own product behavior and external PR decisions; Organization retains shared control and metrics. The [architecture contract](https://github.com/opensiro/upstream/blob/main/docs/ARCHITECTURE.md) prevents a second VSM control plane.
 
 ### Evidence
 
