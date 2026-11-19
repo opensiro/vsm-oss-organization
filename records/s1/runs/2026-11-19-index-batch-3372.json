@@ -1,0 +1,139 @@
+{
+  "schema_version": "1",
+  "mode": "s1-autonomous",
+  "domain": "Index",
+  "work_item": "https://github.com/opensiro/vsm-harness-index/issues/3372",
+  "starting_revision": "opensiro/vsm-harness-index@34e11ec4dd52e1ba3ee0111d8bca73f13918f54f",
+  "governing_artifacts": [
+    "https://github.com/opensiro/vsm-harness-index/issues/3371",
+    "https://github.com/opensiro/vsm-harness-index/issues/3372",
+    "START_HERE.md",
+    "modes/s1-autonomous/RUN.md",
+    "roles/S1.md",
+    "contracts/s1/domain-contracts.md",
+    "contracts/s1/task-admission-recovery.md",
+    "Index INDEXING.md / CONTRIBUTING.md / AGENTS.md; Profile 0.2.4 / released Skills Methodology 0.3.8"
+  ],
+  "boundary": "One disjoint five-row Index assessment batch; serial frozen NEXT, distinct proposed-review/admission PRs and final verified main. No normative change, third-party writes, private context, paid model, robot/simulator/security or fleet execution.",
+  "boundary_reachability": {
+    "reachable": true,
+    "custom_composition_required": false,
+    "statement": "Public bootstrap and supported contracts supplied admission, ordinary discretion, recovery and closure. Task-local transport/check scripts only moved and validated artifacts; no new role, reviewer, scheduler or authority wiring was added."
+  },
+  "runtime_support": [
+    "ChatGPT Work / Codex assistant; no unverified model identity inferred from dates",
+    "GitHub connector and dev-alpha-2 SSH/Git/CLI for public source, branches/PRs, expected-head merges and CI readback",
+    "Released Skills structural checker; Index generators, validators and 108 unit tests; staging scripts are support, not semantic owners"
+  ],
+  "admission": {
+    "result": "ADMIT",
+    "outcome": "Five frozen harnesses canonically included; intake #3371 and controller #3372 closed.",
+    "delegated_decisions": [
+      "Select/freeze five non-overlapping verified candidates",
+      "Collect primary evidence, map function/owner/closure and classify supported modes, bounded absence and specific uncertainty",
+      "Package separate proposal/admission transactions, synthesize signatures, regenerate views and recover ordinary local failures"
+    ],
+    "forbidden_decisions": [
+      "No source substitution, repin, resizing or another controller's NEXT",
+      "No normative/organization/credential/permissions/licensing decisions",
+      "No third-party publication, private evidence, live provider/robot/security/fleet actions or fabricated independent review/autonomy grade"
+    ],
+    "completion_evidence": [
+      "Five accepted artifacts and unique catalog identities match frozen refs and immutable generation provenance",
+      "All ten PRs merged with success on exact final-head CI; accepted main contains every merge",
+      "Final clean-main Skills/Index/TLDR/render checks, 108 tests and 72 pinned primary-source paths passed; proposed-to-accepted bytes differ only in lifecycle status",
+      "Accepted Index main c2e43bf4750841277b3e58d8ba80314121734764; actual catalog positions 1289, 1291, 1293, 1295, 1297"
+    ],
+    "escalation_conditions": [
+      "Unrecoverable source/duplicate-owner/evidence conflict",
+      "Actual missing integration/review/permission right",
+      "Normative or boundary-changing repair"
+    ],
+    "integration_boundary": "S1 classification was separate from integration; standing task-related authorization, actual protections and exact-head CI governed merges. No real required review was waived or platform rejection bypassed."
+  },
+  "agent_owned_decisions": [
+    {
+      "decision": "Selected five fresh stable non-fork identities, verified source trees and no catalog/assessment/open-lock overlap, preserved historical queues.",
+      "evidence": "https://github.com/opensiro/vsm-harness-index/issues/3371"
+    },
+    {
+      "decision": "Applied source-first analysis to each NEXT, explicit optional-mode boundaries and specific PenHarness S3* uncertainty; no imported provider/evaluation owners.",
+      "evidence": "https://github.com/opensiro/vsm-harness-index/issues/3372"
+    },
+    {
+      "decision": "Completed distinct proposal/admission integrations, refreshed actual catalog positions amid concurrent batches and verified main before advancing.",
+      "evidence": "Review/admission PRs and exact-head CI listed under artifacts."
+    },
+    {
+      "decision": "Repaired NamiAgent generated-view and concurrent-base CI failure without changing its source boundary; recovered ordinary transport/CLI disturbances.",
+      "evidence": "https://github.com/opensiro/vsm-harness-index/pull/3374"
+    }
+  ],
+  "human_interventions": [
+    {
+      "intervention": "Maintainer requested batch assessment, later resumed this chat, and supplied standing task-related GitHub authorization.",
+      "affected_decision": "Bounded task/continuation and integration consent.",
+      "ownership_effect": "Human selected the task and granted integration rights; no human selected VSM states or ordinary evidence/recovery steps."
+    }
+  ],
+  "disturbances_and_recovery": [
+    {
+      "disturbance": "Controller source-link metadata initially triggered intake/controller duplicate detection.",
+      "response": "Added literal Source candidate batch linkage without modifying frozen rows; native queue checker passed.",
+      "boundary_preserved": true
+    },
+    {
+      "disturbance": "NamiAgent derived analytics and concurrent main changes caused failed CI/conflicts.",
+      "response": "Merged current main, regenerated source-derived views, passed local checks/tests and final-head CI before merging.",
+      "boundary_preserved": true
+    },
+    {
+      "disturbance": "SSH format/length limits, old CLI flags, transient tool errors and Git HTTP/2 EOF interrupted work.",
+      "response": "Used supported bounded quoted chunks/CLI arguments, retried exact public source retrieval and verified unchanged SHAs/paths; no credentials exposed.",
+      "boundary_preserved": true
+    },
+    {
+      "disturbance": "Chat resumed with The Harness proposed PR pending.",
+      "response": "Re-read live owner board/comments/PR/CI/main and resumed the same frozen NEXT.",
+      "boundary_preserved": true
+    }
+  ],
+  "validation": [
+    "Ten exact-head successful CI receipts and main ancestry verified",
+    "Five Skills structural checks; Index/TLDR, deterministic views, 108 tests and clean-tree check passed on accepted main",
+    "72 pinned primary evidence paths verified; all five original trees untruncated",
+    "Frozen refs, unique identities and origin provenance reconciled; accepted bytes equal proposals except status",
+    "Record validated against schemas/s1-autonomous-run.schema.json"
+  ],
+  "terminal_state": "CLOSED_CHANGE",
+  "artifacts": [
+    "https://github.com/opensiro/vsm-harness-index/issues/3371",
+    "https://github.com/opensiro/vsm-harness-index/issues/3372",
+    "https://github.com/opensiro/vsm-harness-index/commit/c2e43bf4750841277b3e58d8ba80314121734764",
+    "https://github.com/opensiro/vsm-harness-index/blob/c2e43bf4750841277b3e58d8ba80314121734764/assessments/na/namiagent.md",
+    "https://github.com/opensiro/vsm-harness-index/blob/c2e43bf4750841277b3e58d8ba80314121734764/assessments/ru/runvil-harness.md",
+    "https://github.com/opensiro/vsm-harness-index/blob/c2e43bf4750841277b3e58d8ba80314121734764/assessments/th/the-harness.md",
+    "https://github.com/opensiro/vsm-harness-index/blob/c2e43bf4750841277b3e58d8ba80314121734764/assessments/fo/forceharness.md",
+    "https://github.com/opensiro/vsm-harness-index/blob/c2e43bf4750841277b3e58d8ba80314121734764/assessments/pe/penharness.md",
+    "https://github.com/opensiro/vsm-harness-index/pull/3374",
+    "https://github.com/opensiro/vsm-harness-index/actions/runs/44536468451",
+    "https://github.com/opensiro/vsm-harness-index/pull/3376",
+    "https://github.com/opensiro/vsm-harness-index/actions/runs/44536677121",
+    "https://github.com/opensiro/vsm-harness-index/pull/3379",
+    "https://github.com/opensiro/vsm-harness-index/actions/runs/44537368305",
+    "https://github.com/opensiro/vsm-harness-index/pull/3380",
+    "https://github.com/opensiro/vsm-harness-index/actions/runs/44537554527",
+    "https://github.com/opensiro/vsm-harness-index/pull/3383",
+    "https://github.com/opensiro/vsm-harness-index/actions/runs/44538667777",
+    "https://github.com/opensiro/vsm-harness-index/pull/3384",
+    "https://github.com/opensiro/vsm-harness-index/actions/runs/44588522452",
+    "https://github.com/opensiro/vsm-harness-index/pull/3387",
+    "https://github.com/opensiro/vsm-harness-index/actions/runs/44589707917",
+    "https://github.com/opensiro/vsm-harness-index/pull/3388",
+    "https://github.com/opensiro/vsm-harness-index/actions/runs/44589902536",
+    "https://github.com/opensiro/vsm-harness-index/pull/3391",
+    "https://github.com/opensiro/vsm-harness-index/actions/runs/44590785006",
+    "https://github.com/opensiro/vsm-harness-index/pull/3392",
+    "https://github.com/opensiro/vsm-harness-index/actions/runs/44590967440"
+  ]
+}
