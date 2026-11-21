@@ -969,6 +969,120 @@ For this case the S5 matter is the identity/system-scope decision, not the PR, G
 
 Prefer reconstructing a real earlier event over manufacturing a new one when the primary evidence can establish the missing functional and ownership links. Preserve the chronology of recognition: later formalization may make an earlier event classifiable, but it must not be written as if the later governance contract already existed at the time.
 
+## 2026-10-19 — An Index-origin Upstream pilot selected no justified contribution
+
+**Status:** `validated as a bounded negative discovery; generalization unsupported`
+
+### Context
+
+Upstream tested whether canonical Index assessments could lead to original-repository improvements. The [source-first pilot](https://github.com/opensiro/upstream-old/blob/main/reports/2026-10-19-index-origin-s1-pilot.md) pinned Index at [`d701ec67`](https://github.com/opensiro/vsm-harness-index/commit/d701ec67c96e39de5971271f6158997337c6e524). At this date Upstream was still an adjacent proposed S1 domain, not yet admitted by the Organization's parent.
+
+### Observed problem
+
+A missing or weak VSM function in an assessment could be mistaken for an unimplemented, wanted upstream capability. Source inspection can instead reveal intentional behavior, existing work or insufficient demand.
+
+### Alternatives considered
+
+The concrete choices were to propose an addition based on the grade, repeat a change already covered by first-party work, or decline admission until original-native need, scope, mechanism, benefit and non-overlap were supported.
+
+### Decision / experiment
+
+Six Index candidates were sampled; five received fresh original-source qualification. Cloud Coding Agent Node was **not** qualified and was not counted as a negative result. Harness² overlapped existing [original PR #79](https://github.com/google-research/harness2/pull/79); NanoCoder's shared todo state could be deliberate rather than defective; CodeAgent's absent S3* was not itself an operator request. Other sampled leads also lacked a supported admission path.
+
+### Evidence
+
+- [Dated pilot report and candidate-level source pins](https://github.com/opensiro/upstream-old/blob/main/reports/2026-10-19-index-origin-s1-pilot.md).
+- [Index snapshot used for candidate selection](https://github.com/opensiro/vsm-harness-index/commit/d701ec67c96e39de5971271f6158997337c6e524).
+
+### Result
+
+The pilot closed `PARTIAL / NO_ELIGIBLE_ASSESSMENT_CANDIDATE_IN_SAMPLED_SET`: **zero admitted improvements among the five fully checked candidates**, with no fork, implementation or external PR. This was a correct bounded refusal, not evidence that the entire Index lacked promising opportunities or that the Upstream contribution function had autonomous closure.
+
+### VSM interpretation
+
+An Index ownership/closure mapping can guide investigation, but it cannot authorize implementation or establish product demand. The operating boundary remains the original project's current code, workflows and maintainer-owned decisions.
+
+### Reusable lesson
+
+Record qualified no-change outcomes alongside successes. Before attributing improvement to a VSM gap, verify that an incremental, source-native benefit actually exists; this pilot did not measure saved engineering time or compare alternate selection strategies.
+
+## 2026-10-24 — Reconcile published Corrective PRs with a stale central queue
+
+**Status:** `validated for the dated cohort; future drift reduction unmeasured`
+
+### Context
+
+The predecessor Upstream held a finite [34-case Corrective publication ledger](https://github.com/opensiro/upstream-old/blob/main/data/corrective-publication/2026-10-23-01.json), while actual submissions and maintainer responses lived in external GitHub repositories and an hourly maintenance watchlist.
+
+### Observed problem
+
+At the first [2026-10-24 reconciliation](https://github.com/opensiro/upstream-old/blob/main/reports/2026-10-24-corrective-pr-reconciliation.md), the frozen ledger still labelled **all 34 as `QUEUED`**, although **seven** distinct, non-draft external PRs were confirmed published by GitHub readback. Treating the central manifest as current reality would erase work already performed or invite duplicate publication.
+
+### Alternatives considered
+
+Do not infer publication from local patches, unverified queue updates or a GitHub repository name. Compare exact original PR URLs, author, matching parent forks and submitted heads, then reconcile the bounded ledger with a validator against the maintenance watchlist.
+
+### Decision / experiment
+
+The seven observed cases were classified `SUBMITTED`, leaving 27 queued in that **initial readback**. A fail-closed `corrective_publication_queue.py validate` guard was added so recorded published/merged submissions must remain present in the hourly watcher. A subsequent, separately attributed Workflow One draft PR moved the dated account to **8 submitted / 26 queued**.
+
+### Evidence
+
+- [Reconciliation report, two successive 2026-10-24 observations and exact PR URLs](https://github.com/opensiro/upstream-old/blob/main/reports/2026-10-24-corrective-pr-reconciliation.md).
+- [Historical bounded publication ledger](https://github.com/opensiro/upstream-old/blob/main/data/corrective-publication/2026-10-23-01.json).
+
+### Result
+
+The recorded queue and first-party source observations were brought into alignment for the reviewed cohort; the guard made one specific drift condition mechanically detectable. Neither eight published PRs nor a passing validation proves external merge, maintenance responsiveness or user benefit. The report does not supply a measured long-term before/after drift rate.
+
+### VSM interpretation
+
+Repository-local bookkeeping is not the authority for third-party PR state. This is a concrete S1 operational feedback/reconciliation problem, not automatic evidence of an independent S2 or S3 function.
+
+### Reusable lesson
+
+When a work queue and externally owned results disagree, preserve both timestamps, resolve identities against the original owner and add a narrow consistency check rather than inventing a new coordinator or counting prepared work as published.
+
+## 2026-10-26 to 2026-11-06 — Admit the fourth S1 domain, then prove one operational return
+
+**Status:** `validated for bounded S5 boundary application and S1 construction witness; autonomy unassessed`
+
+### Context
+
+Upstream Contributions had produced real source-backed engineering work but remained outside the bounded three-S1 Organization while [parent scope issue #274](https://github.com/opensiro/vsm-oss-organization/issues/274) awaited a legitimate identity decision.
+
+### Observed problem
+
+Neither a successful external contribution nor an ordinary repository PR grants a new organizational S1 mandate. Conversely, an S5 decision to admit a domain does not itself demonstrate an operative decision–execution–feedback loop.
+
+### Alternatives considered
+
+The recorded parent choices were to keep Upstream adjacent or to admit it with an explicit local envelope. After admission, simply citing merged governance documents would have skipped the separate operational witness requirement.
+
+### Decision / experiment
+
+On **2026-10-26**, the legitimate S5 parent selected [`ADMIT_WITH_ENVELOPE`](https://github.com/opensiro/vsm-oss-organization/issues/274#issuecomment-6420871211); the [Organization application PR #292](https://github.com/opensiro/vsm-oss-organization/pull/292) and [Upstream routing PR #134](https://github.com/opensiro/upstream-old/pull/134) were integrated and read back. This established the fourth operational S1 domain and sixth public repository, **not** `S1=A` or generalized external-publication authority.
+
+A later bounded source-first case investigated a live 404 from [Headcount PR #47](https://github.com/cbrock84/headcount/pull/47). Upstream preserved all 18 watched identities, marked precisely that unavailable source `UNVERIFIABLE`, and kept unrelated errors fail-closed. [Correction PR #140](https://github.com/opensiro/upstream-old/pull/140) passed 497 native tests and scheduled post-merge verification. On **2026-11-06**, the parent accepted the separate S1 construction witness.
+
+### Evidence
+
+- [S5 decision, application and accepted operational gate #6](https://github.com/opensiro/vsm-oss-organization/issues/274).
+- [Durable S5 record with integrated SHAs, CI and default-branch return](../records/s5/2026-10-26-upstream-domain-admission.md).
+- [Upstream source triage #139](https://github.com/opensiro/upstream-old/issues/139) and [scheduled operational readback](https://github.com/opensiro/upstream-old/actions/runs/42086558693).
+
+### Result
+
+The bounded domain admission and a real correction–validation–return path were supported separately. An unavailable external PR was not mislabelled rejected or merged. This did **not** verify independent agent-owned S1 decisions, strict assessment-derived product value, external maintainer adoption or a new VSM autonomy grade.
+
+### VSM interpretation
+
+S5 owns the identity/boundary decision; an admitted S1 owns its bounded operational contribution and local closure. Governance authorization, integrated construction and observed function must be assessed as separate events.
+
+### Reusable lesson
+
+Do not treat approved organization charts as operational proof. Require a real post-admission disturbance, attributable decision, validated correction and feedback return while recording where human parent authority still applies.
+
 ## 2026-11-13 — Bound autonomous CLA acceptance to organization-specific, approved templates
 
 **Status:** `provisional — owner direction recorded; effect and external acceptance unmeasured`
@@ -1010,6 +1124,44 @@ The legitimate parent's S5 decision concerns whether a class of legally conseque
 ### Reusable lesson
 
 Preserve the difference between reducing procedural human interruption and making an unsupported legal representation. Future comparisons should count blocked cases and terms-drift incidents, not only accepted PRs, and should allow the hypothesis of improved autonomy to be falsified.
+
+## 2026-11-15 — Narrow third-party publication authority after an unauthorized comment
+
+**Status:** `validated as a prospective governance correction; runtime enforcement and effects unmeasured`
+
+### Context
+
+The historical Upstream publication workflow had used a standing external-publication mandate, alongside finite batch permissions and source-native tests. That arrangement did not erase the distinction between local preparation and a communication that reaches third-party maintainers.
+
+### Observed problem
+
+An [Akmatori #48](https://github.com/akmatori/akmatori/issues/48) technical comment was sent **without the required owner approval**. The [historical protocol record](https://github.com/opensiro/upstream-old/blob/main/changes/v0.10.0.md) states this explicitly; success of technical research, possession of GitHub credentials or an earlier standing mandate did not establish consent for that exact outward action.
+
+### Alternatives considered
+
+Keep the former blanket no-prompt mode, suspend all research pending human approval, or separate freely permitted internal analysis from individually approved third-party public communication.
+
+### Decision / experiment
+
+On **2026-11-15**, the owner narrowed external-publication authority: show the exact destination, operation and full public text/diff and obtain fresh, action-specific approval in the current conversation **before** sending a comment, issue, review, public fork-local proposal or external PR. Absent or stale approval fails closed. Internal read-only investigation, native tests and OpenSiro-internal PRs remain separately permitted within their operative envelopes. The predecessor recorded this as its prospective [v0.10.0 protocol change](https://github.com/opensiro/upstream-old/blob/main/CHANGELOG.md).
+
+### Evidence
+
+- [Historical v0.10.0 change package and incident context](https://github.com/opensiro/upstream-old/blob/main/changes/v0.10.0.md).
+- [Exact-action publication consent gate](https://github.com/opensiro/upstream-old/blob/main/docs/EXTERNAL_PUBLIC_COMMUNICATION_GATE.md).
+- [Current Organization bootstrap retains the external-publication restriction](../START_HERE.md).
+
+### Result
+
+The prior public comment was **not** retroactively authorized or erased. The new rule made the boundary explicit but did not demonstrate automatic runtime prevention, faster review, reduced mistakes or successful external maintainer interactions. This owner-level publication rule is distinct from the narrower, earlier CLA-template delegation discussed in the [2026-11-13 entry](#2026-11-13--bound-autonomous-cla-acceptance-to-organization-specific-approved-templates).
+
+### VSM interpretation
+
+An operational S1 can prepare useful work without possessing the legitimate parent's reserved right to authorize unsolicited external communication. A standing technical capability and a true authorization decision are not interchangeable; the governance correction is not an autonomy-grade upgrade.
+
+### Reusable lesson
+
+Preserve uncomfortable incidents and the exact rights they exposed. Remove unnecessary approval steps from safe internal investigation, but require explicit evidence of consent at the public side-effect boundary rather than assuming it from past autonomy or successful tests.
 
 ## 2026-11-19 — Move Upstream from centralized history to fork-local contribution ownership
 
