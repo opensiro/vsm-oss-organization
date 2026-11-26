@@ -18,6 +18,7 @@ Start with [`START_HERE.md`](START_HERE.md). It is the canonical machine bootstr
 - already tracked current work → [`TODO.md`](TODO.md), then return to the linked owning issue/repository;
 - new, unclassified, cross-repository, or authority-sensitive work → [`CONTRIBUTOR_START.md`](CONTRIBUTOR_START.md);
 - cross-repository architecture → [`docs/ECOSYSTEM.md`](docs/ECOSYSTEM.md).
+- own-organization assessment and capability planning → [`vsm-oss-local`](skills/vsm-oss-local/SKILL.md), the Organization-local OpenSiro Local adapter.
 
 Repository-local facts remain authoritative in their owning repository. This repository owns only the bounded cross-repository organization/control construction.
 

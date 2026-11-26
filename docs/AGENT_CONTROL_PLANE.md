@@ -119,6 +119,8 @@ Include `NEED YOU` only for a concrete un-delegated owner decision; include `DON
 
 ## Maintainer commands
 
+For self-study of the bounded Organization, `opensiro-local roadmap [--target C|P|A]` (also `vsm-oss-local roadmap`) dispatches to the [Organization-local skill](../skills/vsm-oss-local/SKILL.md), not the external Upstream route. C is the default; A/P are experimental plan-only.
+
 | Say to the agent | Intended operation |
 | --- | --- |
 | `status` / `show OSS status` | Refresh canonical sources and return the [compact `NOW / BLOCKED / NEXT` view](#default-status-answer-compact-read-only), with owner links and clear `TODO.md` empty-queue semantics. Expand open issues/PRs, CI and gates only as needed or on request. No write is implied. |
